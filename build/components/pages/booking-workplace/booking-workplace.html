@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="../../../css/style.min.css">
+	<title>booking-workplace</title>
+</head>
+
+<body>
+	<div class="page">
+		<section class="booking-workplace">
+			<div class="booking-workplace__inner booking-workplace__inner--top-line">
+				<div class="button-back__wrapper">
+					<button class="button-back" onclick="location.href='../hello/hello.html'">
+						<svg class="button-back__img">
+							<use xlink:href='#arrow-left' />
+						</svg>
+					</button>
+					<p class="button-back__text">go back</p>
+				</div>
+			</div>
+			<h1 class="booking-workplace__title">Booking of the
+				workplace
+			</h1>
+			<div class="booking-workplace__inner booking-workplace__inner--middle-line">
+				<button class="workplace-choice">
+					<p class="workplace-choice__title">Month</p>
+					<a class="workplace-choice__subtitle previewResidentCard">Resident card</a>
+					<p class="workplace-choice__price">1000</p>
+					<svg class="workplace-choice__img previewResidentCard">
+						<use xlink:href='#infoborder' />
+					</svg>
+				</button>
+				<button class="workplace-choice">
+					<p class="workplace-choice__title">Week</p>
+					<p class="workplace-choice__price">400</p>
+					<svg class="workplace-choice__img">
+						<use xlink:href='#infoborder' />
+					</svg>
+				</button>
+				<button class="workplace-choice">
+					<p class="workplace-choice__title">Day</p>
+					<p class="workplace-choice__price">80</p>
+					<svg class="workplace-choice__img">
+						<use xlink:href='#infoborder' />
+					</svg>
+				</button>
+			</div>
+			<div class="booking-workplace__col booking-workplace__col--form">
+				<form action="" name='booking-form' id='booking-form' class="booking-workplace__form">
+					<div class="booking-workplace__inner booking-workplace__inner--form">
+						<div class="booking-workplace__col">
+							<label for="full-name-label" class="booking-workplace__label">FULL NAME*</label>
+							<input id='full-name-label' required autocomplete='on' type="text" class="booking-workplace__input" placeholder="Андрій Малишко">
+						</div>
+						<div class="booking-workplace__col">
+							<label for="phone-label" class="booking-workplace__label">Phone*</label>
+							<input id='phone-label' required autocomplete='on' type="tel" class="booking-workplace__input" placeholder="+38 (000) 000 00-00">
+						</div>
+					</div>
+					<div class="booking-workplace__inner booking-workplace__inner--form">
+						<div class="booking-workplace__col">
+							<label for="email-label" class="booking-workplace__label">E-mail*</label>
+							<input id='email-label' required autocomplete='on' type="email" class="booking-workplace__input" placeholder="example@mail.com">
+						</div>
+						<div class="booking-workplace__col">
+							<label for="career-label" class="booking-workplace__label">career</label>
+							<input id='career-label' type="text" autocomplete='on' class="booking-workplace__input" placeholder="Програміст на Джава">
+						</div>
+					</div>
+				</form>
+			</div>
+			<p class="booking-workplace__description">* — Required fields</p>
+			<div class="booking-workplace__inner booking-workplace__inner--bottom-line">
+				<p class="booking-workplace__price-text">
+					Price:
+					<span class="booking-workplace__price-numeric">1000</span>
+				</p>
+				<button class="button-apply-book" form='booking-form'>apply</button>
+			</div>
+		</section>
+	</div>
+	<svg style="display: none;">
+		<symbol id='infoborder' width="16px" height="16px" viewBox="0 0 24 24">
+			<path d="M11,17 L13,17 L13,11 L11,11 L11,17 L11,17 Z M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 L12,2 Z M12,20 C7.59,20 4,16.41 4,12 C4,7.59 7.59,4 12,4 C16.41,4 20,7.59 20,12 C20,16.41 16.41,20 12,20 L12,20 Z M11,9 L13,9 L13,7 L11,7 L11,9 L11,9 Z"
+			 id="Shape"></path>
+		</symbol>
+		<symbol id='arrow-left' width="17" height="17">
+			<path stroke="none" transform="matrix(-0.664679 0.664682 0.664682 0.664679 8.66016 0.303762)" d="M4 0L4 1.6L9.272 1.6L0 10.872L1.128 12L10.4 2.728L10.4 8L12 8L12 0L4 0L4 1.6L9.272 1.6L0 10.872L1.128 12L10.4 2.728L10.4 8L12 8L12 0L4 0Z" />
+		</symbol>
+	</svg>
+</body>
+
+</html>

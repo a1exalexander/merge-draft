@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="../../../css/style.css">
+	<title>Menu</title>
+</head>
+
+<body>
+	<div class="page">
+		<section class="menu">
+			<div class="menu__col menu__col--button">
+				<div class="menu-button-close__wrapper">
+					<button id='back-to-home' onclick="location.href='../hello/hello.html'" class="menu-button-close">
+						<div class="menu-button-close__item"></div>
+						<svg class='menu-button-close__img'>
+							<use xlink:href='#close' />
+						</svg>
+					</button>
+					<p class="menu-button-close__description">
+						CLOSE
+					</p>
+				</div>
+			</div>
+			<div class="menu__col">
+				<ul class="menu__list">
+					<li class="menu__item">
+						<a href="#" class="menu__link">
+							Merge
+						</a>
+					</li>
+					<li class="menu__item">
+						<a href="#" class="menu__link">
+							Coworking space
+						</a>
+					</li>
+					<li class="menu__item">
+						<a href="#" class="menu__link">
+							Meeting Room
+						</a>
+					</li>
+					<li class="menu__item">
+						<a href="#" class="menu__link">
+							Events
+						</a>
+					</li>
+					<li class="menu__item">
+						<a href="#" class="menu__link">
+							About us
+						</a>
+					</li>
+				</ul>
+				<div class="language__wrapper">
+					<a href="#" class="language">
+						UA
+					</a>
+					<a href="#" class="language">
+						RU
+					</a>
+					<a href="#" class="language">
+						EN
+					</a>
+				</div>
+			</div>
+			<div class="menu__col"></div>
+			<div class="menu__col">
+				<div class="menu__inner">
+					<div class="menu__info-block menu__info-block--calendar">
+						<div class="menu__image-wrapper">
+							<svg class="menu__image">
+								<use xlink:href='#calendar' />
+							</svg>
+						</div>
+						<p class="menu__text menu__text--above">
+							MON—FRI:
+						</p>
+						<p class="menu__text menu__text--under menu__text--margin">
+							9:00 – 20:00
+						</p>
+						<p class="menu__text menu__text--above">
+							SAT, SUN:
+						</p>
+						<p class="menu__text menu__text--under">
+							10:00 – 18:00
+						</p>
+					</div>
+					<div class="menu__info-block menu__info-block--location">
+						<div class="menu__image-wrapper">
+							<svg class="menu__image">
+								<use xlink:href='#location' />
+							</svg>
+						</div>
+						<p class="menu__text menu__text--above menu__text--locate">
+							Kremenchug
+						</p>
+						<p class="menu__text menu__text--under menu__text--locate">
+							Nebesna Sotnia st. 17А
+							“Proletarsky”
+						</p>
+					</div>
+					<button class="button-map">
+						<p class='button-map__text'>
+							VIEW ON THE MAP
+							<svg class='button-map__img'>
+								<use xlink:href='#arrow-right-up' />
+							</svg>
+						</p>
+					</button>
+				</div>
+			</div>
+			<div class="menu__col">
+				<div class="menu__inner">
+					<div class="menu__info-block menu__info-block--phone">
+						<div class="menu__image-wrapper">
+							<svg class="menu__image">
+								<use xlink:href='#phone' />
+							</svg>
+						</div>
+						<a href="callto: 0970313451" class="menu__contact menu__contact--phone">
+							097 031 3451
+						</a>
+					</div>
+					<div class="menu__info-block menu__info-block--mail">
+						<div class="menu__image-wrapper">
+							<svg class="menu__image">
+								<use xlink:href='#mail' />
+							</svg>
+						</div>
+						<a href="mailto: hello@merge.place" class="menu__contact menu__contact--mail">
+							hello@merge.place
+						</a>
+					</div>
+					<button class="button-membership">
+						<p class='button-membership__text'>
+							BECOME A MEMBER
+							<svg class='button-membership__img'>
+								<use xlink:href='#arrow-button' />
+							</svg>
+						</p>
+					</button>
+				</div>
+			</div>
+		</section>
+	</div>
+	<svg style="display: none;">
+		<symbol id='logo' width="31px" height="40px" viewBox="0 0 31 40">
+			<path fill-rule="evenodd" d="M20.4593069,32.8365086 L23.8888332,29.1227295 L31,36.2862209 L27.570731,40 L20.4593069,32.8365086 Z M15.4625816,0 L26.0850832,10.7005349 L18.0964043,10.7005349 L18.0964043,25.4662469 L3.77682656,39.9891419 L0,36.2971308 L12.693955,23.3086219 L12.693955,10.7005349 L4.89641986,10.7005349 L15.4625816,0 Z"
+			 id="Combined-Shape"></path>
+		</symbol>
+		<symbol id='menu' width="24px" height="24px" viewBox="0 0 24 24">
+			<path d="M12,11 L20,11 L20,13 L12,13 L12,11 Z M8,6 L20,6 L20,8 L8,8 L8,6 Z M4,16 L20,16 L20,18 L4,18 L4,16 Z" id="Combined-Shape"
+			 transform="translate(12.000000, 12.000000) scale(-1, 1) translate(-12.000000, -12.000000) "></path>
+		</symbol>
+		<symbol id='close' viewBox="0 0 24 24">
+			<polygon id="Shape" points="19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12"></polygon>
+		</symbol>
+		<symbol id='arrow-button' width="12" height="12">
+			<path stroke-width="1" stroke-miterlimit="4" transform="matrix(0.685894 0.685894 -0.685894 0.685894 6.45996 0.409277)"
+			 d="M2.66654 0L2.66654 1.06667L6.18121 1.06667L-0.00012207 7.248L0.751878 8L6.93321 1.81867L6.93321 5.33333L7.99988 5.33333L7.99988 0L2.66654 0L2.66654 1.06667L6.18121 1.06667L-0.00012207 7.248L0.751878 8L6.93321 1.81867L6.93321 5.33333L7.99988 5.33333L7.99988 0L2.66654 0Z" />
+		</symbol>
+		<symbol id='arrow-right-up' width="12" height="12"" viewBox=" 0 0 24 24">
+			<path fill-rule="evenodd" d="M10 6v1.6h5.272L6 16.872 7.128 18 16.4 8.728V14H18V6z" />
+		</symbol>
+		<symbol id='calendar' width="24" height="24" viewBox="0 0 24 24">
+			<path fill-rule="nonzero" d="M19 20H5V9h14v11zM16 2v2H8V2H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1V2h-2zm1 11h-5v5h5v-5z" />
+		</symbol>
+		<symbol id='mail' width="24" height="24" viewBox="0 0 24 24">
+			<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+		</symbol>
+		<symbol id='phone' width="24" height="24" viewBox="0 0 24 24">
+			<path fill-rule="evenodd" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+		</symbol>
+		<symbol id='location' width="24" height="24" viewBox="0 0 24 24">
+			<path fill-rule="evenodd" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z" />
+		</symbol>
+	</svg>
+</body>
+
+</html>

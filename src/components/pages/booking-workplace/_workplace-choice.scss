@@ -1,0 +1,110 @@
+.workplace-choice {
+    width: 128px;
+    height: 74px;
+    border-radius: 3px;
+    background-color: transparent;
+    border: solid 2px $DARK-GREY;
+    outline: none;
+    @extend %flex-col-sb;
+    align-items: flex-start;
+    padding: 13px;
+    position: relative;
+
+    &__title {
+        font-family: $base-font;
+        font-size: 14px;
+        font-weight: 700;
+        text-align: left;
+        color: $GREY;
+    }
+    &__subtitle {
+        font-family: $base-font;
+        font-size: 9px;
+        font-weight: 500;
+        text-align: left;
+        color: $GREY;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    
+    &__price {
+        font-family: $base-font;
+        font-size: 10px;
+        font-weight: 500;
+        text-align: left;
+		color: $GREY;
+		&::after {
+			content: ' uah';
+		}
+    }
+    &__img {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        fill: $GREY;
+        right: 12px;
+        top: 12px;
+    }
+    &:hover {
+        background-color: $MERGE-SECONDARY-COLOR;
+        border-color: $MERGE-SECONDARY-COLOR;
+        transition: background-color ease-in-out 0.3s,
+            border-color ease-in-out 0.3s;
+       
+        & .bw-button-choice__subtitle:hover {
+            color: white;
+            transition: color ease-in-out 0.3s;
+        }
+        & .bw-button-choice__img:hover {
+            fill: white;
+            transition: fill ease-in-out 0.3s;
+        }
+
+    } 
+    &:not(:hover) {
+        transition: background-color ease-in-out 0.3s,
+            border-color ease-in-out 0.3s;
+    }
+    &:hover &__title,
+    &:hover &__subtitle {
+        color: $MAIN-DARK-COLOR;
+        transition: color ease-in-out 0.3s;
+    }
+    &:hover &__price {
+        color: #333333;
+        transition: color ease-in-out 0.3s;
+    }
+
+    &:not(:hover) &__title,
+    &:not(:hover) &__subtitle {
+        transition: color ease-in-out 0.3s;
+    }
+    &:not(:hover) &__price {
+        transition: color ease-in-out 0.3s;
+    }
+
+    &:hover &__img {
+        fill: $MAIN-DARK-COLOR;
+        transition: fill ease-in-out 0.3s;
+    }
+
+    &:not(:hover) &__img {
+        transition: fill ease-in-out 0.3s;
+    }
+
+    &:focus {
+        background-color: $MERGE-SECONDARY-COLOR;
+        border-color: $MERGE-SECONDARY-COLOR;
+    }
+    &:focus &__title,
+    &:focus &__subtitle {
+        color: $MAIN-DARK-COLOR;
+    }
+    &:focus &__price {
+        color: #333333;
+    }
+    &:focus &__img {
+        fill: $MAIN-DARK-COLOR;
+    }
+}
