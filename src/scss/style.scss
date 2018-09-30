@@ -8,7 +8,9 @@
 @import '../components/common/_buttons/button-map/button-map';
 @import '../components/common/_buttons/button-back/button-back';
 @import '../components/common/_navigation/navigation';
+@import '../components/common/_navigation/nav-social';
 @import '../components/pages/hello/hello';
+@import '../components/pages/hello/hello-link';
 @import '../components/pages/menu/menu';
 @import '../components/pages/menu/menu-button-close';
 @import '../components/pages/menu/language';
@@ -36,11 +38,14 @@ a, button {
 	width: 100%;
     min-height: 100vh;
 	background-color: $MAIN-DARK-COLOR;
-	@extend %flex-row-c;
-	align-items: center;
 
-	&--fs {
-		@extend %flex-row-fs;
+	&--nav {
+		display: grid;
+		grid-template-columns: 112px 1fr;
+	}
+	
+	&--center {
+		@extend %flex-row-c;
 	}
 	
 }

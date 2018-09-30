@@ -46,7 +46,7 @@ var path = {
 		html: 'src/**/*.html',
 		jsMain: 'src/js/**/*.js',
 		js: 'src/components/**/[^_]*.js',
-		scss: 'src/scss/**/*.*',
+		scss: 'src/**/*.scss*',
 		img: 'src/image/**/*.*',
 		fonts: 'src/fonts/**/*.*'
 	},
@@ -65,33 +65,40 @@ gulp.task('connect', function() {
 });
 
 gulp.task('htmlMain:build', function() {
-	gulp
-		.src(path.src.htmlMain) //Выберем файлы по нужному
-		.pipe(gulp.dest(path.build.htmlMain)) //выгрузим их в папку build
-		.pipe(connect.reload()); //И перезагрузим наш сервер для обновлений
+	pump([
+		gulp.src(path.src.htmlMain), //Выберем файлы по нужному
+		gulp.dest(path.build.htmlMain), //выгрузим их в папку build
+		connect.reload() //И перезагрузим наш сервер для обновлений
+	]);
 });
 
 gulp.task('html:build', function() {
-	gulp
-		.src(path.src.html) //Выберем файлы по нужному
-		.pipe(gulp.dest(path.build.html)) //выгрузим их в папку build
-		.pipe(connect.reload()); //И перезагрузим наш сервер для обновлений
+	pump([
+		gulp.src(path.src.html), //Выберем файлы по нужному
+		gulp.dest(path.build.html), //выгрузим их в папку build
+		connect.reload() //И перезагрузим наш сервер для обновлений
+	]);
 });
 
 gulp.task('jsMain:build', function() {
-	gulp
-		.src(path.src.jsMain) //Найдем наш main файл
-		.pipe(gulp.dest(path.build.jsMain)); //выгрузим готовый файл в build
+	pump([
+		gulp.src(path.src.jsMain), //Найдем наш main файл
+		gulp.dest(path.build.jsMain) //выгрузим готовый файл в build
+	]);
 });
 
 gulp.task('js:build', function() {
-	gulp
-		.src(path.src.js) //Найдем наш main файл
-		.pipe(gulp.dest(path.build.js)); //выгрузим готовый файл в build
+	pump([
+		gulp.src(path.src.js), //Найдем наш main файл
+		gulp.dest(path.build.js) //выгрузим готовый файл в build
+	]);
 });
 
 gulp.task('image:build', function() {
-	gulp.src(path.src.img).pipe(gulp.dest(path.build.img)); //выгрузим в build
+	pump([
+		gulp.src(path.src.img),
+		gulp.dest(path.build.img) //выгрузим в build
+	]);
 });
 
 gulp.task('css:build', function() {
@@ -127,7 +134,10 @@ gulp.task('cssmin', function() {
 });
 
 gulp.task('fonts:build', function() {
-	gulp.src(path.src.fonts).pipe(gulp.dest(path.build.fonts)); //выгружаем в build
+	pump([
+		gulp.src(path.src.fonts),
+		gulp.dest(path.build.fonts) //выгружаем в build
+	]);
 });
 
 gulp.task('jsminMain', function(cb) {
@@ -204,7 +214,7 @@ gulp.task('watch', ['connect'], function() {
 });
 
 gulp.task('watchOnly', ['build'], function() {
-	gulp.watch(path.watch.scss, ['css:build']);
+	gulp.watch(path.watch.scss, ['cleanCssMain', 'css:build']);
 	gulp.watch(path.watch.html, ['htmlMain:build']);
 	gulp.watch(path.watch.html, ['html:build']);
 	gulp.watch(path.watch.js, ['jsMain:build']);
@@ -215,6 +225,10 @@ gulp.task('watchOnly', ['build'], function() {
 
 gulp.task('cleanCss', function(cb) {
 	rimraf(path.cleanSrcCss, cb);
+});
+
+gulp.task('cleanCssMain', function(cb) {
+	rimraf(path.build.css, cb);
 });
 
 gulp.task('clean', ['cleanCss'], function(cb) {

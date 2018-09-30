@@ -5,105 +5,99 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="../../../css/style.min.css">
+	<link rel="stylesheet" href="../../../css/style.css">
 	<title>hello</title>
 </head>
 
 <body>
-	<div class="page">
+	<div class="page page--nav">
 		<nav class="navigation navigation--border">
 			<svg class="logo nav-toggle">
 				<use xlink:href='#logo' />
 			</svg>
 			<section class="button-menu__wrapper">
 				<div class="button-menu__cloud nav-toggle">MENU</div>
-				<button  onclick="location.href='../menu/menu.html'"  id='go-to-menu' class="button-menu">
+				<button id='go-to-menu' class="button-menu">
 					<div class="button-menu__item"></div>
 				</button>
 			</section>
-			<section class="social__wrapper nav-toggle">
-				<a href="#" class="social">
-					<svg class="social__img">
+			<section class="nav-social nav-toggle">
+				<a href="#" class="nav-social__link">
+					<svg class="nav-social__img">
 						<use xlink:href='#telegram' />
 					</svg>
 				</a>
-				<a href="#" class="social">
-					<svg class="social__img">
+				<a href="#" class="nav-social__link">
+					<svg class="nav-social__img">
 						<use xlink:href='#facebook' />
 					</svg>
 				</a>
-				<a href="#" class="social">
-					<svg class="social__img">
+				<a href="#" class="nav-social__link">
+					<svg class="nav-social__img">
 						<use xlink:href='#instagram' />
 					</svg>
 				</a>
 			</section>
 		</nav>
 		<section class="hello">
-			<div class="hello__wrapper hello__wrapper--row hello__wrapper--start-title">
-				<h1 class="hello__title hello__title--start">
-					Hello! We’re
-				</h1>
-				<p class="hello__title hello__title--merge">
+			<h1 class="hello__title">
+				Hello! We’re
+				<span class="hello__logo">
 					MERGE
-				</p>
-			</div>
+				</span>
+			</h1>
 
-			<h2 class="hello__subtitle hello__subtitle--start">
+			<h2 class="hello__subtitle">
 				COWORKING IN THE CENTRE OF KREMENCHUK
 			</h2>
-			<div class="hello__wrapper hello__wrapper--row hello__wrapper--start-link">
-				<a href="" class="link link--main">
-					<svg class='link__img link__img--main'>
-						<use xlink:href='#videocamera' />
-					</svg>
-					<p class="link__text link__text--main">
-						how to get to the MERGE
-					</p>
-				</a>
-				<a href="" class="link link--main">
-					<svg class='link__img link__img--main'>
-						<use xlink:href='#infoborder' />
-					</svg>
-					<p class="link__text link__text--main">
-						PRICES AND WORKING HOURS
-					</p>
-				</a>
-			</div>
-			<p class="hello__description hello__description--start">
+			<a href="#" class="hello-link hello-link--how-get">
+				<svg class='hello-link__img'>
+					<use xlink:href='#videocamera' />
+				</svg>
+				<p class="hello-link__text">
+					how to get to the MERGE
+				</p>
+			</a>
+			<a href="#" class="hello-link hello-link--prices">
+				<svg class='hello-link__img'>
+					<use xlink:href='#infoborder' />
+				</svg>
+				<p class="hello-link__text">
+					PRICES AND WORKING HOURS
+				</p>
+			</a>
+
+			<p class="hello__text">
 				We offer
-				<a class='hello__description--link'>comfortable conditions</a>
+				<a class='hello__text--link'>comfortable conditions</a>
 				for remote work and we are dreaming to organize
-				<a href='#' class='hello__description--link'>Merge Community</a>
+				<a href='#' class='hello__text--link'>Merge Community</a>
 				. Also, we have a
-				<a href='#' class='hello__description--link'>meeting room</a>
+				<a href='#' class='hello__text--link'>meeting room</a>
 				with a 50 inch TV. We regularly organize
-				<a href='#' class='hello__description--link'>lectures and workshops</a>
+				<a href='#' class='hello__text--link'>lectures and workshops</a>
 				in various specialties.
 			</p>
-			<div class="hello__wrapper hello__wrapper--row">
-				<button class="button-membership button-membership--hello">
-					<p class='button-membership__text'>
-						BECOME A MEMBER
-						<svg class='button-membership__img'>
-							<use xlink:href='#arrow-button' />
-						</svg>
-					</p>
-				</button>
-				<button class="button-book-room" onclick="location.href='../booking-workplace/booking-workplace.html'">
-					<p class='button-book-room__text'>
-						book a meeting room
-						<svg class='button-book-room__img'>
-							<use xlink:href='#arrow-button' />
-						</svg>
-					</p>
-				</button>
-
-			</div>
+			<button class="button-membership">
+				<p class='button-membership__text'>
+					BECOME A MEMBER
+					<svg class='button-membership__img'>
+						<use xlink:href='#arrow-button' />
+					</svg>
+				</p>
+			</button>
+			<button class="button-book-room" onclick="location.href='../booking-workplace/booking-workplace.html'">
+				<p class='button-book-room__text'>
+					book a meeting room
+					<svg class='button-book-room__img'>
+						<use xlink:href='#arrow-button' />
+					</svg>
+				</p>
+			</button>
 		</section>
 	</div>
 	<svg style="display: none;">
-		<symbol id='logo' width="31px" height="40px" viewBox="0 0 31 40">
+		<symbol id='logo' viewBox="0 0 31 40">
 			<path fill-rule="evenodd" d="M20.4593069,32.8365086 L23.8888332,29.1227295 L31,36.2862209 L27.570731,40 L20.4593069,32.8365086 Z M15.4625816,0 L26.0850832,10.7005349 L18.0964043,10.7005349 L18.0964043,25.4662469 L3.77682656,39.9891419 L0,36.2971308 L12.693955,23.3086219 L12.693955,10.7005349 L4.89641986,10.7005349 L15.4625816,0 Z"
 			 id="Combined-Shape"></path>
 		</symbol>
@@ -112,25 +106,25 @@
 			<polygon id="Shape" points="19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12"></polygon>
 		</symbol>
 
-		<symbol id='videocamera' width="16px" height="16px" viewBox="0 0 24 24">
+		<symbol id='videocamera' viewBox="0 0 24 24">
 			<path d="M17,10.5 L17,7 C17,6.45 16.55,6 16,6 L4,6 C3.45,6 3,6.45 3,7 L3,17 C3,17.55 3.45,18 4,18 L16,18 C16.55,18 17,17.55 17,17 L17,13.5 L21,17.5 L21,6.5 L17,10.5 L17,10.5 Z"
 			 id="Shape"></path>
 		</symbol>
-		<symbol id='infoborder' width="16px" height="16px" viewBox="0 0 24 24">
+		<symbol id='infoborder' viewBox="0 0 24 24">
 			<path d="M11,17 L13,17 L13,11 L11,11 L11,17 L11,17 Z M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 L12,2 Z M12,20 C7.59,20 4,16.41 4,12 C4,7.59 7.59,4 12,4 C16.41,4 20,7.59 20,12 C20,16.41 16.41,20 12,20 L12,20 Z M11,9 L13,9 L13,7 L11,7 L11,9 L11,9 Z"
 			 id="Shape"></path>
 		</symbol>
-		<symbol id='arrow-button' width="12" height="12">
+		<symbol id='arrow-button'>
 			<path stroke-width="1" stroke-miterlimit="4" transform="matrix(0.685894 0.685894 -0.685894 0.685894 6.45996 0.409277)"
 			 d="M2.66654 0L2.66654 1.06667L6.18121 1.06667L-0.00012207 7.248L0.751878 8L6.93321 1.81867L6.93321 5.33333L7.99988 5.33333L7.99988 0L2.66654 0L2.66654 1.06667L6.18121 1.06667L-0.00012207 7.248L0.751878 8L6.93321 1.81867L6.93321 5.33333L7.99988 5.33333L7.99988 0L2.66654 0Z" />
 		</symbol>
-		<symbol id='telegram' width="16px" height="16px" viewBox="0 0 448 512">
+		<symbol id='telegram' viewBox="0 0 448 512">
 			<path d="M446.7 98.6l-67.6 318.8c-5.1 22.5-18.4 28.1-37.3 17.5l-103-75.9-49.7 47.8c-5.5 5.5-10.1 10.1-20.7 10.1l7.4-104.9 190.9-172.5c8.3-7.4-1.8-11.5-12.9-4.1L117.8 284 16.2 252.2c-22.1-6.9-22.5-22.1 4.6-32.7L418.2 66.4c18.4-6.9 34.5 4.1 28.5 32.2z"></path>
 		</symbol>
-		<symbol id='facebook' width="16px" height="16px" viewBox="0 0 264 512">
+		<symbol id='facebook' viewBox="0 0 264 512">
 			<path d="M76.7 512V283H0v-91h76.7v-71.7C76.7 42.4 124.3 0 193.8 0c33.3 0 61.9 2.5 70.2 3.6V85h-48.2c-37.8 0-45.1 18-45.1 44.3V192H256l-11.7 91h-73.6v229"></path>
 		</symbol>
-		<symbol id='instagram' width="16px" height="16px" viewBox="0 0 448 512">
+		<symbol id='instagram' viewBox="0 0 448 512">
 			<path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
 		</symbol>
 	</svg>

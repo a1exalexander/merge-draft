@@ -1,0 +1,46 @@
+.hello-link {
+    text-decoration: none;
+	display: grid;
+	grid-template-columns: repeat(2, auto);
+	justify-items: start;
+	align-items: center;
+	grid-column-gap: 0.6em;
+
+	&:hover &__img {
+		fill: white;
+		transition: fill ease-in-out 0.2s;
+	}
+	&:hover &__text {
+		color: white;
+		transition: color ease-in-out 0.2s;
+	}
+	&:not(:hover) &__img {
+		transition: fill ease-in-out 0.2s;
+	}
+	&:not(:hover) &__text {
+		transition: color ease-in-out 0.2s;
+	}
+
+    &__img {
+		width: 16px;
+		height: 16px;
+		fill: $MERGE-MAIN-COLOR;
+	}
+	
+    &__text {
+        text-transform: uppercase;
+        font-size: 10px;
+        font-family: $base-font;
+        color: $MERGE-MAIN-COLOR;
+		font-weight: 700;
+		white-space: nowrap;
+	}
+	
+	&--how-get {
+		grid-area: link-1;
+	}
+
+	&--prices {
+		grid-area:  link-2;
+	}
+}
