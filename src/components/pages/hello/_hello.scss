@@ -1,10 +1,11 @@
 .hello {
+    width: 100%;
     grid-column: 2;
     display: grid;
-    grid-template-columns: 1.2fr 1.6fr 0.5fr 2.1fr 3.8fr;
-    grid-template-rows: auto auto 3.5em 10.5em auto;
+    grid-template-columns: 1.2fr 1.6fr 32px 2.1fr 3.8fr;
+    grid-template-rows: auto auto 3.5rem 10.5rem auto;
     grid-template-areas: 
-        ". title      title    title     ."
+        ". title      title    title    ."
         ". subtitle   subtitle subtitle ."
         ". link-1     .        link-2   ."
         ". text       text     text     ."
@@ -16,7 +17,6 @@
         grid-area: title;
         display: grid;
         grid-template-columns: repeat(2, auto);
-        
         margin: 0;
         font-size: 80px;
         text-align: left;
@@ -55,7 +55,6 @@
         font-size: 13px;
         font-weight: 500;
         text-align: left;
-        width: 553px;
         line-height: 2.5;
         border-top: 1px solid $BUTTON-COLOR; 
         padding-top: 1.2em;

@@ -109,12 +109,7 @@ gulp.task('css:build', function() {
 			browsers: ['last 2 versions']
 		}), //Добавим вендорные префиксы
 		gulp.dest(path.build.cssPreview), //вызгрузим в build
-		sourcemaps.init(), //инициализируем soucemap
-		cssmin(), //Сожмем
-		rename({ suffix: '.min' }), //добавим суффикс .min к имени выходного файла
-		sourcemaps.write('.'), //пропишем sourcemap
-		gulp.dest(path.build.css),
-		connect.reload() //перезагрузим сервер
+		gulp.dest(path.build.css)
 	]);
 });
 
@@ -129,7 +124,8 @@ gulp.task('cssmin', function() {
 		cssmin(), //Сожмем
 		rename({ suffix: '.min' }), //добавим суффикс .min к имени выходного файла
 		sourcemaps.write('.'), //пропишем sourcemap
-		gulp.dest(path.build.css) //вызгрузим в build
+		gulp.dest(path.build.css), //вызгрузим в build
+		gulp.dest(path.build.cssPreview)
 	]);
 });
 
@@ -196,12 +192,12 @@ gulp.task('imgmin', function() {
 });
 
 gulp.task('build', [
-	'clean',
 	'html:build',
 	'htmlMain:build',
 	'js:build',
 	'jsMain:build',
 	'css:build',
+	'cssmin',
 	'fonts:build',
 	'image:build'
 ]);
@@ -214,7 +210,7 @@ gulp.task('watch', ['connect'], function() {
 });
 
 gulp.task('watchOnly', ['build'], function() {
-	gulp.watch(path.watch.scss, ['cleanCssMain', 'css:build']);
+	gulp.watch(path.watch.scss, ['css:build', 'cssmin']);
 	gulp.watch(path.watch.html, ['htmlMain:build']);
 	gulp.watch(path.watch.html, ['html:build']);
 	gulp.watch(path.watch.js, ['jsMain:build']);

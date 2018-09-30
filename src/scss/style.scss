@@ -24,7 +24,10 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+html {
+	width: 100vw;
+	min-width: 750px;
+}
 body {
     width: 100%;
     @extend %flex-row-s;
@@ -41,7 +44,7 @@ a, button {
 
 	&--nav {
 		display: grid;
-		grid-template-columns: 112px 1fr;
+		grid-template-columns: 112px auto;
 	}
 	
 	&--center {
