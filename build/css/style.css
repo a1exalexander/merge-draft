@@ -522,29 +522,50 @@ body {
     -ms-flex-line-pack: center;
         align-content: center;
     -ms-flex-flow: nowrap;
-        flex-flow: nowrap; }
+        flex-flow: nowrap;
+    will-change: display; }
   .button-book-room__img {
     height: 12px;
     width: 0;
     fill: #111111;
     stroke: none;
+    will-change: opacity;
     opacity: 0; }
   .button-book-room:hover {
     background-color: #37cdab;
     color: #111111;
     -webkit-transition: background-color ease-in-out 0.2s;
     transition: background-color ease-in-out 0.2s; }
+  .button-book-room:hover {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-column-gap: 7px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
   .button-book-room:hover .button-book-room__img {
-    width: 12px;
+    width: 16px;
     opacity: 1;
     -webkit-transition: width ease-in-out 0.2s, opacity ease-in-out 0.2s;
     transition: width ease-in-out 0.2s, opacity ease-in-out 0.2s; }
+  .button-book-room:hover .button-book-room__text {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-column-gap: 5px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-transition: display ease-in-out 0.2s;
+    transition: display ease-in-out 0.2s; }
   .button-book-room:not(:hover) {
     -webkit-transition: all ease-in-out 0.2s;
     transition: all ease-in-out 0.2s; }
   .button-book-room:not(:hover) .button-book-room__img {
-    -webkit-transition: all linear 0.1s;
-    transition: all linear 0.1s; }
+    -webkit-transition: width ease-in-out 0.1s, opacity ease-in-out 0.1s;
+    transition: width ease-in-out 0.1s, opacity ease-in-out 0.1s; }
+  .button-book-room:not(:hover) .button-book-room__text {
+    -webkit-transition: display ease-in-out 0.2s;
+    transition: display ease-in-out 0.2s; }
 
 .button-membership {
   width: 187px;

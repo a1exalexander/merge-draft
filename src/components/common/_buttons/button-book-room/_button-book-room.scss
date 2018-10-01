@@ -19,12 +19,14 @@
         @extend %flex-row-c;
         align-content: center;
         flex-flow: nowrap;
+        will-change: display;
     }
     &__img {
         height: 12px;
         width: 0;
         fill: $MAIN-DARK-COLOR;
         stroke: none;
+        will-change: opacity;
         opacity: 0;
     }
 
@@ -33,15 +35,31 @@
         color: $MAIN-DARK-COLOR;
         transition: background-color ease-in-out 0.2s;
     }
+    &:hover {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        grid-column-gap: 7px;
+        align-items: center;
+    }
     &:hover &__img {
-        width: 12px;
+        width: 16px;
         opacity: 1;
         transition: width ease-in-out 0.2s, opacity ease-in-out 0.2s;
+    }
+    &:hover &__text {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        grid-column-gap: 5px;
+        align-items: center;
+        transition: display ease-in-out 0.2s;
     }
     &:not(:hover) {
         transition: all ease-in-out 0.2s;
     }
     &:not(:hover) &__img {
-        transition: all linear 0.1s;
+        transition: width ease-in-out 0.1s, opacity ease-in-out 0.1s;
+    }
+    &:not(:hover) &__text {
+        transition: display ease-in-out 0.2s;
     }
 }
