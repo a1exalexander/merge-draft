@@ -4,15 +4,17 @@
     display: grid;
     grid-template-columns: 1.2fr 1.6fr 32px 2.1fr 3.8fr;
     grid-template-rows: auto auto 3.5rem 10.5rem auto;
-    grid-template-areas: 
-        ". title      title    title    ."
-        ". subtitle   subtitle subtitle ."
-        ". link-1     .        link-2   ."
-        ". text       text     text     ."
-        ". btn-member .        btn-book .";
+    grid-template-areas:
+        '. title      title    title    .'
+        '. subtitle   subtitle subtitle .'
+        '. link-1     .        link-2   .'
+        '. text       text     text     .'
+        '. btn-member .        btn-book .';
     align-content: center;
     justify-items: start;
-    
+    animation-name: slideRight;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
     &__title {
         grid-area: title;
         display: grid;
@@ -56,16 +58,14 @@
         font-weight: 500;
         text-align: left;
         line-height: 2.5;
-        border-top: 1px solid $BUTTON-COLOR; 
+        border-top: 1px solid $BUTTON-COLOR;
         padding-top: 1.2em;
         &--link {
             text-decoration: none;
             color: $TEXT-LINK-COLOR;
             font-weight: 600;
         }
-        
-	}
-	
+    }
 }
 
 .hello > .button-membership {
@@ -75,4 +75,3 @@
 .hello > .button-book-room {
     grid-area: btn-book;
 }
-

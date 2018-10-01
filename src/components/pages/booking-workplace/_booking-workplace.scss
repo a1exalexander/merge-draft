@@ -1,39 +1,41 @@
 .booking-workplace {
-	padding: 10px 0;
-	flex-basis: 428px;
+    padding: 10px 0;
+    flex-basis: 428px;
     @extend %flex-col-sb;
-	align-items: flex-start;
+    align-items: flex-start;
+    animation-name: slideRight;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    &__inner {
+        width: 100%;
+        @extend %flex-row;
+        align-items: center;
 
-	&__inner {
-		width: 100%;
-		@extend %flex-row;
-		align-items: center;
-        
         &--top-line {
-			justify-content: flex-start;
-			padding-bottom: 22px;
-			border-bottom: 1px solid $BACK-LINE-COLOR;
-		}
-		&--middle-line {
-			justify-content: space-between;
-			align-items: center;
-			padding-bottom: 30px;
-			border-bottom: 1px solid $BUTTON-COLOR;
-		}
-		&--bottom-line {
+            justify-content: flex-start;
+            padding-bottom: 22px;
+            border-bottom: 1px solid $BACK-LINE-COLOR;
+        }
+        &--middle-line {
             justify-content: space-between;
-			align-items: center;
-			padding-top: 26px;
-			border-top: 1px solid $BUTTON-COLOR;
-		}
-		&--form {
-			justify-content: space-between;
-			align-items: center;
-			margin-bottom: 22px;
-			&:last-child {
-				margin-bottom: 0;
-			}
-		}
+            align-items: center;
+            padding-bottom: 30px;
+            border-bottom: 1px solid $BUTTON-COLOR;
+        }
+        &--bottom-line {
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 26px;
+            border-top: 1px solid $BUTTON-COLOR;
+        }
+        &--form {
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
     }
 
     &__title {
@@ -121,5 +123,3 @@
         }
     }
 }
-
-
