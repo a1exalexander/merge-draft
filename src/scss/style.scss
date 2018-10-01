@@ -1,4 +1,3 @@
-@import '../assets/normalize.css';
 @import 'variables';
 @import 'mixines';
 @import '../components/common/_loader/loader';
@@ -17,38 +16,36 @@
 @import '../components/pages/booking-workplace/workplace-choice';
 @import '../components/pages/booking-workplace/booking-workplace';
 
-
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 html {
-	width: 100vw;
-	min-width: 750px;
+    width: 100vw;
+    min-width: 750px;
 }
 body {
     width: 100%;
     @extend %flex-row-s;
 }
 
-a, button {
-	cursor: pointer;
+a,
+button {
+    cursor: pointer;
 }
 
 .page {
-	width: 100%;
+    width: 100%;
     min-height: 100vh;
-	background-color: $MAIN-DARK-COLOR;
+    background-color: $MAIN-DARK-COLOR;
 
-	&--nav {
-		display: grid;
-		grid-template-columns: 112px auto;
-	}
-	
-	&--center {
-		@extend %flex-row-c;
-	}
-	
+    &--nav {
+        display: grid;
+        grid-template-columns: 112px auto;
+    }
+
+    &--center {
+        @extend %flex-row-c;
+    }
 }
