@@ -31,19 +31,17 @@
     &:hover {
         background-color: $MERGE-SECONDARY-COLOR;
         color: $MAIN-DARK-COLOR;
-        transition: ease-in-out 0.2s;
-    }
-
-    &:not(:hover) {
-        transition: ease-in-out 0.2s;
+        transition: background-color ease-in-out 0.2s;
     }
     &:hover &__img {
-        transition: width ease-in-out 0.2s, opacity ease-in-out 0.2s;
-        width: 16px;
+        width: 12px;
         opacity: 1;
-        margin-left: 5px;
+        transition: width ease-in-out 0.2s, opacity ease-in-out 0.2s;
+    }
+    &:not(:hover) {
+        transition: all ease-in-out 0.2s;
     }
     &:not(:hover) &__img {
-        transition: linear 0.1s;
+        transition: all linear 0.1s;
     }
 }
