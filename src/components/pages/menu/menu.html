@@ -4,14 +4,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="../../../css/normalize.css">
 	<link rel="stylesheet" href="../../../css/style.css">
 	<title>Document</title>
 </head>
 
 <body>
 	<div class="menu-button-close__wrapper">
-		<button id='back-to-home' onclick="location.href='../hello/hello.html'" class="menu-button-close">
+		<button id='back-to-home' class="menu-button-close" onclick="goToHello()">
 			<svg class='menu-button-close__img'>
 				<use xlink:href='#close' />
 			</svg>
@@ -168,6 +167,14 @@
 			<path fill-rule="evenodd" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z" />
 		</symbol>
 	</svg>
+	<script>
+		function helloHref() {
+			location.href="../hello/hello.html";
+		};
+		function goToHello() {
+			setTimeout(helloHref, 200);
+		};
+	</script>
 </body>
 
 </html>

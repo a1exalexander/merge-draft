@@ -38,6 +38,13 @@
     align-items: flex-start;
 }
 
+%flex-row-se {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 %flex-col {
     display: flex;
     flex-direction: column;
