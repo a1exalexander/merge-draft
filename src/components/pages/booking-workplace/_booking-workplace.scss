@@ -96,30 +96,4 @@
         align-items: flex-start;
         margin-bottom: 11px;
     }
-    &__price-text {
-        font-family: $base-font;
-        font-size: 13px;
-        font-weight: 500;
-        line-height: 2;
-        text-align: left;
-        color: $TEXT-COLOR;
-    }
-    &__price-numeric {
-        font-family: $title-font;
-        font-size: 30px;
-        font-weight: 500;
-        text-align: left;
-        color: $MERGE-MAIN-COLOR;
-        &::after {
-            content: ' UAH';
-            text-transform: uppercase;
-            font-family: $base-font;
-            font-size: 8px;
-            font-weight: 700;
-            line-height: 2;
-            letter-spacing: 0.5px;
-            text-align: left;
-            color: $GREY;
-        }
-    }
 }

@@ -3,7 +3,9 @@
 @import 'variables';
 @import 'mixines';
 @import 'animations';
+@import '../components/common/_logo/logo';
 @import '../components/common/_loader/loader';
+@import '../components/common/_booking-price/booking-price';
 @import '../components/common/_buttons/button-book-room/button-book-room';
 @import '../components/common/_buttons/button-membership/button-membership';
 @import '../components/common/_buttons/button-apply-book/button-apply-book';
@@ -18,7 +20,7 @@
 @import '../components/pages/menu/menu-button-close';
 @import '../components/pages/booking-workplace/workplace-choice';
 @import '../components/pages/booking-workplace/booking-workplace';
-
+@import '../components/pages/meeting-room/meeting-room';
 * {
     margin: 0;
     padding: 0;
@@ -30,6 +32,7 @@ html {
 }
 body {
     width: 100%;
+    min-height: 100vh;
     @extend %flex-row-s;
     background-color: $MAIN-DARK-COLOR;
 }

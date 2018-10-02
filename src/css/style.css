@@ -357,7 +357,7 @@ td,
 th {
   padding: 0; }
 
-.button-back__wrapper, .booking-workplace__inner {
+.booking-workplace__inner {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -366,7 +366,7 @@ th {
       -ms-flex-direction: row;
           flex-direction: row; }
 
-.button-book-room, .button-book-room__text, .button-membership, .button-map, .button-map__text, .button-back, .button-menu__cloud, .menu-button-close, .menu-button-close__img, .page--center {
+.button-book-room, .button-book-room__text, .button-membership, .button-map, .button-map__text, .button-back, .button-menu__cloud, .menu-button-close, .menu-button-close__img, .meeting-room__button-back-wrapper, .page--center {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -377,6 +377,21 @@ th {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.meeting-room__apply-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center; }
@@ -405,7 +420,7 @@ body {
       -ms-flex-direction: column;
           flex-direction: column; }
 
-.loader, .button-menu__wrapper, .social-networks__link, .menu__col, .menu-button-close__wrapper {
+.loader, .button-menu__wrapper, .social-networks__link, .menu__col, .menu-button-close__wrapper, .meeting-room__wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -478,6 +493,24 @@ body {
   to {
     opacity: 1; } }
 
+.logo {
+  fill: #50e3c2;
+  width: 31px;
+  height: 40px;
+  -ms-flex-item-align: start;
+      align-self: start; }
+  .logo__wrapper {
+    position: fixed;
+    left: 40px;
+    top: 48px;
+    z-index: 10;
+    -webkit-animation-name: fadeIn;
+            animation-name: fadeIn;
+    -webkit-animation-duration: 0.3s;
+            animation-duration: 0.3s;
+    -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out; }
+
 .loader {
   position: fixed;
   width: 100%;
@@ -500,6 +533,30 @@ body {
     font-size: 10px;
     text-align: center;
     color: #ffffff; }
+
+.booking-price {
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 2;
+  text-align: left;
+  color: #ffffff; }
+  .booking-price__sum {
+    font-family: "Roboto Mono", monospace;
+    font-size: 30px;
+    font-weight: 500;
+    text-align: left;
+    color: #50e3c2; }
+    .booking-price__sum::after {
+      content: ' UAH';
+      text-transform: uppercase;
+      font-family: "Montserrat", sans-serif;
+      font-size: 8px;
+      font-weight: 700;
+      line-height: 2;
+      letter-spacing: 0.5px;
+      text-align: left;
+      color: #898989; }
 
 .button-book-room {
   width: 187px;
@@ -699,16 +756,19 @@ body {
   border-radius: 2px;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center;
-  margin-right: 16px; }
+          align-items: center; }
   .button-back__wrapper {
     width: 100%;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-items: start;
     -webkit-box-align: center;
         -ms-flex-align: center;
-            align-items: center; }
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: start;
+    grid-column-gap: 1rem; }
   .button-back__img {
     width: 17px;
     height: 17px;
@@ -755,13 +815,6 @@ body {
           animation-timing-function: ease-in-out; }
   .navigation--border {
     border-right: 1px solid #333333; }
-
-.logo {
-  fill: #50e3c2;
-  width: 31px;
-  height: 40px;
-  -ms-flex-item-align: start;
-      align-self: start; }
 
 .button-menu {
   height: 24px;
@@ -1448,29 +1501,66 @@ body {
         -ms-flex-align: start;
             align-items: flex-start;
     margin-bottom: 11px; }
-  .booking-workplace__price-text {
-    font-family: "Montserrat", sans-serif;
-    font-size: 13px;
+
+.meeting-room {
+  display: grid;
+  grid-template-rows: 4rem 6rem auto 5rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  .meeting-room__wrapper {
+    width: 100vw;
+    min-height: 100vh;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
+  .meeting-room__button-back-wrapper {
+    -ms-flex-item-align: start;
+        align-self: start;
+    border-bottom: 1px solid #515151;
+    padding-bottom: 2rem;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
+  .meeting-room__title {
+    font-family: "Roboto Mono", monospace;
+    font-size: 2.5rem;
     font-weight: 500;
-    line-height: 2;
     text-align: left;
     color: #ffffff; }
-  .booking-workplace__price-numeric {
-    font-family: "Roboto Mono", monospace;
-    font-size: 30px;
-    font-weight: 500;
-    text-align: left;
-    color: #50e3c2; }
-    .booking-workplace__price-numeric::after {
-      content: ' UAH';
-      text-transform: uppercase;
-      font-family: "Montserrat", sans-serif;
-      font-size: 8px;
-      font-weight: 700;
-      line-height: 2;
-      letter-spacing: 0.5px;
-      text-align: left;
-      color: #898989; }
+  .meeting-room__form {
+    display: grid;
+    grid-template-rows: repeat(5, auto);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: 'day 	    time 	   . 		   .' 'day-input  time-input time-input  edit' 'name 		name  	   phone 	   phone' 'name-input name-input phone-input phone-input' 'check 		. 		   .		   .'; }
+  .meeting-room__date-label {
+    grid-area: day; }
+    .meeting-room__date-label--time {
+      grid-area: time; }
+  .meeting-room__date-choice {
+    grid-area: day-input; }
+    .meeting-room__date-choice--time {
+      grid-area: time-input; }
+  .meeting-room__edit-date {
+    grid-area: edit; }
+  .meeting-room__label--name {
+    grid-area: name; }
+  .meeting-room__label--tel {
+    grid-area: phone; }
+  .meeting-room__input--name {
+    grid-area: name-input; }
+  .meeting-room__input--phone {
+    grid-area: phone-input; }
+  .meeting-room__check-label {
+    grid-area: check; }
+  .meeting-room__edit-icon {
+    width: 24px;
+    height: 24px;
+    fill: #50e3c2; }
+  .meeting-room__apply-wrapper {
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end; }
 
 * {
   margin: 0;
@@ -1484,6 +1574,7 @@ html {
 
 body {
   width: 100%;
+  min-height: 100vh;
   background-color: #111111; }
 
 a,

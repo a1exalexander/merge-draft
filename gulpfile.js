@@ -43,10 +43,12 @@ var path = {
     },
     watch: {
         //Тут мы укажем, за изменением каких файлов мы хотим наблюдать
-        html: 'src/**/*.html',
+        html: 'src/components/**/*.html',
+        htmlMain: 'src/**/*.html',
         jsMain: 'src/js/**/*.js',
         js: 'src/components/**/[^_]*.js',
         scss: 'src/**/*.scss*',
+        scssComponents: 'src/components/**/*.scss*',
         img: 'src/image/**/*.*',
         fonts: 'src/fonts/**/*.*'
     },
@@ -205,19 +207,21 @@ gulp.task('build', [
 
 // watch
 gulp.task('watch', ['connect'], function() {
-    gulp.watch(path.watch.scss, ['css:build']); // Наблюдение за sass файлами в папке sass
+    gulp.watch(path.watch.scss, ['css:build'], connect.reload());
+    gulp.watch(path.watch.scssComponents, ['css:build'], connect.reload());
     gulp.watch(path.watch.html, connect.reload()); // Наблюдение за HTML файлами в корне проекта
+    gulp.watch(path.watch.htmlMain, connect.reload());
     gulp.watch(path.watch.js, connect.reload()); // Наблюдение за JS файлами в папке js
+    gulp.watch(path.watch.jsMain, connect.reload());
 });
 
 gulp.task('watchOnly', ['build'], function() {
     gulp.watch(path.watch.scss, ['css:build']);
-    gulp.watch(path.watch.html, ['htmlMain:build']);
+    gulp.watch(path.watch.scssComponents, ['css:build']);
+    gulp.watch(path.watch.htmlMain, ['htmlMain:build']);
     gulp.watch(path.watch.html, ['html:build']);
     gulp.watch(path.watch.js, ['jsMain:build']);
     gulp.watch(path.watch.js, ['js:build']);
-    gulp.watch(path.watch.img, ['image:build']);
-    gulp.watch(path.watch.fonts, ['fonts:build']);
 });
 
 gulp.task('cleanCss', function(cb) {

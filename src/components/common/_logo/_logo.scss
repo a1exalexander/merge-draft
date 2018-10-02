@@ -1,0 +1,15 @@
+.logo {
+    fill: $MERGE-MAIN-COLOR;
+    width: 31px;
+    height: 40px;
+    align-self: start;
+    &__wrapper {
+        position: fixed;
+        left: 40px;
+        top: 48px;
+        z-index: 10;
+        animation-name: fadeIn;
+        animation-duration: 0.3s;
+        animation-timing-function: ease-in-out;
+    }
+}

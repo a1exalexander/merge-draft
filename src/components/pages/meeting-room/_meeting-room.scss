@@ -1,0 +1,83 @@
+.meeting-room {
+    display: grid;
+    grid-template-rows: 4rem 6rem auto 5rem;
+    align-items: center;
+    &__wrapper {
+        width: 100vw;
+        min-height: 100vh;
+        @extend %flex-col-c;
+        align-items: center;
+    }
+    &__button-back-wrapper {
+        align-self: start;
+        border-bottom: 1px solid $BACK-LINE-COLOR;
+        @extend %flex-row-c;
+        padding-bottom: 2rem;
+        align-items: center;
+    }
+    &__title {
+        font-family: $title-font;
+        font-size: 2.5rem;
+        font-weight: 500;
+        text-align: left;
+        color: $TEXT-COLOR;
+    }
+    &__form {
+        display: grid;
+        grid-template-rows: repeat(5, auto);
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-areas:
+            'day 	    time 	   . 		   .'
+            'day-input  time-input time-input  edit'
+            'name 		name  	   phone 	   phone'
+            'name-input name-input phone-input phone-input'
+            'check 		. 		   .		   .';
+    }
+    &__date-label {
+        grid-area: day;
+        &--time {
+            grid-area: time;
+        }
+    }
+    &__date-choice {
+        grid-area: day-input;
+        &--time {
+            grid-area: time-input;
+        }
+    }
+    &__edit-date {
+        grid-area: edit;
+    }
+    &__label {
+        &--name {
+            grid-area: name;
+        }
+        &--tel {
+            grid-area: phone;
+        }
+    }
+    &__input {
+        &--name {
+            grid-area: name-input;
+        }
+        &--phone {
+            grid-area: phone-input;
+        }
+    }
+    &__check-label {
+        grid-area: check;
+    }
+    &__edit-icon {
+        width: 24px;
+        height: 24px;
+        fill: $MERGE-MAIN-COLOR;
+    }
+    &__apply-wrapper {
+        @extend %flex-row-sb;
+        align-items: flex-end;
+    }
+    &__price {
+    }
+    &__apply {
+    }
+}

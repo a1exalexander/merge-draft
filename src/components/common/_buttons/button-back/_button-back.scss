@@ -7,23 +7,25 @@
     border-radius: 2px;
     @extend %flex-row-c;
     align-items: center;
-    margin-right: 16px;
-    
+
     &__wrapper {
         width: 100%;
-        @extend %flex-row;
-        justify-content: flex-start;
-		align-items: center;
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        justify-items: start;
+        align-items: center;
+        justify-content: start;
+        grid-column-gap: 1rem;
     }
-	
+
     &__img {
         width: 17px;
         height: 17px;
         fill: $GREY;
-	}
-	
+    }
+
     &__text {
-		cursor: default;
+        cursor: default;
         text-transform: uppercase;
         font-family: $base-font;
         font-size: 10px;
@@ -31,13 +33,13 @@
         letter-spacing: 0.7px;
         text-align: left;
         color: $GREY;
-	}
+    }
 
     &:hover &__img {
         fill: $MERGE-MAIN-COLOR;
         transition: fill ease-in-out 0.2s;
-	}
-	
+    }
+
     &:not(:hover) &__img {
         transition: fill ease-in-out 0.2s;
     }
