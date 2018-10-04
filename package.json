@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "latest",
+    "browser-sync": "^2.24.7",
+    "gulp": "^3.9.1",
     "gulp-autoprefixer": "latest",
     "gulp-connect": "latest",
     "gulp-imagemin": "latest",
