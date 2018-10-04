@@ -43,17 +43,23 @@
 					</svg>
 					<p class="meeting-room__edit-text">edit</p>
 				</button>
-				<label for="meeting-name" class="meeting-room__label meeting-room__label--name">
-					NAME
-				</label>
-				<input type="text" id="meeting-name" class="meeting-room__input meeting-room__input--name">
-				<label for="meeting-phone" class="meeting-room__label meeting-room__label--phone">
-					PHONE
-				</label>
-				<input type="tel" id='meeting-phone' class="meeting-room__input meeting-room__input--phone">
+
+				<div class="meeting-room__input-wrapper">
+					<label for="meeting-name" class="meeting-room__label meeting-room__label--name">
+						NAME
+					</label>
+					<input type="text" id="meeting-name" class="meeting-room__input meeting-room__input--name">
+					<label for="meeting-phone" class="meeting-room__label meeting-room__label--phone">
+						PHONE
+					</label>
+					<input type="tel" id='meeting-phone' class="meeting-room__input meeting-room__input--phone">
+				</div>
+
 				<label for="meeting-check-resident" class="meeting-room__check-label">
 					<input type="checkbox" id='meeting-check-resident' class="meeting-room__check-resident">
-					I'm a Resident
+					<p class="meeting-room__check-text">
+						I'm a Resident
+					</p>
 				</label>
 			</form>
 			<div class="meeting-room__apply-wrapper">
