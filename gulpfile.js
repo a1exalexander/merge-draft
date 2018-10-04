@@ -47,7 +47,7 @@ var path = {
         htmlMain: 'src/**/*.html',
         jsMain: 'src/js/**/*.js',
         js: 'src/components/**/[^_]*.js',
-        scss: 'src/**/*.scss*',
+        scss: 'src/scss/**/*.scss*',
         scssComponents: 'src/components/**/*.scss*',
         img: 'src/image/**/*.*',
         fonts: 'src/fonts/**/*.*'
@@ -107,11 +107,16 @@ gulp.task('css:build', function() {
     pump([
         gulp.src(path.src.scss), //Выберем наш основной файл стилей
         sass().on('error', sass.logError), //Скомпилируем sass
-        prefixer({
-            browsers: ['last 2 versions']
-        }), //Добавим вендорные префиксы
         gulp.dest(path.build.cssPreview), //вызгрузим в build
         gulp.dest(path.build.css)
+    ]);
+});
+
+gulp.task('sass', function() {
+    pump([
+        gulp.src(path.src.scss), //Выберем наш основной файл стилей
+        sass().on('error', sass.logError), //Скомпилируем sass
+        gulp.dest(path.build.cssPreview)
     ]);
 });
 
@@ -213,6 +218,12 @@ gulp.task('watch', ['connect'], function() {
     gulp.watch(path.watch.htmlMain, connect.reload());
     gulp.watch(path.watch.js, connect.reload()); // Наблюдение за JS файлами в папке js
     gulp.watch(path.watch.jsMain, connect.reload());
+});
+
+// watch
+gulp.task('sass-watch', ['cleanCss'], function() {
+    gulp.watch(path.watch.scss, ['sass']);
+    gulp.watch(path.watch.scssComponents, ['sass']);
 });
 
 gulp.task('watchOnly', ['build'], function() {
