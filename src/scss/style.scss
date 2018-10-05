@@ -21,15 +21,17 @@
 @import '../components/pages/booking-workplace/workplace-choice';
 @import '../components/pages/booking-workplace/booking-workplace';
 @import '../components/pages/meeting-room/meeting-room';
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 html {
     width: 100vw;
-    min-width: 750px;
 }
+
 body {
     width: 100%;
     min-height: 100vh;
@@ -59,4 +61,11 @@ button {
     &--menu {
         background-color: $DARK-GREY;
     }
+}
+
+.logo {
+    animation-name: rotateIn;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 100ms;
 }

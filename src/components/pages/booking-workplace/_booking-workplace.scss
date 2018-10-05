@@ -1,11 +1,18 @@
 .booking-workplace {
-    padding: 10px 0;
-    flex-basis: 428px;
+    flex-basis: 30%;
+    min-width: 430px;
+    max-width: 35%;
     @extend %flex-col-sb;
     align-items: flex-start;
     animation-name: slideRight;
     animation-duration: 0.5s;
     animation-timing-function: ease-in-out;
+    &__wrapper {
+        width: 100%;
+        min-height: 100vh;
+        @extend %flex-row-c;
+        align-items: center;
+    }
     &__inner {
         width: 100%;
         @extend %flex-row;

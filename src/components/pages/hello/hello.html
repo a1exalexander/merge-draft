@@ -77,7 +77,7 @@
 				<a href='#' class='hello__text--link'>lectures and workshops</a>
 				in various specialties.
 			</p>
-			<button class="button-membership">
+			<button class="button-membership" onclick="becomeMember()">
 				<p class='button-membership__text'>
 					BECOME A MEMBER
 					<svg class='button-membership__img'>
@@ -85,7 +85,7 @@
 					</svg>
 				</p>
 			</button>
-			<button class="button-book-room">
+			<button class="button-book-room" onclick="bookRoom()">
 				<p class='button-book-room__text'>
 					book a meeting room
 					<svg class='button-book-room__img'>
@@ -133,6 +133,19 @@
 		};
 		function goToMenu() {
 			setTimeout(menuHref, 200);
+		};
+		function bookRoomHref() {
+			location.href = "../meeting-room/meeting-room.html";
+		};
+		function bookRoom() {
+			setTimeout(bookRoomHref, 200);
+		};
+		
+		function becomeMemberHref() {
+			location.href = "../booking-workplace/booking-workplace.html";
+		};
+		function becomeMember() {
+			setTimeout(becomeMemberHref, 200);
 		};
 	</script>
 </body>

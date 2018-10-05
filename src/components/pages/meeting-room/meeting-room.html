@@ -17,7 +17,7 @@
 		</div>
 		<div class="meeting-room">
 			<div class="button-back__wrapper meeting-room__button-back-wrapper">
-				<button class="button-back">
+				<button class="button-back" onclick="goToHello()">
 					<svg class="button-back__img">
 						<use xlink:href='#arrow-left' />
 					</svg>
@@ -26,17 +26,23 @@
 			</div>
 			<h2 class="meeting-room__title">
 				Meeting Room
+				<br>
 				Resevation
 			</h2>
 			<form action="" id='meeting-room-form' name='meeting-room' class="meeting-room__form">
-				<label for="meeting-date" class="meeting-room__date-label">
+<!-- TODO: javascript new Date-->
+				<p class="meeting-room__date-label">
 					Day
-				</label>
-				<input type="date" id="meeting-date" class="meeting-room__date-choice">
-				<label for="meeting-time" class="meeting-room__date-label meeting-room__date-label--time">
+				</p>
+				<p class="meeting-room__date-choice meeting-room__date-choice--day">
+					12 May, 2018
+				</p>
+				<p class="meeting-room__date-label meeting-room__date-label--time">
 					Time
-				</label>
-				<input type="time" id="meeting-time" class="meeting-room__date-choice meeting-room__date-choice--time">
+				</p>	
+				<p class="meeting-room__date-choice meeting-room__date-choice--time">
+					11:00 — 12:20 (1h 20m)
+				</p>
 				<button class="meeting-room__edit-date">
 					<svg class="meeting-room__edit-icon">
 						<use xlink:href='#icon-edit' />
@@ -48,15 +54,20 @@
 					<label for="meeting-name" class="meeting-room__label meeting-room__label--name">
 						NAME
 					</label>
-					<input type="text" id="meeting-name" class="meeting-room__input meeting-room__input--name">
+					<input type="text" id="meeting-name" class="meeting-room__input meeting-room__input--name" required placeholder="Andrey Malishko">
 					<label for="meeting-phone" class="meeting-room__label meeting-room__label--phone">
 						PHONE
 					</label>
-					<input type="tel" id='meeting-phone' class="meeting-room__input meeting-room__input--phone">
+					<input type="tel" id='meeting-phone' class="meeting-room__input meeting-room__input--phone" required placeholder="+38 (000) 000 00-00">
 				</div>
 
 				<label for="meeting-check-resident" class="meeting-room__check-label">
-					<input type="checkbox" id='meeting-check-resident' class="meeting-room__check-resident">
+					<input type="checkbox" form='meeting-room-form' id='meeting-check-resident' class="meeting-room__check-input">
+					<div class="meeting-room__check-box">
+						<svg class="meeting-room__check-img">
+							<use xlink:href='#icon-checkbox'/>
+						</svg>
+					</div>
 					<p class="meeting-room__check-text">
 						I'm a Resident
 					</p>
@@ -67,7 +78,7 @@
 					Price:
 					<span class="booking-price__sum">1000</span>
 				</p>
-				<button class="button-apply-book meeting-room__apply" form='meeting-room-form'>
+				<button form='meeting-room-form' class="button-apply-book meeting-room__apply" form='meeting-room-form'>
 					apply
 				</button>
 			</div>
@@ -75,6 +86,9 @@
 	</div>
 
 	<svg style="display: none;">
+		<symbol id='icon-checkbox' viewBox="0 0 24 24">
+			<path fill-rule="evenodd" d="M5 12.192l1.4-1.346 3.6 3.462L17.6 7 19 8.346 10 17z"/>
+		</symbol> 
 		<symbol id='logo' viewBox="0 0 31 40">
 			<path fill-rule="evenodd" d="M20.4593069,32.8365086 L23.8888332,29.1227295 L31,36.2862209 L27.570731,40 L20.4593069,32.8365086 Z M15.4625816,0 L26.0850832,10.7005349 L18.0964043,10.7005349 L18.0964043,25.4662469 L3.77682656,39.9891419 L0,36.2971308 L12.693955,23.3086219 L12.693955,10.7005349 L4.89641986,10.7005349 L15.4625816,0 Z"
 			 id="Combined-Shape"></path>
@@ -86,6 +100,14 @@
 			<path fill-rule="evenodd" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
 		</symbol>
 	</svg>
+	<script>
+		function helloHref() {
+			location.href="../hello/hello.html";
+		};
+		function goToHello() {
+			setTimeout(helloHref, 200);
+		};
+</script>
 </body>
 
 </html>

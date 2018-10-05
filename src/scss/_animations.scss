@@ -15,3 +15,34 @@
         opacity: 1;
     }
 }
+
+@keyframes rotateIn {
+    0% {
+        opacity: 0;
+        transform: rotate(-180deg);
+    }
+    25% {
+        opacity: .5;
+        transform: rotate(0);
+    }
+    50% {
+        opacity: .6;
+		transform: rotate(-4deg);	
+	}
+	75% {
+        opacity: .7;
+		transform: rotate(4deg);
+	}
+	86% {
+        opacity: .8;
+		transform: rotate(-2deg);	
+    }
+    95% {
+        opacity: .9;
+		transform: rotate(2deg);	
+    }
+    100% {
+        opacity: 1;
+		transform: rotate(0);	
+	}
+}

@@ -2,14 +2,56 @@
     width: 128px;
     height: 74px;
     border-radius: 3px;
-    background-color: transparent;
-    border: solid 2px $DARK-GREY;
+    background-color: $MAIN-DARK-COLOR;
+    border: none;
     outline: none;
-    @extend %flex-col-sb;
-    align-items: flex-start;
-    padding: 13px;
     position: relative;
-
+    cursor: pointer;
+    &__input {
+        position: absolute;
+        z-index: -10;
+        outline: none;
+        &:checked + .workplace-choice__inner {
+            background-color: $MERGE-SECONDARY-COLOR;
+            border-color: $MERGE-SECONDARY-COLOR;
+            transition: background-color ease-in-out 0.2s,
+                    border-color ease-in-out 0.2s;
+            .workplace-choice__title,
+            .workplace-choice__resident {
+                color: $MAIN-DARK-COLOR;
+                transition: color ease-in-out 0.3s;
+            }
+            .workplace-choice__price {
+                color: #333333;
+                transition: color ease-in-out 0.3s;
+            }
+            .workplace-choice__img {
+                fill: $MAIN-DARK-COLOR;
+                transition: fill ease-in-out 0.3s;
+            }
+        }
+        &:active + .workplace-choice__inner{
+            filter: blur(1px) brightness(0.6);
+            transition: filter ease-in-out 0.2s;
+        }
+        &:not(:active) + .workplace-choice__inner{
+            transition: filter ease-in-out 0.2s;
+        }
+    }
+    &__inner {
+        border-radius: 3px;
+        background-color: $MAIN-DARK-COLOR;
+        border: solid 2px $DARK-GREY;
+        outline: none;
+        @extend %flex-col-sb;
+        align-items: flex-start;
+        padding: 10px 13px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
     &__title {
         font-family: $base-font;
         font-size: 14px;
@@ -17,15 +59,14 @@
         text-align: left;
         color: $GREY;
     }
-    &__subtitle {
+    &__resident {
         font-family: $base-font;
         font-size: 9px;
         font-weight: 500;
         text-align: left;
         color: $GREY;
-        &:hover {
-            text-decoration: underline;
-        }
+        text-decoration: none;
+        
     }
     
     &__price {
@@ -38,6 +79,14 @@
 			content: ' uah';
 		}
     }
+    &__link-img {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        text-decoration: none;
+        right: 12px;
+        top: 12px;
+    }
     &__img {
         position: absolute;
         width: 16px;
@@ -45,29 +94,42 @@
         fill: $GREY;
         right: 12px;
         top: 12px;
+        &--resident {
+            position: static;
+            width: 100%;
+            height: 100%;
+        }
     }
-    &:hover {
+    &:hover &__inner {
         background-color: $MERGE-SECONDARY-COLOR;
         border-color: $MERGE-SECONDARY-COLOR;
         transition: background-color ease-in-out 0.3s,
-            border-color ease-in-out 0.3s;
-       
-        & .bw-button-choice__subtitle:hover {
+                    border-color ease-in-out 0.3s;
+        .workplace-choice__resident:hover {
+            text-decoration: underline;
             color: white;
-            transition: color ease-in-out 0.3s;
+            transition: color ease-in-out 0.2s,
+                        text-decoration ease-in-out 0.2s;
         }
-        & .bw-button-choice__img:hover {
+        .workplace-choice__resident:not(:hover) {
+            transition: color ease-in-out 0.2s,
+                        text-decoration ease-in-out 0.2s;
+        }
+        .workplace-choice__link-img:hover > svg {
             fill: white;
-            transition: fill ease-in-out 0.3s;
+            transition: fill ease-in-out 0.1s;
         }
-
+        .workplace-choice__link-img:not(:hover) > svg {
+            transition: fill ease-in-out 0.1s;
+        }
     } 
-    &:not(:hover) {
+
+    &:not(:hover) &__inner {
         transition: background-color ease-in-out 0.3s,
             border-color ease-in-out 0.3s;
     }
     &:hover &__title,
-    &:hover &__subtitle {
+    &:hover &__resident {
         color: $MAIN-DARK-COLOR;
         transition: color ease-in-out 0.3s;
     }
@@ -77,7 +139,7 @@
     }
 
     &:not(:hover) &__title,
-    &:not(:hover) &__subtitle {
+    &:not(:hover) &__resident {
         transition: color ease-in-out 0.3s;
     }
     &:not(:hover) &__price {
@@ -92,19 +154,5 @@
     &:not(:hover) &__img {
         transition: fill ease-in-out 0.3s;
     }
-
-    &:focus {
-        background-color: $MERGE-SECONDARY-COLOR;
-        border-color: $MERGE-SECONDARY-COLOR;
-    }
-    &:focus &__title,
-    &:focus &__subtitle {
-        color: $MAIN-DARK-COLOR;
-    }
-    &:focus &__price {
-        color: #333333;
-    }
-    &:focus &__img {
-        fill: $MAIN-DARK-COLOR;
-    }
+    
 }

@@ -71,6 +71,13 @@
     align-items: center;
 }
 
+%flex-col-se {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 %flex-col-fs {
     display: flex;
     flex-direction: column;

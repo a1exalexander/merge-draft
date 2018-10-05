@@ -123,7 +123,7 @@
 			<a href="mailto: hello@merge.place" class="menu__contact menu__contact--mail menu-row-6">
 				hello@merge.place
 			</a>
-			<button class="button-membership menu-row-10">
+			<button class="button-membership menu-row-10" onclick="becomeMember()">
 				<p class='button-membership__text'>
 					BECOME A MEMBER
 					<svg class='button-membership__img'>
@@ -171,6 +171,12 @@
 		};
 		function goToHello() {
 			setTimeout(helloHref, 200);
+		};
+		function becomeMemberHref() {
+			location.href = "../booking-workplace/booking-workplace.html";
+		};
+		function becomeMember() {
+			setTimeout(becomeMemberHref, 200);
 		};
 	</script>
 </body>
