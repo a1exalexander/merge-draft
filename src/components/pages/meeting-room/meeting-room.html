@@ -30,7 +30,6 @@
 				Resevation
 			</h2>
 			<form action="" id='meeting-room-form' name='meeting-room' class="meeting-room__form">
-<!-- TODO: javascript new Date-->
 				<p class="meeting-room__date-label">
 					Day
 				</p>
@@ -43,13 +42,13 @@
 				<p class="meeting-room__date-choice meeting-room__date-choice--time">
 					11:00 — 12:20 (1h 20m)
 				</p>
+<!-- TODO: javascript new Date-->
 				<button class="meeting-room__edit-date">
 					<svg class="meeting-room__edit-icon">
 						<use xlink:href='#icon-edit' />
 					</svg>
 					<p class="meeting-room__edit-text">edit</p>
 				</button>
-
 				<div class="meeting-room__input-wrapper">
 					<label for="meeting-name" class="meeting-room__label meeting-room__label--name">
 						NAME
@@ -61,25 +60,60 @@
 					<input type="tel" id='meeting-phone' class="meeting-room__input meeting-room__input--phone" required placeholder="+38 (000) 000 00-00">
 				</div>
 
-				<label for="meeting-check-resident" class="meeting-room__check-label">
-					<input type="checkbox" form='meeting-room-form' id='meeting-check-resident' class="meeting-room__check-input">
-					<div class="meeting-room__check-box">
-						<svg class="meeting-room__check-img">
+				<label for="meeting-resident" class="meeting-room__resident-label">
+					<input type="checkbox" form='meeting-room-form' id='meeting-resident' class="meeting-room__resident-input">
+					<div class="meeting-room__resident-check">
+						<svg class="meeting-room__resident-img">
 							<use xlink:href='#icon-checkbox'/>
 						</svg>
 					</div>
-					<p class="meeting-room__check-text">
+					<p class="meeting-room__resident-text">
 						I'm a Resident
 					</p>
 				</label>
 			</form>
+<!-- TODO: check form -->
+			<div class="check-free-time__wrapper">
+				<form id='check-free-time' class="check-free-time">
+						<p class="check-free-time__text">
+							Put your E-Mail for checking availability of free hours for Meeting Room's using
+						</p>
+						<input form='check-free-time' type="email" class="check-free-time__email" placeholder="Email">
+						<button form='check-free-time' class="check-free-time__button">
+							CHECK
+						</button>
+				</form>
+			</div>
+			<div class="resident-time-info__wrapper">
+				<div class="resident-time-info">
+					<p class="resident-time-info__title">
+						Resident
+					</p>
+					<p class="resident-time-info__title">
+						Duration
+					</p>
+					<p class="resident-time-info__title">
+						Count of Free Hours
+					</p>
+<!-- TODO: form-->
+					<p class="resident-time-info__text">
+						(Pasha Tseluyko)
+					</p>
+					<p class="resident-time-info__text">
+						(Pasha Tseluyko)
+					</p>
+					<p class="resident-time-info__text resident-time-info__text--red">
+						(1 h.)
+					</p>
+				</div>
+			</div>
 			<div class="meeting-room__apply-wrapper">
 				<p class="booking-price meeting-room__price">
 					Price:
 					<span class="booking-price__sum">1000</span>
 				</p>
 				<button form='meeting-room-form' class="button-apply-book meeting-room__apply" form='meeting-room-form'>
-					apply
+					BOOK
 				</button>
 			</div>
 		</div>
