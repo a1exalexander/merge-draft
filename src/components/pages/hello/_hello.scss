@@ -12,6 +12,7 @@
         '. btn-member .        btn-book .';
     align-content: center;
     justify-items: start;
+    will-change: transform;
     animation-name: slideRight;
     animation-duration: 0.5s;
     animation-timing-function: ease-in-out;

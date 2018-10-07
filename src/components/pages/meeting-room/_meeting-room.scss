@@ -5,6 +5,7 @@
     display: grid;
     grid-template-rows: repeat(5, auto);
     align-items: center;
+    will-change: transform;
     animation-name: slideRight;
     animation-duration: 0.5s;
     animation-timing-function: ease-in-out;
@@ -13,7 +14,6 @@
         min-height: 100vh;
         @extend %flex-row-c;
         align-items: center;
-       
     }
     &__button-back-wrapper {
         align-self: start;
@@ -34,8 +34,7 @@
         padding: 1.8rem 0 1rem 0;
         display: grid;
         grid-template-rows: repeat(5, auto);
-        grid-template-columns: 
-            1fr 2fr 1fr;
+        grid-template-columns: 1fr 2fr 1fr;
         grid-template-areas:
             'day 	       time 	     .'
             'day-input     time-input    edit'
@@ -50,12 +49,12 @@
     }
     &__date {
         &-label {
-        grid-area: day;
-        font-family: $base-font;
-        font-size: 0.625rem;
-        font-weight: 500;
-        text-align: left;
-        color: $GREY;
+            grid-area: day;
+            font-family: $base-font;
+            font-size: 0.625rem;
+            font-weight: 500;
+            text-align: left;
+            color: $GREY;
             &--time {
                 grid-area: time;
             }
@@ -73,15 +72,12 @@
             color: $TEXT-COLOR;
             outline: none;
             border: none;
-            &--day {
-                
-            }
             &--time {
                 grid-area: time-input;
             }
         }
     }
-    
+
     &__edit {
         &-date {
             grid-area: edit;
@@ -164,8 +160,7 @@
             position: relative;
             grid-area: check;
             display: grid;
-            grid-template-columns: 
-                16px auto;
+            grid-template-columns: 16px auto;
             grid-column-gap: 0.75rem;
             align-items: center;
             cursor: pointer;
@@ -210,11 +205,11 @@
             transition: ease-in-out 0.2s border-color;
         }
         &-input:checked + &-check &-img {
-        opacity: 1;
-        transition: opacity ease-in-out 0.2s;
+            opacity: 1;
+            transition: opacity ease-in-out 0.2s;
         }
         &-input:not(:checked) + &-check &-img {
-        transition: opacity ease-in-out 0.2s;
+            transition: opacity ease-in-out 0.2s;
         }
     }
 
@@ -223,9 +218,5 @@
         border-top: 1px solid $BUTTON-COLOR;
         @extend %flex-row-sb;
         align-items: center;
-    }
-    &__price {
-    }
-    &__apply {
     }
 }

@@ -3,6 +3,7 @@
     min-width: 430px;
     max-width: 35%;
     @extend %flex-col-sb;
+    will-change: transform;
     align-items: flex-start;
     animation-name: slideRight;
     animation-duration: 0.5s;
