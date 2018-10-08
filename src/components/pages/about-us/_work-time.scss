@@ -1,0 +1,39 @@
+.work-time {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(2, auto);
+    grid-column-gap: 21px;
+    align-items: center;
+    &--margin {
+        margin-bottom: 56px;
+    }
+    &__clock {
+        grid-area: 1 / 1 / 3 / 2;
+        width: 48px;
+        height: 48px;
+        background-color: transparent;
+    }
+    &__text {
+        font-family: Montserrat;
+        font-size: 0.8125rem;
+        font-weight: normal;
+        line-height: 1.69;
+        letter-spacing: 0.9px;
+        text-align: left;
+        color: $TEXT-COLOR;
+        &--weekday {
+            grid-area: 1 / 2 / 2 / 3;
+        }
+        &--weekend {
+            grid-area: 1 / 3 / 2 / 4;
+        }
+        &--time {
+            font-weight: normal;
+            grid-area: 2 / 2 / 3 / 3;
+        }
+        &--weekend-time {
+            font-weight: bold;
+            grid-area: 2 / 3 / 3 / 4;
+        }
+    }
+}

@@ -1,0 +1,54 @@
+.slider-room {
+    width: 100%;
+    &__wrapper {
+		width: 100%;  
+    }
+    &__image {
+        max-width: 100%;
+        height: auto;
+    }
+    &__nav {
+        width: 100%;
+        @extend %flex-row;
+        justify-content: flex-end;
+        align-items: center;
+        height: 96px;
+    }
+    &__button {
+        width: 32px;
+        height: 32px;
+        border-radius: 3px;
+        background-color: $BUTTON-COLOR;
+        outline: none;
+        border: none;
+        @extend %flex-col-c;
+        align-items: center;
+        &:hover .slider-room__nav-icon {
+            fill: $MERGE-MAIN-COLOR;
+            transition: fill ease-in-out 0.2s;
+        }
+        &:not(:hover) .slider-room__nav-icon {
+            transition: fill ease-in-out 0.2s;
+        }
+        &:active {
+            filter: blur(1px) brightness(0.6);
+            transition: filter ease-in-out 0.2s;
+        }
+        &:not(:active) {
+            transition: filter ease-in-out 0.2s;
+        }
+    }
+    &__nav-icon {
+        width: 24px;
+        height: 24px;
+        fill: $TEXT-COLOR;
+    }
+    &__counter-box {
+        padding: 0 39px;
+        font-family: $base-font;
+        font-size: 0.875rem;
+        font-weight: bold;
+        text-align: center;
+        color: $TEXT-COLOR;
+    }
+}

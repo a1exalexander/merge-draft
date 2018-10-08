@@ -24,6 +24,10 @@
 @import '../components/pages/meeting-room/check-free-time';
 @import '../components/pages/meeting-room/resident-time-info';
 @import '../components/pages/resident-card/resident-card';
+@import '../components/pages/about-us/about-us';
+@import '../components/pages/about-us/subscription-type';
+@import '../components/pages/about-us/work-time';
+@import '../components/common/_slider-room/slider-room';
 
 * {
     margin: 0;
@@ -32,10 +36,12 @@
 }
 
 html {
-    width: 100vw;
+    max-width: 100vw;
+    width: 100%;
 }
 
 body {
+    max-width: 100vw;
     width: 100%;
     min-height: 100vh;
     @extend %flex-row-s;

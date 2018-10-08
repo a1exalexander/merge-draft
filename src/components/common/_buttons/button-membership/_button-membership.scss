@@ -1,5 +1,6 @@
 .button-membership {
     width: 187px;
+    flex-shrink: 0;
     height: 40px;
     background-color: $MERGE-SECONDARY-COLOR;
     outline: none;
