@@ -3,8 +3,7 @@
     &__slide {
         overflow: hidden;
         width: 100%;
-        min-height: 416px;
-        height: 50vh;
+        height: 416px;
         @extend %flex-row-c;
         align-items: center;
     }

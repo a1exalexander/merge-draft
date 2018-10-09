@@ -395,7 +395,7 @@ body {
   justify-content: center;
   align-items: center; }
 
-.workplace-choice__inner, .booking-workplace {
+.workplace-choice__inner, .booking-workplace, .page--about-us {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -887,6 +887,7 @@ body {
       transition: fill ease-in-out 0.1s; }
 
 .hello {
+  padding: 3rem 0;
   width: 100%;
   grid-column: 2;
   display: grid;
@@ -1840,7 +1841,7 @@ body {
   align-items: center;
   align-items: center;
   justify-items: center;
-  padding: 156px 112px;
+  padding: 7rem 112px 0 112px;
   animation-name: slideRight;
   animation-duration: 0.5s;
   animation-timing-function: ease-in-out; }
@@ -1860,7 +1861,8 @@ body {
     font-weight: 500;
     text-align: left;
     color: #ffffff;
-    white-space: nowrap; }
+    white-space: nowrap;
+    margin: 0; }
   .about-us__inf {
     text-align: left;
     align-self: flex-end;
@@ -2014,8 +2016,7 @@ body {
   .slider-room__slide {
     overflow: hidden;
     width: 100%;
-    min-height: 416px;
-    height: 50vh;
+    height: 416px;
     align-items: center; }
   .slider-room__image {
     width: 100%;
@@ -2073,11 +2074,10 @@ body {
 .next-page-nav {
   padding-left: 112px;
   width: 100%;
-  min-height: 304px;
-  height: 40vh; }
+  height: 304px; }
   .next-page-nav__link {
     height: 100%;
-    flex-basis: 1;
+    flex-basis: auto;
     flex-grow: 1;
     position: relative;
     background-size: cover;
@@ -2139,6 +2139,8 @@ button {
     grid-template-columns: 112px auto; }
   .page--menu {
     background-color: #333333; }
+  .page--about-us {
+    align-items: c; }
 
 .logo {
   animation-name: rotateIn;

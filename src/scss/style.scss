@@ -75,6 +75,11 @@ button {
     &--menu {
         background-color: $DARK-GREY;
     }
+
+    &--about-us {
+        @extend %flex-col-sb;
+        align-items: c;
+    }
 }
 
 .logo {

@@ -5,7 +5,7 @@
     align-items: center;
     align-items: center;
     justify-items: center;
-    padding: 156px 112px;
+    padding: 7rem 112px 0 112px;
     animation-name: slideRight;
     animation-duration: 0.5s;
     animation-timing-function: ease-in-out;
@@ -31,6 +31,7 @@
         text-align: left;
         color: $TEXT-COLOR;
         white-space: nowrap;
+        margin: 0;
     }
     &__inf {
         text-align: left;
