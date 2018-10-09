@@ -1,13 +1,15 @@
 .about-us {
     width: 100%;
     display: grid;
-    grid-template-columns: 112px auto 112px;
+    @extend %flex-col;
+    align-items: center;
     align-items: center;
     justify-items: center;
-    padding: 156px 0;
+    padding: 156px 112px;
+    animation-name: slideRight;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
     &__main {
-        grid-column: 2 / 3;
-        width: 864px;
         min-width: 768px;
         max-width: 60%;
         @extend %flex-col-c;
@@ -20,9 +22,9 @@
         width: 100%;
         @extend %flex-row-sb;
         align-items: center;
+        margin: 0 0 78px 0;
     }
     &__title {
-        margin: 0 0 78px 0;
         font-family: $title-font;
         font-size: 5rem;
         font-weight: 500;

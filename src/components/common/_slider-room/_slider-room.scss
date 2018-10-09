@@ -1,11 +1,17 @@
 .slider-room {
     width: 100%;
-    &__wrapper {
-		width: 100%;  
+    &__slide {
+        overflow: hidden;
+        width: 100%;
+        min-height: 416px;
+        height: 50vh;
+        @extend %flex-row-c;
+        align-items: center;
     }
     &__image {
-        max-width: 100%;
+        width: 100%;
         height: auto;
+        object-position: center;
     }
     &__nav {
         width: 100%;
@@ -44,11 +50,33 @@
         fill: $TEXT-COLOR;
     }
     &__counter-box {
-        padding: 0 39px;
+        width: 100px;
         font-family: $base-font;
         font-size: 0.875rem;
         font-weight: bold;
         text-align: center;
         color: $TEXT-COLOR;
+    }
+
+    &__slideRight {
+        animation-name: slideRight;
+        animation-duration: 0.2s;
+        animation-timing-function: ease-in-out;
+    }
+
+    &__slideLeft {
+        animation-name: slideLeft;
+        animation-duration: 0.2s;
+        animation-timing-function: ease-in-out;
+    }
+
+    &__slideToLeft {
+        transform: translateX(150%);
+        transition: transform ease-in-out 0.2s;
+    }
+
+    &__slideToRight {
+        transform: translateX(-150%);
+        transition: transform ease-in-out 0.2s;
     }
 }

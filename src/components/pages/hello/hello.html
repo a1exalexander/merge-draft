@@ -9,6 +9,11 @@
 </head>
 
 <body>
+	<script src="../../../js/loader.js"></script>
+	<section class="loader">
+		<h1 class="loader__title">MERGE</h1>
+		<p class="loader__percent"></p>
+	</section>
 	<div class="page page--nav">
 		<nav class="navigation navigation--border">
 			<svg class="logo">
@@ -140,7 +145,7 @@
 		function bookRoom() {
 			setTimeout(bookRoomHref, 200);
 		};
-		
+
 		function becomeMemberHref() {
 			location.href = "../booking-workplace/booking-workplace.html";
 		};

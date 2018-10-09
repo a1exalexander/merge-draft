@@ -29,7 +29,7 @@
 		<div class="menu__inner">
 			<ul class="menu__list">
 				<li class="menu__item">
-					<a href="#" class="menu__link">
+					<a href="../hello/hello.html" class="menu__link">
 						Merge
 					</a>
 				</li>
@@ -39,7 +39,7 @@
 					</a>
 				</li>
 				<li class="menu__item">
-					<a href="#" class="menu__link">
+					<a href="../meeting-room/meeting-room.html" class="menu__link">
 						Meeting Room
 					</a>
 				</li>
@@ -49,7 +49,7 @@
 					</a>
 				</li>
 				<li class="menu__item">
-					<a href="#" class="menu__link">
+					<a href="../about-us/about-us.html" class="menu__link">
 						About us
 					</a>
 				</li>
@@ -171,6 +171,12 @@
 		};
 		function goToHello() {
 			setTimeout(helloHref, 200);
+		};
+		function aboutHref() {
+			location.href="../about-us/about-us.html";
+		};
+		function goToAbout() {
+			setTimeout(aboutHref, 200);
 		};
 		function becomeMemberHref() {
 			location.href = "../booking-workplace/booking-workplace.html";

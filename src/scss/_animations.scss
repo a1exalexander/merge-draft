@@ -7,6 +7,15 @@
     }
 }
 
+@keyframes slideLeft {
+    from {
+        transform: translateX(150%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

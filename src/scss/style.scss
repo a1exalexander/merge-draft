@@ -28,6 +28,7 @@
 @import '../components/pages/about-us/subscription-type';
 @import '../components/pages/about-us/work-time';
 @import '../components/common/_slider-room/slider-room';
+@import '../components/common/_next-page-nav/next-page-nav';
 
 * {
     margin: 0;
@@ -38,6 +39,10 @@
 html {
     max-width: 100vw;
     width: 100%;
+}
+
+[hidden] {
+    display: none;
 }
 
 body {
