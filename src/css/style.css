@@ -2094,11 +2094,11 @@ body {
     background-size: cover;
     background-repeat: no-repeat; }
     .next-page-nav__link--interior {
-      background-image: url("../../../image/interior.jpg"); }
+      background-image: url("../image/interior.jpg"); }
     .next-page-nav__link--meeting-room {
-      background-image: url("../../../image/meeting-room.jpg"); }
+      background-image: url("../image/meeting-room.jpg"); }
     .next-page-nav__link--events {
-      background-image: url("../../../image/events.jpg"); }
+      background-image: url("../image/events.jpg"); }
     .next-page-nav__link:hover .next-page-nav__inner {
       background-color: transparent;
       transition: background-color ease-in-out 0.2s; }
