@@ -1,23 +1,24 @@
 .resident-card {
     &__wrapper {
-        width: 100vw;
-        min-height: 100vh;
+        width: 100%;
+        min-height: 100%;
         background-color: rgba(17, 17, 17, 0.7);
         @extend %flex-row-c;
         align-items: center;
-        position: absolute;
+        position: relative;
         z-index: 100;
         will-change: opacity;
         animation-name: fadeIn;
         animation-duration: 0.5s;
         animation-timing-function: ease-in-out;
         animation-delay: 0.2s;
+        @media (max-width: 500px) {
+            justify-content: flex-start;
+            
+        }
     }
     padding: 2rem 2.4rem 3.5rem 2.4rem;
-    flex-basis: 492px;
-    min-width: 492px;
-    max-width: 34%;
-    flex-grow: 1;
+    flex: 0 0 35%;
     border-radius: 3px;
     background-color: $BUTTON-COLOR;
     box-shadow: 0 12px 30px 24px rgba(0, 0, 0, 0.1);
@@ -27,6 +28,15 @@
     animation-name: fadeInBubble, fadeIn;
     animation-duration: 1s;
     animation-timing-function: ease-in-out;
+    @media (min-width: 500px) {
+        min-width: 492px;
+    }
+    @media (max-width: 500px) {
+        flex: 0 0 100%;
+        align-self: flex-start;
+        padding: 2rem;
+    }
+    
     &__title {
         font-family: $title-font;
         font-size: 1.5rem;
@@ -65,11 +75,24 @@
             grid-column-gap: 2rem;
             margin-bottom: 2.625rem;
         }
-        &--bottom {
+        &--price {
             grid-template-rows: repeat(2, auto);
             grid-row-gap: 1.5rem;
             justify-content: center;
             justify-items: center;
+            @media (max-width: 500px) {
+                button {
+                    width: 100%;
+                }
+            }
+        }
+        @media (max-width: 500px) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            p {
+                margin-bottom: 1rem;
+            }
         }
     }
     &__label {
@@ -83,6 +106,9 @@
         }
         &--lecture {
             grid-area: 3 / 2 / 4 / 3;
+        }
+        @media (max-width: 500px) {
+           margin-bottom: 1rem;
         }
     }
 

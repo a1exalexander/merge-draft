@@ -594,7 +594,7 @@ body {
       padding-right: 10%; } }
   @media (max-width: 600px) {
     .hello {
-      padding: 60px 1rem;
+      padding: 5rem 1rem;
       grid-template-areas: 'title title    ' 'subtitle subtitle ' 'link link     ' 'text text     ' 'btn btn      ';
       justify-items: center;
       justify-content: center;
@@ -1568,10 +1568,7 @@ body {
 
 .resident-card {
   padding: 2rem 2.4rem 3.5rem 2.4rem;
-  flex-basis: 492px;
-  min-width: 492px;
-  max-width: 34%;
-  flex-grow: 1;
+  flex: 0 0 35%;
   border-radius: 3px;
   background-color: #1f1f1f;
   box-shadow: 0 12px 30px 24px rgba(0, 0, 0, 0.1);
@@ -1581,17 +1578,28 @@ body {
   animation-duration: 1s;
   animation-timing-function: ease-in-out; }
   .resident-card__wrapper {
-    width: 100vw;
-    min-height: 100vh;
+    width: 100%;
+    min-height: 100%;
     background-color: rgba(17, 17, 17, 0.7);
     align-items: center;
-    position: absolute;
+    position: relative;
     z-index: 100;
     will-change: opacity;
     animation-name: fadeIn;
     animation-duration: 0.5s;
     animation-timing-function: ease-in-out;
     animation-delay: 0.2s; }
+    @media (max-width: 500px) {
+      .resident-card__wrapper {
+        justify-content: flex-start; } }
+  @media (min-width: 500px) {
+    .resident-card {
+      min-width: 492px; } }
+  @media (max-width: 500px) {
+    .resident-card {
+      flex: 0 0 100%;
+      align-self: flex-start;
+      padding: 2rem; } }
   .resident-card__title {
     font-family: "Roboto Mono", monospace;
     font-size: 1.5rem;
@@ -1625,11 +1633,21 @@ body {
       grid-row-gap: 1.5rem;
       grid-column-gap: 2rem;
       margin-bottom: 2.625rem; }
-    .resident-card__inner--bottom {
+    .resident-card__inner--price {
       grid-template-rows: repeat(2, auto);
       grid-row-gap: 1.5rem;
       justify-content: center;
       justify-items: center; }
+      @media (max-width: 500px) {
+        .resident-card__inner--price button {
+          width: 100%; } }
+    @media (max-width: 500px) {
+      .resident-card__inner {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; }
+        .resident-card__inner p {
+          margin-bottom: 1rem; } }
   .resident-card__label {
     display: grid;
     grid-template-columns: repeat(2, auto);
@@ -1640,6 +1658,9 @@ body {
       grid-area: 3 / 1 / 4 / 2; }
     .resident-card__label--lecture {
       grid-area: 3 / 2 / 4 / 3; }
+    @media (max-width: 500px) {
+      .resident-card__label {
+        margin-bottom: 1rem; } }
   .resident-card__image {
     width: 32px;
     height: 32px;
