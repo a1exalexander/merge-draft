@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:500,600,700|Roboto+Mono:500,700");
-.hello__title, .hello__button-wrapper, .hello-link__wrapper, .booking-workplace__inner, .about-us__inf, .subscription-type__wrapper, .slider-room__nav, .next-page-nav {
+.hello__title, .hello__button-wrapper, .hello-link__wrapper, .booking-workplace__inner, .about-us__inf, .subscription-type__wrapper, .slider-room__nav, .next-page-nav, .beneffits__label, .view-360__row {
   display: flex;
   flex-direction: row; }
 
@@ -27,11 +27,11 @@ body {
   justify-content: stretch;
   align-items: flex-start; }
 
-.booking-workplace__col, .booking-workplace__input-wrapper, .resident-card, .about-us, .about-us__inner {
+.booking-workplace__col, .booking-workplace__input-wrapper, .resident-card, .about-us, .about-us__inner, .coworking, .coworking__slider, .view-360 {
   display: flex;
   flex-direction: column; }
 
-.loader, .button-menu__wrapper, .social-networks__link, .menu__col, .menu-button-close__wrapper, .resident-card__close, .about-us__main, .slider-room__button, .next-page-nav__inner {
+.loader, .button-menu__wrapper, .social-networks__link, .menu__col, .menu-button-close__wrapper, .resident-card__close, .about-us__main, .slider-room__button, .next-page-nav__inner, .coworking__inner {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -334,10 +334,9 @@ body {
   flex-flow: nowrap; }
   .button-map__text {
     text-align: center;
-    align-content: center;
+    align-items: center;
     flex-flow: nowrap; }
   .button-map__img {
-    height: 12px;
     stroke: none;
     height: 16px;
     width: 16px;
@@ -800,12 +799,14 @@ body {
         .menu__col--locate {
           grid-column: 1;
           grid-row: 4 / 5; }
-          .menu__col--locate :nth-child(odd) {
+          .menu__col--locate > :nth-child(odd), .menu__col--locate .menu-row-9 {
             margin-bottom: 2rem; }
+          .menu__col--locate .menu-row-8 {
+            margin: 0; }
         .menu__col--contact {
           grid-column: 1;
           grid-row: 5; }
-          .menu__col--contact :nth-child(even) {
+          .menu__col--contact > :nth-child(even) {
             margin-bottom: 2rem; }
         .menu__col--locate, .menu__col--contact {
           text-align: center;
@@ -813,6 +814,12 @@ body {
           flex-direction: column;
           justify-content: center;
           align-items: center; } }
+    @media (max-width: 460px) {
+      .menu__col .menu-row-10 {
+        width: 100%;
+        padding: 0 1rem; }
+        .menu__col .menu-row-10 button {
+          width: 100%; } }
   .menu__inner {
     grid-column: 2 / 4;
     grid-row: 1;
@@ -979,6 +986,7 @@ body {
     z-index: 50; }
     @media (max-width: 850px) {
       .menu-button-close__wrapper {
+        position: absolute;
         top: 0;
         left: 0;
         right: 0;
@@ -1771,7 +1779,7 @@ body {
     @media (max-width: 600px) {
       .about-us__wrapper {
         justify-content: flex-start;
-        padding: 0 1rem; } }
+        padding: 0; } }
   .about-us__main {
     width: 100%;
     padding: 0 10%;
@@ -1794,10 +1802,13 @@ body {
         align-items: flex-start; } }
     @media (max-width: 990px) {
       .about-us__header button {
-        align-self: flex-end; } }
+        align-self: flex-start; } }
     @media (max-width: 600px) {
       .about-us__header button {
         align-self: center; } }
+    @media (max-width: 450px) {
+      .about-us__header button {
+        width: 100%; } }
   .about-us__title {
     font-family: "Roboto Mono", monospace;
     font-size: 5rem;
@@ -1824,6 +1835,9 @@ body {
         flex-grow: 1;
         flex-shrink: 1;
         justify-content: flex-start; } }
+    @media (max-width: 600px) {
+      .about-us__inf {
+        padding: 0 1rem; } }
   .about-us__inner {
     flex: 0 0 60%;
     text-align: left;
@@ -1993,7 +2007,17 @@ body {
   .slider-room__slide {
     overflow: hidden;
     width: 100%;
-    align-items: center; }
+    height: 420px;
+    min-height: 300px;
+    align-items: flex-end; }
+    @media (max-width: 600px) {
+      .slider-room__slide {
+        height: 300px;
+        min-height: 200px; } }
+    @media (max-width: 450px) {
+      .slider-room__slide {
+        height: 200px;
+        min-height: 150px; } }
   .slider-room__image {
     width: 100%;
     height: auto;
@@ -2070,9 +2094,11 @@ body {
     background-size: cover;
     background-repeat: no-repeat; }
     .next-page-nav__link--interior {
-      background-image: url("https://picsum.photos/864/416/?image=3"); }
+      background-image: url("../../../image/interior.jpg"); }
     .next-page-nav__link--meeting-room {
-      background-image: url("https://picsum.photos/864/416/?image=4"); }
+      background-image: url("../../../image/meeting-room.jpg"); }
+    .next-page-nav__link--events {
+      background-image: url("../../../image/events.jpg"); }
     .next-page-nav__link:hover .next-page-nav__inner {
       background-color: transparent;
       transition: background-color ease-in-out 0.2s; }
@@ -2094,6 +2120,181 @@ body {
     letter-spacing: 1.2px;
     text-align: center;
     color: #ffffff; }
+
+.coworking {
+  width: 100%;
+  align-items: center;
+  justify-items: center;
+  padding-top: 7rem;
+  animation-name: slideRight;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out; }
+  .coworking__wrapper {
+    display: flex;
+    padding: 0 112px; }
+    @media (max-width: 920px) {
+      .coworking__wrapper {
+        justify-content: flex-start;
+        padding: 0 0 0 112px; } }
+    @media (max-width: 600px) {
+      .coworking__wrapper {
+        justify-content: flex-start;
+        padding: 0; } }
+  .coworking__inner {
+    width: 100%;
+    padding: 0 10%;
+    align-items: flex-start; }
+    .coworking__inner--margin {
+      margin-bottom: 68px; }
+    @media (max-width: 920px) {
+      .coworking__inner {
+        padding: 0 5%; } }
+    @media (max-width: 600px) {
+      .coworking__inner {
+        padding: 0; } }
+  .coworking__header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: 3fr 2fr;
+    grid-template-areas: 'title button' 'title .';
+    grid-column-gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 5rem 0; }
+    @media (max-width: 1000px) {
+      .coworking__header {
+        grid-template-areas: 'title title' 'button button';
+        justify-content: stretch; } }
+    .coworking__header .button-membership {
+      grid-area: button; }
+      @media (max-width: 1000px) {
+        .coworking__header .button-membership {
+          justify-self: start; } }
+      @media (max-width: 600px) {
+        .coworking__header .button-membership {
+          text-align: center;
+          justify-self: center; } }
+      @media (max-width: 450px) {
+        .coworking__header .button-membership {
+          width: 90%; } }
+  .coworking__title {
+    grid-area: title;
+    font-family: "Roboto Mono", monospace;
+    font-size: 5rem;
+    font-weight: 500;
+    text-align: left;
+    color: #ffffff;
+    white-space: nowrap;
+    margin: 0; }
+    @media (max-width: 990px) {
+      .coworking__title {
+        margin-bottom: 2rem; } }
+    @media (max-width: 600px) {
+      .coworking__title {
+        align-self: center;
+        text-align: center; } }
+    @media (max-width: 500px) {
+      .coworking__title {
+        font-size: 3rem; } }
+  .coworking__slider {
+    align-items: flex-start;
+    padding-top: 5rem;
+    width: 100%; }
+    @media (max-width: 450px) {
+      .coworking__slider {
+        align-items: center; } }
+  .coworking__label-button {
+    padding: 0.5rem 1rem;
+    background-color: black;
+    font-family: Montserrat;
+    font-size: 0.875rem;
+    font-weight: bold;
+    text-align: center;
+    color: #515151;
+    outline: none;
+    border: none;
+    transition: color ease-in-out 0.2s;
+    margin-bottom: 1.5rem; }
+    .coworking__label-button:hover {
+      color: white; }
+
+.beneffits {
+  width: 100%;
+  padding: 5rem 0;
+  border-top: #515151 1px solid;
+  border-bottom: #515151 1px solid;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(5, auto);
+  grid-row-gap: 2.5rem;
+  grid-column-gap: 5rem;
+  justify-items: start;
+  justify-content: start; }
+  @media (max-width: 750px) {
+    .beneffits {
+      padding: 2rem 1rem;
+      justify-content: stretch;
+      grid-template-columns: none;
+      grid-template-rows: repeat(8, auto); } }
+  .beneffits__label {
+    align-items: center; }
+  .beneffits__image {
+    margin-right: 2rem;
+    width: 40px;
+    height: 40px; }
+  .beneffits__text {
+    max-width: 170px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    color: #ffffff; }
+    @media (max-width: 750px) {
+      .beneffits__text {
+        max-width: 100%; } }
+  .beneffits__button {
+    padding-top: 2rem;
+    grid-area: 5 / 1 / 6 / 2; }
+    @media (max-width: 750px) {
+      .beneffits__button {
+        grid-area: 8 / 1 / 9 / 2; } }
+    @media (max-width: 600px) {
+      .beneffits__button {
+        justify-self: center;
+        width: 100%; } }
+    @media (max-width: 450px) {
+      .beneffits__button .button-membership {
+        width: 100%; } }
+
+.view-360__row {
+  padding-bottom: 1.5rem; }
+  @media (max-width: 450px) {
+    .view-360__row {
+      justify-content: center; } }
+
+.view-360__button {
+  padding: 0.5rem 1rem;
+  background-color: black;
+  font-family: Montserrat;
+  font-size: 0.875rem;
+  font-weight: bold;
+  text-align: center;
+  color: #515151;
+  outline: none;
+  border: none;
+  transition: color ease-in-out 0.2s; }
+  .view-360__button:hover {
+    color: white; }
+
+.view-360__inner {
+  cursor: pointer;
+  width: 100%;
+  padding-bottom: 5rem; }
+
+.view-360__image {
+  width: 100%;
+  height: auto; }
 
 * {
   margin: 0;

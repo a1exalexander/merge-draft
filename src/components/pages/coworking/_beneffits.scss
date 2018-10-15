@@ -1,0 +1,58 @@
+.beneffits {
+	width: 100%;
+	padding: 5rem 0;
+	border: {
+		top: $BACK-LINE-COLOR 1px solid;
+		bottom: $BACK-LINE-COLOR 1px solid;
+	} 
+	display: grid;
+	grid-template-columns: repeat(2, auto);
+	grid-template-rows: repeat(5, auto);
+	grid-row-gap: 2.5rem;
+	grid-column-gap: 5rem;
+	justify-items: start;
+	justify-content: start;
+	@media (max-width: 750px) {
+		padding: 2rem 1rem;
+		justify-content: stretch;
+		grid-template-columns: none;
+		grid-template-rows: repeat(8, auto);
+	}
+	&__label {
+		@extend %flex-row;
+		align-items: center;
+	}
+	&__image {
+		margin-right: 2rem;
+		width: 40px;
+		height: 40px;
+	}
+	&__text {
+		max-width: 170px;
+		font-family: $title-font;
+		font-size: 16px;
+		font-weight: 500;
+		text-align: left;
+		color: $TEXT-COLOR;
+		@media (max-width: 750px) {
+			max-width: 100%;
+		}
+	}
+	&__button {
+		padding-top: 2rem;
+		grid-area: 5 / 1 / 6 / 2;
+		@media (max-width: 750px) {
+			grid-area: 8 / 1 / 9 / 2;
+		}
+		@media (max-width: 600px) {
+			justify-self: center;
+			width: 100%;
+		}
+		.button-membership {
+            @media (max-width: 450px) {
+                width: 100%;
+            }
+        }
+	}
+
+}

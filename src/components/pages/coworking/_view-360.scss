@@ -1,0 +1,34 @@
+.view-360 {
+	@extend %flex-col;
+	&__row {
+		@extend %flex-row;
+		padding-bottom: 1.5rem;
+		@media (max-width: 450px) {
+			justify-content: center;
+		}
+	}
+	&__button {
+		padding: 0.5rem 1rem;
+		background-color: black;
+		font-family: Montserrat;
+		font-size: 0.875rem;
+		font-weight: bold;
+		text-align: center;
+		color: $BACK-LINE-COLOR;
+		outline: none;
+		border: none;
+		transition: color ease-in-out 0.2s;
+		&:hover {
+			color: white;
+		}
+	}
+	&__inner {
+		cursor: pointer;
+		width: 100%;
+		padding-bottom: 5rem;
+	}
+	&__image {
+		width: 100%;
+		height: auto;
+	}
+}

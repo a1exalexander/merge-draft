@@ -17,11 +17,10 @@
     &__text {
         text-align: center;
         @extend %flex-row-c;
-        align-content: center;
+        align-items: center;
         flex-flow: nowrap;
     }
     &__img {
-        height: 12px;
         stroke: none;
         height: 16px;
         width: 16px;

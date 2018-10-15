@@ -5,14 +5,11 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="../../../css/normalize.css">
 	<link rel="stylesheet" href="../../../css/style.css">
-	<title>About Us</title>
+	<title>Coworking Space</title>
 </head>
 
 <body>
-
-
 	<nav class="navigation navigation--border">
 		<svg class="logo">
 			<use xlink:href='#logo' />
@@ -41,14 +38,15 @@
 			</a>
 		</section>
 	</nav>
-	<div class="about-us">
-		<div class="about-us__wrapper">
-			<div class="about-us__main about-us__main--margin">
-				<header class="about-us__header">
-					<h1 class="about-us__title">
-						About Us
+	<div class="coworking">
+		<div class="coworking__wrapper">
+			<div class="coworking__inner">
+				<header class="coworking__header">
+					<h1 class="coworking__title">
+						Coworking<br>
+						Space
 					</h1>
-					<button class="button-membership about-us__button-member" onclick="becomeMember()">
+					<button class="button-membership" onclick="becomeMember()">
 						<p class='button-membership__text'>
 							BECOME A MEMBER
 							<svg class='button-membership__img'>
@@ -57,90 +55,100 @@
 						</p>
 					</button>
 				</header>
-				<section class="work-time work-time--margin">
-					<object data="../../../image/time.svg" type="image/svg+xml" class="work-time__clock"></object>
-					<p class="work-time__text work-time__text--weekday">MON-FRI:</p>
-					<p class="work-time__text work-time__text--weekend">SAT, SUN:</p>
-					<p class="work-time__text work-time__text--time">9:00 - 20:00</p>
-					<p class="work-time__text work-time__text--weekend-time">10:00 - 18:00</p>
-				</section>
-				<section class="subscription-type__wrapper subscription-type__wrapper--margin">
-					<div class="subscription-type subscription-type--resident">
-						<p class="subscription-type__title">Month</p>
-						<a href='../resident-card/resident-card.html' class="subscription-type__resident">Resident card</a>
-						<p class="subscription-type__price">1000</p>
-						<a href='../resident-card/resident-card.html' class="subscription-type__link-img">
-							<svg class="subscription-type__img">
-								<use xlink:href='#infoborder' />
-							</svg>
-						</a>
-					</div>
-					<div class="subscription-type">
-						<p class="subscription-type__title">Week</p>
-						<p class="subscription-type__price">400</p>
-						<a href='#' class="subscription-type__link-img">
-							<svg class="subscription-type__img">
-								<use xlink:href='#infoborder' />
-							</svg>
-						</a>
-					</div>
-					<div class="subscription-type">
-						<p class="subscription-type__title">Day</p>
-						<p class="subscription-type__price">80</p>
-						<a href='#' class="subscription-type__link-img">
-							<svg class="subscription-type__img">
-								<use xlink:href='#infoborder' />
-							</svg>
-						</a>
-					</div>
-				</section>
-				<section class="about-us__inf about-us__inf--margin">
-					<div class="about-us__inner">
-						<p class="about-us__caption">
-							ABOUT US
-						</p>
-						<h2 class="about-us__subtitle">
-							Our missions
-						</h2>
-						<p class="about-us__text">
-							Do everything to make you work in a comfortable environment: IT specialists, designers, copywriters,
-							entrepreneurs - all those with whom it's pleasant to drink coffee and exchange valuable experience or orders.
-							Yes, we also have tea, coffee and biscuits.
-						</p>
-					</div>
-				</section>
-				<div class="slider-room">
-					<div class="slider-room__slide">
-						<img id='slide-image' src="https://picsum.photos/1280/720/?random" alt="photo" class="slider-room__image">
-					</div>
-					<div class="slider-room__nav">
-						<button id='slide-prev' class="slider-room__button slider-room__button--prev">
-							<svg class='slider-room__nav-icon'>
-								<use xlink:href='#chevron-left' />
-							</svg>
-						</button>
-						<p class="slider-room__counter-box">
-							<span class="sider-room__counter"></span>
-							/
-							<span class="sider-room__sum"></span>
-						</p>
-						<button id='slide-next' class="slider-room__button slider-room__button--next">
-							<svg class='slider-room__nav-icon'>
-								<use xlink:href='#chevron-right' />
-							</svg>
+				<section class="view-360">
+					<div class="view-360__row">
+						<button class="view-360__button">
+							360° view
 						</button>
 					</div>
-				</div>
+					<div class="view-360__inner">
+						<img src="../../../image/merge-4.png" alt="image" class="view-360__image">
+					</div>
+				</section>
+				<section class="beneffits">
+					<div class="beneffits__label">
+						<object data="../../../image/wi-fi.svg" type="image/svg+xml" class="beneffits__image"></object>
+						<p class="beneffits__text">
+							Super-fast Internet
+						</p>
+					</div>
+					<div class="beneffits__label">
+						<object data="../../../image/meeting-room.svg" type="image/svg+xml" class="beneffits__image"></object>
+						<p class="beneffits__text">
+							Meeting Room
+						</p>
+					</div>
+					<div class="beneffits__label">
+						<object data="../../../image/printer.svg" type="image/svg+xml" class="beneffits__image"></object>
+						<p class="beneffits__text">
+							Wireless Printer/Scanner/Copier
+						</p>
+					</div>
+					<div class="beneffits__label">
+						<object data="../../../image/unlimited-coffee-tea.svg" type="image/svg+xml" class="beneffits__image"></object>
+						<p class="beneffits__text">
+							Unlimited coffee, tea, snacks
+						</p>
+					</div>
+					<div class="beneffits__label">
+						<object data="../../../image/microwave.svg" type="image/svg+xml" class="beneffits__image"></object>
+						<p class="beneffits__text">
+							Kitchen with a microvawe and fridge
+						</p>
+					</div>
+					<div class="beneffits__label">
+						<object data="../../../image/shower.svg" type="image/svg+xml" class="beneffits__image"></object>
+						<p class="beneffits__text">
+							Shower
+						</p>
+					</div>
+					<div class="beneffits__label">
+						<object data="../../../image/merge-dots.svg" type="image/svg+xml" class="beneffits__image"></object>
+						<p class="beneffits__text">
+							Merge community
+						</p>
+					</div>
+					<div class="beneffits__button">
+						<button class="button-membership" onclick="becomeMember()">
+							<p class='button-membership__text'>
+								BECOME A MEMBER
+								<svg class='button-membership__img'>
+									<use xlink:href='#arrow-button' />
+								</svg>
+							</p>
+						</button>
+					</div>
+				</section>
+				<section class="coworking__slider">
+					<button class="coworking__label-button">
+						Photos
+					</button>
+					<div class="slider-room">
+						<div class="slider-room__slide">
+							<img id='slide-image' src="https://picsum.photos/1280/720/?random" alt="photo" class="slider-room__image">
+						</div>
+						<div class="slider-room__nav">
+							<button id='slide-prev' class="slider-room__button slider-room__button--prev">
+								<svg class='slider-room__nav-icon'>
+									<use xlink:href='#chevron-left' />
+								</svg>
+							</button>
+							<p class="slider-room__counter-box">
+								<span class="sider-room__counter"></span>
+								/
+								<span class="sider-room__sum"></span>
+							</p>
+							<button id='slide-next' class="slider-room__button slider-room__button--next">
+								<svg class='slider-room__nav-icon'>
+									<use xlink:href='#chevron-right' />
+								</svg>
+							</button>
+						</div>
+					</div>
+				</section>
 			</div>
 		</div>
 		<section class="next-page-nav">
-			<a href='#' class="next-page-nav__link next-page-nav__link--interior">
-				<div class="next-page-nav__inner">
-					<p class="next-page-nav__text">
-						Interior
-					</p>
-				</div>
-			</a>
 			<a href='../meeting-room/meeting-room.html' class="next-page-nav__link next-page-nav__link--meeting-room">
 				<div class="next-page-nav__inner">
 					<p class="next-page-nav__text">
@@ -148,9 +156,15 @@
 					</p>
 				</div>
 			</a>
+			<a href='#' class="next-page-nav__link next-page-nav__link--events">
+				<div class="next-page-nav__inner">
+					<p class="next-page-nav__text">
+						Events
+					</p>
+				</div>
+			</a>
 		</section>
 	</div>
-
 
 	<svg style="display: none">
 		<symbol id='arrow-button'>
@@ -160,10 +174,6 @@
 		<symbol id='logo' viewBox="0 0 31 40">
 			<path fill-rule="evenodd" d="M20.4593069,32.8365086 L23.8888332,29.1227295 L31,36.2862209 L27.570731,40 L20.4593069,32.8365086 Z M15.4625816,0 L26.0850832,10.7005349 L18.0964043,10.7005349 L18.0964043,25.4662469 L3.77682656,39.9891419 L0,36.2971308 L12.693955,23.3086219 L12.693955,10.7005349 L4.89641986,10.7005349 L15.4625816,0 Z"
 			 id="Combined-Shape"></path>
-		</symbol>
-		<symbol id='infoborder' viewBox="0 0 24 24">
-			<path d="M11,17 L13,17 L13,11 L11,11 L11,17 L11,17 Z M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 L12,2 Z M12,20 C7.59,20 4,16.41 4,12 C4,7.59 7.59,4 12,4 C16.41,4 20,7.59 20,12 C20,16.41 16.41,20 12,20 L12,20 Z M11,9 L13,9 L13,7 L11,7 L11,9 L11,9 Z"
-			 id="Shape"></path>
 		</symbol>
 		<symbol id='close' viewBox="0 0 24 24">
 			<polygon id="Shape" points="19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12"></polygon>

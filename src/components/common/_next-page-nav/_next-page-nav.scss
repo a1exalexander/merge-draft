@@ -19,10 +19,13 @@
         background-size: cover;
         background-repeat: no-repeat;
         &--interior {
-            background-image: url('https://picsum.photos/864/416/?image=3');
+            background-image: url('../../../image/interior.jpg');
         }
         &--meeting-room {
-            background-image: url('https://picsum.photos/864/416/?image=4');
+            background-image: url('../../../image/meeting-room.jpg');
+        }
+        &--events {
+            background-image: url('../../../image/events.jpg');
         }
         &:hover .next-page-nav__inner {
             background-color: transparent;

@@ -1,0 +1,118 @@
+.coworking {
+    width: 100%;
+    @extend %flex-col;
+    align-items: center;
+    justify-items: center;
+    padding-top: 7rem;
+    animation-name: slideRight;
+    animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	&__wrapper {
+        display: flex;
+        padding: 0 112px;
+        @media (max-width: 920px) {
+            justify-content: flex-start;  
+            padding: 0 0 0 112px;
+        }
+        @media (max-width: 600px) {
+            justify-content: flex-start;  
+            padding: 0;
+        }
+	}
+	&__inner {
+        width: 100%;
+        padding: 0 10%;
+        @extend %flex-col-c;
+        align-items: flex-start;
+        &--margin {
+            margin-bottom: 68px;
+        }
+        @media (max-width: 920px) {
+            padding: 0 5%; 
+        }
+        @media (max-width: 600px) {
+            padding: 0;
+            
+        }
+    }
+    &__header {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: 3fr 2fr;
+        grid-template-areas: 
+            'title button'
+            'title .';
+        grid-column-gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 0 5rem 0;
+        @media (max-width: 1000px) {
+            grid-template-areas: 
+                'title title'
+                'button button';
+            justify-content: stretch;
+        }
+        .button-membership {
+            grid-area: button;
+            @media (max-width: 1000px) {
+                justify-self: start;
+            }
+            @media (max-width: 600px) {
+                text-align: center;
+                justify-self: center;
+            }
+            @media (max-width: 450px) {
+                width: 90%;
+            }
+        }
+    }
+    &__title {
+        grid-area: title;
+        font-family: $title-font;
+        font-size: 5rem;
+        font-weight: 500;
+        text-align: left;
+        color: $TEXT-COLOR;
+        white-space: nowrap;
+        margin: 0;
+        
+        @media (max-width: 990px) {
+            margin-bottom: 2rem;
+        }
+        @media (max-width: 600px) {
+            align-self: center;
+            text-align: center;
+        }
+        @media (max-width: 500px) {
+            font-size: 3rem;
+        }
+        
+    }
+    &__slider {
+        @extend %flex-col;
+        align-items: flex-start;
+        padding-top: 5rem;
+        width: 100%;
+        @media (max-width: 450px) {
+            align-items: center;
+        }
+    }
+    &__label-button {
+        padding: 0.5rem 1rem;
+		background-color: black;
+		font-family: Montserrat;
+		font-size: 0.875rem;
+		font-weight: bold;
+		text-align: center;
+		color: $BACK-LINE-COLOR;
+		outline: none;
+		border: none;
+        transition: color ease-in-out 0.2s;
+        margin-bottom: 1.5rem;
+		&:hover {
+			color: white;
+		}
+        
+    }
+}
