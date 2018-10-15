@@ -1,49 +1,72 @@
 .booking-workplace {
-    flex-basis: 30%;
-    min-width: 430px;
-    max-width: 35%;
+    flex: 0 0 30%;
     @extend %flex-col-sb;
     will-change: transform;
     align-items: flex-start;
     animation-name: slideRight;
     animation-duration: 0.5s;
     animation-timing-function: ease-in-out;
+    @media (min-width: 600px) {
+        min-width: 430px;
+    }
+    @media (max-width: 600px) {
+        flex: 0 0 100%;
+        align-self: flex-start;
+    }
     &__wrapper {
         width: 100%;
         min-height: 100vh;
         @extend %flex-row-c;
         align-items: center;
+        @media (max-width: 600px) {
+            padding: 2rem;
+            padding-top: 4rem;
+            .logo__wrapper {
+                position: absolute;
+                left: auto;
+                right: auto;
+                top: 1rem;
+            }
+        }
     }
     &__inner {
         width: 100%;
         @extend %flex-row;
         align-items: center;
-
-        &--top-line {
+        
+        &--back-button {
             justify-content: flex-start;
             padding-bottom: 22px;
             border-bottom: 1px solid $BACK-LINE-COLOR;
         }
-        &--middle-line {
+        &--choice {
             justify-content: space-between;
             align-items: center;
             padding-bottom: 30px;
             border-bottom: 1px solid $BUTTON-COLOR;
-        }
-        &--bottom-line {
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 26px;
-            border-top: 1px solid $BUTTON-COLOR;
+            @media (max-width: 460px) {
+                flex-direction: column;
+            }
         }
         &--form {
+            width: 100%;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 22px;
             &:last-child {
                 margin-bottom: 0;
             }
+            @media (max-width: 550px) {
+                flex-direction: column;
+            }
         }
+        &--price {
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 26px;
+            border-top: 1px solid $BUTTON-COLOR;
+        }
+        
     }
 
     &__title {
@@ -53,6 +76,9 @@
         text-align: left;
         color: $TEXT-COLOR;
         margin: 24px 0 28px 0;
+        @media (max-width: 600px) {
+            text-align: center;
+        }
     }
 
     &__col {
@@ -62,7 +88,14 @@
             width: 100%;
         }
     }
-
+    &__input-wrapper {
+        @extend %flex-col;
+        width: 48%;
+        @media (max-width: 550px) {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+    }
     &__description {
         font-family: $base-font;
         font-size: 10px;
@@ -73,7 +106,7 @@
     }
 
     &__input {
-        width: 202px;
+        width: 100%;
         height: 40px;
         background-color: $BUTTON-COLOR;
         border: none;

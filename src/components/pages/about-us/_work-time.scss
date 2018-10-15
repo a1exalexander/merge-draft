@@ -36,4 +36,7 @@
             grid-area: 2 / 3 / 3 / 4;
         }
     }
+    @media (max-width: 600px) {
+        align-self: center;
+    }
 }

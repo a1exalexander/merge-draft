@@ -16,6 +16,9 @@
         letter-spacing: 0.7px;
         position: absolute;
         right: -2em;
+        @media (max-width: 850px) {
+            display: none;
+        }
     }
 
     &__wrapper {
@@ -25,6 +28,16 @@
         @extend %flex-col-c;
         align-items: center;
         z-index: 50;
+        @media (max-width: 850px) {
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 60px;
+            animation-name: slideLeft;
+            animation-duration: 0.5s;
+            animation-timing-function: ease-in-out;
+        }
     }
     &__img {
         width: 28px;

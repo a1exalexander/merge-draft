@@ -1,43 +1,77 @@
 .hello {
-    padding: 3rem 0;
+    padding: 3rem 0 3rem 112px;
     width: 100%;
     grid-column: 2;
     display: grid;
-    grid-template-columns: 1.2fr 1.6fr 32px 2.1fr 3.8fr;
-    grid-template-rows: auto auto 3.5rem 10.5rem auto;
+    grid-template-columns: 10% auto auto;
+    grid-template-rows: repeat(5, auto);
     grid-template-areas:
-        '. title      title    title    .'
-        '. subtitle   subtitle subtitle .'
-        '. link-1     .        link-2   .'
-        '. text       text     text     .'
-        '. btn-member .        btn-book .';
+        '. title    '
+        '. subtitle '
+        '. link     '
+        '. text     '
+        '. btn      ';
+    grid-row-gap: 2rem;
     align-content: center;
     justify-items: start;
+    justify-content: start;
     will-change: transform;
     animation-name: slideRight;
     animation-duration: 0.5s;
     animation-timing-function: ease-in-out;
+    @media (max-width: 810px) {
+        padding-right: 10%;
+    }
+    @media (max-width: 600px) {
+        padding: 60px 1rem;
+        grid-template-areas:
+        'title title    '
+        'subtitle subtitle '
+        'link link     '
+        'text text     '
+        'btn btn      ';
+        justify-items: center;
+        justify-content: center;
+        animation-name: slideDown;
+        animation-duration: 0.5s;
+        animation-timing-function: ease-in-out;
+    }
     &__title {
         grid-area: title;
-        display: grid;
-        grid-template-columns: repeat(2, auto);
+        @extend %flex-row;
         margin: 0;
-        font-size: 80px;
+        font-size: 5rem;
         text-align: left;
         font-family: $title-font;
         color: white;
         font-weight: 500;
+        white-space: normal;
+        
+        @media (min-width: 600px) and (max-width: 810px) {
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+        @media (max-width: 600px) {
+            flex-direction: column;
+            font-size: 4rem;
+            align-items: center;
+            text-align: center;
+        }
     }
 
     &__logo {
-        align-self: end;
+        align-self: flex-end;
         margin: 0;
-        font-size: 80px;
+        font-size: 5rem;
         text-align: left;
         font-family: $title-font;
         font-weight: 500;
         color: $MERGE-MAIN-COLOR;
         letter-spacing: 20px;
+        @media (max-width: 600px) {
+            font-size: 4rem;
+        }
     }
 
     &__subtitle {
@@ -49,9 +83,15 @@
         font-size: 17px;
         font-weight: 700;
         white-space: nowrap;
+        @media (max-width: 460px) {
+            white-space: normal;
+            text-align: center;
+        }
     }
 
     &__text {
+        max-width: 45%;
+        min-width: 553px;
         grid-area: text;
         align-items: start;
         font-family: $base-font;
@@ -61,19 +101,35 @@
         text-align: left;
         line-height: 2.5;
         border-top: 1px solid $BUTTON-COLOR;
-        padding-top: 1.2em;
+        padding: 1.8rem 0 1.2rem 0;
+        @media (max-width: 810px) {
+            min-width: fit-content;
+            width: 100%;
+        }
         &--link {
             text-decoration: none;
             color: $TEXT-LINK-COLOR;
             font-weight: 600;
         }
     }
+    &__button-wrapper {
+        @extend %flex-row;
+        grid-area: btn;
+        button:first-child {
+            margin-right: 2rem;
+        }
+        @media (max-width: 460px) {
+           flex-direction: column;
+           width: 100%;
+            button {
+                width: 100%;
+            }
+            button:first-child {
+                margin-right: 0;
+                margin-bottom: 2rem;
+            }
+        }
+    }
 }
 
-.hello > .button-membership {
-    grid-area: btn-member;
-}
 
-.hello > .button-book-room {
-    grid-area: btn-book;
-}

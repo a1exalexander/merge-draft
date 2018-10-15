@@ -13,6 +13,12 @@
         height: 30px;
         width: 30px;
         position: relative;
+        @media (max-width: 600px) {
+            grid-column: 3 / 4;
+            animation-name: slideRight;
+            animation-duration: 0.5s;
+            animation-timing-function: ease-in-out;
+        }
         &:hover .button-menu__cloud {
             visibility: visible;
             background-color: $GREY;
@@ -54,6 +60,9 @@
         top: -120%;
         @extend %flex-row-c;
         position: absolute;
+        @media (max-width: 600px) {
+            display: none;
+        }
 
         &:after {
             top: 100%;

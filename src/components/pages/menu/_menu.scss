@@ -1,6 +1,6 @@
 .menu {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
     background-color: black;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -10,6 +10,16 @@
     animation-name: slideRight;
     animation-duration: 0.5s;
     animation-timing-function: ease-in-out;
+    @media (max-width: 920px) {
+        grid-template-columns: 112px repeat(4, 1fr);
+    }
+    @media (max-width: 850px) {
+        grid-template-columns: none;
+        grid-template-rows: 60px repeat(4, auto);
+        animation-name: slideDown;
+        animation-duration: 0.5s;
+        animation-timing-function: ease-in-out;
+    }
     &__col {
         height: 100%;
         grid-column: 1;
@@ -17,16 +27,17 @@
         border-right: 0.5px solid $DARK-GREY;
         @extend %flex-col-c;
         align-items: flex-start;
+        
         &--links {
             grid-column: 2;
-            grid-row: 1;
+            grid-row: 1;          
         }
         &--links-second {
             grid-column: 3;
-            grid-row: 1;
+            grid-row: 1;          
         }
         &--locate {
-            grid-column: 4;
+            grid-column: 4;           
         }
         &--contact {
             grid-column: 5;
@@ -45,6 +56,46 @@
                 5.5rem 2.5rem 3rem
                 4rem;
         }
+        @media (max-width: 850px) {
+            padding: 2rem 0;
+            height: auto;
+            width: 100%;
+            border-right: none;
+            border-bottom: 0.5px solid $DARK-GREY;
+            justify-content: center;
+            justify-items: center;
+            &--links {
+                grid-column: 1;
+                grid-row: 2;
+                border-bottom: none;
+            }
+            &--links-second {
+                grid-column: 1;
+                grid-row: 3;
+            }
+            &--locate {
+                grid-column: 1;
+                grid-row: 4 / 5 ;
+                :nth-child(odd) {
+                    margin-bottom: 2rem;
+                }
+            }
+            &--contact {
+                grid-column: 1;
+                grid-row: 5;
+                :nth-child(even) {
+                    margin-bottom: 2rem;
+                }
+            }
+            &--locate,
+            &--contact {
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        }
     }
     &__inner {
         grid-column: 2 / 4;
@@ -55,6 +106,12 @@
         align-content: center;
         align-items: center;
         justify-items: start;
+        @media (max-width: 850px) {
+            padding: 1rem 0;
+            justify-items: center;
+            grid-column: 1;
+            grid-row: 2 / 4;
+        }
     }
     &__list {
         display: grid;
@@ -63,6 +120,14 @@
         align-content: center;
         align-items: center;
         justify-items: start;
+        @media (max-width: 850px) {
+            justify-items: center;
+        }
+    }
+    &__item {
+        @media (max-width: 850px) {
+            text-align: center;
+        }
     }
     &__text {
         font-family: $base-font;
@@ -105,7 +170,7 @@
         display: grid;
         grid-template-columns: repeat(3, auto);
         grid-column-gap: 0.5em;
-
+       
         &-link {
             font-family: $base-font;
             font-weight: 700;
@@ -115,6 +180,10 @@
             text-transform: uppercase;
             text-decoration: none;
             margin-right: 16px;
+            text-align: center;
+            &:last-child {
+                margin: 0;
+            }
             &:hover {
                 color: white;
                 transition: color ease-in-out 0.2s;
@@ -122,6 +191,9 @@
             &:not(:hover) {
                 transition: color ease-in-out 0.2s;
             }
+        }
+        @media (max-width: 850px) {
+            padding-bottom: 2rem;
         }
     }
     &__image {
@@ -152,12 +224,16 @@
         grid-row: #{$i};
     }
 }
-.menu-row-1 {
-    align-self: start;
+@media (min-width: 850px) {
+    .menu-row-1 {
+        align-self: start;
+    }
+    .menu-row-4,
+    .menu-row-7,
+    .menu-row-8,
+    .menu-row-10 {
+        align-self: end;
+    }
 }
-.menu-row-4,
-.menu-row-7,
-.menu-row-8,
-.menu-row-10 {
-    align-self: end;
-}
+
+

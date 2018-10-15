@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="../../../css/style.css">
 	<title>booking-workplace</title>
@@ -16,7 +17,7 @@
 			</svg>
 		</div>
 		<section class="booking-workplace">
-			<div class="booking-workplace__inner booking-workplace__inner--top-line">
+			<div class="booking-workplace__inner booking-workplace__inner--back-button">
 				<div class="button-back__wrapper">
 					<button class="button-back" onclick="goToHello()">
 						<svg class="button-back__img">
@@ -30,7 +31,7 @@
 				Booking of the
 				workplace
 			</h1>
-			<div class="booking-workplace__inner booking-workplace__inner--middle-line">
+			<div class="booking-workplace__inner booking-workplace__inner--choice">
 				<label for='book-month' class="workplace-choice">
 					<input id='book-month' type="radio" name='booking-type' form='booking-form' class="workplace-choice__input"
 					 onclick="radioUncheck(this)">
@@ -70,21 +71,21 @@
 			<div class="booking-workplace__col booking-workplace__col--form">
 				<form action="" name='booking-form' id='booking-form' class="booking-workplace__form">
 					<div class="booking-workplace__inner booking-workplace__inner--form">
-						<div class="booking-workplace__col">
+						<div class="booking-workplace__input-wrapper">
 							<label for="full-name-label" class="booking-workplace__label">FULL NAME*</label>
 							<input id='full-name-label' required autocomplete='on' type="text" class="booking-workplace__input" placeholder="Андрій Малишко">
 						</div>
-						<div class="booking-workplace__col">
+						<div class="booking-workplace__input-wrapper">
 							<label for="phone-label" class="booking-workplace__label">Phone*</label>
 							<input id='phone-label' required autocomplete='on' type="tel" class="booking-workplace__input" placeholder="+38 (000) 000 00-00">
 						</div>
 					</div>
 					<div class="booking-workplace__inner booking-workplace__inner--form">
-						<div class="booking-workplace__col">
+						<div class="booking-workplace__input-wrapper">
 							<label for="email-label" class="booking-workplace__label">E-mail*</label>
 							<input id='email-label' required autocomplete='on' type="email" class="booking-workplace__input" placeholder="example@mail.com">
 						</div>
-						<div class="booking-workplace__col">
+						<div class="booking-workplace__input-wrapper">
 							<label for="career-label" class="booking-workplace__label">career</label>
 							<input id='career-label' type="text" autocomplete='on' class="booking-workplace__input" placeholder="Програміст на Джава">
 						</div>
@@ -92,7 +93,7 @@
 				</form>
 			</div>
 			<p class="booking-workplace__description">* — Required fields</p>
-			<div class="booking-workplace__inner booking-workplace__inner--bottom-line">
+			<div class="booking-workplace__inner booking-workplace__inner--price">
 				<p class="booking-price">
 					Price:
 					<span class="booking-price__sum">1000</span>

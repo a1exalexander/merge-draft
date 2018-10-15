@@ -1,7 +1,5 @@
 .meeting-room {
-    flex-basis: 30%;
-    min-width: 430px;
-    max-width: 35%;
+    flex: 0 0 30%;
     display: grid;
     grid-template-rows: repeat(5, auto);
     align-items: center;
@@ -9,11 +7,28 @@
     animation-name: slideRight;
     animation-duration: 0.5s;
     animation-timing-function: ease-in-out;
+    @media (min-width: 600px) {
+        min-width: 430px;
+    }
+    @media (max-width: 600px) {
+        flex: 0 0 100%;
+        align-self: flex-start;
+    }
     &__wrapper {
-        width: 100vw;
+        width: 100%;
         min-height: 100vh;
         @extend %flex-row-c;
         align-items: center;
+        @media (max-width: 600px) {
+            padding: 2rem;
+            padding-top: 4rem;
+            .logo__wrapper {
+                position: absolute;
+                left: auto;
+                right: auto;
+                top: 1rem;
+            }
+        }
     }
     &__button-back-wrapper {
         align-self: start;
@@ -29,6 +44,10 @@
         font-weight: 500;
         text-align: left;
         color: $TEXT-COLOR;
+        @media (max-width: 600px) {
+            white-space: normal;
+            text-align: center;
+        }
     }
     &__form {
         padding: 1.8rem 0 1rem 0;
@@ -46,6 +65,18 @@
         align-items: center;
         justify-items: start;
         justify-content: start;
+        @media (max-width: 500px) {
+            grid-template-rows: repeat(6, auto);
+            grid-template-columns: repeat(2, auto);
+            grid-template-areas:
+            'day 	       edit'
+            'day-input     edit'
+            'time          edit'
+            'time-input    edit'
+            'input-wrapper input-wrapper'
+            'check         check';
+            justify-content: stretch;
+        }
     }
     &__date {
         &-label {
@@ -117,6 +148,16 @@
             'input-name input-phone';
         grid-column-gap: 1.5rem;
         grid-row-gap: 0.6875rem;
+        @media (max-width: 500px) {
+            width: 100%;
+            grid-template-columns: none;
+            grid-template-rows: repeat(4, auto);
+            grid-template-areas:
+            'label-name '
+            'input-name '
+            'label-phone'
+            'input-phone';
+        }
     }
     &__label {
         align-items: stretch;

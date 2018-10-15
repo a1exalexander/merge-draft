@@ -10,19 +10,31 @@
     @extend %flex-col-se;
     align-items: flex-start;
     position: relative;
-    margin-right: 24px;
-    &:last-of-type {
+    margin-right: 1.5rem;
+    @media (max-width: 700px) {
         margin-right: 0;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+    &:last-of-type {
+        margin: 0;
     }
     &--resident {
         height: 84px;
     }
     &__wrapper {
+        width: 100%;
         @extend %flex-row;
         align-items: flex-start;
+        @media (max-width: 700px) {
+           flex-direction: column;
+           align-items: flex-start;
+           padding: 0 2rem;
+        }
         &--margin {
             margin-bottom: 100px;
         }
+        
     }
     &__title {
         font-family: $base-font;

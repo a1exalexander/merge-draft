@@ -60,10 +60,10 @@ var path = {
 
 gulp.task('serve', ['sass-only'], function() {
 	browserSync.init({
-		server: './src'
+		server: './src/'
 	});
 
-	gulp.watch('src/**/*.scss', ['sass']);
+	gulp.watch('src/**/*.scss', ['sass', browserSync.reload]);
 	gulp.watch('src/**/*.html').on('change', browserSync.reload);
 });
 

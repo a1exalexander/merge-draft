@@ -5,7 +5,32 @@
 	justify-items: start;
 	align-items: center;
 	grid-column-gap: 0.6em;
-
+	width: 187px;
+	@media (max-width: 460px) {
+		grid-template-columns: 2rem auto;
+		padding-left: 2rem;
+		width: 100%;
+		&:first-child {
+			margin-right: 0;
+			margin-bottom: 2rem;
+		}
+	}
+	&__wrapper {
+		justify-self: start;
+		grid-area: link;
+		@extend %flex-row;
+		a:first-child {
+            margin-right: 2rem;
+		}
+		@media (max-width: 600px) {
+			justify-self: center;
+		}
+		
+		@media (max-width: 460px) {
+			flex-direction: column;
+			width: 100%;
+		}
+	}
 	&:hover &__img {
 		fill: white;
 		transition: fill ease-in-out 0.2s;

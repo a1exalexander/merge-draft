@@ -16,6 +16,24 @@
     }
 }
 
+@keyframes slideUp {
+    from {
+        transform: translateY(150%);
+    }
+    to {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-150%);
+    }
+    to {
+        transform: translateY(0%);
+    }
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
