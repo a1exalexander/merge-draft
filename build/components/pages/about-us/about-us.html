@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="../../../css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 	<link rel="stylesheet" href="../../../css/style.css">
 	<title>About Us</title>
 </head>
@@ -48,7 +49,7 @@
 					<h1 class="about-us__title">
 						About Us
 					</h1>
-					<button class="button-membership about-us__button-member" onclick="becomeMember()">
+					<button class="button-membership" onclick="becomeMember()">
 						<p class='button-membership__text'>
 							BECOME A MEMBER
 							<svg class='button-membership__img'>
@@ -109,23 +110,34 @@
 						</p>
 					</div>
 				</section>
-				<div class="slider-room">
-					<div class="slider-room__slide">
-						<img id='slide-image' src="https://picsum.photos/1280/720/?random" alt="photo" class="slider-room__image">
+				<div class="slider__wrapper">
+					<div class="slider">
+						<div class="slider__slide">
+							<img src="../../../image/merge-1.jpg" alt="merge" class="slider__image">
+						</div>
+						<div class="slider__slide">
+							<img src="../../../image/merge-2.jpg" alt="merge" class="slider__image">
+						</div>
+						<div class="slider__slide">
+							<img src="../../../image/merge-3.jpg" alt="merge" class="slider__image">
+						</div>
+						<div class="slider__slide">
+							<img src="../../../image/merge-4.png" alt="merge" class="slider__image">
+						</div>
 					</div>
-					<div class="slider-room__nav">
-						<button id='slide-prev' class="slider-room__button slider-room__button--prev">
-							<svg class='slider-room__nav-icon'>
+					<div class="slider__nav">
+						<button id='slide-prev' class="slider__button slider__button--prev">
+							<svg class='slider__nav-icon'>
 								<use xlink:href='#chevron-left' />
 							</svg>
 						</button>
-						<p class="slider-room__counter-box">
-							<span class="sider-room__counter"></span>
+						<p class="slider__counter-box">
+							<span class="sider__counter"></span>
 							/
-							<span class="sider-room__sum"></span>
+							<span class="sider__sum"></span>
 						</p>
-						<button id='slide-next' class="slider-room__button slider-room__button--next">
-							<svg class='slider-room__nav-icon'>
+						<button id='slide-next' class="slider__button slider__button--next">
+							<svg class='slider__nav-icon'>
 								<use xlink:href='#chevron-right' />
 							</svg>
 						</button>
@@ -186,10 +198,40 @@
 			<path d="M0 0h24v24H0z" fill="none" />
 		</symbol>
 	</svg>
-	<script src="../../../js/sliderRoom.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="../../../js/slick.min.js"></script>
 	<script>
+		$(document).ready(function () {
+			let sum = $('.slider__slide').length,
+				$sliderCounter = $('.sider__counter'),
+				$sliderSum = $('.sider__sum'),
+				$prev = $('.slider__button--prev'),
+				$next = $('.slider__button--next');
+			
+			$sliderCounter.text(1);
+			$sliderSum.text(sum);
+			
+			$('.slider').slick({
+				dots: false,
+				infinite: true,
+				appendArrows: $('.slider__nav'),
+				prevArrow: $('.slider__button--prev'),
+				nextArrow: $('.slider__button--next')
+			});
+			
+			$prev.click(function(event) {
+				let countPrev = +$('.slick-active').attr('data-slick-index') + 1;
+				$sliderCounter.text(countPrev);
+			}) 
+				
+			$next.on('click', function(event) {
+				let countNext = +$('.slick-active').attr('data-slick-index') + 1;
+				$sliderCounter.text(countNext);
+			})
+			
+		});
 		function menuHref() {
-			location.href = "../menu/menu.html";
+				location.href = "../menu/menu.html";
 		};
 		function goToMenu() {
 			setTimeout(menuHref, 200);
