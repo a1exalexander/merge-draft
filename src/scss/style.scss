@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:500,600,700|Roboto+Mono:500,700');
+@import 'slick';
 @import 'variables';
 @import 'mixines';
 @import 'animations';
@@ -13,6 +14,9 @@
 @import '../components/common/_navigation/navigation';
 @import '../components/common/_navigation/button-menu';
 @import '../components/common/_navigation/social-networks';
+@import '../components/common/_slider/slider';
+@import '../components/common/_slider-room/slider-room';
+@import '../components/common/_next-page-nav/next-page-nav';
 @import '../components/pages/hello/hello';
 @import '../components/pages/hello/hello-link';
 @import '../components/pages/menu/menu';
@@ -26,8 +30,6 @@
 @import '../components/pages/about-us/about-us';
 @import '../components/pages/about-us/subscription-type';
 @import '../components/pages/about-us/work-time';
-@import '../components/common/_slider-room/slider-room';
-@import '../components/common/_next-page-nav/next-page-nav';
 @import '../components/pages/coworking/coworking';
 @import '../components/pages/coworking/beneffits';
 @import '../components/pages/coworking/view-360';
@@ -48,6 +50,7 @@ html {
 
 body {
     width: 100%;
+    max-width: 100vw;
     min-height: 100vh;
     position: relative;
     @extend %flex-row-s;

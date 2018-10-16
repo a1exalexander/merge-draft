@@ -1,0 +1,84 @@
+.slider {
+	width: 100%;
+	@media (max-height: 500px) {
+		height: 85vh;
+	}
+	.slick-track {
+		@extend %flex-row;
+		align-items: center;
+		
+	}
+	&__wrapper {
+		width: 100%;
+		@media (max-height: 500px) {
+			height: 100vh;
+		}
+	}
+	&__slide {
+		width: 100%;
+		@media (max-height: 500px) {
+			height: 85vh;
+			display: flex !important;
+			align-items: center;
+			
+		}
+	}
+	&__image {
+		width: 100%;
+		height: auto;
+	}
+	&__nav {
+        width: 100%;
+        @extend %flex-row;
+        justify-content: flex-end;
+        align-items: center;
+		height: 96px;
+		@media (max-height: 500px) {
+			height: 15vh;
+		}
+        @media (max-width: 600px) {
+            justify-content: center;
+        }
+	}
+	&__button {
+        width: 32px;
+        height: 32px;
+        border-radius: 3px;
+        background-color: $BUTTON-COLOR;
+        outline: none;
+        border: none;
+        @extend %flex-col-c;
+		align-items: center;
+		@media (min-width: 600px) {
+			&:hover .slider-room__nav-icon {
+				fill: $MERGE-MAIN-COLOR;
+				transition: fill ease-in-out 0.2s;
+			}
+			&:not(:hover) .slider-room__nav-icon {
+				transition: fill ease-in-out 0.2s;
+			}
+        }
+       
+        &:active {
+            filter: blur(1px) brightness(0.6);
+            transition: filter ease-in-out 0.2s;
+        }
+        &:not(:active) {
+            transition: filter ease-in-out 0.2s;
+        }
+    }
+    &__nav-icon {
+        width: 24px;
+        height: 24px;
+        fill: $TEXT-COLOR;
+    }
+    &__counter-box {
+	   padding: 1rem;
+	   width: 7rem;
+        font-family: $base-font;
+        font-size: 0.875rem;
+        font-weight: bold;
+        text-align: center;
+        color: $TEXT-COLOR;
+    }
+}

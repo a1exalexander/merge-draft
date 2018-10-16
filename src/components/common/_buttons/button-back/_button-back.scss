@@ -34,14 +34,16 @@
         text-align: left;
         color: $GREY;
     }
-
-    &:hover &__img {
-        fill: $MERGE-MAIN-COLOR;
-        transition: fill ease-in-out 0.2s;
+    @media (min-width: 600px) {
+        &:hover &__img {
+            fill: $MERGE-MAIN-COLOR;
+            transition: fill ease-in-out 0.2s;
+        }
+        &:not(:hover) &__img {
+            transition: fill ease-in-out 0.2s;
+        }
     }
-    &:not(:hover) &__img {
-        transition: fill ease-in-out 0.2s;
-    }
+    
     &:active {
         background-color: $MERGE-MAIN-COLOR;
         transition: background-color ease-in-out 0.2s;

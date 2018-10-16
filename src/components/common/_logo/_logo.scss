@@ -12,7 +12,9 @@
         animation-duration: 0.3s;
         animation-timing-function: ease-in-out;
     }
-    @media (max-width: 600px) {
-        grid-column: 2 / 3;
+    @media (max-width: 600px), (max-height: 500px) {
+        grid-column: 1;
+        grid-row: 1;
+        align-self: center;
     }
 }

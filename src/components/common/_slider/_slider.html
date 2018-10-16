@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="../../../css/normalize.css">
+	<!-- <link rel="stylesheet" href="../../../css/slick.css"> -->
+
+	<link rel="stylesheet" href="../../../css/style.css">
+	<title>Slider</title>
+</head>
+<body>
+	
+		<div class="slider__wrapper">
+				<div class="slider">
+					<div class="slider__slide">
+						<img src="../../../image/merge-1.jpg" alt="merge" class="slider__image">
+					</div>
+					<div class="slider__slide">
+						<img src="../../../image/merge-2.jpg" alt="merge" class="slider__image">
+					</div>
+					<div class="slider__slide">
+						<img src="../../../image/merge-3.jpg" alt="merge" class="slider__image">
+					</div>
+					<div class="slider__slide">
+						<img src="../../../image/merge-4.jpg" alt="merge" class="slider__image">
+					</div>
+				</div>
+				<div class="slider__nav">
+					<button id='slide-prev' class="slider__button slider__button--prev">
+						<svg class='slider-room__nav-icon'>
+							<use xlink:href='#chevron-left' />
+						</svg>
+					</button>
+					<p class="slider-room__counter-box">
+						<span class="sider-room__counter"></span>
+						/
+						<span class="sider-room__sum"></span>
+					</p>
+					<button id='slide-next' class="slider__button slider__button--next">
+						<svg class='slider-room__nav-icon'>
+							<use xlink:href='#chevron-right' />
+						</svg>
+					</button>
+				</div>
+			</div>
+		
+		
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="../../../js/slick.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.slider').slick({
+				dots: false,
+				infinite: true,
+				appendArrows: $('.slider__nav'),
+				prevArrow: $('.slider__button--prev'),
+				nextArrow: $('.slider__button--next')
+				
+			});
+
+		});
+
+	</script>
+</body>
+</html>

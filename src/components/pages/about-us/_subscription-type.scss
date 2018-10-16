@@ -33,6 +33,9 @@
         }
         &--margin {
             margin-bottom: 100px;
+            @media (max-width: 600px) {
+                margin-bottom: 3rem;
+             }
         }
         
     }
@@ -50,13 +53,16 @@
         text-align: left;
         color: $GREY;
         text-decoration: none;
-        &:hover {
-            color: $TEXT-COLOR;
-            transition: color ease-in-out 0.2s;
+        @media (min-width: 600px) {
+            &:hover {
+                color: $TEXT-COLOR;
+                transition: color ease-in-out 0.2s;
+            }
+            &:not(:hover) {
+                transition: color ease-in-out 0.2s;
+            }
         }
-        &:not(:hover) {
-            transition: color ease-in-out 0.2s;
-        }
+        
     }
     &__price {
         font-family: $base-font;
@@ -75,19 +81,31 @@
         text-decoration: none;
         right: 11px;
         top: 11px;
-        &:hover .subscription-type__img {
-            fill: white;
-            transition: fill ease-in-out 0.1s;
+        @media (min-width: 600px) {
+            &:hover .subscription-type__img {
+                fill: white;
+                transition: fill ease-in-out 0.1s;
+            }
+            &:not(:hover) .subscription-type__img {
+                transition: fill ease-in-out 0.1s;
+            }
         }
-        &:not(:hover) .subscription-type__img {
-            transition: fill ease-in-out 0.1s;
-        }
+        
     }
 
     &__img {
         width: 100%;
         height: 100%;
         fill: $GREY;
+    }
+    @media (min-width: 600px) {
+        &:hover {
+            border-color: $TEXT-COLOR;
+            transition: border-color ease-in-out 0.2s;
+        }
+        &:not(:hover) {
+            transition: border-color ease-in-out 0.2s;
+        }
     }
     &:active {
         filter: blur(1px) brightness(0.6);
@@ -96,11 +114,5 @@
     &:not(:active) {
         transition: filter ease-in-out 0.2s;
     }
-    &:hover {
-        border-color: $TEXT-COLOR;
-        transition: border-color ease-in-out 0.2s;
-    }
-    &:not(:hover) {
-        transition: border-color ease-in-out 0.2s;
-    }
+    
 }

@@ -27,22 +27,24 @@
         fill: $TEXT-COLOR;
         margin-left: 10px;
     }
-
-    &:hover {
-        background-color: $MERGE-SECONDARY-COLOR;
-        color: $MAIN-DARK-COLOR;
-        transition: background-color ease-in-out 0.2s, color ease-in-out 0.2s;
+    @media (min-width: 600px) {
+        &:hover {
+            background-color: $MERGE-SECONDARY-COLOR;
+            color: $MAIN-DARK-COLOR;
+            transition: background-color ease-in-out 0.2s, color ease-in-out 0.2s;
+        }
+    
+        &:not(:hover) {
+            transition: ease-in-out 0.2s, fill ease-in-out 0.2s,
+                background-color ease-in-out 0.2s, color ease-in-out 0.2s;
+        }
+        &:hover &__img {
+            fill: $MAIN-DARK-COLOR;
+            transition: fill ease-in-out 0.2s;
+        }
+        &:not(:hover) &__img {
+            transition: linear 0.1s;
+        }
     }
-
-    &:not(:hover) {
-        transition: ease-in-out 0.2s, fill ease-in-out 0.2s,
-            background-color ease-in-out 0.2s, color ease-in-out 0.2s;
-    }
-    &:hover &__img {
-        fill: $MAIN-DARK-COLOR;
-        transition: fill ease-in-out 0.2s;
-    }
-    &:not(:hover) &__img {
-        transition: linear 0.1s;
-    }
+    
 }

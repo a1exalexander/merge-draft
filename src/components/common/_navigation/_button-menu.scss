@@ -13,8 +13,15 @@
         height: 30px;
         width: 30px;
         position: relative;
-        @media (max-width: 600px) {
-            grid-column: 3 / 4;
+        @media (max-width: 600px) and (orientation: portrait) {
+            grid-column: 2;
+            animation-name: slideRight;
+            animation-duration: 0.5s;
+            animation-timing-function: ease-in-out;
+        }
+        @media (max-height: 500px) {
+            grid-column: 1;
+            grid-row: 2;
             animation-name: slideRight;
             animation-duration: 0.5s;
             animation-timing-function: ease-in-out;
