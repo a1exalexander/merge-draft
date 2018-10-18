@@ -32,7 +32,7 @@
     }
     &__button-back-wrapper {
         align-self: start;
-        border-bottom: 1px solid $BACK-LINE-COLOR;
+        border-bottom: 1px solid $MIDDLE-GREY;
         @extend %flex-row-c;
         padding-bottom: 1.8rem;
         align-items: center;
@@ -225,7 +225,7 @@
             height: 16px;
             border-radius: 3px;
             background-color: $DARK-GREY;
-            border: solid 1px $BACK-LINE-COLOR;
+            border: solid 1px $MIDDLE-GREY;
             position: absolute;
             display: flex;
             flex-flow: column;

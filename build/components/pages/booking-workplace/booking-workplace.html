@@ -23,6 +23,7 @@
 						<svg class="button-back__img">
 							<use xlink:href='#arrow-left' />
 						</svg>
+						<div class="button-back__outside"></div>
 					</button>
 					<p class="button-back__text">go back</p>
 				</div>
@@ -34,7 +35,7 @@
 			<div class="booking-workplace__inner booking-workplace__inner--choice">
 				<label for='book-month' class="workplace-choice">
 					<input id='book-month' type="radio" name='booking-type' form='booking-form' class="workplace-choice__input"
-					 onclick="radioUncheck(this)">
+					 onclick="radioUncheck(this)" checked>
 					<div class="workplace-choice__inner">
 						<p class="workplace-choice__title">Month</p>
 						<a href='../resident-card/resident-card.html' class="workplace-choice__resident">Resident card</a>
@@ -98,7 +99,11 @@
 					Price:
 					<span class="booking-price__sum">1000</span>
 				</p>
-				<button class="button-apply-book" form='booking-form'>apply</button>
+				<button class="button-apply-book" form='booking-form' disabled>
+					<p class="button-apply-book__text">
+						apply
+					</p> 
+				</button>
 			</div>
 		</section>
 	</div>
@@ -116,12 +121,12 @@
 		</symbol>
 	</svg>
 	<script>
-		let flag, val;
-		function radioUncheck(context) {
-			if (flag != context) { val = 0; flag = context };
-			val == 1 ? val = 0 : val = 1;
-			context.checked = val;
-		};
+		// let flag, val;
+		// function radioUncheck(context) {
+		// 	if (flag != context) { val = 0; flag = context };
+		// 	val == 1 ? val = 0 : val = 1;
+		// 	context.checked = val;
+		// };
 		function helloHref() {
 			location.href = "../hello/hello.html";
 		};

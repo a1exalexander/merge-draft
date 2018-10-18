@@ -6,21 +6,68 @@
     background-color: $BUTTON-COLOR;
     @extend %flex-row-c;
     align-items: center;
-
+    transition: background-color ease-in-out 0.1s;
+    position: relative;
+    z-index: 2;
+    @media (min-width: 600px) {
+        &:hover {
+            background-color: $GREY;
+        }
+        &:hover &__img {
+            fill: $HOVER-ICON-COLOR;
+        }
+    }
+    &:active {
+        background-color: $BUTTON-COLOR;
+    }
+    &:active &__img {
+        fill: $GREY;
+    }
+    &:focus {
+        background-color: $BUTTON-COLOR;
+    }
+    &:focus &__img {
+        fill: $GREY; 
+    }
+    &:focus &__outside {
+        visibility: visible;
+    }
     &__description {
         font-family: $base-font;
-        color: transparent;
+        color: $GREY;
         text-transform: uppercase;
-        font-size: 10px;
+        font-size: 0.625rem;
         font-weight: 700;
         letter-spacing: 0.7px;
         position: absolute;
         right: -2em;
+        animation-name: fadeIn;
+        animation-duration: 1s;
+        animation-timing-function: ease-in-out;
+        @media (max-width: 950px) {
+            left: auto;
+            right: auto;
+            top: 45%;
+        }
         @media (max-width: 850px) {
             display: none;
         }
     }
-
+    &__outside {
+        pointer-events: none;
+        position: absolute;
+        content: '';
+        background-color: transparent;
+        left: -2px;
+        right: -2px;
+        top: -2px;
+        bottom: -2px;
+        border: 1px solid $GREY-BORDER-COLOR;
+        border-radius: 4px;
+        transition: border ease-in-out 0.2s;
+        z-index: 0;
+        visibility: hidden;
+    }
     &__wrapper {
         position: fixed;
         width: 112px;
@@ -34,7 +81,7 @@
             left: 0;
             right: 0;
             width: 100%;
-            height: 60px;
+            height: 4rem;
             animation-name: slideLeft;
             animation-duration: 0.5s;
             animation-timing-function: ease-in-out;
@@ -47,25 +94,8 @@
         stroke: none;
         @extend %flex-row-c;
         align-items: center;
+        transition: fill ease-in-out 0.1s;
     }
 
-    &:hover &__description {
-        color: $GREY;
-        transition: color 0.3s ease-in-out;
-    }
-    &:hover &__img {
-        fill: $MERGE-MAIN-COLOR;
-        transition: fill ease-in-out 0.2s;
-    }
-    &:not(:hover) &__img {
-        transition: fill ease-in-out 0.2s;
-    }
-    &:focus {
-        opacity: 0.1;
-        transition: opacity ease-in-out 0.4s;
-    }
-    &:focus &__img {
-        transform: rotate(-90deg);
-        transition: transform ease-in-out 0.2s;
-    }
+   
 }

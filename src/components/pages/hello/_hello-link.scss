@@ -5,7 +5,9 @@
 	justify-items: start;
 	align-items: center;
 	grid-column-gap: 0.6em;
-	width: 187px;
+	border-radius: 3px;
+	border: solid 2.5px transparent;
+	padding: 4px 6px;
 	@media (max-width: 460px) {
 		grid-template-columns: 2rem auto;
 		padding-left: 2rem;
@@ -14,6 +16,14 @@
 			margin-right: 0;
 			margin-bottom: 2rem;
 		}
+	}
+	&:focus {
+		border: solid 2.5px rgba(55, 205, 171, 0.5);
+	}
+	&:active .hello-link__text,
+	&:active .hello-link__img {
+		color: $MERGE-DARK-COLOR;
+		fill: $MERGE-DARK-COLOR;
 	}
 	&__wrapper {
 		justify-self: start;
@@ -31,20 +41,7 @@
 			width: 100%;
 		}
 	}
-	&:hover &__img {
-		fill: white;
-		transition: fill ease-in-out 0.2s;
-	}
-	&:hover &__text {
-		color: white;
-		transition: color ease-in-out 0.2s;
-	}
-	&:not(:hover) &__img {
-		transition: fill ease-in-out 0.2s;
-	}
-	&:not(:hover) &__text {
-		transition: color ease-in-out 0.2s;
-	}
+	
 
     &__img {
 		width: 16px;

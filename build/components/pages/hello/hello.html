@@ -20,7 +20,12 @@
 			<use xlink:href='#logo' />
 		</svg>
 		<section class="button-menu__wrapper">
-			<div class="button-menu__cloud">MENU</div>
+			<div class="button-menu__cloud">
+				<span class="button-menu__text">
+					MENU
+				</span> 
+				<object data="../../../image/close-mini.svg" class='button-menu__image' type="image/svg+xml"></object>
+			</div>
 			<button id='go-to-menu' class="button-menu" onclick="goToMenu()">
 				<div class="button-menu__item"></div>
 			</button>
@@ -30,16 +35,19 @@
 				<svg class="social-networks__img">
 					<use xlink:href='#telegram' />
 				</svg>
+				<div class="social-networks__outside"></div>
 			</a>
 			<a href="#" class="social-networks__link">
 				<svg class="social-networks__img">
 					<use xlink:href='#facebook' />
 				</svg>
+				<div class="social-networks__outside"></div>
 			</a>
 			<a href="#" class="social-networks__link">
 				<svg class="social-networks__img">
 					<use xlink:href='#instagram' />
 				</svg>
+				<div class="social-networks__outside"></div>
 			</a>
 		</section>
 	</nav>
@@ -96,9 +104,6 @@
 			<button class="button-book-room" onclick="bookRoom()">
 				<p class='button-book-room__text'>
 					book a meeting room
-					<svg class='button-book-room__img'>
-						<use xlink:href='#arrow-button' />
-					</svg>
 				</p>
 			</button>
 		</div>
