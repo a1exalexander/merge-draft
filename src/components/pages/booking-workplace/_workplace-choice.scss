@@ -8,6 +8,8 @@
     position: relative;
     cursor: pointer;
     margin-right: 1rem;
+    transition: color ease-in-out 0.3s,
+    background-color ease-out 0.3s;
     @media (max-width: 600px) {
         width: 100%;
     }
@@ -40,13 +42,6 @@
                 fill: $MAIN-DARK-COLOR;
                 transition: fill ease-in-out 0.3s;
             }
-        }
-        &:active + .workplace-choice__inner{
-            filter: blur(1px) brightness(0.6);
-            transition: filter ease-in-out 0.2s;
-        }
-        &:not(:active) + .workplace-choice__inner{
-            transition: filter ease-in-out 0.2s;
         }
     }
     &__inner {
@@ -105,65 +100,19 @@
         fill: $GREY;
         right: 12px;
         top: 12px;
+        transition: fill ease-in-out 0.2s;
         &--resident {
             position: static;
             width: 100%;
             height: 100%;
         }
     }
-    &:hover &__inner {
-        background-color: $MERGE-SECONDARY-COLOR;
-        border-color: $MERGE-SECONDARY-COLOR;
-        transition: background-color ease-in-out 0.3s,
-                    border-color ease-in-out 0.3s;
-        .workplace-choice__resident:hover {
-            text-decoration: underline;
-            color: white;
-            transition: color ease-in-out 0.2s,
-                        text-decoration ease-in-out 0.2s;
-        }
-        .workplace-choice__resident:not(:hover) {
-            transition: color ease-in-out 0.2s,
-                        text-decoration ease-in-out 0.2s;
-        }
-        .workplace-choice__link-img:hover > svg {
+    &:hover .workplace-choice__link-img:hover > svg {
             fill: white;
-            transition: fill ease-in-out 0.1s;
-        }
-        .workplace-choice__link-img:not(:hover) > svg {
-            transition: fill ease-in-out 0.1s;
-        }
-    } 
+    }
+       
+    
 
-    &:not(:hover) &__inner {
-        transition: background-color ease-in-out 0.3s,
-            border-color ease-in-out 0.3s;
-    }
-    &:hover &__title,
-    &:hover &__resident {
-        color: $MAIN-DARK-COLOR;
-        transition: color ease-in-out 0.3s;
-    }
-    &:hover &__price {
-        color: #333333;
-        transition: color ease-in-out 0.3s;
-    }
-
-    &:not(:hover) &__title,
-    &:not(:hover) &__resident {
-        transition: color ease-in-out 0.3s;
-    }
-    &:not(:hover) &__price {
-        transition: color ease-in-out 0.3s;
-    }
-
-    &:hover &__img {
-        fill: $MAIN-DARK-COLOR;
-        transition: fill ease-in-out 0.3s;
-    }
-
-    &:not(:hover) &__img {
-        transition: fill ease-in-out 0.3s;
-    }
+    
     
 }
