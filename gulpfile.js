@@ -60,7 +60,7 @@ gulp.task('serve', ['sass'], function() {
 		server: './src/'
 	});
 
-	gulp.watch('src/**/*.*', ['sass', browserSync.reload]);
+	gulp.watch('src/**/*.scss', ['sass', browserSync.reload]);
 	gulp.watch('src/**/*.html').on('change', browserSync.reload);
 });
 

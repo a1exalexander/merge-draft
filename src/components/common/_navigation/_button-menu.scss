@@ -6,6 +6,7 @@
     background-color: transparent;
     position: relative;
     padding: 0 2px;
+    border-radius: 3px;
    
     &:focus {
         background-color: $BUTTON-COLOR;
@@ -61,7 +62,7 @@
     &__cloud {
         height: 24px;
         width: 64px;
-        background-color: $GREY;
+        background-color: $DARK-GREY;
         border-radius: 3px; 
         top: -120%;
         @extend %flex-row;
@@ -69,6 +70,9 @@
         align-items: center;
         position: absolute;
         z-index: 10001;
+        animation-name: fadeIn;
+        animation-timing-function: ease-in-out;
+        animation-duration: 3s;
        
         @media (max-width: 600px) {
             display: none;
@@ -82,10 +86,23 @@
             position: absolute;
             pointer-events: none;
             border-color: transparent;
-            border-top-color: $GREY;
+            border-top-color: $DARK-GREY;
             border-width: 5px;
             margin-left: -0.5rem;
         }
+    }
+    &__cloud-button {
+        width: 14px;
+        height: 14px;
+        background-color: transparent;
+        outline: none;
+        border: none;
+        cursor: pointer;
+       @extend %flex-row-c;
+       align-items: center;
+       &:focus-visible {
+           display: none;
+       }
     }
     &__text {
         font-size: 0.625rem;
@@ -95,12 +112,12 @@
         font-family: $base-font;
     }
     &__image {
-        width: 12px;
-        height: 12px;
+        width: 100%;
+        height: 100%;
         object-fit: contain;
         background: transparent;
         opacity: 0.65;
-        cursor: pointer;
+        pointer-events: none;
     }
     &__item {
         height: 2px;
