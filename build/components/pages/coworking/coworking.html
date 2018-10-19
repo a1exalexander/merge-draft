@@ -197,23 +197,20 @@
 	</svg>
 	<script src="../../../js/sliderRoom.js"></script>
 	<script>
-		function menuHref() {
-			location.href = "../menu/menu.html";
-		};
 		function goToMenu() {
-			setTimeout(menuHref, 200);
-		};
-		function bookRoomHref() {
-			location.href = "../meeting-room/meeting-room.html";
+			setTimeout(function() {
+				location.href = "../menu/menu.html";
+			}, 200);
 		};
 		function bookRoom() {
-			setTimeout(bookRoomHref, 200);
-		};
-		function becomeMemberHref() {
-			location.href = "../booking-workplace/booking-workplace.html";
+			setTimeout(function() {
+				location.href = "../meeting-room/meeting-room.html";
+			}, 200);
 		};
 		function becomeMember() {
-			setTimeout(becomeMemberHref, 200);
+			setTimeout(function() {
+				location.href = "../booking-workplace/booking-workplace.html";
+			}, 200);
 		};
 	</script>
 </body>

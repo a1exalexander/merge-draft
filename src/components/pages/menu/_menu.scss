@@ -204,6 +204,9 @@
         }
     }
     &__language-link {
+        border: none;
+        outline: none;
+        background-color: transparent;
         font-family: $base-font;
         font-weight: 700;
         font-size: 10px;
@@ -213,15 +216,25 @@
         text-decoration: none;
         margin-right: 16px;
         text-align: center;
+        border: solid 2.5px transparent;
+        border-radius: 4px;
+        padding: 4px;     
+        transition:  border-color ease-in-out 0.1s,
+        color ease-in-out 0.1s;
+        &:hover {
+            color: $TEXT-COLOR;
+        }
+        &:active {
+            color: $MIDDLE-GREY;
+        } 
+        &:focus {
+            border-color: rgba(31, 31, 31, 0.5);
+        }
+        &:checked {
+            border-color: rgba(31, 31, 31, 0.5);
+        }
         &:last-child {
             margin: 0;
-        }
-        &:hover {
-            color: white;
-            transition: color ease-in-out 0.2s;
-        }
-        &:not(:hover) {
-            transition: color ease-in-out 0.2s;
         }
     }
     &__image {

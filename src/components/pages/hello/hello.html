@@ -23,11 +23,11 @@
 			<div class="button-menu__cloud" hidden>
 				<span class="button-menu__text">
 					MENU
-				</span> 
-				<button class="button-menu__cloud-button" onclick="cloudHidden()">
+				</span>
+				<button class="button-menu__cloud-button" onclick="tooltipHide()">
 					<object data="../../../image/close-mini.svg" class='button-menu__image' type="image/svg+xml"></object>
 				</button>
-				
+
 			</div>
 			<button id='go-to-menu' class="button-menu" onclick="goToMenu()">
 				<div class="button-menu__item"></div>
@@ -57,12 +57,12 @@
 	<section class="hello">
 		<h1 class="hello__title">
 			Hello!<br>
-			We’re 
+			We’re
 			<span class="hello__logo">
 				MERGE
 			</span>
 		</h1>
-		
+
 		<h2 class="hello__subtitle">
 			COWORKING IN THE CENTRE OF KREMENCHUK
 		</h2>
@@ -160,41 +160,78 @@
 			<path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
 		</symbol>
 	</svg>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="../../../js/jquery.cookie.js"></script>
-	<script>
-		$(document).ready(function () {
-			if (!$.cookie('was')) {
-				$('.button-menu__cloud').attr('hidden', function($) {
-					return false;
-				});
-			}
-		});
-		function cloudHidden() {
-			document.querySelector('.button-menu__cloud').hidden = true;
-			$.cookie('was', true, {
-				expires: 1,
-				path: '/'
-			});
+	<script>	
+		let $tooltip = document.querySelector('.button-menu__cloud');
+		let ckeckCookie = getCookie('tooltip');
+
+		function tooltipShow() {
+			$tooltip.hidden = false;
 		}
-		function menuHref() {
-			location.href = "../menu/menu.html";
-		};
+		function tooltipHide() {
+			$tooltip.hidden = true;
+			setCookie('tooltip', '1', {experies: 10, path: 'path=/'})
+		}
+		
+		if (!ckeckCookie) {
+			tooltipShow();
+		}
+		
+		function getCookie(name) {
+			var matches = document.cookie.match(new RegExp(
+				"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+			));
+			return matches ? decodeURIComponent(matches[1]) : undefined;
+		}
+
+		function setCookie(name, value, options) {
+			options = options || {};
+
+			let expires = options.expires;
+
+			if (typeof expires == "number" && expires) {
+				let d = new Date();
+				d.setMonth(d.getMonth() + expires);
+				expires = options.expires = d;
+			}
+			if (expires && expires.toUTCString) {
+				options.expires = expires.toUTCString();
+			}
+
+			value = encodeURIComponent(value);
+
+			let updatedCookie = name + "=" + value;
+
+			for (let propName in options) {
+				updatedCookie += "; " + propName;
+				let propValue = options[propName];
+				if (propValue !== true) {
+					updatedCookie += "=" + propValue;
+				}
+			}
+
+			document.cookie = updatedCookie;
+		}
+
+		function deleteCookie(name) {
+			setCookie(name, "", {
+				expires: -1
+			})
+		}
+
 		function goToMenu() {
-			setTimeout(menuHref, 200);
-		};
-		function bookRoomHref() {
-			location.href = "../meeting-room/meeting-room.html";
+			setTimeout(function() {
+				location.href = "../menu/menu.html";
+			}, 200);
 		};
 		function bookRoom() {
-			setTimeout(bookRoomHref, 200);
-		};
-
-		function becomeMemberHref() {
-			location.href = "../booking-workplace/booking-workplace.html";
+			setTimeout(function() {
+				location.href = "../meeting-room/meeting-room.html";
+			}, 200);
 		};
 		function becomeMember() {
-			setTimeout(becomeMemberHref, 200);
+			setTimeout(function() {
+				location.href = "../booking-workplace/booking-workplace.html";
+			}, 200);
 		};
 	</script>
 </body>

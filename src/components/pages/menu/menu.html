@@ -57,15 +57,15 @@
 				</li>
 			</ul>
 			<div class="menu__language">
-				<a href="#" class="menu__language-link menu__language-link--ua">
+				<button href="#" class="menu__language-link menu__language-link--ua">
 					UA
-				</a>
-				<a href="#" class="menu__language-link menu__language-link--ru">
+				</button>
+				<button href="#" class="menu__language-link menu__language-link--ru">
 					RU
-				</a>
-				<a href="#" class="menu__language-link menu__language-link--en">
+				</button>
+				<button href="#" class="menu__language-link menu__language-link--en" checked>
 					EN
-				</a>
+				</button>
 			</div>
 		</div>
 		<div class="menu__col menu__col--locate">
@@ -173,23 +173,20 @@
 		</symbol>
 	</svg>
 	<script>
-		function helloHref() {
-			location.href="../hello/hello.html";
-		};
 		function goToHello() {
-			setTimeout(helloHref, 200);
-		};
-		function aboutHref() {
-			location.href="../about-us/about-us.html";
+			setTimeout(function() {
+				location.href="../hello/hello.html";
+			}, 200);
 		};
 		function goToAbout() {
-			setTimeout(aboutHref, 200);
-		};
-		function becomeMemberHref() {
-			location.href = "../booking-workplace/booking-workplace.html";
+			setTimeout(function() {
+				location.href="../about-us/about-us.html";
+			}, 200);
 		};
 		function becomeMember() {
-			setTimeout(becomeMemberHref, 200);
+			setTimeout(function() {
+				location.href = "../booking-workplace/booking-workplace.html";
+			}, 200);
 		};
 	</script>
 </body>

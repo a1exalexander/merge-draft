@@ -121,17 +121,10 @@
 		</symbol>
 	</svg>
 	<script>
-		// let flag, val;
-		// function radioUncheck(context) {
-		// 	if (flag != context) { val = 0; flag = context };
-		// 	val == 1 ? val = 0 : val = 1;
-		// 	context.checked = val;
-		// };
-		function helloHref() {
-			location.href = "../hello/hello.html";
-		};
 		function goToHello() {
-			setTimeout(helloHref, 200);
+			setTimeout(function() {
+				location.href = "../hello/hello.html";
+			}, 200);
 		};
 	</script>
 </body>

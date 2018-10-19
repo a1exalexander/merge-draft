@@ -136,11 +136,10 @@
 		</symbol>
 	</svg>
 	<script>
-		function helloHref() {
-			location.href="../hello/hello.html";
-		};
 		function goToHello() {
-			setTimeout(helloHref, 200);
+			setTimeout(function() {
+				location.href="../hello/hello.html";
+			}, 200);
 		};
 </script>
 </body>
