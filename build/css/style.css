@@ -74,23 +74,23 @@
 .slick-arrow.slick-hidden {
   display: none; }
 
-.button-menu__cloud, .slider .slick-track, .slider__nav, .slider-room__nav, .next-page-nav, .hello__title, .hello__button-wrapper, .hello-link__wrapper, .booking-workplace__inner, .about-us__inf, .subscription-type__wrapper, .beneffits__label, .view-360__row {
+.button-menu__cloud, .slider .slick-track, .slider__nav, .slider-room__nav, .next-page-nav, .hello__title, .hello__button-wrapper, .hello-link__wrapper, .booking-workplace__inner, .about-us__inf, .subscription-type__wrapper, .beneffits__label, .view-360__row, .meeting-room-inf, .meeting-room-inf__text {
   display: flex;
   flex-direction: row; }
 
-.button-book-room, .button-book-room__text, .button-membership, .button-apply-book, .button-map, .button-map__text, .button-back, .button-menu__cloud-button, .slider-room__slide, .menu-button-close, .menu-button-close__img, .booking-workplace__wrapper, .meeting-room__wrapper, .meeting-room__button-back-wrapper, .resident-card__wrapper, .resident-card__button, .page--center {
+.button-book-room, .button-book-room__text, .button-membership, .button-apply-book, .button-map, .button-map__text, .button-back, .button-menu__cloud-button, .slider-room__slide, .button-book-now, .button-resident, .button-resident__text, .menu-button-close, .menu-button-close__img, .booking-workplace__wrapper, .book-meeting-room__wrapper, .book-meeting-room__button-back-wrapper, .resident-card__wrapper, .resident-card__button, .page--center {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center; }
 
-.meeting-room__apply-wrapper, .about-us__header {
+.book-meeting-room__apply-wrapper, .about-us__header, .meeting-room__header, .meeting-room-inf__card {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center; }
 
-.meeting-room__edit-date {
+.book-meeting-room__edit-date {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -102,11 +102,11 @@ body {
   justify-content: stretch;
   align-items: flex-start; }
 
-.booking-workplace__col, .booking-workplace__input-wrapper, .resident-card, .about-us, .about-us__inner, .coworking, .coworking__slider, .view-360 {
+.booking-workplace__col, .booking-workplace__input-wrapper, .resident-card, .about-us, .about-us__inner, .coworking, .coworking__slider, .view-360, .meeting-room, .meeting-room__slider, .meeting-room-inf__wrapper, .meeting-room-inf__buttons {
   display: flex;
   flex-direction: column; }
 
-.loader, .button-menu__wrapper, .social-networks__link, .slider__button, .slider-room__button, .next-page-nav__inner, .menu__col, .menu-button-close__wrapper, .resident-card__close, .about-us__main, .coworking__inner {
+.loader, .button-menu__wrapper, .social-networks__link, .slider__button, .slider-room__button, .next-page-nav__inner, .menu__col, .menu-button-close__wrapper, .resident-card__close, .about-us__main, .coworking__inner, .meeting-room__inner {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -372,8 +372,7 @@ body {
     stroke: none; }
 
 .button-apply-book {
-  width: 100px;
-  height: 40px;
+  padding: 1rem 2rem;
   background-color: #37cdab;
   border-radius: 3px;
   outline: none;
@@ -952,6 +951,100 @@ body {
     text-align: center;
     color: #ffffff; }
 
+.button-book-now {
+  padding: 1rem 2rem;
+  background-color: #1f1f1f;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  text-align: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  transition: background-color ease-in-out 0.1s; }
+  .button-book-now:active .button-book-now__text {
+    color: #a3a3a3; }
+  .button-book-now:focus .button-book-now__text::before {
+    visibility: visible; }
+  .button-book-now__text {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.625rem;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.7px;
+    color: #ffffff;
+    text-transform: uppercase;
+    transition: color ease-in-out 0.1s; }
+    .button-book-now__text::before {
+      position: absolute;
+      content: '';
+      background-color: transparent;
+      left: -2px;
+      right: -2px;
+      top: -2px;
+      bottom: -2px;
+      border: 1px solid #a3a3a3;
+      border-radius: 4px;
+      transition: border ease-in-out 0.2s;
+      z-index: 0;
+      visibility: hidden; }
+
+.button-resident {
+  padding: 4px 6px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  text-align: center;
+  border-radius: 3px;
+  flex-flow: nowrap;
+  position: relative;
+  z-index: 2; }
+  @media (min-width: 600px) {
+    .button-resident:hover .button-resident__text {
+      color: #50e3c2; }
+    .button-resident:hover .button-resident__img {
+      fill: #50e3c2; } }
+  .button-resident:focus .button-resident__text {
+    color: #37cdab; }
+  .button-resident:focus .button-resident__text::before {
+    visibility: visible; }
+  .button-resident:active .button-resident__text {
+    color: #33ba9c; }
+  .button-resident:active .button-resident__img {
+    fill: #33ba9c; }
+  .button-resident__text {
+    text-align: center;
+    align-items: center;
+    flex-flow: nowrap;
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    color: #37cdab;
+    transition: color ease-in-out 0.1s;
+    margin-right: 5px;
+    white-space: nowrap; }
+    .button-resident__text::before {
+      position: absolute;
+      content: '';
+      background-color: transparent;
+      left: -2px;
+      right: -2px;
+      top: -2px;
+      bottom: -2px;
+      border: solid 2.5px rgba(55, 205, 171, 0.5);
+      border-radius: 4px;
+      transition: border ease-in-out 0.2s;
+      z-index: 0;
+      visibility: hidden; }
+  .button-resident__img {
+    stroke: none;
+    height: 16px;
+    width: 16px;
+    fill: #ffffff;
+    fill: #37cdab; }
+
 .hello {
   padding: 3rem 0 3rem 112px;
   width: 100%;
@@ -1388,7 +1481,9 @@ body {
   .menu-button-close:focus {
     background-color: #1f1f1f; }
   .menu-button-close:focus .menu-button-close__img {
-    fill: #898989; }
+    fill: #898989;
+    transform: rotate(-90deg);
+    transition: transform ease-in-out 0.2s; }
   .menu-button-close:focus .menu-button-close__outside {
     visibility: visible; }
   .menu-button-close__description {
@@ -1654,7 +1749,7 @@ body {
     align-items: flex-start;
     margin-bottom: 11px; }
 
-.meeting-room {
+.book-meeting-room {
   flex: 0 0 30%;
   display: grid;
   grid-template-rows: repeat(5, auto);
@@ -1664,31 +1759,31 @@ body {
   animation-duration: 0.5s;
   animation-timing-function: ease-in-out; }
   @media (min-width: 600px) {
-    .meeting-room {
+    .book-meeting-room {
       min-width: 430px; } }
   @media (max-width: 600px) {
-    .meeting-room {
+    .book-meeting-room {
       flex: 0 0 100%;
       align-self: flex-start; } }
-  .meeting-room__wrapper {
+  .book-meeting-room__wrapper {
     width: 100%;
     min-height: 100vh;
     align-items: center; }
     @media (max-width: 600px) {
-      .meeting-room__wrapper {
+      .book-meeting-room__wrapper {
         padding: 2rem;
         padding-top: 4rem; }
-        .meeting-room__wrapper .logo__wrapper {
+        .book-meeting-room__wrapper .logo__wrapper {
           position: absolute;
           left: auto;
           right: auto;
           top: 1rem; } }
-  .meeting-room__button-back-wrapper {
+  .book-meeting-room__button-back-wrapper {
     align-self: start;
     border-bottom: 1px solid #515151;
     padding-bottom: 1.8rem;
     align-items: center; }
-  .meeting-room__title {
+  .book-meeting-room__title {
     padding: 1.2rem 0 1.8rem 0;
     font-family: "Roboto Mono", monospace;
     font-size: 2.5rem;
@@ -1696,10 +1791,10 @@ body {
     text-align: left;
     color: #ffffff; }
     @media (max-width: 600px) {
-      .meeting-room__title {
+      .book-meeting-room__title {
         white-space: normal;
         text-align: center; } }
-  .meeting-room__form {
+  .book-meeting-room__form {
     padding: 1.8rem 0 1rem 0;
     display: grid;
     grid-template-rows: repeat(5, auto);
@@ -1711,21 +1806,21 @@ body {
     justify-items: start;
     justify-content: start; }
     @media (max-width: 500px) {
-      .meeting-room__form {
+      .book-meeting-room__form {
         grid-template-rows: repeat(6, auto);
         grid-template-columns: repeat(2, auto);
         grid-template-areas: 'day 	       edit' 'day-input     edit' 'time          edit' 'time-input    edit' 'input-wrapper input-wrapper' 'check         check';
         justify-content: stretch; } }
-  .meeting-room__date-label {
+  .book-meeting-room__date-label {
     grid-area: day;
     font-family: "Montserrat", sans-serif;
     font-size: 0.625rem;
     font-weight: 500;
     text-align: left;
     color: #898989; }
-    .meeting-room__date-label--time {
+    .book-meeting-room__date-label--time {
       grid-area: time; }
-  .meeting-room__date-choice {
+  .book-meeting-room__date-choice {
     grid-area: day-input;
     width: auto;
     height: auto;
@@ -1738,21 +1833,21 @@ body {
     color: #ffffff;
     outline: none;
     border: none; }
-    .meeting-room__date-choice--time {
+    .book-meeting-room__date-choice--time {
       grid-area: time-input; }
-  .meeting-room__edit-date {
+  .book-meeting-room__edit-date {
     grid-area: edit;
     align-items: center;
     outline: none;
     border: none;
     background-color: transparent;
     justify-self: end; }
-  .meeting-room__edit-icon {
+  .book-meeting-room__edit-icon {
     width: 12px;
     height: 12px;
     fill: #50e3c2;
     margin-right: 4px; }
-  .meeting-room__edit-text {
+  .book-meeting-room__edit-text {
     text-transform: uppercase;
     font-family: "Montserrat", sans-serif;
     font-size: 0.625rem;
@@ -1760,7 +1855,7 @@ body {
     letter-spacing: 0.7px;
     text-align: left;
     color: #50e3c2; }
-  .meeting-room__input-wrapper {
+  .book-meeting-room__input-wrapper {
     padding: 1.5rem 0 1.375rem 0;
     justify-items: start;
     justify-self: stretch;
@@ -1772,23 +1867,23 @@ body {
     grid-column-gap: 1.5rem;
     grid-row-gap: 0.6875rem; }
     @media (max-width: 500px) {
-      .meeting-room__input-wrapper {
+      .book-meeting-room__input-wrapper {
         width: 100%;
         grid-template-columns: none;
         grid-template-rows: repeat(4, auto);
         grid-template-areas: 'label-name ' 'input-name ' 'label-phone' 'input-phone'; } }
-  .meeting-room__label {
+  .book-meeting-room__label {
     align-items: stretch;
     font-family: "Montserrat", sans-serif;
     font-size: 0.5rem;
     font-weight: bold;
     text-align: left;
     color: #ffffff; }
-    .meeting-room__label--name {
+    .book-meeting-room__label--name {
       grid-area: label-name; }
-    .meeting-room__label--phone {
+    .book-meeting-room__label--phone {
       grid-area: label-phone; }
-  .meeting-room__input {
+  .book-meeting-room__input {
     text-indent: 1rem;
     border-radius: 4px;
     width: 100%;
@@ -1801,13 +1896,13 @@ body {
     font-weight: 500;
     text-align: left;
     color: #ffffff; }
-    .meeting-room__input--name {
+    .book-meeting-room__input--name {
       grid-area: input-name; }
-    .meeting-room__input--phone {
+    .book-meeting-room__input--phone {
       grid-area: input-phone; }
-  .meeting-room__input::placeholder {
+  .book-meeting-room__input::placeholder {
     color: #898989; }
-  .meeting-room__resident-label {
+  .book-meeting-room__resident-label {
     position: relative;
     grid-area: check;
     display: grid;
@@ -1815,19 +1910,19 @@ body {
     grid-column-gap: 0.75rem;
     align-items: center;
     cursor: pointer; }
-  .meeting-room__resident-text {
+  .book-meeting-room__resident-text {
     grid-column: 2;
     font-family: "Montserrat", sans-serif;
     font-size: 0.625rem;
     font-weight: 500;
     text-align: left;
     color: #898989; }
-  .meeting-room__resident-input {
+  .book-meeting-room__resident-input {
     position: absolute;
     z-index: -1;
     outline: none;
     border: none; }
-  .meeting-room__resident-check {
+  .book-meeting-room__resident-check {
     width: 16px;
     height: 16px;
     border-radius: 3px;
@@ -1838,22 +1933,22 @@ body {
     flex-flow: column;
     justify-content: center;
     align-items: center; }
-  .meeting-room__resident-img {
+  .book-meeting-room__resident-img {
     opacity: 0;
     fill: #50e3c2;
     width: 100%;
     height: 100%; }
-  .meeting-room__resident-input:checked + .meeting-room__resident-check {
+  .book-meeting-room__resident-input:checked + .book-meeting-room-check {
     border-color: aquamarine;
     transition: ease-in-out 0.2s border-color; }
-  .meeting-room__resident-input:not(:checked) + .meeting-room__resident-check {
+  .book-meeting-room__resident-input:not(:checked) + .book-meeting-room-check {
     transition: ease-in-out 0.2s border-color; }
-  .meeting-room__resident-input:checked + .meeting-room__resident-check .meeting-room__resident-img {
+  .book-meeting-room__resident-input:checked + .book-meeting-room-check .book-meeting-room-img {
     opacity: 1;
     transition: opacity ease-in-out 0.2s; }
-  .meeting-room__resident-input:not(:checked) + .meeting-room__resident-check .meeting-room__resident-img {
+  .book-meeting-room__resident-input:not(:checked) + .book-meeting-room-check .book-meeting-room-img {
     transition: opacity ease-in-out 0.2s; }
-  .meeting-room__apply-wrapper {
+  .book-meeting-room__apply-wrapper {
     padding-top: 1.2rem;
     border-top: 1px solid #1f1f1f;
     align-items: center; }
@@ -2434,6 +2529,7 @@ body {
   animation-duration: 0.5s;
   animation-timing-function: ease-in-out; }
   .coworking__wrapper {
+    width: 100%;
     display: flex;
     padding: 0 112px; }
     @media (max-width: 920px) {
@@ -2448,8 +2544,6 @@ body {
     width: 100%;
     padding: 0 10%;
     align-items: flex-start; }
-    .coworking__inner--margin {
-      margin-bottom: 68px; }
     @media (max-width: 920px) {
       .coworking__inner {
         padding: 0 5%; } }
@@ -2504,6 +2598,7 @@ body {
   .coworking__slider {
     align-items: flex-start;
     padding-top: 5rem;
+    padding-bottom: 3rem;
     width: 100%; }
     @media (max-width: 450px) {
       .coworking__slider {
@@ -2544,6 +2639,10 @@ body {
   .beneffits__label {
     align-items: center; }
   .beneffits__image {
+    margin-right: 2rem;
+    width: 40px;
+    height: 40px; }
+  .beneffits__img {
     margin-right: 2rem;
     width: 40px;
     height: 40px; }
@@ -2599,6 +2698,190 @@ body {
 .view-360__image {
   width: 100%;
   height: auto; }
+
+.meeting-room {
+  width: 100%;
+  align-items: center;
+  justify-items: center;
+  padding-top: 7rem;
+  animation-name: slideRight;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out; }
+  .meeting-room__wrapper {
+    width: 100%;
+    display: flex;
+    padding: 0 112px; }
+    @media (max-width: 920px) {
+      .meeting-room__wrapper {
+        justify-content: flex-start;
+        padding: 0 0 0 112px; } }
+    @media (max-width: 600px) {
+      .meeting-room__wrapper {
+        justify-content: flex-start;
+        padding: 0; } }
+  .meeting-room__inner {
+    width: 100%;
+    padding: 0 10%;
+    align-items: flex-start; }
+    .meeting-room__inner--margin {
+      margin-bottom: 4rem; }
+    @media (max-width: 960px) {
+      .meeting-room__inner {
+        padding: 0 5%; } }
+    @media (max-width: 600px) {
+      .meeting-room__inner {
+        padding: 0; } }
+  .meeting-room__header {
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 5rem 0; }
+    @media (max-width: 1200px) {
+      .meeting-room__header {
+        flex-direction: column;
+        align-items: flex-start; } }
+    .meeting-room__header .button-book-room {
+      background-color: #37cdab; }
+      .meeting-room__header .button-book-room__text {
+        color: #111111; }
+      @media (max-width: 600px) {
+        .meeting-room__header .button-book-room {
+          align-self: center; } }
+      @media (max-width: 450px) {
+        .meeting-room__header .button-book-room {
+          width: 90%; } }
+  .meeting-room__title {
+    font-family: "Roboto Mono", monospace;
+    font-size: 5rem;
+    font-weight: 500;
+    text-align: left;
+    color: #ffffff;
+    margin: 0; }
+    @media (max-width: 1200px) {
+      .meeting-room__title {
+        margin-bottom: 2rem; } }
+    @media (max-width: 600px) {
+      .meeting-room__title {
+        align-self: center;
+        text-align: center; } }
+    @media (max-width: 460px) {
+      .meeting-room__title {
+        font-size: 4rem; } }
+  .meeting-room__slider {
+    align-items: flex-start;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+    width: 100%; }
+    @media (max-width: 450px) {
+      .meeting-room__slider {
+        align-items: center; } }
+  .meeting-room__label-button {
+    padding: 0.5rem 1rem;
+    background-color: black;
+    font-family: Montserrat;
+    font-size: 0.875rem;
+    font-weight: bold;
+    text-align: center;
+    color: #515151;
+    outline: none;
+    border: none;
+    transition: color ease-in-out 0.2s;
+    margin-bottom: 1.5rem; }
+    .meeting-room__label-button:hover {
+      color: white; }
+
+.meeting-room-inf {
+  width: 100%;
+  border-bottom: 1px solid #515151; }
+  @media (max-width: 720px) {
+    .meeting-room-inf {
+      justify-content: center; } }
+  .meeting-room-inf__wrapper {
+    flex: 0 0 65%; }
+    @media (max-width: 720px) {
+      .meeting-room-inf__wrapper {
+        flex: 0 0 90%; } }
+  .meeting-room-inf__buttons {
+    padding: 5rem 0;
+    width: 100%;
+    border-top: 2px solid #515151;
+    border-bottom: 2px solid #515151;
+    align-items: stretch; }
+    @media (max-width: 720px) {
+      .meeting-room-inf__buttons {
+        align-items: center; } }
+  .meeting-room-inf__card {
+    width: 100%;
+    border-radius: 3px;
+    padding: 1.875rem 2.3125rem;
+    align-items: center;
+    background: linear-gradient(100deg, #4ddfbf, #31be9e);
+    margin-bottom: 2.5rem; }
+    @media (max-width: 720px) {
+      .meeting-room-inf__card {
+        flex-direction: column; } }
+    .meeting-room-inf__card:last-child {
+      margin: 0; }
+    .meeting-room-inf__card--resident {
+      border: solid 2px #333333;
+      background: transparent; }
+  .meeting-room-inf__text {
+    align-items: center;
+    text-transform: uppercase;
+    font-family: "Roboto Mono", monospace;
+    font-size: 1.875rem;
+    font-weight: 500;
+    text-align: left;
+    color: #111111;
+    margin-right: 0.625rem; }
+    @media (max-width: 720px) {
+      .meeting-room-inf__text {
+        margin-right: 0;
+        margin-bottom: 1rem; } }
+    @media (max-width: 420px) {
+      .meeting-room-inf__text {
+        flex-direction: column;
+        align-items: center;
+        text-align: center; } }
+    .meeting-room-inf__text--hour {
+      align-items: baseline; }
+      @media (max-width: 420px) {
+        .meeting-room-inf__text--hour {
+          align-items: center; } }
+    .meeting-room-inf__text--resident {
+      color: #898989; }
+  .meeting-room-inf__description {
+    padding-top: 4px;
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.625rem;
+    font-weight: bold;
+    line-height: 1.4;
+    letter-spacing: 0.7px;
+    text-align: left;
+    color: #333333;
+    padding-left: 0.625rem; }
+    @media (max-width: 720px) {
+      .meeting-room-inf__description {
+        min-width: 0; } }
+    @media (max-width: 420px) {
+      .meeting-room-inf__description {
+        padding: 0; } }
+    .meeting-room-inf__description--resident {
+      color: #898989;
+      min-width: 220px; }
+  .meeting-room-inf__labels {
+    width: 100%;
+    padding: 5rem 0;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(2, auto);
+    grid-gap: 3.75rem; }
+    @media (max-width: 600px) {
+      .meeting-room-inf__labels {
+        grid-template-columns: none;
+        grid-template-rows: repeat(4, auto);
+        grid-row-gap: 3.75rem; } }
 
 * {
   margin: 0;

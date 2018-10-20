@@ -1,0 +1,110 @@
+.meeting-room-inf {
+	width: 100%;
+	border-bottom: 1px solid $MIDDLE-GREY;
+	@extend %flex-row;
+	@media (max-width: 720px) {
+		justify-content: center;
+	}
+	&__wrapper {
+		flex: 0 0 65%;
+		@extend %flex-col;
+		@media (max-width: 720px) {
+			flex: 0 0 90%;
+		}
+	}
+	&__buttons {
+		padding: 5rem 0;
+		width: 100%;
+		border-top: 2px solid $MIDDLE-GREY;
+		border-bottom: 2px solid $MIDDLE-GREY;
+		@extend %flex-col;
+		align-items: stretch;
+		@media (max-width: 720px) {
+			align-items: center;
+		}
+	}
+	&__card {
+		width: 100%;
+		border-radius: 3px;
+		padding: 1.875rem 2.3125rem;
+		@extend %flex-row-sb;
+		align-items: center;
+		background: linear-gradient(100deg, #4ddfbf, #31be9e);
+		margin-bottom: 2.5rem;
+		@media (max-width: 720px) {
+			flex-direction: column;
+		}
+		&:last-child {
+			margin: 0;
+		}
+		&--resident {
+			border: solid 2px $DARK-GREY;
+			background: transparent;
+		}
+	}
+	&__text {
+		@extend %flex-row;
+		align-items: center;
+		text-transform: uppercase;
+		font-family: $title-font;
+		font-size: 1.875rem;
+		font-weight: 500;
+		text-align: left;
+		color: $MAIN-DARK-COLOR;
+		margin-right: 0.625rem;
+		@media (max-width: 720px) {
+			margin-right: 0;
+			margin-bottom: 1rem;
+		}
+		@media (max-width: 420px) {
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+		}
+		&--hour {
+			align-items: baseline;
+			@media (max-width: 420px) {
+				align-items: center;
+			}
+		}
+		&--resident {
+			color: $GREY;
+		}
+	}
+	&__description {
+		padding-top: 4px;
+		text-transform: uppercase;
+		font-family: $base-font;
+		font-size: 0.625rem;
+		font-weight: bold;
+		line-height: 1.4;
+		letter-spacing: 0.7px;
+		text-align: left;
+		color: $DARK-GREY;
+		padding-left: 0.625rem;
+		@media (max-width: 720px) {
+			min-width: 0;
+		}
+		@media (max-width: 420px) {
+			padding: 0;
+		}
+		&--resident {
+			color: $GREY;
+			min-width: 220px;
+		}
+	}
+	&__labels {
+		width: 100%;
+		padding: 5rem 0;
+		display: grid;
+		grid-template-columns: repeat(2, auto);
+		grid-template-rows: repeat(2, auto);
+		grid-gap: 3.75rem;
+		@media (max-width: 600px) {
+			
+			grid-template-columns: none;
+			grid-template-rows: repeat(4, auto);
+			grid-row-gap: 3.75rem;
+		}
+	}
+}

@@ -1,6 +1,6 @@
-.button-apply-book {
+.button-book-now {
 	padding: 1rem 2rem;
-	background-color: $MERGE-SECONDARY-COLOR;
+	background-color: $BUTTON-COLOR;
 	border-radius: 3px;
 	outline: none;
 	border: none;
@@ -10,25 +10,19 @@
 	position: relative;
 	z-index: 2;
 	transition: background-color ease-in-out 0.1s; 
-	&:active {
-        background-color: $MERGE-DARK-COLOR;
+	&:active &__text {
+        color: $LIGHT-GREY;
     }
     &:focus &__text::before {
         visibility: visible;
     }
-	&:disabled {
-		background-color: $BUTTON-COLOR;
-	}
-	&:disabled &__text {
-		color: $MIDDLE-GREY;
-	}
 	&__text {
 		font-family: $base-font;
 		font-size: 0.625rem;
 		font-weight: 700;
 		line-height: 1.5;
 		letter-spacing: 0.7px;
-		color: $MAIN-DARK-COLOR;
+		color: $TEXT-COLOR;
 		text-transform: uppercase;
 		transition: color ease-in-out 0.1s; 
 		&::before {
@@ -39,13 +33,11 @@
             right: -2px;
             top: -2px;
             bottom: -2px;
-            border: 1px solid $MERGE-SECONDARY-COLOR;
+            border: 1px solid $LIGHT-GREY;
             border-radius: 4px;
             transition: border ease-in-out 0.2s;
             z-index: 0;
             visibility: hidden;
         }
 	}
-	
-	
 }

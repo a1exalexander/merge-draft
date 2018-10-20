@@ -29,6 +29,8 @@
     }
     &:focus &__img {
         fill: $GREY; 
+        transform: rotate(-90deg);
+        transition: transform ease-in-out 0.2s;
     }
     &:focus &__outside {
         visibility: visible;

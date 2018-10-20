@@ -38,6 +38,7 @@
 		</section>
 	</nav>
 	<div class="coworking">
+<!-- 2 wrappers to implement dual adaptive indents -->
 		<div class="coworking__wrapper">
 			<div class="coworking__inner">
 				<header class="coworking__header">
@@ -122,23 +123,34 @@
 					<button class="coworking__label-button">
 						Photos
 					</button>
-					<div class="slider-room">
-						<div class="slider-room__slide">
-							<img id='slide-image' src="https://picsum.photos/1280/720/?random" alt="photo" class="slider-room__image">
+					<div class="slider__wrapper">
+						<div class="slider">
+							<div class="slider__slide">
+								<img src="../../../image/merge-1.jpg" alt="merge" class="slider__image">
+							</div>
+							<div class="slider__slide">
+								<img src="../../../image/merge-2.jpg" alt="merge" class="slider__image">
+							</div>
+							<div class="slider__slide">
+								<img src="../../../image/merge-3.jpg" alt="merge" class="slider__image">
+							</div>
+							<div class="slider__slide">
+								<img src="../../../image/merge-4.png" alt="merge" class="slider__image">
+							</div>
 						</div>
-						<div class="slider-room__nav">
-							<button id='slide-prev' class="slider-room__button slider-room__button--prev">
-								<svg class='slider-room__nav-icon'>
+						<div class="slider__nav">
+							<button id='slide-prev' class="slider__button slider__button--prev">
+								<svg class='slider__nav-icon'>
 									<use xlink:href='#chevron-left' />
 								</svg>
 							</button>
-							<p class="slider-room__counter-box">
-								<span class="sider-room__counter"></span>
+							<p class="slider__counter-box">
+								<span class="sider__counter"></span>
 								/
-								<span class="sider-room__sum"></span>
+								<span class="sider__sum"></span>
 							</p>
-							<button id='slide-next' class="slider-room__button slider-room__button--next">
-								<svg class='slider-room__nav-icon'>
+							<button id='slide-next' class="slider__button slider__button--next">
+								<svg class='slider__nav-icon'>
 									<use xlink:href='#chevron-right' />
 								</svg>
 							</button>
@@ -148,7 +160,7 @@
 			</div>
 		</div>
 		<section class="next-page-nav">
-			<a href='../meeting-room/meeting-room.html' class="next-page-nav__link next-page-nav__link--meeting-room">
+			<a href='../book-meeting-room/book-meeting-room.html' class="next-page-nav__link next-page-nav__link--meeting-room">
 				<div class="next-page-nav__inner">
 					<p class="next-page-nav__text">
 						MEETING ROOM
@@ -195,8 +207,38 @@
 			<path d="M0 0h24v24H0z" fill="none" />
 		</symbol>
 	</svg>
-	<script src="../../../js/sliderRoom.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="../../../js/slick.min.js"></script>
 	<script>
+		$(document).ready(function () {
+			let sum = $('.slider__slide').length,
+				$sliderCounter = $('.sider__counter'),
+				$sliderSum = $('.sider__sum'),
+				$prev = $('.slider__button--prev'),
+				$next = $('.slider__button--next');
+			
+			$sliderCounter.text(1);
+			$sliderSum.text(sum);
+			
+			$('.slider').slick({
+				dots: false,
+				infinite: true,
+				appendArrows: $('.slider__nav'),
+				prevArrow: $('.slider__button--prev'),
+				nextArrow: $('.slider__button--next')
+			});
+			
+			$prev.click(function(event) {
+				let countPrev = +$('.slick-active').attr('data-slick-index') + 1;
+				$sliderCounter.text(countPrev);
+			}) 
+				
+			$next.on('click', function(event) {
+				let countNext = +$('.slick-active').attr('data-slick-index') + 1;
+				$sliderCounter.text(countNext);
+			})
+			
+		});
 		function goToMenu() {
 			setTimeout(function() {
 				location.href = "../menu/menu.html";
@@ -204,7 +246,7 @@
 		};
 		function bookRoom() {
 			setTimeout(function() {
-				location.href = "../meeting-room/meeting-room.html";
+				location.href = "../book-meeting-room/book-meeting-room.html";
 			}, 200);
 		};
 		function becomeMember() {

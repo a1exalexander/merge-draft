@@ -8,6 +8,7 @@
     animation-duration: 0.5s;
 	animation-timing-function: ease-in-out;
 	&__wrapper {
+        width: 100%;
         display: flex;
         padding: 0 112px;
         @media (max-width: 920px) {
@@ -24,9 +25,6 @@
         padding: 0 10%;
         @extend %flex-col-c;
         align-items: flex-start;
-        &--margin {
-            margin-bottom: 68px;
-        }
         @media (max-width: 920px) {
             padding: 0 5%; 
         }
@@ -93,6 +91,7 @@
         @extend %flex-col;
         align-items: flex-start;
         padding-top: 5rem;
+        padding-bottom: 3rem;
         width: 100%;
         @media (max-width: 450px) {
             align-items: center;
