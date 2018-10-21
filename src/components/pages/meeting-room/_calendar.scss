@@ -1,0 +1,126 @@
+.calendar {
+	padding-left: 112px;
+	width: 100%;
+	color: $TEXT-COLOR;
+	&__wrapper {
+		padding: 0 5% 0 10%;
+	}
+	&__title {
+		padding-top: 4.4375rem;
+		padding-bottom: 3.1875rem;
+		font-family: $title-font;
+		font-size: 1.875rem;
+		font-weight: bold;
+		text-align: left;
+		color: $TEXT-COLOR;
+	}
+	&__field {
+		width: 100%;
+		border-radius: 3px;
+		border: solid 3px rgba(80, 227, 194, 0.5);
+		background-color: #000000;
+	}
+	&__inner {
+		width: 100%;
+		@extend %flex-col-c;
+		align-items: center;
+	}
+	&__text {
+		font-family: $base-font;
+		font-size: 0.8125rem;
+		font-weight: 500;
+		line-height: 2;
+		text-align: center;
+		color: $TEXT-COLOR;
+	}
+	
+	 .fc-axis {
+		font-family: $base-font;
+		font-size: 10px;
+		font-weight: 500;
+		color: $GREY;
+		text-align: right;
+		
+	 }
+	 .fc-day-header {
+		 padding: 11px 0;
+		 text-transform: uppercase;
+		font-family: $base-font;
+		font-size: 8px;
+		font-weight: bold;
+		line-height: 2;
+		letter-spacing: 0.5px;
+		text-align: center;
+		color: $TEXT-COLOR;
+		
+	 }
+	 .fc-event,
+	.fc-event:hover {
+	font-family: $base-font;
+	font-size: 10px;
+	font-weight: 500;
+	letter-spacing: 0.7px;
+	text-align: left;
+	color: $MERGE-DARK-COLOR;
+	text-decoration: none;
+	text-align: left;
+	 }
+	 .fc-header-toolbar {
+		 padding: 1.75rem 4.5625rem;
+		 margin: 0;
+	 }
+	 .fc-left {
+		 @extend %flex-row-c;
+		 align-items: center;
+		 button {
+			width: 32px;
+			height: 32px;
+			border-radius: 3px;
+			background-color: $BUTTON-COLOR;
+			outline: none;
+			border: none;
+			@extend %flex-col-c;
+			align-items: center;
+			@media (min-width: 600px) {
+				
+				&:not(:hover) .slider-room__nav-icon {
+					transition: fill ease-in-out 0.2s;
+				}
+			}
+			&:active {
+				filter: blur(1px) brightness(0.6);
+				transition: filter ease-in-out 0.2s;
+			}
+			&:not(:active) {
+				transition: filter ease-in-out 0.2s;
+			}
+		 }
+		 .fc-state-default {
+			background-color: none;
+			background-image: none;
+			text-shadow: none;
+			box-shadow: none;
+			
+		 }
+		 .fc-icon-left-single-arrow:after {
+			content: none;
+			font-weight: bold;
+			top: -7%; 
+		}
+		.fc-icon-right-single-arrow:after {
+			content: none;
+			font-weight: bold;
+			top: -7%; 
+		}
+		 .fc-corner-right {
+			 fill: $TEXT-COLOR;
+			content: url('../../../image/arrow-next.svg');
+		 }
+		 .fc-corner-left {
+			fill: $TEXT-COLOR;
+			content: url('../../../image/arrow-back.svg');
+		 }
+	 }
+	
+	 
+}

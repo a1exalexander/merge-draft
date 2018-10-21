@@ -78,7 +78,7 @@
   display: flex;
   flex-direction: row; }
 
-.button-book-room, .button-book-room__text, .button-membership, .button-apply-book, .button-map, .button-map__text, .button-back, .button-menu__cloud-button, .slider-room__slide, .button-book-now, .button-resident, .button-resident__text, .menu-button-close, .menu-button-close__img, .booking-workplace__wrapper, .book-meeting-room__wrapper, .book-meeting-room__button-back-wrapper, .resident-card__wrapper, .resident-card__button, .page--center {
+.button-book-room, .button-book-room__text, .button-membership, .button-apply-book, .button-map, .button-map__text, .button-back, .button-menu__cloud-button, .slider-room__slide, .button-book-now, .button-resident, .button-resident__text, .menu-button-close, .menu-button-close__img, .booking-workplace__wrapper, .book-meeting-room__wrapper, .book-meeting-room__button-back-wrapper, .resident-card__wrapper, .resident-card__button, .calendar .fc-left, .page--center {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -106,7 +106,7 @@ body {
   display: flex;
   flex-direction: column; }
 
-.loader, .button-menu__wrapper, .social-networks__link, .slider__button, .slider-room__button, .next-page-nav__inner, .menu__col, .menu-button-close__wrapper, .resident-card__close, .about-us__main, .coworking__inner, .meeting-room__inner {
+.loader, .button-menu__wrapper, .social-networks__link, .slider__button, .slider-room__button, .next-page-nav__inner, .menu__col, .menu-button-close__wrapper, .resident-card__close, .about-us__main, .coworking__inner, .meeting-room__inner, .calendar__inner, .calendar .fc-left button {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2789,6 +2789,102 @@ body {
     margin-bottom: 1.5rem; }
     .meeting-room__label-button:hover {
       color: white; }
+
+.calendar {
+  padding-left: 112px;
+  width: 100%;
+  color: #ffffff; }
+  .calendar__wrapper {
+    padding: 0 5% 0 10%; }
+  .calendar__title {
+    padding-top: 4.4375rem;
+    padding-bottom: 3.1875rem;
+    font-family: "Roboto Mono", monospace;
+    font-size: 1.875rem;
+    font-weight: bold;
+    text-align: left;
+    color: #ffffff; }
+  .calendar__field {
+    width: 100%;
+    border-radius: 3px;
+    border: solid 3px rgba(80, 227, 194, 0.5);
+    background-color: #000000; }
+  .calendar__inner {
+    width: 100%;
+    align-items: center; }
+  .calendar__text {
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 2;
+    text-align: center;
+    color: #ffffff; }
+  .calendar .fc-axis {
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: #898989;
+    text-align: right; }
+  .calendar .fc-day-header {
+    padding: 11px 0;
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    font-size: 8px;
+    font-weight: bold;
+    line-height: 2;
+    letter-spacing: 0.5px;
+    text-align: center;
+    color: #ffffff; }
+  .calendar .fc-event,
+  .calendar .fc-event:hover {
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.7px;
+    text-align: left;
+    color: #33ba9c;
+    text-decoration: none;
+    text-align: left; }
+  .calendar .fc-header-toolbar {
+    padding: 1.75rem 4.5625rem;
+    margin: 0; }
+  .calendar .fc-left {
+    align-items: center; }
+    .calendar .fc-left button {
+      width: 32px;
+      height: 32px;
+      border-radius: 3px;
+      background-color: #1f1f1f;
+      outline: none;
+      border: none;
+      align-items: center; }
+      @media (min-width: 600px) {
+        .calendar .fc-left button:not(:hover) .slider-room__nav-icon {
+          transition: fill ease-in-out 0.2s; } }
+      .calendar .fc-left button:active {
+        filter: blur(1px) brightness(0.6);
+        transition: filter ease-in-out 0.2s; }
+      .calendar .fc-left button:not(:active) {
+        transition: filter ease-in-out 0.2s; }
+    .calendar .fc-left .fc-state-default {
+      background-color: none;
+      background-image: none;
+      text-shadow: none;
+      box-shadow: none; }
+    .calendar .fc-left .fc-icon-left-single-arrow:after {
+      content: none;
+      font-weight: bold;
+      top: -7%; }
+    .calendar .fc-left .fc-icon-right-single-arrow:after {
+      content: none;
+      font-weight: bold;
+      top: -7%; }
+    .calendar .fc-left .fc-corner-right {
+      fill: #ffffff;
+      content: url("../../../image/arrow-next.svg"); }
+    .calendar .fc-left .fc-corner-left {
+      fill: #ffffff;
+      content: url("../../../image/arrow-back.svg"); }
 
 .meeting-room-inf {
   width: 100%;
