@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # merge@place
-=======
-# mrge@place
->>>>>>> 75cd4b61249374c63abee05e8eeb35fe97506bb2
 
 ## Project setup
 ```
