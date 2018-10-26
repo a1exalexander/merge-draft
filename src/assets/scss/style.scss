@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500,600,700|Roboto+Mono:500,700');
+@import 'variables';
+@import 'mixines';
+@import 'animations';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    max-width: 100vw;
+    min-height: 100vh;
+    position: relative;
+    @extend %flex-row-s;
+    background-color: $MAIN-DARK-COLOR;
+    align-items: center;
+}
+
+a,
+button {
+    cursor: pointer;
+}
+
+.page {
+    width: 100%;
+    background-color: $MAIN-DARK-COLOR;
+
+    &--nav {
+        display: grid;
+        grid-template-columns: 112px auto;
+    }
+
+    &--center {
+        @extend %flex-row-c;
+    }
+
+    &--menu {
+        background-color: $DARK-GREY;
+    }
+
+    &--about-us {
+
+        @extend %flex-col-sb;
+        align-items: c;
+    }
+}

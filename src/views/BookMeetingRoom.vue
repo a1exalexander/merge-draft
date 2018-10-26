@@ -1,0 +1,500 @@
+<template>
+<div class="book-meeting-room__wrapper">
+	<merge-logo></merge-logo>
+	<div class="book-meeting-room">
+		<button-back></button-back>
+		<h2 class="book-meeting-room__title">Meeting Room<br>Resevation
+		</h2>
+		<form action="" id='book-meeting-room-form' name='book-meeting-room' class="book-meeting-room__form">
+			<p class="book-meeting-room__date-label">
+				Day
+			</p>
+			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--day">
+				12 May, 2018
+			</p>
+			<p class="book-meeting-room__date-label book-meeting-room__date-label--time">
+				Time
+			</p>	
+			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--time">
+				11:00 — 12:20 (1h 20m)
+			</p>
+<!-- TODO: javascript new Date-->
+			<button class="book-meeting-room__edit-date">
+				<svg class="book-meeting-room__edit-icon">
+					<use xlink:href='#icon-edit' />
+				</svg>
+				<p class="book-meeting-room__edit-text">edit</p>
+			</button>
+			<div class="book-meeting-room__input-wrapper">
+				<label for="book-meeting-name" class="book-meeting-room__label book-meeting-room__label--name">
+					NAME
+				</label>
+				<input type="text" id="book-meeting-name" class="book-meeting-room__input book-meeting-room__input--name" required placeholder="Andrey Malishko">
+				<label for="book-meeting-phone" class="book-meeting-room__label book-meeting-room__label--phone">
+					PHONE
+				</label>
+				<input type="tel" id='book-meeting-phone' class="book-meeting-room__input book-meeting-room__input--phone" required placeholder="+38 (000) 000 00-00">
+			</div>
+
+			<label for="book-meeting-resident" class="book-meeting-room__resident-label">
+				<input type="checkbox" form='meeting-room-form' id='book-meeting-resident' class="book-meeting-room__resident-input">
+				<div class="book-meeting-room__resident-check">
+					<svg class="book-meeting-room__resident-img">
+						<use xlink:href='#icon-checkbox'/>
+					</svg>
+				</div>
+				<p class="book-meeting-room__resident-text">
+					I'm a Resident
+				</p>
+			</label>
+		</form>
+<!-- TODO: check form -->
+		<div class="check-free-time__wrapper">
+			<form id='check-free-time' class="check-free-time">
+				<p class="check-free-time__text">
+					Put your E-Mail for checking availability of free hours for Meeting Room's using
+				</p>
+				<input form='check-free-time' type="email" class="check-free-time__email" placeholder="Email">
+				<button form='check-free-time' class="check-free-time__button">
+					CHECK
+				</button>
+			</form>
+		</div>
+		<div class="resident-time-info__wrapper">
+			<div class="resident-time-info">
+				<p class="resident-time-info__title">
+					Resident
+				</p>
+				<p class="resident-time-info__title">
+					Duration
+				</p>
+				<p class="resident-time-info__title">
+					Count of Free Hours
+				</p>
+<!-- TODO: form-->
+				<p class="resident-time-info__text">
+					(Pasha Tseluyko)
+				</p>
+				<p class="resident-time-info__text">
+					(Pasha Tseluyko)
+				</p>
+				<p class="resident-time-info__text resident-time-info__text--red">
+					(1 h.)
+				</p>
+			</div>
+		</div>
+		<div class="book-meeting-room__apply-wrapper">
+			<p class="booking-price book-meeting-room__price">
+				Price:
+				<span class="booking-price__sum">1000</span>
+			</p>
+			<button-book disabled></button-book>
+		</div>
+	</div>
+</div>
+</template>
+
+<script>
+import ButtonBack from '@/components/buttons/ButtonBack.vue';
+import ButtonBook from '@/components/buttons/ButtonBook.vue';
+
+export default {
+  name: 'book-meeting-room',
+  components: {
+    ButtonBack,
+    ButtonBook
+  }
+}
+</script>
+
+<style lang="scss">
+@import '../assets/scss/style.scss';
+.book-meeting-room {
+    flex: 0 0 30%;
+    display: grid;
+    grid-template-rows: repeat(5, auto);
+    align-items: center;
+    will-change: transform;
+    @media (min-width: 600px) {
+        min-width: 430px;
+    }
+    @media (max-width: 600px) {
+        flex: 0 0 100%;
+        align-self: flex-start;
+	}
+    &__wrapper {
+        width: 100%;
+        min-height: 100vh;
+        @extend %flex-row-c;
+        align-items: center;
+        @media (max-width: 600px) {
+            padding: 2rem;
+            padding-top: 4rem;
+            .logo__wrapper {
+                position: absolute;
+                left: auto;
+                right: auto;
+                top: 1rem;
+            }
+        }
+    }
+    &__button-back-wrapper {
+        align-self: start;
+        border-bottom: 1px solid $MIDDLE-GREY;
+        @extend %flex-row-c;
+        padding-bottom: 1.8rem;
+        align-items: center;
+    }
+    &__title {
+        padding: 1.2rem 0 1.8rem 0;
+        font-family: $title-font;
+        font-size: 2.5rem;
+        font-weight: 500;
+        text-align: left;
+        color: $TEXT-COLOR;
+        @media (max-width: 600px) {
+            white-space: normal;
+            text-align: center;
+        }
+    }
+    &__form {
+        padding: 1.8rem 0 1rem 0;
+        display: grid;
+        grid-template-rows: repeat(5, auto);
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-areas:
+            'day 	       time 	     .'
+            'day-input     time-input    edit'
+            'input-wrapper input-wrapper input-wrapper'
+            'input-wrapper input-wrapper input-wrapper'
+            'check 		   check 		 check';
+        border-top: 1px solid $BUTTON-COLOR;
+        grid-row-gap: 4px;
+        align-items: center;
+        justify-items: start;
+        justify-content: start;
+        @media (max-width: 500px) {
+            grid-template-rows: repeat(6, auto);
+            grid-template-columns: repeat(2, auto);
+            grid-template-areas:
+            'day 	       edit'
+            'day-input     edit'
+            'time          edit'
+            'time-input    edit'
+            'input-wrapper input-wrapper'
+            'check         check';
+            justify-content: stretch;
+        }
+    }
+  
+    &__date-label {
+        grid-area: day;
+        font-family: $base-font;
+        font-size: 0.625rem;
+        font-weight: 500;
+        text-align: left;
+        color: $GREY;
+        &--time {
+            grid-area: time;
+        }
+    }
+    &__date-choice {
+        grid-area: day-input;
+        width: auto;
+        height: auto;
+        background-color: transparent;
+        font-family: $base-font;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        line-height: 2;
+        text-align: left;
+        color: $TEXT-COLOR;
+        outline: none;
+        border: none;
+        &--time {
+            grid-area: time-input;
+        }
+    }
+    
+
+
+    &__edit-date {
+        grid-area: edit;
+        @extend %flex-row-fs;
+        align-items: center;
+        outline: none;
+        border: none;
+        background-color: transparent;
+        justify-self: end;
+    }
+    &__edit-icon {
+        width: 12px;
+        height: 12px;
+        fill: $MERGE-MAIN-COLOR;
+        margin-right: 4px;
+    }
+    &__edit-text {
+        text-transform: uppercase;
+        font-family: $base-font;
+        font-size: 0.625rem;
+        font-weight: bold;
+        letter-spacing: 0.7px;
+        text-align: left;
+        color: $MERGE-MAIN-COLOR;
+    }
+    
+    &__input-wrapper {
+        padding: 1.5rem 0 1.375rem 0;
+        justify-items: start;
+        justify-self: stretch;
+        grid-area: input-wrapper;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto);
+        grid-template-areas:
+            'label-name label-phone'
+            'input-name input-phone';
+        grid-column-gap: 1.5rem;
+        grid-row-gap: 0.6875rem;
+        @media (max-width: 500px) {
+            width: 100%;
+            grid-template-columns: none;
+            grid-template-rows: repeat(4, auto);
+            grid-template-areas:
+            'label-name '
+            'input-name '
+            'label-phone'
+            'input-phone';
+        }
+    }
+    &__label {
+        align-items: stretch;
+        font-family: $base-font;
+        font-size: 0.5rem;
+        font-weight: bold;
+        text-align: left;
+        color: $TEXT-COLOR;
+        &--name {
+            grid-area: label-name;
+        }
+        &--phone {
+            grid-area: label-phone;
+        }
+    }
+    &__input {
+        text-indent: 1rem;
+        border-radius: 4px;
+        width: 100%;
+        height: 40px;
+        border: none;
+        outline: none;
+        background-color: $BUTTON-COLOR;
+        font-family: $base-font;
+        font-size: 0.625rem;
+        font-weight: 500;
+        text-align: left;
+        color: $TEXT-COLOR;
+        &--name {
+            grid-area: input-name;
+        }
+        &--phone {
+            grid-area: input-phone;
+        }
+    }
+    &__input::placeholder {
+        color: $GREY;
+    }
+
+    &__resident-label {
+        position: relative;
+        grid-area: check;
+        display: grid;
+        grid-template-columns: 16px auto;
+        grid-column-gap: 0.75rem;
+        align-items: center;
+        cursor: pointer;
+    }
+    &__resident-text {
+        grid-column: 2;
+        font-family: $base-font;
+        font-size: 0.625rem;
+        font-weight: 500;
+        text-align: left;
+        color: $GREY;
+    }
+    &__resident-input {
+        position: absolute;
+        z-index: -1;
+        outline: none;
+        border: none;
+    }
+    &__resident-check {
+        width: 16px;
+        height: 16px;
+        border-radius: 3px;
+        background-color: $DARK-GREY;
+        border: solid 1px $MIDDLE-GREY;
+        position: absolute;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+    }
+    &__resident-img {
+        opacity: 0;
+        fill: $MERGE-MAIN-COLOR;
+        width: 100%;
+        height: 100%;
+    }
+    &__resident-input:checked + &-check {
+        border-color: aquamarine;
+        transition: ease-in-out 0.2s border-color;
+    }
+    &__resident-input:not(:checked) + &-check {
+        transition: ease-in-out 0.2s border-color;
+    }
+    &__resident-input:checked + &-check &-img {
+        opacity: 1;
+        transition: opacity ease-in-out 0.2s;
+    }
+    &__resident-input:not(:checked) + &-check &-img {
+        transition: opacity ease-in-out 0.2s;
+    }
+
+
+    &__apply-wrapper {
+        padding-top: 1.2rem;
+        border-top: 1px solid $BUTTON-COLOR;
+        @extend %flex-row-sb;
+        align-items: center;
+	}
+	
+}
+.check-free-time {
+	&__wrapper {
+		display: none;
+		padding-bottom: 2rem;
+		animation-name: pullDown;
+		animation-duration: 0.5s;
+		animation-timing-function: ease-in-out;
+		animation-delay: 1s;
+		transform-origin: 50% 0%;
+	}
+	position: relative;
+	background-color: black;
+	padding: 1rem 0 0.7rem 1.1rem;
+	display: grid;
+	transform: scaleX(1.04);
+	transform-origin: right center;
+	grid-template-rows: repeat(2, auto);
+	grid-template-columns: repeat(2, 1fr);
+	grid-column-gap: 1.5rem;
+	grid-row-gap: 1.25rem;
+	align-items: center;
+	justify-items: start;
+	&__text {
+		grid-column: 1 / 3;
+		color: $TEXT-COLOR;
+		font-family: $base-font;
+		font-size: 0.625rem;
+		font-weight: 500;
+		line-height: 1.6;
+		text-align: left;
+		padding-right: 0.5rem;
+	}
+	&__email {
+		width: 100%;
+        text-indent: 1rem;
+        align-items: stretch;
+        border-radius: 4px;
+        width: 100%;
+        height: 40px;
+        border: none;
+        outline: none;
+        background-color: $BUTTON-COLOR;
+        font-family: $base-font;
+        font-size: 0.625rem;
+        font-weight: 500;
+        text-align: left;
+        color: $TEXT-COLOR;
+    }
+    &__email::placeholder {
+        color: $GREY;
+	}
+	&__button {
+		width: 103px;
+		height: 40px;
+		background-color: $BUTTON-COLOR;
+		font-family: $base-font;
+		font-size: 0.625rem;
+		font-weight: bold;
+		letter-spacing: 0.7px;
+		border-radius: 4px;
+		text-align: center;
+		color: $TEXT-COLOR;
+		outline: none;
+		border: none;
+	}
+}
+.resident-time-info {
+	&__wrapper {
+		display: none;
+		padding-bottom: 2rem;
+		animation-name: pullDown;
+		animation-duration: 0.5s;
+		animation-timing-function: ease-in-out;
+		animation-delay: 1s;
+		transform-origin: 50% 0%;
+	}
+	position: relative;
+	background-color: black;
+	border-radius: 3px;
+	transform: scaleX(1.04);
+	transform-origin: right center;
+	padding: 1rem 0 0.7rem 1.1rem;
+	display: grid;
+	grid-template-rows: repeat(2, auto);
+	grid-template-columns: repeat(3, 1fr);
+	grid-row-gap: 0.4rem;
+	align-items: center;
+	justify-items: start;
+	&::before {
+		top: -10px;
+		left: 1.2rem;
+		border: solid transparent;
+		content: '';
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+		border-color: transparent;
+		border-bottom-color: black;
+		border-width: 5px;
+		animation-name: pullDown;
+		animation-duration: 0.5s;
+		animation-timing-function: ease-in-out;
+		animation-delay: 1s;
+		transform-origin: 50% 100%;
+	}
+	
+	
+	&__title {
+		font-family: $base-font;
+        font-size: 0.625rem;
+        font-weight: 500;
+        text-align: left;
+        color: $GREY;
+	}
+	&__text {
+		font-family: $base-font;
+		font-size: 0.8125rem;
+		font-weight: 500;
+		line-height: 2;
+		text-align: left;
+		color: $TEXT-COLOR;
+		&--red {
+			color: red;
+		}
+	}
+}
+</style>

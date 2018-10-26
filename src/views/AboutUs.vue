@@ -1,0 +1,486 @@
+<template>
+<div class="about-us">
+	<div class="about-us__wrapper">
+		<div class="about-us__main about-us__main--margin">
+			<header class="about-us__header">
+				<h1 class="about-us__title">About Us
+				</h1>
+				<button-membership></button-membership>
+			</header>
+			<section class="work-time work-time--margin">
+				<svg class="work-time__clock">
+					<use xlink:href='#worktime-clock' />
+				</svg>
+				<p class="work-time__text work-time__text--weekday">MON-FRI:</p>
+				<p class="work-time__text work-time__text--weekend">SAT, SUN:</p>
+				<p class="work-time__text work-time__text--time">9:00 - 20:00</p>
+				<p class="work-time__text work-time__text--weekend-time">10:00 - 18:00</p>
+			</section>
+			<section class="subscription-type__wrapper subscription-type__wrapper--margin">
+				<div class="subscription-type subscription-type--resident">
+					<p class="subscription-type__title">Month</p>
+					<a href='../resident-card/resident-card.html' class="subscription-type__resident">Resident card</a>
+					<p class="subscription-type__price">1000</p>
+					<a href='../resident-card/resident-card.html' class="subscription-type__link-img">
+						<svg class="subscription-type__img">
+							<use xlink:href='#infoborder' />
+						</svg>
+					</a>
+				</div>
+				<div class="subscription-type">
+					<p class="subscription-type__title">Week</p>
+					<p class="subscription-type__price">400</p>
+					<a href='#' class="subscription-type__link-img">
+						<svg class="subscription-type__img">
+							<use xlink:href='#infoborder' />
+						</svg>
+					</a>
+				</div>
+				<div class="subscription-type">
+					<p class="subscription-type__title">Day</p>
+					<p class="subscription-type__price">80</p>
+					<a href='#' class="subscription-type__link-img">
+						<svg class="subscription-type__img">
+							<use xlink:href='#infoborder' />
+						</svg>
+					</a>
+				</div>
+			</section>
+			<section class="about-us__inf about-us__inf--margin">
+				<div class="about-us__inner">
+					<p class="about-us__caption">
+						ABOUT US
+					</p>
+					<h2 class="about-us__subtitle">
+						Our missions
+					</h2>
+					<p class="about-us__text">
+						Do everything to make you work in a comfortable environment: IT specialists, designers, copywriters,
+						entrepreneurs - all those with whom it's pleasant to drink coffee and exchange valuable experience or orders.
+						Yes, we also have tea, coffee and biscuits.
+					</p>
+				</div>
+			</section>
+			<div>slider</div>
+		</div>
+	</div>
+	<section class="next-page-nav">
+		<a href='#' class="next-page-nav__link next-page-nav__link--interior">
+			<div class="next-page-nav__inner">
+				<p class="next-page-nav__text">
+					Interior
+				</p>
+			</div>
+		</a>
+		<a href='#' class="next-page-nav__link next-page-nav__link--meeting-room">
+			<div class="next-page-nav__inner">
+				<p class="next-page-nav__text">
+					MEETING ROOM
+				</p>
+			</div>
+		</a>
+	</section>
+</div>
+</template>
+
+<script>
+import ButtonMembership from '@/components/buttons/ButtonMembership.vue';
+
+export default {
+name: 'about',
+components: {
+ButtonMembership
+}
+}
+</script>
+
+<style lang="scss">
+@import '../assets/scss/style.scss';
+.about-us {
+	width: 100%;
+	@extend %flex-col;
+	align-items: center;
+	justify-items: center;
+	flex-shrink: 1;
+	flex-grow: 0;
+	padding-top: 7rem;
+	@media (max-height: 500px) {
+		padding-top: 3rem;
+	}
+	&__wrapper {
+		width: 100%;
+		display: flex;
+		padding: 0 112px;
+		@media (max-width: 920px) {
+			justify-content: flex-start;
+			padding: 0 0 0 112px;
+		}
+		@media (max-height: 500px) {
+			padding: 0 0 0 80px;
+		}
+		@media (max-width: 600px) {
+			justify-content: flex-start;
+			padding: 0;
+		}
+		@media (max-width: 600px) and (max-height: 500px) {
+			justify-content: flex-start;
+			padding: 0 0 0 80px;
+		}
+	}
+	&__main {
+		width: 100%;
+		padding: 0 10%;
+		@extend %flex-col-c;
+		align-items: flex-start;
+		&--margin {
+			margin-bottom: 68px;
+			@media (max-width: 600px) {
+				margin-bottom: 2rem;
+			}
+		}
+		@media (max-width: 920px) {
+			padding: 0 5%;
+		}
+		@media (max-width: 600px) {
+			padding: 0;
+		}
+	}
+	&__header {
+		width: 100%;
+		@extend %flex-row-sb;
+		align-items: center;
+		margin: 0 0 78px 0;
+		@media (max-width: 990px) {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		.button-membership {
+			@media (max-width: 990px) {
+				align-self: flex-start;
+			}
+			@media (max-width: 600px) {
+				align-self: center;
+			}
+			@media (max-width: 450px) {
+				width: 90%;
+			}
+		}
+	}
+	&__title {
+		font-family: $title-font;
+		font-size: 5rem;
+		font-weight: 500;
+		text-align: left;
+		color: $TEXT-COLOR;
+		white-space: nowrap;
+		margin: 0;
+
+		@media (max-width: 990px) {
+			margin-bottom: 2rem;
+		}
+		@media (max-width: 600px) {
+			font-size: 4rem;
+			white-space: normal;
+			align-self: center;
+			text-align: center;
+		}
+	}
+	&__inf {
+		@extend %flex-row;
+		justify-content: flex-end;
+		transition: flex ease-in-out 0.3s;
+
+		&--margin {
+			margin-bottom: 90px;
+			@media (max-width: 600px) {
+				margin-bottom: 3rem;
+			}
+		}
+		@media (max-width: 920px) {
+			flex-grow: 1;
+			flex-shrink: 1;
+			justify-content: flex-start;
+		}
+		@media (max-width: 600px) {
+			padding: 0 1rem;
+		}
+	}
+	&__inner {
+		flex: 0 0 60%;
+		text-align: left;
+		@extend %flex-col;
+		align-items: flex-start;
+		@media (max-width: 920px) {
+			flex-grow: 1;
+			flex-shrink: 1;
+		}
+	}
+	&__caption {
+		cursor: default;
+		padding: 4px 7px;
+		background-color: $MERGE-MAIN-COLOR;
+		text-align: center;
+		font-family: $title-font;
+		font-size: 0.625rem;
+		font-weight: bold;
+		letter-spacing: 0.7px;
+		color: $MAIN-DARK-COLOR;
+	}
+	&__subtitle {
+		padding: 22px 0;
+		font-family: $title-font;
+		font-size: 1.875rem;
+		font-weight: bold;
+		text-align: left;
+		color: $TEXT-COLOR;
+		position: relative;
+		&::after {
+			content: '';
+			width: 32px;
+			height: 3px;
+			background-color: #ffffff;
+			position: absolute;
+			right: -51px;
+			top: 50%;
+		}
+	}
+	&__text {
+		flex-grow: 1;
+		flex-shrink: 1;
+		font-family: Montserrat;
+		font-size: 0.8125rem;
+		font-weight: 500;
+		line-height: 2.38;
+		letter-spacing: 0.9px;
+		text-align: left;
+		color: $TEXT-COLOR;
+	}
+}
+
+.subscription-type {
+	padding-left: 14px;
+	width: 128px;
+	height: 68px;
+	border-radius: 3px;
+	background-color: transparent;
+	border: solid 2px $DARK-GREY;
+	outline: none;
+	cursor: pointer;
+	@extend %flex-col-se;
+	align-items: flex-start;
+	position: relative;
+	margin-right: 1.5rem;
+	@media (max-width: 700px) {
+		margin-right: 0;
+		margin-bottom: 1rem;
+		width: 100%;
+	}
+	&:last-of-type {
+		margin: 0;
+	}
+	&--resident {
+		height: 84px;
+	}
+	&__wrapper {
+		width: 100%;
+		@extend %flex-row;
+		align-items: flex-start;
+		@media (max-width: 700px) {
+			flex-direction: column;
+			align-items: flex-start;
+			padding: 0 2rem;
+		}
+		&--margin {
+			margin-bottom: 100px;
+			@media (max-width: 600px) {
+				margin-bottom: 3rem;
+			}
+		}
+	}
+	&__title {
+		font-family: $base-font;
+		font-size: 0.875rem;
+		font-weight: 700;
+		text-align: left;
+		color: $TEXT-COLOR;
+	}
+	&__resident {
+		font-family: $base-font;
+		font-size: 0.5625rem;
+		font-weight: 500;
+		text-align: left;
+		color: $GREY;
+		text-decoration: none;
+		@media (min-width: 600px) {
+			&:hover {
+				color: $TEXT-COLOR;
+				transition: color ease-in-out 0.2s;
+			}
+			&:not(:hover) {
+				transition: color ease-in-out 0.2s;
+			}
+		}
+	}
+	&__price {
+		font-family: $base-font;
+		font-size: 0.625rem;
+		font-weight: 500;
+		text-align: left;
+		color: $TEXT-COLOR;
+		&::after {
+			content: ' uah';
+		}
+	}
+	&__link-img {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		text-decoration: none;
+		right: 11px;
+		top: 11px;
+		@media (min-width: 600px) {
+			&:hover .subscription-type__img {
+				fill: white;
+				transition: fill ease-in-out 0.1s;
+			}
+			&:not(:hover) .subscription-type__img {
+				transition: fill ease-in-out 0.1s;
+			}
+		}
+	}
+
+	&__img {
+		width: 100%;
+		height: 100%;
+		fill: $GREY;
+	}
+	@media (min-width: 600px) {
+		&:hover {
+			border-color: $TEXT-COLOR;
+			transition: border-color ease-in-out 0.2s;
+		}
+		&:not(:hover) {
+			transition: border-color ease-in-out 0.2s;
+		}
+	}
+	&:active {
+		filter: blur(1px) brightness(0.6);
+		transition: filter ease-in-out 0.2s;
+	}
+	&:not(:active) {
+		transition: filter ease-in-out 0.2s;
+	}
+}
+
+.work-time {
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	grid-template-rows: repeat(2, auto);
+	grid-column-gap: 21px;
+	align-items: center;
+	&--margin {
+		margin-bottom: 56px;
+	}
+	&__clock {
+		grid-area: 1 / 1 / 3 / 2;
+		width: 42px;
+		height: 42px;
+		background-color: transparent;
+		fill: $MERGE-MAIN-COLOR;
+		justify-self: start;
+		align-self: center;
+	}
+	&__text {
+		font-family: Montserrat;
+		font-size: 0.8125rem;
+		font-weight: normal;
+		line-height: 1.69;
+		letter-spacing: 0.9px;
+		text-align: left;
+		color: $TEXT-COLOR;
+		&--weekday {
+			grid-area: 1 / 2 / 2 / 3;
+		}
+		&--weekend {
+			grid-area: 1 / 3 / 2 / 4;
+		}
+		&--time {
+			font-weight: normal;
+			grid-area: 2 / 2 / 3 / 3;
+		}
+		&--weekend-time {
+			font-weight: bold;
+			grid-area: 2 / 3 / 3 / 4;
+		}
+	}
+	@media (max-width: 600px) {
+		align-self: center;
+	}
+}
+
+.next-page-nav {
+	padding-left: 112px;
+	width: 100%;
+	@extend %flex-row;
+	height: 304px;
+
+	@media (max-width: 920px) {
+		flex-direction: column;
+		align-items: stretch;
+		height: 608px;
+	}
+	@media (max-width: 600px) {
+		height: 304px;
+		padding-left: 0;
+	}
+	@media (max-height: 500px) {
+		padding-left: 80px;
+		height: 100vh;
+	}
+	&__link {
+		height: 100%;
+		flex-basis: auto;
+		flex-grow: 1;
+		position: relative;
+		background-size: cover;
+		background-repeat: no-repeat;
+		@media (min-width: 600px) {
+			&:hover .next-page-nav__inner {
+				background-color: transparent;
+				transition: background-color ease-in-out 0.2s;
+			}
+			&:not(:hover) .next-page-nav__inner {
+				transition: background-color ease-in-out 0.2s;
+			}
+		}
+		&--interior {
+			background-image: url('../assets/image/interior.jpg');
+		}
+		&--meeting-room {
+			background-image: url('../assets/image/meeting-room.jpg');
+		}
+		&--events {
+			background-image: url('../assets/image/events.jpg');
+		}
+	}
+	&__inner {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		@extend %flex-col-c;
+		align-items: center;
+		background-color: rgba(19, 19, 19, 0.8);
+	}
+	&__text {
+		text-transform: uppercase;
+		font-family: Montserrat;
+		font-size: 1.125rem;
+		font-weight: bold;
+		letter-spacing: 1.2px;
+		text-align: center;
+		color: $TEXT-COLOR;
+	}
+}
+</style>
