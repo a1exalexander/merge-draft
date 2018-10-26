@@ -1,4 +1,4 @@
-# hello-world
+# mrge@place
 
 ## Project setup
 ```
