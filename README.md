@@ -1,4 +1,4 @@
-# hello-world
+# merge@place
 
 ## Project setup
 ```
