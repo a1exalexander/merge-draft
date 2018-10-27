@@ -1,4 +1,4 @@
-# merge@place
+# [merge@place](https://a1exalexander.github.io/merge-draft/dist)
 
 ## Project setup
 ```
