@@ -1,5 +1,11 @@
 <template>
 <div class="booking-workplace__wrapper">
+    <transition
+    name="custom-classes-transition"
+    enter-active-class="animated faster fadeIn"
+    leave-active-class="animated faster fadeOut">
+    <resident-card v-if='residentCard' @closeResidentCard='residentCard = false'></resident-card>
+    </transition>
 	<div class="logo__wrapper">
 		<svg class="logo">
 			<use xlink:href='#logo' />
@@ -9,8 +15,7 @@
 		<div class="booking-workplace__inner booking-workplace__inner--back-button">
 			<button-back></button-back>
 		</div>
-		<h1 class="booking-workplace__title">
-			Booking of the
+		<h1 class="booking-workplace__title">Booking of the
 			workplace
 		</h1>
 		<div class="booking-workplace__inner booking-workplace__inner--choice">
@@ -19,9 +24,9 @@
 					onclick="radioUncheck(this)" checked>
 				<div class="workplace-choice__inner">
 					<p class="workplace-choice__title">Month</p>
-					<a href='../resident-card/resident-card.html' class="workplace-choice__resident">Resident card</a>
+					<p class="workplace-choice__resident">Resident card</p>
 					<p class="workplace-choice__price">1000</p>
-					<a href='../resident-card/resident-card.html' class="workplace-choice__link-img">
+					<a href='#' class="workplace-choice__link-img" @click.prevent="residentCard = true">
 						<svg class="workplace-choice__img workplace-choice__img--resident">
 							<use xlink:href='#infoborder' />
 						</svg>
@@ -83,19 +88,36 @@
 			<button-apply disabled></button-apply>
 		</div>
 	</section>
+    <svg style="display: none">
+      <symbol id='logo' viewBox="0 0 31 40">
+        <path fill-rule="evenodd" d="M20.4593069,32.8365086 L23.8888332,29.1227295 L31,36.2862209 L27.570731,40 L20.4593069,32.8365086 Z M15.4625816,0 L26.0850832,10.7005349 L18.0964043,10.7005349 L18.0964043,25.4662469 L3.77682656,39.9891419 L0,36.2971308 L12.693955,23.3086219 L12.693955,10.7005349 L4.89641986,10.7005349 L15.4625816,0 Z"
+        id="Combined-Shape"></path>
+        <symbol id='infoborder' width="16px" height="16px" viewBox="0 0 24 24">
+			<path d="M11,17 L13,17 L13,11 L11,11 L11,17 L11,17 Z M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 L12,2 Z M12,20 C7.59,20 4,16.41 4,12 C4,7.59 7.59,4 12,4 C16.41,4 20,7.59 20,12 C20,16.41 16.41,20 12,20 L12,20 Z M11,9 L13,9 L13,7 L11,7 L11,9 L11,9 Z" id="Shape"></path>
+		</symbol>
+      </symbol>
+    </svg>
 </div>	
 </template>
 
 <script>
 import ButtonBack from '@/components/buttons/ButtonBack.vue';
 import ButtonApply from '@/components/buttons/ButtonApply.vue';
+import ResidentCard from '@/components/ResidentCard.vue';
 
 export default {
   name: 'booking-workplace',
   components: {
     ButtonBack,
-    ButtonApply
+    ButtonApply,
+    ResidentCard
+  },
+  data () {
+      return {
+          residentCard: false
+      }
   }
+  
 }
 </script>
 

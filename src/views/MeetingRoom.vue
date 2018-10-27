@@ -13,7 +13,7 @@
 					<button class="meeting-room__label-button">
 						Photos
 					</button>
-					<div>slider</div>
+					<slider></slider>
 				</section>
 				<section class="meeting-room-inf">
 					<div class="meeting-room-inf__wrapper">
@@ -91,13 +91,15 @@
 import ButtonBookRoom from '@/components/buttons/ButtonBookRoom.vue';
 import ButtonResidentLink from '@/components/buttons/ButtonResidentLink.vue';
 import ButtonBookNow from '@/components/buttons/ButtonBookNow.vue';
+import Slider from '@/components/Slider.vue';
 
 export default {
   name: 'meeting-room',
   components: {
 	ButtonBookRoom,
 	ButtonResidentLink,
-	ButtonBookNow
+	ButtonBookNow,
+	Slider
   }
 }
 </script>

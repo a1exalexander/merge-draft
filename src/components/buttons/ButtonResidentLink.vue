@@ -1,5 +1,5 @@
 <template>
-<button class="button-resident-link">
+<button class="button-resident-link" @click="becomeMember">
 	<p class='button-resident-link__text'>
 		BECOME A RESIDENT
 		<svg class='button-resident-link__img'>
@@ -15,25 +15,29 @@
 </template>
 
 <script>
-
 export default {
-  name: 'button-resident-link'
-}
+	name: 'button-resident-link',
+	methods: {
+		becomeMember() {
+			this.$router.push('/booking-workplace');
+		}
+	}
+};
 </script>
 
 <style lang="scss">
 @import '../../assets/scss/style.scss';
 .button-resident-link {
-    padding: 4px 6px;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    text-align: center;
-    border-radius: 3px;
-    @extend %flex-row-c;
-    flex-flow: nowrap;
-    position: relative;
-    z-index: 2;
+	padding: 4px 6px;
+	background-color: transparent;
+	outline: none;
+	border: none;
+	text-align: center;
+	border-radius: 3px;
+	@extend %flex-row-c;
+	flex-flow: nowrap;
+	position: relative;
+	z-index: 2;
 	@media (min-width: 600px) {
 		&:hover &__text {
 			color: $MERGE-MAIN-COLOR;
@@ -43,53 +47,53 @@ export default {
 		}
 	}
 	&:focus &__text {
-        color: $MERGE-SECONDARY-COLOR;
-    }
-    &:focus &__text::before {
-        visibility: visible;
+		color: $MERGE-SECONDARY-COLOR;
+	}
+	&:focus &__text::before {
+		visibility: visible;
 	}
 	&:active &__text {
-        color: $MERGE-DARK-COLOR;
-    }
-    &:active &__img {
-        fill: $MERGE-DARK-COLOR;
+		color: $MERGE-DARK-COLOR;
 	}
-	
-    &__text {
-        text-align: center;
-        @extend %flex-row-c;
-        align-items: center;
-        flex-flow: nowrap;
-        text-transform: uppercase;
-        font-family: $base-font;
-        font-size: 0.625rem;
-        font-weight: 700;
-        letter-spacing: 0.7px;
+	&:active &__img {
+		fill: $MERGE-DARK-COLOR;
+	}
+
+	&__text {
+		text-align: center;
+		@extend %flex-row-c;
+		align-items: center;
+		flex-flow: nowrap;
+		text-transform: uppercase;
+		font-family: $base-font;
+		font-size: 0.625rem;
+		font-weight: 700;
+		letter-spacing: 0.7px;
 		color: $MERGE-SECONDARY-COLOR;
 		transition: color ease-in-out 0.1s;
 		margin-right: 5px;
 		white-space: nowrap;
-        &::before {
-            position: absolute;
-            content: '';
-            background-color: transparent;
-            left: -2px;
-            right: -2px;
-            top: -2px;
-            bottom: -2px;
+		&::before {
+			position: absolute;
+			content: '';
+			background-color: transparent;
+			left: -2px;
+			right: -2px;
+			top: -2px;
+			bottom: -2px;
 			border: solid 2.5px rgba(55, 205, 171, 0.5);
-            border-radius: 4px;
-            transition: border ease-in-out 0.2s;
-            z-index: 0;
-            visibility: hidden;
-        }
-    }
-    &__img {
-        stroke: none;
-        height: 16px;
-        width: 16px;
-        fill: $TEXT-COLOR;
+			border-radius: 4px;
+			transition: border ease-in-out 0.2s;
+			z-index: 0;
+			visibility: hidden;
+		}
+	}
+	&__img {
+		stroke: none;
+		height: 16px;
+		width: 16px;
+		fill: $TEXT-COLOR;
 		fill: $MERGE-SECONDARY-COLOR;
-    }
+	}
 }
 </style>

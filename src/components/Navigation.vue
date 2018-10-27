@@ -38,7 +38,7 @@
             <div class="social-networks__outside"></div>
         </a>
     </section>
-     <svg style="display: none">
+    <svg style="display: none">
       <symbol id='logo' viewBox="0 0 31 40">
         <path fill-rule="evenodd" d="M20.4593069,32.8365086 L23.8888332,29.1227295 L31,36.2862209 L27.570731,40 L20.4593069,32.8365086 Z M15.4625816,0 L26.0850832,10.7005349 L18.0964043,10.7005349 L18.0964043,25.4662469 L3.77682656,39.9891419 L0,36.2971308 L12.693955,23.3086219 L12.693955,10.7005349 L4.89641986,10.7005349 L15.4625816,0 Z"
         id="Combined-Shape"></path>
@@ -138,9 +138,8 @@ export default {
     height: 40px;
     align-self: start;
     animation-name: rotateIn;
-    animation-duration: 1.5s;
+    animation-duration: 2s;
     animation-timing-function: ease-in-out;
-    animation-delay: 100ms;
     @media (max-width: 600px), (max-height: 500px) {
         grid-column: 1;
         grid-row: 1;

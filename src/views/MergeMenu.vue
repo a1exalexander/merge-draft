@@ -110,12 +110,15 @@ export default {
 	},
 	methods: {
 		goBack () {
-            window.history.length > 1
-            ? this.$router.go(-1)
-            : this.$router.push('/');
-        }
+		let onThis = this;
+		if(window.history.length > 1) {
+			onThis.$router.go(-1);	
+		} else {
+			onThis.$router.go(-1);
+		}
+		}
 	}
-};
+}
 </script>
 
 <style lang="scss">
@@ -133,7 +136,7 @@ export default {
 	position: relative;
 	z-index: 2;
 	animation-name: fadeIn;
-	animation-duration: 1s;
+	animation-duration: .5s;
 	@media (min-width: 600px) {
 		&:hover {
 			background-color: $GREY;
@@ -147,8 +150,6 @@ export default {
 	}
 	&:focus &__img {
 		fill: $GREY;
-		transform: rotate(-90deg);
-		transition: transform ease-in-out 0.2s;
 	}
 	&:focus &__outside {
 		visibility: visible;
@@ -169,7 +170,7 @@ export default {
 		position: absolute;
 		right: -2em;
 		animation-name: fadeIn;
-		animation-duration: 2s;
+		animation-duration: .5s;
 		animation-timing-function: ease-in-out;
 		@media (max-width: 950px) {
 			left: auto;

@@ -42,20 +42,34 @@ export default {
 				name == 'events' ||
 				name == 'about'
 			) {
-                return (this.navi = true);
+                return true;
 			} else {
-				return (this.navi = false);
+				return false;
 			}
         }
 	},
 	beforeUpdate: function() {
         if (this.navi !== this.onNavi()) {
-			this.navi = this.onNavi();
+			let onThis = this;
+			if(this.navi) {
+				setTimeout(function() {
+					onThis.navi = onThis.onNavi();
+				}, 350);
+			} else {
+				this.navi = this.onNavi();
+			}
 		}
 	},
 	beforeMount: function() {
 		if (this.navi !== this.onNavi()) {
-			this.navi = this.onNavi();
+			let onThis = this;
+			if(this.navi) {
+				setTimeout(function() {
+					onThis.navi = onThis.onNavi();
+				}, 350);
+			} else {
+				this.navi = this.onNavi();
+			}
 		}
 	}
 };

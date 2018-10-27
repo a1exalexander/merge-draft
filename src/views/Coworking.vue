@@ -62,7 +62,7 @@
 				<button class="coworking__label-button">
 					Photos
 				</button>
-				<div>slider</div>
+				<slider></slider>
 			</section>
 		</div>
 	</div>
@@ -88,11 +88,13 @@
 
 <script>
 import ButtonMembership from '@/components/buttons/ButtonMembership.vue';
+import Slider from '@/components/Slider.vue';
 
 export default {
   name: 'coworking',
   components: {
-    ButtonMembership
+	ButtonMembership,
+	Slider
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-<button class="button-membership button-membership--hello">
+<button class="button-membership button-membership--hello" @click='becomeMember'>
 	<p class='button-membership__text'>
 		BECOME A MEMBER
 		<svg class='button-membership__img'>
@@ -18,7 +18,12 @@
 <script>
 
 export default {
-  name: 'button-membership'
+    name: 'button-membership',
+    methods: {
+		becomeMember () {
+            this.$router.push('/booking-workplace');
+        }
+	}
 }
 </script>
 

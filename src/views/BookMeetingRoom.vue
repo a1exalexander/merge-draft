@@ -1,6 +1,10 @@
 <template>
 <div class="book-meeting-room__wrapper">
-	<merge-logo></merge-logo>
+	<div class="logo__wrapper">
+		<svg class="logo">
+			<use xlink:href='#logo' />
+		</svg>
+	</div>
 	<div class="book-meeting-room">
 		<button-back></button-back>
 		<h2 class="book-meeting-room__title">Meeting Room<br>Resevation
@@ -91,6 +95,18 @@
 			<button-book disabled></button-book>
 		</div>
 	</div>
+    <svg style="display: none">
+        <symbol id='logo' viewBox="0 0 31 40">
+            <path fill-rule="evenodd" d="M20.4593069,32.8365086 L23.8888332,29.1227295 L31,36.2862209 L27.570731,40 L20.4593069,32.8365086 Z M15.4625816,0 L26.0850832,10.7005349 L18.0964043,10.7005349 L18.0964043,25.4662469 L3.77682656,39.9891419 L0,36.2971308 L12.693955,23.3086219 L12.693955,10.7005349 L4.89641986,10.7005349 L15.4625816,0 Z"
+            id="Combined-Shape"></path>
+        </symbol>
+        <symbol id='icon-checkbox' viewBox="0 0 24 24">
+			<path fill-rule="evenodd" d="M5 12.192l1.4-1.346 3.6 3.462L17.6 7 19 8.346 10 17z"/>
+		</symbol> 
+        <symbol id='icon-edit' viewBox="0 0 24 24">
+			<path fill-rule="evenodd" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+		</symbol>
+    </svg>
 </div>
 </template>
 
@@ -346,18 +362,18 @@ export default {
         width: 100%;
         height: 100%;
     }
-    &__resident-input:checked + &-check {
+    &__resident-input:checked + &__resident-check {
         border-color: aquamarine;
         transition: ease-in-out 0.2s border-color;
     }
-    &__resident-input:not(:checked) + &-check {
+    &__resident-input:not(:checked) + &__resident-check {
         transition: ease-in-out 0.2s border-color;
     }
-    &__resident-input:checked + &-check &-img {
+    &__resident-input:checked + &__resident-check &__resident-img {
         opacity: 1;
         transition: opacity ease-in-out 0.2s;
     }
-    &__resident-input:not(:checked) + &-check &-img {
+    &__resident-input:not(:checked) + &__resident-check &__resident-img {
         transition: opacity ease-in-out 0.2s;
     }
 
