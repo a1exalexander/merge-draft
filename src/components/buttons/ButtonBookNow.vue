@@ -1,5 +1,5 @@
 <template>
-<button class="button-book-now">
+<button class="button-book-now" @click="bookMeetingRoom">
 	<p class="button-book-now__text">
 		book now
 	</p>
@@ -7,10 +7,14 @@
 </template>
 
 <script>
-
 export default {
-  name: 'button-book-now'
-}
+	name: 'button-book-now',
+	methods: {
+		bookMeetingRoom() {
+			this.$router.push('/book-meeting-room');
+		}
+	}
+};
 </script>
 
 <style lang="scss">
@@ -23,16 +27,16 @@ export default {
 	border: none;
 	text-align: center;
 	@extend %flex-row-c;
-    align-items: center;
+	align-items: center;
 	position: relative;
 	z-index: 2;
-	transition: background-color ease-in-out 0.1s; 
+	transition: background-color ease-in-out 0.1s;
 	&:active &__text {
-        color: $LIGHT-GREY;
-    }
-    &:focus &__text::before {
-        visibility: visible;
-    }
+		color: $LIGHT-GREY;
+	}
+	&:focus &__text::before {
+		visibility: visible;
+	}
 	&__text {
 		font-family: $base-font;
 		font-size: 0.625rem;
@@ -41,21 +45,21 @@ export default {
 		letter-spacing: 0.7px;
 		color: $TEXT-COLOR;
 		text-transform: uppercase;
-		transition: color ease-in-out 0.1s; 
+		transition: color ease-in-out 0.1s;
 		&::before {
-            position: absolute;
-            content: '';
-            background-color: transparent;
-            left: -2px;
-            right: -2px;
-            top: -2px;
-            bottom: -2px;
-            border: 1px solid $LIGHT-GREY;
-            border-radius: 4px;
-            transition: border ease-in-out 0.2s;
-            z-index: 0;
-            visibility: hidden;
-        }
+			position: absolute;
+			content: '';
+			background-color: transparent;
+			left: -2px;
+			right: -2px;
+			top: -2px;
+			bottom: -2px;
+			border: 1px solid $LIGHT-GREY;
+			border-radius: 4px;
+			transition: border ease-in-out 0.2s;
+			z-index: 0;
+			visibility: hidden;
+		}
 	}
 }
 </style>

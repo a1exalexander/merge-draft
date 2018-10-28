@@ -131,7 +131,7 @@ export default {
 		align-items: center;
 		transition: background-color ease-in-out 0.1s;
 		position: relative;
-    	z-index: 2;
+		z-index: 2;
 		&:active .glide__outside {
 			visibility: visible;
 		}
@@ -143,20 +143,20 @@ export default {
 		}
 	}
 	&__outside {
-        pointer-events: none;
-        position: absolute;
-        content: '';
-        background-color: transparent;
-        left: -2px;
-        right: -2px;
-        top: -2px;
-        bottom: -2px;
-        border: 1px solid $GREY-BORDER-COLOR;
-        border-radius: 4px;
-        transition: border ease-in-out 0.2s;
-        z-index: 0;
-        visibility: hidden;
-    }
+		pointer-events: none;
+		position: absolute;
+		content: '';
+		background-color: transparent;
+		left: -2px;
+		right: -2px;
+		top: -2px;
+		bottom: -2px;
+		border: 1px solid $GREY-BORDER-COLOR;
+		border-radius: 4px;
+		transition: border ease-in-out 0.2s;
+		z-index: 0;
+		visibility: hidden;
+	}
 	&__nav-icon {
 		width: 24px;
 		height: 24px;

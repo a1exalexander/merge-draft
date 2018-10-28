@@ -1161,6 +1161,35 @@
 	}
 }
 
+@-webkit-keyframes pullDown {
+	0% {
+		transform: scaleY(0.1);
+	}
+	40% {
+		transform: scaleY(1.02);
+	}
+	60% {
+		transform: scaleY(0.98);
+	}
+	80% {
+		transform: scaleY(1.01);
+	}
+	100% {
+		transform: scaleY(0.98);
+	}
+	80% {
+		transform: scaleY(1.01);
+	}
+	100% {
+		transform: scaleY(1);	
+}
+}
+
+.pullDown {
+	-webkit-animation-name: pullDown;
+	animation-name: pullDown;
+}
+
 @keyframes rotateIn {
 	0% {
 		opacity: 0;

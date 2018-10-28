@@ -255,10 +255,10 @@ export default {
 		}
     }
     @media (min-width: 601px) {
-        &:hover .hello-link__text,
-	    &:hover .hello-link__img {
-            color: $MERGE-MAIN-COLOR;
-            fill: $MERGE-MAIN-COLOR;
+    &:hover .hello-link__text,
+    &:hover .hello-link__img {
+        color: $MERGE-MAIN-COLOR;
+        fill: $MERGE-MAIN-COLOR;
 	}
     }
 	&:focus {

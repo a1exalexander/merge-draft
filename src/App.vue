@@ -2,6 +2,7 @@
   <div id="app">
 
       <transition 
+	appear
     name="custom-classes-transition"
     enter-active-class="animatedInNav fadeIn"
     leave-active-class="animatedOutNav fadeOut">
@@ -9,6 +10,7 @@
     </transition>
 
     <transition 
+	appear
     name="custom-classes-transition"
     enter-active-class="animated fadeInLeft"
     leave-active-class="animatedOut fadeOut"
