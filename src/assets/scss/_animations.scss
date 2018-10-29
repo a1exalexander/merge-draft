@@ -1094,6 +1094,11 @@
 	animation-duration: 2s;
 }
 
+.animated.middle {
+	-webkit-animation-duration: 1.5s;
+	animation-duration: 1.5s;
+}
+
 .animated.slower {
 	-webkit-animation-duration: 3s;
 	animation-duration: 3s;
