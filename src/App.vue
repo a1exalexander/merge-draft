@@ -35,7 +35,7 @@ export default {
 		};
 	},
 	methods: {
-		onNavi () {
+		onNavi() {
 			let name = this.$route.name;
 			if (
 				name == 'hello' ||
@@ -44,16 +44,16 @@ export default {
 				name == 'events' ||
 				name == 'about'
 			) {
-                return true;
+				return true;
 			} else {
 				return false;
 			}
-        }
+		}
 	},
 	beforeUpdate: function() {
-        if (this.navi !== this.onNavi()) {
+		if (this.navi !== this.onNavi()) {
 			let onThis = this;
-			if(this.navi) {
+			if (this.navi) {
 				setTimeout(function() {
 					onThis.navi = onThis.onNavi();
 				}, 150);
@@ -65,7 +65,7 @@ export default {
 	beforeMount: function() {
 		if (this.navi !== this.onNavi()) {
 			let onThis = this;
-			if(this.navi) {
+			if (this.navi) {
 				setTimeout(function() {
 					onThis.navi = onThis.onNavi();
 				}, 350);
