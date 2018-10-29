@@ -109,16 +109,16 @@ export default {
 		ButtonMap
 	},
 	methods: {
-		goBack () {
-		let onThis = this;
-		if(window.history.length > 1) {
-			onThis.$router.go(-1);	
-		} else {
-			onThis.$router.go(-1);
-		}
+		goBack() {
+			let onThis = this;
+			if (window.history.length > 1) {
+				onThis.$router.go(-1);
+			} else {
+				onThis.$router.go(-1);
+			}
 		}
 	}
-}
+};
 </script>
 
 <style lang="scss">
