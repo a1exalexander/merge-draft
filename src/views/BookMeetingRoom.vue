@@ -46,17 +46,18 @@
 					</svg>
 				</div>
 				<p class="book-meeting-room__resident-text">
-					I'm a Resident {{ checked }}
+					I'm a Resident
 				</p>
 			</label>
 		</form>
-        <transition 
-        appear
-        name="custom-classes-transition"
-        enter-active-class="animated pullDown"
-        leave-active-class="animated fadeOut">
         <div class="book-meeting-room__check-frame" v-if='checked'>
-            <form id='check-free-time' class="check-free-time" v-show='checkFrameIn'>
+            <transition 
+            appear
+            name="custom-classes-transition"
+            enter-active-class="animated pullDown"
+            leave-active-class="animatedOut02 pullUp">
+            <div class="check-free-time__wrapper" v-show='checkFrameIn'>
+			<form id='check-free-time' class="check-free-time">
 				<p class="check-free-time__text">Put your E-Mail for checking availability of free hours for Meeting Room's using
 				</p>
 				<input form='check-free-time' type="email" class="check-free-time__email" placeholder="Email">
@@ -64,7 +65,15 @@
 					<p class="check-free-time__button-text">CHECK</p>
 				</button>
 			</form>
-            <div class="resident-time-info" v-show='checkFrameOut'>
+            </div>
+            </transition>
+            <transition 
+            appear
+            name="custom-classes-transition"
+            enter-active-class="animated pullDown"
+            leave-active-class="animated pullUp">
+            <div class="resident-time-info__wrapper" v-show='checkFrameOut'>
+			<div class="resident-time-info">
 				<p class="resident-time-info__title">
 					Resident
 				</p>
@@ -78,14 +87,15 @@
 					(Pasha Tseluyko)
 				</p>
 				<p class="resident-time-info__text">
-					(Pasha Tseluyko)
+					14 – 20 May
 				</p>
 				<p class="resident-time-info__text resident-time-info__text--red">
 					(1 h.)
 				</p>
 			</div>
+            </div>
+            </transition>
         </div>
-        </transition>
 		<div class="book-meeting-room__apply-wrapper">
 			<p class="booking-price book-meeting-room__price">
 				Price:
@@ -118,29 +128,29 @@ export default {
 	components: {
 		ButtonBack,
 		ButtonBook
-    },
-    data () {
-        return {
-            checkFrameIn: false,
-            checkFrameOut: false,
-            checked: null
-        }
-    },
+	},
+	data() {
+		return {
+			checkFrameIn: false,
+			checkFrameOut: false,
+			checked: null
+		};
+	},
 	methods: {
 		checkResidentTime() {
-            let onThis = this;
-            setTimeout(function() {
-                onThis.checkFrameIn = false;
-                onThis.checkFrameOut = true;
-            }, 1000);
-        }
-    },
-    watch: {
-        checked: function() {
-            this.checkFrameIn = true;
-            this.checkFrameOut = false;
-        }
-    }
+			let onThis = this;
+			this.checkFrameIn = false;
+			setTimeout(function() {
+				onThis.checkFrameOut = true;
+			}, 200);
+		}
+	},
+	watch: {
+		checked: function() {
+			this.checkFrameIn = true;
+			this.checkFrameOut = false;
+		}
+	}
 };
 </script>
 
@@ -151,7 +161,8 @@ export default {
 	display: grid;
 	grid-template-rows: repeat(5, auto);
 	align-items: center;
-	will-change: transform;
+	will-change: height;
+	transition: height ease-in-out 0.3s;
 	@media (min-width: 600px) {
 		min-width: 430px;
 	}
@@ -401,11 +412,11 @@ export default {
 		border-top: 1px solid $BUTTON-COLOR;
 		@extend %flex-row-sb;
 		align-items: center;
-    }
-    &__check-frame {
-        padding-bottom: 2rem;
+	}
+	&__check-frame {
+		padding-bottom: 2rem;
 		transform-origin: 50% 0%;
-    }
+	}
 }
 .check-free-time {
 	position: relative;
@@ -478,28 +489,29 @@ export default {
 		color: $GREY;
 	}
 	&__button {
-		padding: 1rem 2rem;
+		padding: 0 2rem;
+		height: 40px;
 		background-color: $BUTTON-COLOR;
 		border-radius: 3px;
 		outline: none;
 		border: none;
-        @extend %flex-row-c;
-	    align-items: center;
-        position: relative;
-	    z-index: 2;
-        transition: background-color ease-in-out 0.1s;
+		@extend %flex-row-c;
+		align-items: center;
+		position: relative;
+		z-index: 2;
+		transition: background-color ease-in-out 0.1s;
 		@media (max-width: 600px) {
 			grid-column: 1 / 3;
 			width: 100%;
 		}
-        &:active .check-free-time__button-text {
-		    color: $LIGHT-GREY;
-        }
-        &:focus .check-free-time__button-text::before {
-            visibility: visible;
-        }
+		&:active .check-free-time__button-text {
+			color: $LIGHT-GREY;
+		}
+		&:focus .check-free-time__button-text::before {
+			visibility: visible;
+		}
 	}
-   
+
 	&__button-text {
 		font-family: $base-font;
 		font-size: 0.625rem;
@@ -538,6 +550,11 @@ export default {
 	grid-row-gap: 0.4rem;
 	align-items: center;
 	justify-items: start;
+	@media (max-width: 600px) {
+		transform: scaleX(1);
+		transform-origin: center;
+		padding: 1rem;
+	}
 	&::before {
 		top: -10px;
 		left: 1.2rem;

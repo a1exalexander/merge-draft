@@ -10,6 +10,7 @@
   "dependencies": {
     "vue": "^2.5.17",
     "vue-cookies": "^1.5.7",
+    "vue-full-calendar": "^2.7.0",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

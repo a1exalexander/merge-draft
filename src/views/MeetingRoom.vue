@@ -67,7 +67,7 @@
 				</section>
 			</div>
 		</div>
-		<div>calendar</div>
+		<calendar></calendar>
 		<section class="next-page-nav">
 			<router-link to="/meeting-room" class="next-page-nav__link next-page-nav__link--interior">
 				<div class="next-page-nav__inner">
@@ -92,6 +92,7 @@ import ButtonBookRoom from '@/components/buttons/ButtonBookRoom.vue';
 import ButtonResidentLink from '@/components/buttons/ButtonResidentLink.vue';
 import ButtonBookNow from '@/components/buttons/ButtonBookNow.vue';
 import Slider from '@/components/Slider.vue';
+import Calendar from '@/components/Calendar.vue';
 
 export default {
   name: 'meeting-room',
@@ -99,7 +100,8 @@ export default {
 	ButtonBookRoom,
 	ButtonResidentLink,
 	ButtonBookNow,
-	Slider
+	Slider,
+	Calendar
   }
 }
 </script>

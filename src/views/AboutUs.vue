@@ -1,5 +1,11 @@
 <template>
 <div class="about-us">
+	<transition
+    name="custom-classes-transition"
+    enter-active-class="animated faster fadeIn"
+    leave-active-class="animated faster fadeOut">
+    <resident-card v-if='residentCard' @closeResidentCard='residentCard = false'></resident-card>
+    </transition>
 	<div class="about-us__wrapper">
 		<div class="about-us__main about-us__main--margin">
 			<header class="about-us__header">
@@ -17,11 +23,11 @@
 				<p class="work-time__text work-time__text--weekend-time">10:00 - 18:00</p>
 			</section>
 			<section class="subscription-type__wrapper subscription-type__wrapper--margin">
-				<div class="subscription-type subscription-type--resident">
+				<div class="subscription-type subscription-type--resident" @click="residentCard = true">
 					<p class="subscription-type__title">Month</p>
-					<a href='../resident-card/resident-card.html' class="subscription-type__resident">Resident card</a>
+					<p class="subscription-type__resident">Resident card</p>
 					<p class="subscription-type__price">1000</p>
-					<a href='../resident-card/resident-card.html' class="subscription-type__link-img">
+					<a href='#' class="subscription-type__link-img">
 						<svg class="subscription-type__img">
 							<use xlink:href='#infoborder' />
 						</svg>
@@ -65,20 +71,20 @@
 		</div>
 	</div>
 	<section class="next-page-nav">
-		<a href='#' class="next-page-nav__link next-page-nav__link--interior">
+		<router-link to='/meeting-room' class="next-page-nav__link next-page-nav__link--interior">
 			<div class="next-page-nav__inner">
 				<p class="next-page-nav__text">
 					Interior
 				</p>
 			</div>
-		</a>
-		<a href='#' class="next-page-nav__link next-page-nav__link--meeting-room">
+		</router-link>
+		<router-link to='/meeting-room' class="next-page-nav__link next-page-nav__link--meeting-room">
 			<div class="next-page-nav__inner">
 				<p class="next-page-nav__text">
 					MEETING ROOM
 				</p>
 			</div>
-		</a>
+		</router-link>
 	</section>
 	<svg style="display: none">
 		<symbol id='infoborder' viewBox="0 0 24 24">
@@ -91,15 +97,22 @@
 
 <script>
 import ButtonMembership from '@/components/buttons/ButtonMembership.vue';
+import ResidentCard from '@/components/ResidentCard.vue';
 import Slider from '@/components/Slider.vue';
 
 export default {
-name: 'about',
-components: {
-ButtonMembership,
-Slider
-}
-}
+	name: 'about',
+	components: {
+		ButtonMembership,
+		ResidentCard,
+		Slider
+	},
+	data() {
+		return {
+			residentCard: false
+		};
+	}
+};
 </script>
 
 <style lang="scss">

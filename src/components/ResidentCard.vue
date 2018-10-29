@@ -75,20 +75,6 @@ export default {
 <style lang="scss">
 @import '../assets/scss/style.scss';
 .resident-card {
-    &__wrapper {
-        width: 100vw;
-        min-height: 100vh;
-        background-color: rgba(17, 17, 17, 0.7);
-        @extend %flex-row-c;
-        align-items: center;
-        position: fixed;
-        z-index: 100;
-        will-change: opacity;
-        @media (max-width: 500px) {
-            justify-content: flex-start;
-            
-        }
-    }
     padding: 2rem 2.4rem 3.5rem 2.4rem;
     flex: 0 0 35%;
     border-radius: 3px;
@@ -105,7 +91,24 @@ export default {
         align-self: flex-start;
         padding: 2rem;
     }
-    
+    &__wrapper {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        min-height: 100vh;
+        background-color: rgba(17, 17, 17, 0.7);
+        @extend %flex-row-c;
+        align-items: center;
+        position: fixed;
+        z-index: 100;
+        will-change: opacity;
+        @media (max-width: 500px) {
+            justify-content: flex-start;
+            
+        }
+    }
     &__title {
         font-family: $title-font;
         font-size: 1.5rem;

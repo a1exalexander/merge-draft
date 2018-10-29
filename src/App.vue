@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-      <transition 
+	<transition 
 	appear
     name="custom-classes-transition"
     enter-active-class="animatedInNav fadeIn"
@@ -17,7 +17,7 @@
 	mode="out-in">
         <router-view/>
     </transition>
-  
+
   </div>
 </template>
 

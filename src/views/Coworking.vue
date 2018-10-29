@@ -67,20 +67,20 @@
 		</div>
 	</div>
 	<section class="next-page-nav">
-		<a href='#' class="next-page-nav__link next-page-nav__link--meeting-room">
+		<router-link to='/meeting-room' class="next-page-nav__link next-page-nav__link--meeting-room">
 			<div class="next-page-nav__inner">
 				<p class="next-page-nav__text">
 					MEETING ROOM
 				</p>
 			</div>
-		</a>
-		<a href='#' class="next-page-nav__link next-page-nav__link--events">
+		</router-link>
+		<router-link to='/events' class="next-page-nav__link next-page-nav__link--events">
 			<div class="next-page-nav__inner">
 				<p class="next-page-nav__text">
 					Events
 				</p>
 			</div>
-		</a>
+		</router-link>
 	</section>
 	
 </div>
