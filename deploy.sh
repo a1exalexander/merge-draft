@@ -6,12 +6,9 @@ set -e
 # сборка
 npm run build
 
-# переход в каталог сборки
-
 
 # если вы публикуете на пользовательский домен
 # echo 'www.example.com' > CNAME
-
 
 git add -A
 git commit -m 'deploy'
@@ -20,5 +17,7 @@ git commit -m 'deploy'
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
 # если вы публикуете по адресу https://<USERNAME>.github.io/<REPO>
-git push -f master:gh-pages
+git push -f git@github.com:a1exalexande/merge-draft.git master:gh-pages
+
+cd -
 
