@@ -136,7 +136,7 @@ export default {
 	position: relative;
 	z-index: 2;
 	animation-name: fadeIn;
-	animation-duration: .5s;
+	animation-duration: 1.5s;
 	@media (min-width: 600px) {
 		&:hover {
 			background-color: $GREY;
@@ -170,7 +170,7 @@ export default {
 		position: absolute;
 		right: -2em;
 		animation-name: fadeIn;
-		animation-duration: .5s;
+		animation-duration: 1s;
 		animation-timing-function: ease-in-out;
 		@media (max-width: 950px) {
 			left: auto;

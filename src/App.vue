@@ -5,7 +5,7 @@
 	appear
     name="custom-classes-transition"
     enter-active-class="animatedInNav fadeIn"
-    leave-active-class="animatedOutNav fadeOut">
+    leave-active-class="animated slow fadeOut">
         <navigation v-show='navi'></navigation>
     </transition>
 
@@ -56,7 +56,7 @@ export default {
 			if(this.navi) {
 				setTimeout(function() {
 					onThis.navi = onThis.onNavi();
-				}, 350);
+				}, 150);
 			} else {
 				this.navi = this.onNavi();
 			}
