@@ -14,9 +14,7 @@
 				<button-membership></button-membership>
 			</header>
 			<section class="work-time work-time--margin">
-				<svg class="work-time__clock">
-					<use xlink:href='#worktime-clock' />
-				</svg>
+				<img src="../assets/image/time.svg" class="work-time__clock" alt="clock">
 				<p class="work-time__text work-time__text--weekday">MON-FRI:</p>
 				<p class="work-time__text work-time__text--weekend">SAT, SUN:</p>
 				<p class="work-time__text work-time__text--time">9:00 - 20:00</p>

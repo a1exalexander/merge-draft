@@ -997,21 +997,21 @@
 	animation-name: slideOutUp;
 }
 
-.animatedOut {
+.animated01 {
 	-webkit-animation-duration: 100ms;
 	animation-duration: 100ms;
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
 }
 
-.animatedOut02 {
+.animated02 {
 	-webkit-animation-duration: 200ms;
 	animation-duration: 200ms;
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
 }
 
-.animatedOut03 {
+.animated03 {
 	-webkit-animation-duration: 300ms;
 	animation-duration: 300ms;
 	-webkit-animation-fill-mode: both;
@@ -1147,7 +1147,7 @@
 
 @keyframes pullDown {
 	0% {
-		transform: scaleY(0.1);
+		transform: scaleY(0);
 	}
 	100% {
 		transform: scaleY(1);
@@ -1156,7 +1156,7 @@
 
 @-webkit-keyframes pullDown {
 	0% {
-		transform: scaleY(0.1);
+		transform: scaleY(0);
 	}
 	100% {
 		transform: scaleY(1);
@@ -1174,7 +1174,7 @@
 		transform: scaleY(1);
 	}
 	100% {
-		transform: scaleY(0.1);
+		transform: scaleY(0);
 	}
 }
 
@@ -1183,7 +1183,7 @@
 		transform: scaleY(1);
 	}
 	100% {
-		transform: scaleY(0.1);
+		transform: scaleY(0);
 	}
 }
 
@@ -1224,6 +1224,15 @@
 	}
 }
 
+@keyframes borderIn {
+	0% {
+		border-color: transparent;
+	}
+	100% {
+		border-color: $ERROR-COLOR;
+	}
+}
+
 @media (max-width: 600px) {
 	.animated {
 		-webkit-animation: unset !important;
@@ -1244,3 +1253,4 @@
 		transition: none !important;
 	}
 }
+

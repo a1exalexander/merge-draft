@@ -13,7 +13,7 @@
 	appear
     name="custom-classes-transition"
     enter-active-class="animated fadeInLeft"
-    leave-active-class="animatedOut02 fadeOut"
+    leave-active-class="animated02 fadeOut"
 	mode="out-in">
         <router-view/>
     </transition>
