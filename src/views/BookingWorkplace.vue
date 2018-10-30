@@ -286,7 +286,7 @@ export default {
 			return re.test(phone);
 		},
 		validName: function(name) {
-			let re = /^((([A-Z])+([a-z]{1,}))+\s+(([A-Z])+([a-z]){1,}))$/;
+			let re = /^((([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]{1,}))+\s+(([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]){1,}))$/;
 			return re.test(name);
 		},
 		showSubmit: function() {
