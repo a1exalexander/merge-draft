@@ -5,8 +5,8 @@
 			<use xlink:href='#logo' />
 		</svg>
 	</div>
-	<div class="book-meeting-room">
-		<button-back></button-back>
+	<div class="book-meeting-room" :style="onStyleAnimate">
+		<button-back @goBack='goBack'></button-back>
 		<h2 class="book-meeting-room__title">Meeting Room<br>Resevation
 		</h2>
 		<form action="" id='book-meeting-room-form' name='book-meeting-room' class="book-meeting-room__form">
@@ -133,10 +133,26 @@ export default {
 		return {
 			checkFrameIn: false,
 			checkFrameOut: false,
-			checked: null
+			checked: null,
+			styleAnimate: {
+				transform: 'translateX(-200%)',
+				transition: 'transform ease-in-out 0.3s'
+			},
+			onStyleAnimate: null
 		};
 	},
 	methods: {
+		goBack() {
+            this.onStyleAnimate = this.styleAnimate;
+			let onThis = this;
+			setTimeout(function() {
+				if (window.history.length > 1) {
+					onThis.$router.go(-1);
+				} else {
+					onThis.$router.go(-1);
+				}
+			}, 100)	
+		},
 		checkResidentTime() {
 			let onThis = this;
 			this.checkFrameIn = false;

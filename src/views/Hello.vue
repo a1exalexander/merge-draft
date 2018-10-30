@@ -4,29 +4,25 @@
 	<p class="hello__title">Hello!<br>We’re
 		<span class="hello__logo">MERGE</span>
 	</p>
-	<h2 class="hello__subtitle">
-		COWORKING IN THE CENTRE OF KREMENCHUK
+	<h2 class="hello__subtitle">COWORKING IN THE CENTRE OF KREMENCHUK
 	</h2>
 	<div class="hello-link__wrapper">
 		<a href="#" class="hello-link hello-link--how-get">
 			<svg class='hello-link__img'>
 				<use xlink:href='#videocamera' />
 			</svg>
-			<p class="hello-link__text">
-				how to get to the MERGE
+			<p class="hello-link__text">how to get to the MERGE
 			</p>
 		</a>
 		<a href="#" class="hello-link hello-link--prices">
 			<svg class='hello-link__img'>
 				<use xlink:href='#infoborder' />
 			</svg>
-			<p class="hello-link__text">
-				PRICES AND WORKING HOURS
+			<p class="hello-link__text">PRICES AND WORKING HOURS
 			</p>
 		</a>
 	</div>
-	<p class="hello__text">
-		We offer
+	<p class="hello__text">We offer
 		<a class='hello__text--link'>comfortable conditions</a>
 		for remote work and we are dreaming to organize
 		<a href='#' class='hello__text--link'>Merge Community</a>

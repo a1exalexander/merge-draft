@@ -1,6 +1,6 @@
 <template>
 <div class="button-back__wrapper">
-    <button class="button-back" @click="goBack">
+    <button class="button-back" @click="goBack"> 
         <svg class="button-back__img">
             <use xlink:href='#arrow-left' />
         </svg>
@@ -20,12 +20,7 @@ export default {
 	name: 'button-back',
 	methods: {
 		goBack() {
-			let onThis = this;
-			if (window.history.length > 1) {
-				onThis.$router.go(-1);
-			} else {
-				onThis.$router.go(-1);
-			}
+			this.$emit('goBack');
 		}
 	}
 };

@@ -11,9 +11,9 @@
 			<use xlink:href='#logo' />
 		</svg>
 	</div>
-	<section class="booking-workplace">
+	<section class="booking-workplace" :style="onStyleAnimate">
 		<div class="booking-workplace__inner booking-workplace__inner--back-button">
-			<button-back></button-back>
+			<button-back @goBack='goBack'></button-back>
 		</div>
 		<h1 class="booking-workplace__title">Booking of the
 			workplace
@@ -214,11 +214,27 @@ export default {
 				email: null,
 				career: null,
 				picked: 'month'
-            },
-            inputError: true
+			},
+			inputError: true,
+			styleAnimate: {
+				transform: 'translateX(-200%)',
+				transition: 'transform ease-in-out 0.3s'
+			},
+			onStyleAnimate: null
 		};
 	},
 	methods: {
+        goBack() {
+            this.onStyleAnimate = this.styleAnimate;
+			let onThis = this;
+			setTimeout(function() {
+				if (window.history.length > 1) {
+					onThis.$router.go(-1);
+				} else {
+					onThis.$router.go(-1);
+				}
+			}, 100)	
+		},
 		checkName: function() {
 			if (!this.form.name) {
 				this.errors.name = 'your name and surname';
@@ -256,17 +272,17 @@ export default {
 			}
 		},
 		validEmail: function(email) {
-			let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-			return re.test(email);
-        },
-        validPhone: function(phone) {
+            let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+		},
+		validPhone: function(phone) {
             let re = /^((((\+?)+(3?)+8)?)+((\(|\-)?([0-9]){3}(\)|\-)?)+(\-?)+(([0-9]){3})+(\-?)+(([0-9]){2})+(\-?)+(([0-9]){2}))$/;
             return re.test(phone);
-        },
-        validName: function (name) {
+		},
+		validName: function(name) {
             let re = /^((([A-Z])+([a-z]{1,}))+\s+(([A-Z])+([a-z]){1,}))$/;
             return re.test(name);
-        },
+		},
 		showSubmit: function() {
 			if (
 				this.form.name &&
@@ -274,7 +290,7 @@ export default {
 				this.form.email &&
 				!this.errors.name &&
 				!this.errors.phone &&
-				!this.errors.email	
+				!this.errors.email
 			) {
 				return false;
 			} else {
@@ -283,15 +299,14 @@ export default {
 		},
 		sendForm: function() {
 			if (!this.showSubmit()) {
-                let params = JSON.stringify(this.form);
-                console.log(params);
+				let params = JSON.stringify(this.form);
 				axios.post('https://jsonplaceholder.typicode.com/posts', params)
-                .then(response => {
-                    console.log(response);
-                })
-                .catch(e => {
-                    this.errors.arr.push(e);
-                });
+					.then(response => {
+						console.log(response);
+					})
+					.catch(e => {
+						this.errors.arr.push(e);
+					});
 			}
 		}
 	},
@@ -307,10 +322,10 @@ export default {
 <style lang="scss">
 @import '../assets/scss/style.scss';
 .inputError {
-    border-bottom: 2px solid $ERROR-COLOR !important;
-    animation-name: borderIn;
-    animation-timing-function: ease-in-out;
-    animation-duration: 0.5s;
+	border-bottom: 2px solid $ERROR-COLOR !important;
+	animation-name: borderIn;
+	animation-timing-function: ease-in-out;
+	animation-duration: 0.5s;
 }
 .booking-workplace {
 	flex: 0 0 30%;
@@ -460,6 +475,7 @@ export default {
 		font-weight: 500;
 		text-align: left;
 		color: $TEXT-COLOR;
+		border-radius: 3px;
 		&::placeholder {
 			text-indent: 16px;
 			color: $GREY;
