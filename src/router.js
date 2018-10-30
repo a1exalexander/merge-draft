@@ -15,10 +15,19 @@ Vue.use(Router);
 export default new Router({
 	mode: 'history',
 	base: process.env.BASE_URL,
-	scrollBehavior() {
-		return { x: 0, y: 0 };
+	scrollBehavior(to, from, savedPosition) {
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+				resolve({ x: 0, y: 0 });
+			}, 200);
+		});
 	},
 	routes: [
+		{
+			path: '*',
+			name: 'hello',
+			component: Hello
+		},
 		{
 			path: '/',
 			name: 'hello',

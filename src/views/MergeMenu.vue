@@ -1,6 +1,6 @@
 <template>
 
-<div class="menu">
+<div class="menu" :style='onStyleAnimate'>
 	<div class="menu-button-close__wrapper">
 		<button id='back-to-home' class="menu-button-close" @click="goBack">
 			<svg class='menu-button-close__img'>
@@ -108,14 +108,27 @@ export default {
 		ButtonMembership,
 		ButtonMap
 	},
+	data () {
+		return {
+			styleAnimate: {
+				transform: "translateX(-200%)",
+				transition: 'transform ease-in-out 0.4s'
+			},
+			onStyleAnimate: null
+		}
+	},
+	
 	methods: {
 		goBack() {
+			this.onStyleAnimate = this.styleAnimate;
 			let onThis = this;
-			if (window.history.length > 1) {
-				onThis.$router.go(-1);
-			} else {
-				onThis.$router.go(-1);
-			}
+			setTimeout(function() {
+				if (window.history.length > 1) {
+					onThis.$router.go(-1);
+				} else {
+					onThis.$router.go(-1);
+				}
+			}, 100)	
 		}
 	}
 };
@@ -137,6 +150,7 @@ export default {
 	z-index: 2;
 	animation-name: fadeIn;
 	animation-duration: 1.5s;
+	animation-timing-function: ease-in-out;
 	@media (min-width: 600px) {
 		&:hover {
 			background-color: $GREY;
