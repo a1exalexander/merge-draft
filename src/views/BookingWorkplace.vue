@@ -31,7 +31,7 @@
 				<div class="workplace-choice__inner">
 					<p class="workplace-choice__title">Month</p>
 					<p class="workplace-choice__resident">Resident card</p>
-					<p class="workplace-choice__price">1000</p>
+					<p class="workplace-choice__price">{{ price.month }}</p>
 					<a href='#' class="workplace-choice__link-img" @click.prevent="residentCard = true">
 						<svg class="workplace-choice__img workplace-choice__img--resident">
 							<use xlink:href='#infoborder' />
@@ -50,7 +50,7 @@
                     v-model="form.picked">
 				<div class="workplace-choice__inner">
 					<p class="workplace-choice__title">Week</p>
-					<p class="workplace-choice__price">400</p>
+					<p class="workplace-choice__price">{{ price.week }}</p>
 					<svg class="workplace-choice__img">
 						<use xlink:href='#infoborder' />
 					</svg>
@@ -66,7 +66,7 @@
                     v-model="form.picked">
 				<div class="workplace-choice__inner">
 					<p class="workplace-choice__title">Day</p>
-					<p class="workplace-choice__price">80</p>
+					<p class="workplace-choice__price">{{ price.day }}</p>
 					<svg class="workplace-choice__img">
 						<use xlink:href='#infoborder' />
 					</svg>
@@ -163,7 +163,7 @@
 		<div class="booking-workplace__inner booking-workplace__inner--price">
 			<p class="booking-price">
 				Price:
-				<span class="booking-price__sum">1000</span>
+				<span class="booking-price__sum">{{ animatedNumber }}</span>
 			</p>
 			<button-apply 
                 :disabled='showSubmit()'
@@ -186,7 +186,7 @@
 
 <script>
 import axios from 'axios';
-
+import { TweenLite } from 'gsap';
 import ButtonBack from '@/components/buttons/ButtonBack.vue';
 import ButtonApply from '@/components/buttons/ButtonApply.vue';
 import ResidentCard from '@/components/ResidentCard.vue';
@@ -214,7 +214,13 @@ export default {
 				email: null,
 				career: null,
 				picked: 'month'
-			},
+            },
+            price: {
+                month: 1000,
+                week: 400,
+                day: 80
+            },
+            tweenedNumber: 0,
 			inputError: true,
 			styleAnimate: {
 				transform: 'translateX(-200%)',
@@ -224,8 +230,8 @@ export default {
 		};
 	},
 	methods: {
-        goBack() {
-            this.onStyleAnimate = this.styleAnimate;
+		goBack() {
+			this.onStyleAnimate = this.styleAnimate;
 			let onThis = this;
 			setTimeout(function() {
 				if (window.history.length > 1) {
@@ -233,7 +239,7 @@ export default {
 				} else {
 					onThis.$router.go(-1);
 				}
-			}, 100)	
+			}, 100);
 		},
 		checkName: function() {
 			if (!this.form.name) {
@@ -272,16 +278,16 @@ export default {
 			}
 		},
 		validEmail: function(email) {
-            let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(email);
+			let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(email);
 		},
 		validPhone: function(phone) {
-            let re = /^((((\+?)+(3?)+8)?)+((\(|\-)?([0-9]){3}(\)|\-)?)+(\-?)+(([0-9]){3})+(\-?)+(([0-9]){2})+(\-?)+(([0-9]){2}))$/;
-            return re.test(phone);
+			let re = /^((((\+?)+(3?)+8)?)+((\(|\-)?([0-9]){3}(\)|\-)?)+(\-?)+(([0-9]){3})+(\-?)+(([0-9]){2})+(\-?)+(([0-9]){2}))$/;
+			return re.test(phone);
 		},
 		validName: function(name) {
-            let re = /^((([A-Z])+([a-z]{1,}))+\s+(([A-Z])+([a-z]){1,}))$/;
-            return re.test(name);
+			let re = /^((([A-Z])+([a-z]{1,}))+\s+(([A-Z])+([a-z]){1,}))$/;
+			return re.test(name);
 		},
 		showSubmit: function() {
 			if (
@@ -300,7 +306,8 @@ export default {
 		sendForm: function() {
 			if (!this.showSubmit()) {
 				let params = JSON.stringify(this.form);
-				axios.post('https://jsonplaceholder.typicode.com/posts', params)
+				axios
+					.post('https://jsonplaceholder.typicode.com/posts', params)
 					.then(response => {
 						console.log(response);
 					})
@@ -310,12 +317,24 @@ export default {
 			}
 		}
 	},
+	computed: {
+		animatedNumber: function() {
+			return this.tweenedNumber.toFixed(0);
+        }
+	},
 	watch: {
 		'form.name': 'checkName',
 		'form.phone': 'checkPhone',
 		'form.email': 'checkEmail',
-		'form.career': 'checkCareer'
-	}
+		'form.career': 'checkCareer',
+		'form.picked': function() {
+            let val = this.price[this.form.picked];
+			TweenLite.to(this.$data, 0.5, { tweenedNumber: val });
+		}
+    },
+    mounted() {
+        TweenLite.to(this.$data, 0.5, { tweenedNumber: this.price[this.form.picked] });
+    }
 };
 </script>
 
