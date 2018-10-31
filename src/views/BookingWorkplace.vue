@@ -534,6 +534,8 @@ export default {
 	}
 	&__input {
 		position: absolute;
+		left: 1rem;
+		top: 1rem;
 		z-index: -10;
 		outline: none;
 		&:checked + .workplace-choice__inner {
