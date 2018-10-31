@@ -87,7 +87,15 @@
                             class="booking-workplace__input" 
                             :class="{inputError: inputError && errors.name}"
                             placeholder="Андрій Малишко"
+							@blur="checkName"
                             v-model.trim="form.name">
+							<transition 
+								name="custom-classes-transition"
+								enter-active-class="animated03 pullDown"
+								leave-active-class="animated02 pullUp">
+                    		<p class='booking-workplace__validate booking-workplace__validate--name' 
+                        		v-if="errors.name">Please enter {{ errors.name }} to continue</p>
+							</transition>
 					</div>
 					<div class="booking-workplace__input-wrapper">
 						<label for="phone-label" class="booking-workplace__label">Phone*</label>
@@ -97,30 +105,17 @@
                             class="booking-workplace__input" 
                             :class="{inputError: inputError && errors.phone}"
                             placeholder="+38 (000) 000 00-00"
+							@blur="checkPhone"
                             v-model.trim="form.phone">
+							<transition 
+								name="custom-classes-transition"
+								enter-active-class="animated03 pullDown"
+								leave-active-class="animated02 pullUp">
+							<p class='booking-workplace__validate booking-workplace__validate--phone' 
+                        		v-if="errors.phone">Please enter {{ errors.phone }} to continue</p>
+                    		</transition>
 					</div>
 				</div>
-                <transition 
-                    name="custom-classes-transition"
-                    enter-active-class="animated03 pullDown"
-                    leave-active-class="animated02 pullUp">
-                <div class="booking-workplace__validate-box" v-if="errors.name || errors.phone">
-                    <transition 
-                        name="custom-classes-transition"
-                        enter-active-class="animated03 pullDown"
-                        leave-active-class="animated02 pullUp">
-                    <p class='booking-workplace__validate booking-workplace__validate--name' 
-                        v-if="errors.name">Please enter {{ errors.name }} to continue</p>
-                    </transition>
-                    <transition 
-                        name="custom-classes-transition"
-                        enter-active-class="animated03 pullDown"
-                        leave-active-class="animated02 pullUp">
-                    <p class='booking-workplace__validate booking-workplace__validate--phone' 
-                        v-if="errors.phone">Please enter {{ errors.phone }} to continue</p>
-                    </transition>
-                </div>
-                </transition>
 				<div class="booking-workplace__inner booking-workplace__inner--form booking-workplace__inner--email-career">
 					<div class="booking-workplace__input-wrapper">
 						<label for="email-label" class="booking-workplace__label">E-mail*</label>
@@ -131,7 +126,15 @@
                             class="booking-workplace__input booking-workplace__input--required" 
                             :class="{inputError: inputError && errors.email}"
                             placeholder="example@mail.com"
+							@blur="checkEmail"
                             v-model.trim="form.email">
+							<transition 
+								name="custom-classes-transition"
+								enter-active-class="animated03 pullDown"
+								leave-active-class="animated02 pullUp">
+                   			 <p class='booking-workplace__validate booking-workplace__validate--email' 
+                        		v-if="errors.email">Please enter {{ errors.email }} to continue</p>
+                    		</transition>
 					</div>
 					<div class="booking-workplace__input-wrapper">
 						<label for="career-label" class="booking-workplace__label">career</label>
@@ -143,20 +146,6 @@
                             v-model="form.career">
 					</div>
 				</div>
-                <transition 
-                    name="custom-classes-transition"
-                    enter-active-class="animated03 pullDown"
-                    leave-active-class="animated02 pullUp">
-                <div class="booking-workplace__validate-box" v-if="errors.email || errors.career">
-                    <transition 
-                        name="custom-classes-transition"
-                        enter-active-class="animated03 pullDown"
-                        leave-active-class="animated02 pullUp">
-                    <p class='booking-workplace__validate booking-workplace__validate--email' 
-                        v-if="errors.email">Please enter {{ errors.email }} to continue</p>
-                    </transition>
-                </div>
-                </transition>
 			</form>
 		</div>
 		<p class="booking-workplace__description">* — Required fields</p>
@@ -214,13 +203,13 @@ export default {
 				email: null,
 				career: null,
 				picked: 'month'
-            },
-            price: {
-                month: 1000,
-                week: 400,
-                day: 80
-            },
-            tweenedNumber: 0,
+			},
+			price: {
+				month: 1000,
+				week: 400,
+				day: 80
+			},
+			tweenedNumber: 0,
 			inputError: true,
 			styleAnimate: {
 				transform: 'translateX(-200%)',
@@ -320,21 +309,38 @@ export default {
 	computed: {
 		animatedNumber: function() {
 			return this.tweenedNumber.toFixed(0);
-        }
+		}
 	},
 	watch: {
-		'form.name': 'checkName',
-		'form.phone': 'checkPhone',
-		'form.email': 'checkEmail',
-		'form.career': 'checkCareer',
+		'form.name': function() {
+			if (this.form.name && this.validName(this.form.name)) {
+				this.errors.name = null;
+				this.showSubmit();
+				this.validEmail(this.form.email);
+			}
+		},
+		'form.phone': function() {
+			if (this.form.phone && this.validPhone(this.form.phone)) {
+				this.errors.phone = null;
+				this.showSubmit();
+			}
+		},
+		'form.email': function() {
+			if (this.form.email && this.validEmail(this.form.email)) {
+				this.errors.email = null;
+				this.showSubmit();
+			}
+		},
 		'form.picked': function() {
-            let val = this.price[this.form.picked];
+			let val = this.price[this.form.picked];
 			TweenLite.to(this.$data, 0.5, { tweenedNumber: val });
 		}
-    },
-    mounted() {
-        TweenLite.to(this.$data, 0.5, { tweenedNumber: this.price[this.form.picked] });
-    }
+	},
+	mounted() {
+		TweenLite.to(this.$data, 0.5, {
+			tweenedNumber: this.price[this.form.picked]
+		});
+	}
 };
 </script>
 
@@ -347,6 +353,7 @@ export default {
 	animation-duration: 0.5s;
 }
 .booking-workplace {
+	padding: 2rem 0;
 	flex: 0 0 30%;
 	@extend %flex-col-sb;
 	will-change: transform;
@@ -374,34 +381,24 @@ export default {
 			}
 		}
 	}
-	&__validate-box {
-		display: grid;
-		grid-template-columns: repeat(2, 48%);
-		justify-content: space-between;
-		justify-items: start;
-		align-items: start;
-	}
 	&__validate {
 		font-family: $base-font;
 		font-size: 0.625rem;
 		font-weight: 500;
 		text-align: left;
 		color: $ERROR-COLOR;
-		padding: 0;
+		padding-top: 0.7rem;
 		&--name {
 			grid-column: 1;
 		}
 		&--phone {
 			grid-column: 2;
-			min-height: 26px;
 		}
 		&--email {
 			grid-column: 1;
-			padding-bottom: 0;
 		}
 		&--career {
 			grid-column: 2;
-			padding-bottom: 0;
 		}
 	}
 	&__inner {
@@ -426,17 +423,15 @@ export default {
 		&--form {
 			width: 100%;
 			justify-content: space-between;
-			align-items: center;
+			align-items: flex-start;
+			padding-bottom: 1.5rem;
+			&:last-child {
+				padding-bottom: 0;
+			}
 			@media (max-width: 550px) {
 				flex-direction: column;
 			}
-		}
-		&--name-phone {
-			padding-bottom: 0.7rem;
-		}
-		&--email-career {
-			padding-top: 0.7rem;
-			padding-bottom: 0.7rem;
+			
 		}
 		&--price {
 			justify-content: space-between;
@@ -461,7 +456,7 @@ export default {
 	&__col {
 		@extend %flex-col;
 		&--form {
-			padding: 2rem 0 1rem 0;
+			padding: 2rem 0 1.1rem 0;
 			width: 100%;
 		}
 	}
@@ -479,7 +474,7 @@ export default {
 		font-weight: 500;
 		text-align: left;
 		color: $GREY;
-		margin-bottom: 24px;
+		padding-bottom: 1.5rem;
 	}
 
 	&__input {
