@@ -54,7 +54,7 @@
 <script>
 import ButtonCloseMini from '@/components/buttons/ButtonCloseMini.vue';
 export default {
-    name: 'residentCard',
+    name: 'ResidentCard',
     components: {
         ButtonCloseMini
     },
