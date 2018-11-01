@@ -4,7 +4,7 @@
     name="custom-classes-transition"
     enter-active-class="animated faster fadeIn"
     leave-active-class="animated faster fadeOut">
-    <resident-card v-if='residentCard' @closeResidentCard='residentCard = false'></resident-card>
+    <resident-card v-if='residentCard' @close='residentCard = false'></resident-card>
     </transition>
 	<logo></logo>
 	<section class="booking-workplace" :style="onStyleAnimate">
@@ -507,7 +507,7 @@ export default {
 	}
 }
 .workplace-choice {
-	width: 30%;
+	width: 128px;
 	height: 74px;
 	border-radius: 3px;
 	background-color: $MAIN-DARK-COLOR;

@@ -2,6 +2,7 @@
 <div class="book-meeting-room__wrapper">
 	<logo></logo>
 	<div class="book-meeting-room" :style="onStyleAnimate">
+		<button-close-mini class="book-meeting-room__close" @close='goBack'></button-close-mini>
 		<button-back @goBack='goBack'></button-back>
 		<h2 class="book-meeting-room__title">Meeting Room<br>Resevation
 		</h2>
@@ -112,6 +113,7 @@
 </template>
 
 <script>
+import ButtonCloseMini from '@/components/buttons/ButtonCloseMini.vue';
 import ButtonBack from '@/components/buttons/ButtonBack.vue';
 import ButtonBook from '@/components/buttons/ButtonBook.vue';
 import Logo from '@/components/Logo.vue';
@@ -121,7 +123,8 @@ export default {
 	components: {
 		ButtonBack,
 		ButtonBook,
-		Logo
+		Logo,
+		ButtonCloseMini
 	},
 	data() {
 		return {
@@ -173,6 +176,7 @@ export default {
 	align-items: center;
 	will-change: height;
 	transition: height ease-in-out 0.3s;
+	position: relative;
 	@media (min-width: 600px) {
 		min-width: 430px;
 	}
@@ -195,6 +199,10 @@ export default {
 				top: 1rem;
 			}
 		}
+	}
+	&__close {
+		right: 0;
+		top: 0.2rem;
 	}
 	&__button-back-wrapper {
 		align-self: start;

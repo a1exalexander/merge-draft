@@ -1,11 +1,7 @@
 <template>
-<div class="resident-card__wrapper">
+<div class="resident-card__wrapper" @click.self='close'>
     <div class="resident-card animated faster fadeInBubble">
-        <button class='resident-card__close' @click='closeResidentCard'>
-            <svg class="resident-card__close-img">
-                <use xlink:href='#close' />
-            </svg>
-        </button>
+        <button-close-mini @close='close'></button-close-mini>
         <div class="resident-card__inner resident-card__inner--top">
             <p class="resident-card__title">Resident Card
             </p>
@@ -56,12 +52,15 @@
 </template>
 
 <script>
-
+import ButtonCloseMini from '@/components/buttons/ButtonCloseMini.vue';
 export default {
     name: 'residentCard',
+    components: {
+        ButtonCloseMini
+    },
     methods: {
-        closeResidentCard() {
-            this.$emit('closeResidentCard');  
+        close() {
+            this.$emit('close');  
         }
     }
 }
@@ -193,47 +192,6 @@ export default {
         text-align: left;
         color: $TEXT-COLOR;
     }
-    &__close {
-        position: absolute;
-        right: 1.5rem;
-        top: 1.5rem;
-        width: 24px;
-        height: 24px;
-        @extend %flex-col-c;
-        align-items: center;
-        outline: none;
-        border: none;
-        background-color: transparent;
-        @media (min-width: 600px) {
-			&:hover {
-            background-color: $MAIN-DARK-COLOR;
-            transition: background-color ease-in-out 0.2s;
-			}
-			&:not(:hover) {
-				transition: background-color ease-in-out 0.2s;
-			}
-			&:hover .resident-card__close-img {
-				fill: $TEXT-COLOR;
-				transition: fill ease-in-out 0.2s;
-			}
-			&:not(:hover) .resident-card__close-img {
-				transition: fill ease-in-out 0.2s;
-			}
-		}
-        &:focus {
-            opacity: 0.1;
-            transition: opacity ease-in-out 0.4s;
-        }
-        &:focus .resident-card__close-img {
-            transform: rotate(-90deg);
-            transition: transform ease-in-out 0.2s;
-        }
-	}
-	&__close-img {
-            width: 20px;
-            height: 20px;
-            fill: $GREY;
-	}
     &__price {
         font-family: $base-font;
         font-size: 0.8125rem;
