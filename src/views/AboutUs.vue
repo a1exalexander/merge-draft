@@ -52,14 +52,11 @@
 			</section>
 			<section class="about-us__inf about-us__inf--margin">
 				<div class="about-us__inner">
-					<p class="about-us__caption">
-						ABOUT US
+					<p class="about-us__caption">ABOUT US
 					</p>
-					<h2 class="about-us__subtitle">
-						Our missions
+					<h2 class="about-us__subtitle">Our missions
 					</h2>
-					<p class="about-us__text">
-						Do everything to make you work in a comfortable environment: IT specialists, designers, copywriters,
+					<p class="about-us__text">Do everything to make you work in a comfortable environment: IT specialists, designers, copywriters,
 						entrepreneurs - all those with whom it's pleasant to drink coffee and exchange valuable experience or orders.
 						Yes, we also have tea, coffee and biscuits.
 					</p>

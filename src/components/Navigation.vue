@@ -1,8 +1,10 @@
 <template>
 <nav class="navigation navigation--border">
-    <svg class="navigation__logo">
-        <use xlink:href='#logo' />
-    </svg>
+    <router-link to='/' class='navigation__logo-wrapper'>
+        <svg class="navigation__logo">
+            <use xlink:href='#logo' />
+        </svg>
+    </router-link>
     <section class="button-menu__wrapper">
         <div class="button-menu__tooltip" v-if="tooltip">
             <span class="button-menu__text">
@@ -136,16 +138,21 @@ export default {
     fill: $MERGE-MAIN-COLOR;
     width: 31px;
     height: 40px;
-    align-self: start;
-    animation-name: rotateIn;
-    animation-duration: 2s;
-    animation-timing-function: ease-in-out;
-    @media (max-width: 600px), (max-height: 500px) {
+    }
+    &__logo-wrapper {
+        align-self: start;
+        animation-name: rotateIn;
+        animation-duration: 2s;
+        animation-timing-function: ease-in-out;
+        text-decoration: none;
+        outline: none;
+        border: none;
+        @media (max-width: 600px), (max-height: 500px) {
         grid-column: 1;
         grid-row: 1;
         align-self: center;
+        }
     }
-}
 }
 .button-menu {
     height: 24px;

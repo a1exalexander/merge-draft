@@ -5,7 +5,7 @@
 	appear
     name="custom-classes-transition"
     enter-active-class="animatedInNav fadeIn"
-    leave-active-class="animated middle fadeOut">
+    leave-active-class="animated fast fadeOut">
         <navigation v-show='navi'></navigation>
     </transition>
 

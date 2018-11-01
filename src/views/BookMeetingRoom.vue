@@ -1,10 +1,6 @@
 <template>
 <div class="book-meeting-room__wrapper">
-	<div class="logo__wrapper">
-		<svg class="logo">
-			<use xlink:href='#logo' />
-		</svg>
-	</div>
+	<logo></logo>
 	<div class="book-meeting-room" :style="onStyleAnimate">
 		<button-back @goBack='goBack'></button-back>
 		<h2 class="book-meeting-room__title">Meeting Room<br>Resevation
@@ -105,10 +101,6 @@
 		</div>
 	</div>
     <svg style="display: none">
-        <symbol id='logo' viewBox="0 0 31 40">
-            <path fill-rule="evenodd" d="M20.4593069,32.8365086 L23.8888332,29.1227295 L31,36.2862209 L27.570731,40 L20.4593069,32.8365086 Z M15.4625816,0 L26.0850832,10.7005349 L18.0964043,10.7005349 L18.0964043,25.4662469 L3.77682656,39.9891419 L0,36.2971308 L12.693955,23.3086219 L12.693955,10.7005349 L4.89641986,10.7005349 L15.4625816,0 Z"
-            id="Combined-Shape"></path>
-        </symbol>
         <symbol id='icon-checkbox' viewBox="0 0 24 24">
 			<path fill-rule="evenodd" d="M5 12.192l1.4-1.346 3.6 3.462L17.6 7 19 8.346 10 17z"/>
 		</symbol> 
@@ -122,12 +114,14 @@
 <script>
 import ButtonBack from '@/components/buttons/ButtonBack.vue';
 import ButtonBook from '@/components/buttons/ButtonBook.vue';
+import Logo from '@/components/Logo.vue';
 
 export default {
 	name: 'book-meeting-room',
 	components: {
 		ButtonBack,
-		ButtonBook
+		ButtonBook,
+		Logo
 	},
 	data() {
 		return {

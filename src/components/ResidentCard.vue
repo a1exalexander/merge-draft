@@ -7,22 +7,18 @@
             </svg>
         </button>
         <div class="resident-card__inner resident-card__inner--top">
-            <p class="resident-card__title">
-                Resident Card
+            <p class="resident-card__title">Resident Card
             </p>
-            <p class="resident-card__description">
-                Access for the Month
+            <p class="resident-card__description">Access for the Month
             </p>
             <div class="resident-card__label resident-card__label--room">
                 <img src="../assets/image/meeting-room.svg" alt="wi-fi" class="resident-card__image">
-                <p class="resident-card__text">
-                    1 hour two times per week of Meeting Room's using is free
+                <p class="resident-card__text">1 hour two times per week of Meeting Room's using is free
                 </p>
             </div>
             <div class="resident-card__label resident-card__label--lecture">
                 <img src="../assets/image/lectures.svg" alt="wi-fi" class="resident-card__image">
-                <p class="resident-card__text">
-                    Free accessment to paid events in Merge
+                <p class="resident-card__text">Free accessment to paid events in Merge
                 </p>
             </div>
         </div>
@@ -54,7 +50,6 @@
                 Price:
                 <span class="resident-card__sum">1000</span>
             </p>
-            <button-resident></button-resident>
         </div>
     </div>
 </div>
@@ -76,7 +71,7 @@ export default {
 @import '../assets/scss/style.scss';
 .resident-card {
     padding: 2rem 2.4rem 3.5rem 2.4rem;
-    flex: 0 0 35%;
+    flex: 0 0 36%;
     border-radius: 3px;
     background-color: $BUTTON-COLOR;
     box-shadow: 0 12px 30px 24px rgba(0, 0, 0, 0.1);
@@ -84,7 +79,7 @@ export default {
     align-items: stretch;
     position: relative;
     @media (min-width: 500px) {
-        min-width: 492px;
+        min-width: 520px;
     }
     @media (max-width: 500px) {
         flex: 0 0 100%;
@@ -137,8 +132,9 @@ export default {
         display: grid;
         align-items: center;
         &--top {
-            grid-template-columns: 5fr 4fr;
+            grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(3, auto);
+            grid-column-gap: 2rem;
         }
         &--middle {
             grid-template-columns: repeat(2, 1fr);

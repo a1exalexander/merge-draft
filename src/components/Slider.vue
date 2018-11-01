@@ -90,9 +90,6 @@ export default {
 @import 'node_modules/@glidejs/glide/src/assets/sass/glide.core';
 
 .glide {
-	@media (max-height: 500px) {
-		height: 100vh;
-	}
 	&__image {
 		width: 100%;
 		height: auto;
@@ -113,9 +110,6 @@ export default {
 		justify-content: flex-end;
 		align-items: center;
 		height: 96px;
-		@media (max-height: 500px) {
-			height: 15vh;
-		}
 		@media (max-width: 600px) {
 			justify-content: center;
 		}
