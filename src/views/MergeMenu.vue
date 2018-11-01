@@ -51,8 +51,7 @@
 				<use xlink:href='#calendar' />
 			</svg>
 		</div>
-		<p class="menu__text menu__text--day menu-row-2">
-			MON—FRI:
+		<p class="menu__text menu__text--day menu-row-2">MON—FRI:
 		</p>
 		<p class="menu__text menu__text--time menu-row-3">9:00 – 20:00
 		</p>
