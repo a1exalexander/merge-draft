@@ -8,10 +8,10 @@
 
 <script>
 export default {
-    name: 'buttonBookRoom',
+	name: 'buttonBookRoom',
     methods: {
         bookMeetingRoom () {
-            this.$router.push('/book-meeting-room');
+            this.$emit('bookMeetingRoom');
         }
     }
 };

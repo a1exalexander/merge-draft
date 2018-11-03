@@ -38,11 +38,12 @@ export default {
         text-decoration: none;
         outline: none;
         border: none;
-    }
-    @media (max-width: 600px), (max-height: 500px) {
-        grid-column: 1;
-        grid-row: 1;
-        align-self: center;
+        @media (max-width: 600px), (max-width: 600px) and (max-height: 400px) {
+            position: absolute;
+            left: auto;
+            right: auto;
+            top: 2rem;
+        }
     }
 }
 </style>

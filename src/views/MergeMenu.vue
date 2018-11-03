@@ -37,17 +37,23 @@
 			</li>
 		</ul>
 		<div class="menu__language">
-			<button href="#" class="menu__language-link menu__language-link--ua">UA
-			</button>
-			<button href="#" class="menu__language-link menu__language-link--ru">RU
-			</button>
-			<button href="#" class="menu__language-link menu__language-link--en" checked>EN
-			</button>
+			<label class="menu__language-link">
+				<input class="menu__language-input" type="radio" name='language' value='ua' v-model='language'>
+				<p class="menu__language-text">UA</p>
+			</label>
+			<label class="menu__language-link">
+				<input class="menu__language-input" type="radio" name='language' value='ru' v-model='language'>
+				<p class="menu__language-text">RU</p>
+			</label>
+			<label class="menu__language-link">
+				<input class="menu__language-input" type="radio" name='language' value='en' v-model='language' checked>
+				<p class="menu__language-text">EN</p>
+			</label>
 		</div>
 	</div>
 	<div class="menu__col menu__col--locate">
 		<div class="menu__image-wrapper menu-row-1">
-			<svg class="menu__image">
+			<svg class="menu__image menu__image--calendar">
 				<use xlink:href='#calendar' />
 			</svg>
 		</div>
@@ -60,7 +66,7 @@
 		<p class="menu__text menu__text--time menu-row-6">10:00 – 18:00
 		</p>
 		<div class="menu__image-wrapper menu-row-7">
-			<svg class="menu__image">
+			<svg class="menu__image menu__image--location">
 				<use xlink:href='#location' />
 			</svg>
 		</div>
@@ -76,14 +82,14 @@
 	</div>
 	<div class="menu__col menu__col--contact">
 		<div class="menu__image-wrapper menu-row-1">
-			<svg class="menu__image">
+			<svg class="menu__image menu__image--phone">
 				<use xlink:href='#phone' />
 			</svg>
 		</div>
 		<a href="callto: 0970313451" class="menu__contact menu__contact--phone menu-row-2">097 031 3451
 		</a>
 		<div class="menu__image-wrapper menu-row-4">
-			<svg class="menu__image">
+			<svg class="menu__image menu__image--mail">
 				<use xlink:href='#mail' />
 			</svg>
 		</div>
@@ -95,8 +101,7 @@
 	</div>
 	<svg style="display: none;">
 		<symbol id='menu' viewBox="0 0 24 24">
-			<path d="M12,11 L20,11 L20,13 L12,13 L12,11 Z M8,6 L20,6 L20,8 L8,8 L8,6 Z M4,16 L20,16 L20,18 L4,18 L4,16 Z" id="Combined-Shape"
-			 transform="translate(12.000000, 12.000000) scale(-1, 1) translate(-12.000000, -12.000000) "></path>
+			<path d="M12,11 L20,11 L20,13 L12,13 L12,11 Z M8,6 L20,6 L20,8 L8,8 L8,6 Z M4,16 L20,16 L20,18 L4,18 L4,16 Z" id="Combined-Shape" transform="translate(12.000000, 12.000000) scale(-1, 1) translate(-12.000000, -12.000000)"></path>
 		</symbol>
 		<symbol id='close' viewBox="0 0 24 24">
 			<polygon id="Shape" points="19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12"></polygon>
@@ -128,16 +133,17 @@ export default {
 		ButtonMembership,
 		ButtonMap
 	},
-	data () {
+	data() {
 		return {
 			styleAnimate: {
-				transform: "translateX(-200%)",
+				transform: 'translateX(-200%)',
 				transition: 'transform ease-in-out 0.4s'
 			},
-			onStyleAnimate: null
-		}
+			onStyleAnimate: null,
+			language: 'en'
+		};
 	},
-	
+
 	methods: {
 		goBack() {
 			this.onStyleAnimate = this.styleAnimate;
@@ -148,7 +154,7 @@ export default {
 				} else {
 					onThis.$router.go(-1);
 				}
-			}, 100)	
+			}, 100);
 		}
 	}
 };
@@ -157,8 +163,8 @@ export default {
 <style lang="scss">
 @import '../assets/scss/style.scss';
 .menu-button-close {
-	height: 32px;
-	width: 32px;
+	height: 30px;
+	width: 30px;
 	outline: none;
 	border: none;
 	border-radius: 3px;
@@ -169,7 +175,7 @@ export default {
 	position: relative;
 	z-index: 2;
 	animation-name: fadeIn;
-	animation-duration: 1.5s;
+	animation-duration: 1s;
 	animation-timing-function: ease-in-out;
 	@media (min-width: 600px) {
 		&:hover {
@@ -204,12 +210,12 @@ export default {
 		position: absolute;
 		right: -2em;
 		animation-name: fadeIn;
-		animation-duration: 0.8s;
+		animation-duration: 1.5s;
 		animation-timing-function: ease-in-out;
 		@media (max-width: 950px) {
 			left: auto;
 			right: auto;
-			top: 45%;
+			top: -45%;
 		}
 		@media (max-width: 850px) {
 			display: none;
@@ -250,8 +256,8 @@ export default {
 		}
 	}
 	&__img {
-		width: 28px;
-		height: 28px;
+		width: 26px;
+		height: 26px;
 		fill: $GREY;
 		stroke: none;
 		@extend %flex-row-c;
@@ -450,48 +456,64 @@ export default {
 		display: grid;
 		grid-template-columns: repeat(3, auto);
 		grid-column-gap: 0.5em;
-
 		@media (max-width: 850px) {
 			padding-bottom: 2rem;
 		}
 	}
 	&__language-link {
-		border: none;
-		outline: none;
 		background-color: transparent;
+		outline: none;
+		margin-right: 1.5rem;
+		position: relative;
+		text-align: left;
+		cursor: pointer;
+		&:last-child {
+			margin: 0;
+		}
+	}
+	&__language-input {
+		visibility: hidden;
+		position: absolute;
+		&:checked + .menu__language-text {
+			color: $TEXT-COLOR;
+		}
+		&:hover + .menu__language-text{
+			opacity: .8;
+		}
+		&:active + .menu__language-text{
+			opacity: .6;
+		}
+	}
+	&__language-text {
+		position: absolute;
+		left: 0;
 		font-family: $base-font;
 		font-weight: 700;
 		font-size: 10px;
 		color: $GREY;
 		letter-spacing: 0.7px;
 		text-transform: uppercase;
-		text-decoration: none;
-		margin-right: 16px;
-		text-align: center;
-		border: solid 2.5px transparent;
-		border-radius: 4px;
-		padding: 4px;
-		transition: border-color ease-in-out 0.1s, color ease-in-out 0.1s;
-		&:hover {
-			color: $TEXT-COLOR;
-		}
-		&:active {
-			color: $MIDDLE-GREY;
-		}
-		&:focus {
-			border-color: rgba(31, 31, 31, 0.5);
-		}
-		&:checked {
-			border-color: rgba(31, 31, 31, 0.5);
-		}
-		&:last-child {
-			margin: 0;
-		}
+		text-align: left;
+		transition: color ease-in-out 0.1s,
+					opacity ease-in-out 0.1s;
 	}
 	&__image {
 		fill: $TEXT-COLOR;
-		width: 100%;
-		height: 100%;
+		width: 24px;
+		height: 24px;
+		position: relative;
+		&--calendar {
+			left: -3px;
+		}
+		&--location {
+			left: -5px;
+		}
+		&--phone {
+			left: -3px;
+		}
+		&--mail {
+			left: -2px;
+		}
 	}
 	&__image-wrapper {
 		height: 24px;

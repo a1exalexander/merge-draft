@@ -1,9 +1,17 @@
 <template>
 <div class="book-meeting-room__wrapper">
 	<logo></logo>
+	<transition 
+		appear
+		name="custom-classes-transition"
+		enter-active-class="animated fadeInBubble"
+		mode="out-in">
 	<div class="book-meeting-room" :style="onStyleAnimate">
 		<button-close-mini class="book-meeting-room__close" @close='goBack'></button-close-mini>
-		<button-back @goBack='goBack'></button-back>
+		<div class="book-meeting-room__button-back-wrapper">
+			<button-back class="book-meeting-room__button-back" @goBack='goBack'></button-back>
+			<p class="book-meeting-room__button-text">go back</p>
+		</div>
 		<h2 class="book-meeting-room__title">Meeting Room<br>Resevation
 		</h2>
 		<form action="" id='book-meeting-room-form' name='book-meeting-room' class="book-meeting-room__form">
@@ -101,6 +109,7 @@
 			<button-book disabled></button-book>
 		</div>
 	</div>
+	</transition>
     <svg style="display: none">
         <symbol id='icon-checkbox' viewBox="0 0 24 24">
 			<path fill-rule="evenodd" d="M5 12.192l1.4-1.346 3.6 3.462L17.6 7 19 8.346 10 17z"/>
@@ -140,21 +149,15 @@ export default {
 	},
 	methods: {
 		goBack() {
-            this.onStyleAnimate = this.styleAnimate;
-			let onThis = this;
-			setTimeout(function() {
-				if (window.history.length > 1) {
-					onThis.$router.go(-1);
-				} else {
-					onThis.$router.go(-1);
-				}
-			}, 100)	
+			this.onStyleAnimate = this.styleAnimate;
+			setTimeout(() => {
+				this.$emit('goBack');
+			}, 150);
 		},
 		checkResidentTime() {
-			let onThis = this;
 			this.checkFrameIn = false;
-			setTimeout(function() {
-				onThis.checkFrameOut = true;
+			setTimeout(()=> {
+				this.checkFrameOut = true;
 			}, 200);
 		}
 	},
@@ -170,6 +173,7 @@ export default {
 <style lang="scss">
 @import '../assets/scss/style.scss';
 .book-meeting-room {
+	padding: 2rem 0;
 	flex: 0 0 30%;
 	display: grid;
 	grid-template-rows: repeat(5, auto);
@@ -185,6 +189,13 @@ export default {
 		align-self: flex-start;
 	}
 	&__wrapper {
+		background-color: $MAIN-DARK-COLOR;
+		z-index: 1000;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
 		width: 100%;
 		min-height: 100vh;
 		@extend %flex-row-c;
@@ -202,14 +213,36 @@ export default {
 	}
 	&__close {
 		right: 0;
-		top: 0.2rem;
+		top: 2.2rem;
+		animation-name: fadeIn;
+		animation-duration: 0.2s;
+		animation-timing-function: ease-in-out;
+		@media (max-width: 600px) {
+			display: none;
+		}
 	}
 	&__button-back-wrapper {
 		align-self: start;
 		border-bottom: 1px solid $MIDDLE-GREY;
-		@extend %flex-row-c;
-		padding-bottom: 1.8rem;
+		@extend %flex-row;
 		align-items: center;
+		padding-bottom: 1.8rem;
+		@media (max-width: 600px) {
+			justify-content: center;
+			padding: 2rem 0;
+		}
+	}
+	&__button-back {
+		margin-right: 1rem;
+	}
+	&__button-text {
+		text-transform: uppercase;
+		font-family: $base-font;
+		font-size: 0.625rem;
+		font-weight: bold;
+		letter-spacing: 0.7px;
+		text-align: left;
+		color: $GREY;
 	}
 	&__title {
 		padding: 1.2rem 0 1.8rem 0;

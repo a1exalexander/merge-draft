@@ -11,7 +11,7 @@ export default {
 	name: 'button-book-now',
 	methods: {
 		bookMeetingRoom() {
-			this.$router.push('/book-meeting-room');
+			this.$emit('bookMeetingRoom');
 		}
 	}
 };

@@ -4,7 +4,6 @@ import Router from 'vue-router';
 import Hello from './views/Hello.vue';
 import BookingWorkplace from './views/BookingWorkplace.vue';
 import AboutUs from './views/AboutUs.vue';
-import BookMeetingRoom from './views/BookMeetingRoom.vue';
 import Coworking from './views/Coworking.vue';
 import MeetingRoom from './views/MeetingRoom.vue';
 import MergeMenu from './views/MergeMenu.vue';
@@ -15,8 +14,8 @@ Vue.use(Router);
 export default new Router({
 	mode: 'history',
 	base: process.env.BASE_URL,
-	scrollBehavior(to, from, savedPosition) {
-		return new Promise((resolve, reject) => {
+	scrollBehavior() {
+		return new Promise(resolve => {
 			setTimeout(() => {
 				resolve({ x: 0, y: 0 });
 			}, 200);
@@ -25,48 +24,43 @@ export default new Router({
 	routes: [
 		{
 			path: '*',
-			name: 'other',
+			name: 'Other',
 			component: Hello
 		},
 		{
 			path: '/',
-			name: 'hello',
+			name: 'Hello',
 			component: Hello
 		},
 		{
 			path: '/menu',
-			name: 'menu',
+			name: 'Menu',
 			component: MergeMenu
 		},
 		{
 			path: '/coworking',
-			name: 'coworking',
+			name: 'Coworking',
 			component: Coworking
 		},
 		{
 			path: '/meeting-room',
-			name: 'meeting-room',
+			name: 'MeetingRoom',
 			component: MeetingRoom
 		},
 		{
 			path: '/events',
-			name: 'events',
+			name: 'Events',
 			component: Events
 		},
 		{
 			path: '/about',
-			name: 'about',
+			name: 'About',
 			component: AboutUs
 		},
 		{
 			path: '/booking-workplace',
-			name: 'booking-workplace',
+			name: 'BookingWorkplace',
 			component: BookingWorkplace
-		},
-		{
-			path: '/book-meeting-room',
-			name: 'book-meeting-room',
-			component: BookMeetingRoom
 		}
 	]
 });

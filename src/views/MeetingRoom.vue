@@ -1,90 +1,94 @@
 <template>
- <div class="meeting-room">
-		<!-- 2 wrappers to implement dual adaptive indents -->
-		<div class="meeting-room__wrapper">
-			<div class="meeting-room__inner">
-				<header class="meeting-room__header">
-					<h1 class="meeting-room__title">
-						Meeting Room
-					</h1>
-					<button-book-room></button-book-room>
-				</header>
-				<section class="meeting-room__slider">
-					<button class="meeting-room__label-button">
-						Photos
-					</button>
-					<slider></slider>
-				</section>
-				<section class="meeting-room-inf">
-					<div class="meeting-room-inf__wrapper">
-						<div class="meeting-room-inf__buttons">
-							<div class="meeting-room-inf__card meeting-room-inf__card--hour">
-								<p class="meeting-room-inf__text meeting-room-inf__text--hour">
-									150
-									<span class="meeting-room-inf__description meeting-room-inf__description--hour">
-										UAH PER HOUR
-									</span>
-								</p>
-								<button-book-now></button-book-now>
-							</div>
-							<div class="meeting-room-inf__card meeting-room-inf__card--resident">
-								<p class="meeting-room-inf__text meeting-room-inf__text--resident">
-									FREE
-									<span class="meeting-room-inf__description meeting-room-inf__description--resident">
-										FOR RESIDENTS 1 HOUR not more than TWO TIMES PER WEEK
-									</span>
-								</p>
-								<button-resident-link></button-resident-link>
-							</div>
+<div class="meeting-room">
+	<transition 
+		appear
+		name="custom-classes-transition"
+		enter-active-class="animated fadeIn"
+		leave-active-class="animated fadeOut"
+		mode="out-in">
+	<book-meeting-room  v-if='bookMeetingRoom' @goBack='bookMeetingRoom = !bookMeetingRoom'></book-meeting-room>
+	</transition>
+	<!-- 2 wrappers to implement dual adaptive indents -->
+	<div class="meeting-room__wrapper">
+		<div class="meeting-room__inner">
+			<header class="meeting-room__header">
+				<h1 class="meeting-room__title">
+					Meeting Room
+				</h1>
+				<button-book-room @bookMeetingRoom='bookMeetingRoom = !bookMeetingRoom'></button-book-room>
+			</header>
+			<section class="meeting-room__slider">
+				<button class="meeting-room__label-button">
+					Photos
+				</button>
+				<slider></slider>
+			</section>
+			<section class="meeting-room-inf">
+				<div class="meeting-room-inf__wrapper">
+					<div class="meeting-room-inf__buttons">
+						<div class="meeting-room-inf__card meeting-room-inf__card--hour">
+							<p class="meeting-room-inf__text meeting-room-inf__text--hour">150
+								<span class="meeting-room-inf__description meeting-room-inf__description--hour">UAH PER HOUR
+								</span>
+							</p>
+							<button-book-now @bookMeetingRoom='bookMeetingRoom = !bookMeetingRoom'></button-book-now>
 						</div>
-						<div class="meeting-room-inf__labels">
-							<div class="beneffits__label">
-								<img src="../assets/image/meeting.png" alt="meeting" class="beneffits__img">
-								<p class="beneffits__text">
-									Capacity: 10 people
-								</p>
-							</div>
-							<div class="beneffits__label">
-								<img src="../assets/image/tv.svg" class="beneffits__image">
-								<p class="beneffits__text">
-									50” TV with internet, Windows 10 and webcam
-								</p>
-							</div>
-							<div class="beneffits__label">
-								<img src="../assets/image/flipchart.svg" class="beneffits__image">
-								<p class="beneffits__text">
-									Flipchart with markers
-								</p>
-							</div>
-							<div class="beneffits__label">
-								<img src="../assets/image/wireless-speaker.svg" class="beneffits__image">
-								<p class="beneffits__text">
-									Wireless speaker
-								</p>
-							</div>
+						<div class="meeting-room-inf__card meeting-room-inf__card--resident">
+							<p class="meeting-room-inf__text meeting-room-inf__text--resident">FREE
+								<span class="meeting-room-inf__description meeting-room-inf__description--resident">FOR RESIDENTS 1 HOUR not more than TWO TIMES PER WEEK
+								</span>
+							</p>
+							<button-resident-link></button-resident-link>
 						</div>
 					</div>
-				</section>
-			</div>
+					<div class="meeting-room-inf__labels">
+						<div class="beneffits__label">
+							<img src="../assets/image/meeting.png" alt="meeting" class="beneffits__img">
+							<p class="beneffits__text">
+								Capacity: 10 people
+							</p>
+						</div>
+						<div class="beneffits__label">
+							<img src="../assets/image/tv.svg" class="beneffits__image">
+							<p class="beneffits__text">
+								50” TV with internet, Windows 10 and webcam
+							</p>
+						</div>
+						<div class="beneffits__label">
+							<img src="../assets/image/flipchart.svg" class="beneffits__image">
+							<p class="beneffits__text">
+								Flipchart with markers
+							</p>
+						</div>
+						<div class="beneffits__label">
+							<img src="../assets/image/wireless-speaker.svg" class="beneffits__image">
+							<p class="beneffits__text">
+								Wireless speaker
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
 		</div>
-		<calendar></calendar>
-		<section class="next-page-nav">
-			<router-link to="/meeting-room" class="next-page-nav__link next-page-nav__link--interior">
-				<div class="next-page-nav__inner">
-					<p class="next-page-nav__text">
-						INTERIOR
-					</p>
-				</div>
-			</router-link>
-			<router-link to="/events" class="next-page-nav__link next-page-nav__link--events">
-				<div class="next-page-nav__inner">
-					<p class="next-page-nav__text">
-						EVENTS
-					</p>
-				</div>
-			</router-link>
-		</section>
 	</div>
+	<calendar></calendar>
+	<section class="next-page-nav">
+		<router-link to="/coworking" class="next-page-nav__link next-page-nav__link--interior">
+			<div class="next-page-nav__inner">
+				<p class="next-page-nav__text">
+					INTERIOR
+				</p>
+			</div>
+		</router-link>
+		<router-link to="/events" class="next-page-nav__link next-page-nav__link--events">
+			<div class="next-page-nav__inner">
+				<p class="next-page-nav__text">
+					EVENTS
+				</p>
+			</div>
+		</router-link>
+	</section>
+</div>
 </template>
 
 <script>
@@ -93,67 +97,73 @@ import ButtonResidentLink from '@/components/buttons/ButtonResidentLink.vue';
 import ButtonBookNow from '@/components/buttons/ButtonBookNow.vue';
 import Slider from '@/components/Slider.vue';
 import Calendar from '@/components/Calendar.vue';
+import BookMeetingRoom from '@/views/BookMeetingRoom.vue';
 
 export default {
-  name: 'meeting-room',
-  components: {
-	ButtonBookRoom,
-	ButtonResidentLink,
-	ButtonBookNow,
-	Slider,
-	Calendar
-  }
-}
+	name: 'meeting-room',
+	components: {
+		ButtonBookRoom,
+		ButtonResidentLink,
+		ButtonBookNow,
+		Slider,
+		Calendar,
+		BookMeetingRoom
+	},
+	data() {
+		return {
+			bookMeetingRoom: false
+		};
+	}
+};
 </script>
 
 <style lang="scss">
 @import '../assets/scss/style.scss';
 .meeting-room {
 	width: 100%;
-    @extend %flex-col;
-    align-items: center;
-    justify-items: center;
-    padding-top: 7rem;
+	@extend %flex-col;
+	align-items: center;
+	justify-items: center;
+	padding-top: 7rem;
 	&__wrapper {
-        width: 100%;
-        display: flex;
-        padding: 0 112px;
-        @media (max-width: 920px) {
-            justify-content: flex-start;  
-            padding: 0 0 0 112px;
-        }
-        @media (max-width: 600px) {
-            justify-content: flex-start;  
-            padding: 0;
-        }
+		width: 100%;
+		display: flex;
+		padding: 0 112px;
+		@media (max-width: 920px) {
+			justify-content: flex-start;
+			padding: 0 0 0 112px;
+		}
+		@media (max-width: 600px) {
+			justify-content: flex-start;
+			padding: 0;
+		}
 	}
 	&__inner {
-        width: 100%;
-        padding: 0 10%;
-        @extend %flex-col-c;
-        align-items: flex-start;
-        &--margin {
-            margin-bottom: 4rem;
-        }
-        @media (max-width: 960px) {
-            padding: 0 5%; 
-        }
-        @media (max-width: 600px) {
-            padding: 0;
-            
-        }
+		width: 100%;
+		padding: 0 10%;
+		@extend %flex-col-c;
+		align-items: flex-start;
+		&--margin {
+			margin-bottom: 4rem;
+		}
+		@media (max-width: 960px) {
+			padding: 0 5%;
+		}
+		@media (max-width: 600px) {
+			padding: 0;
+		}
 	}
 	&__header {
-        width: 100%;
+		width: 100%;
 		@extend %flex-row-sb;
 		align-items: center;
-        justify-content: space-between;
-        margin: 0 0 5rem 0;
-        @media (max-width: 1200px) {
+		justify-content: space-between;
+		margin: 0 0 5rem 0;
+		@media (max-width: 1200px) {
 			flex-direction: column;
 			align-items: flex-start;
-        }
-        .button-book-room {
+		}
+		.button-book-room {
 			background-color: $MERGE-SECONDARY-COLOR;
 			&__text {
 				color: $MAIN-DARK-COLOR;
@@ -171,47 +181,46 @@ export default {
 			&:focus &__text::before {
 				visibility: visible;
 			}
-			
+
 			@media (max-width: 600px) {
 				align-self: center;
 			}
 			@media (max-width: 450px) {
 				width: 90%;
 			}
-        }
+		}
 	}
 	&__title {
-        font-family: $title-font;
-        font-size: 5rem;
-        font-weight: 500;
-        text-align: left;
-        color: $TEXT-COLOR;
-        margin: 0;
-        
-        @media (max-width: 1200px) {
-            margin-bottom: 2rem;
-        }
-        @media (max-width: 600px) {
-            align-self: center;
-            text-align: center;
-        }
-        @media (max-width: 460px) {
-            font-size: 4rem;
-        }
-        
+		font-family: $title-font;
+		font-size: 5rem;
+		font-weight: 500;
+		text-align: left;
+		color: $TEXT-COLOR;
+		margin: 0;
+
+		@media (max-width: 1200px) {
+			margin-bottom: 2rem;
+		}
+		@media (max-width: 600px) {
+			align-self: center;
+			text-align: center;
+		}
+		@media (max-width: 460px) {
+			font-size: 4rem;
+		}
 	}
 	&__slider {
-        @extend %flex-col;
-        align-items: flex-start;
+		@extend %flex-col;
+		align-items: flex-start;
 		padding-top: 5rem;
 		padding-bottom: 3rem;
-        width: 100%;
-        @media (max-width: 450px) {
-            align-items: center;
-        }
-    }
-    &__label-button {
-        padding: 0.5rem 1rem;
+		width: 100%;
+		@media (max-width: 450px) {
+			align-items: center;
+		}
+	}
+	&__label-button {
+		padding: 0.5rem 1rem;
 		background-color: black;
 		font-family: Montserrat;
 		font-size: 0.875rem;
@@ -220,13 +229,12 @@ export default {
 		color: $MIDDLE-GREY;
 		outline: none;
 		border: none;
-        transition: color ease-in-out 0.2s;
-        margin-bottom: 1.5rem;
+		transition: color ease-in-out 0.2s;
+		margin-bottom: 1.5rem;
 		&:hover {
 			color: white;
 		}
-        
-    }
+	}
 }
 .meeting-room-inf {
 	width: 100%;
@@ -331,7 +339,6 @@ export default {
 		grid-template-rows: repeat(2, auto);
 		grid-gap: 3.75rem;
 		@media (max-width: 600px) {
-			
 			grid-template-columns: none;
 			grid-template-rows: repeat(4, auto);
 			grid-row-gap: 3.75rem;

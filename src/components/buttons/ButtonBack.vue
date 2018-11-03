@@ -1,18 +1,15 @@
 <template>
-<div class="button-back__wrapper">
-    <button class="button-back" @click="goBack"> 
-        <svg class="button-back__img">
-            <use xlink:href='#arrow-left' />
-        </svg>
-        <div class="button-back__outside"></div>
-    </button>
-    <p class="button-back__text">go back</p>
-    <svg style="display: none">
-        <symbol id='arrow-left' width="17" height="17">
-            <path stroke="none" transform="matrix(-0.664679 0.664682 0.664682 0.664679 8.66016 0.303762)" d="M4 0L4 1.6L9.272 1.6L0 10.872L1.128 12L10.4 2.728L10.4 8L12 8L12 0L4 0L4 1.6L9.272 1.6L0 10.872L1.128 12L10.4 2.728L10.4 8L12 8L12 0L4 0Z" />
-        </symbol>
-    </svg>
-</div>
+<button class="button-back" @click="goBack"> 
+	<svg class="button-back__img">
+		<use xlink:href='#arrow-left' />
+	</svg>
+	<div class="button-back__outside"></div>
+	<svg style="display: none">
+		<symbol id='arrow-left' width="17" height="17">
+			<path stroke="none" transform="matrix(-0.664679 0.664682 0.664682 0.664679 8.66016 0.303762)" d="M4 0L4 1.6L9.272 1.6L0 10.872L1.128 12L10.4 2.728L10.4 8L12 8L12 0L4 0L4 1.6L9.272 1.6L0 10.872L1.128 12L10.4 2.728L10.4 8L12 8L12 0L4 0Z" />
+		</symbol>
+	</svg>
+</button> 
 </template>
 
 <script>
@@ -64,22 +61,6 @@ export default {
 	&:active &__img {
 		fill: $GREY;
 	}
-
-	&__wrapper {
-		width: 100%;
-		display: grid;
-		grid-template-columns: repeat(2, auto);
-		justify-items: start;
-		align-items: center;
-		justify-content: start;
-		grid-column-gap: 1rem;
-		@media (max-width: 600px) {
-			padding: 2rem 0 0 0;
-			justify-items: center;
-			justify-content: center;
-		}
-	}
-
 	&__img {
 		width: 17px;
 		height: 17px;

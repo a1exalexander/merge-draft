@@ -95,12 +95,15 @@ export default {
         background-color: rgba(17, 17, 17, 0.7);
         @extend %flex-row-c;
         align-items: center;
-        position: fixed;
+        position: absolute;
         z-index: 100;
         will-change: opacity;
+        @media (max-width: 600px) {
+            padding-top: 2rem;
+            align-items: flex-start; 
+        }
         @media (max-width: 500px) {
-            justify-content: flex-start;
-            
+            padding-top: 0;
         }
     }
     &__title {

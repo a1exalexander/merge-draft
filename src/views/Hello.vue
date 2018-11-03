@@ -36,23 +36,7 @@
 		<button-membership></button-membership>
 		<button-book-room></button-book-room>
 	</div>
-	<section class="social-networks social-networks--hello" hidden>
-		<a href="#" class="social-networks__link">
-			<svg class="social-networks__img">
-				<use xlink:href='#telegram' />
-			</svg>
-		</a>
-		<a href="#" class="social-networks__link">
-			<svg class="social-networks__img">
-				<use xlink:href='#facebook' />
-			</svg>
-		</a>
-		<a href="#" class="social-networks__link">
-			<svg class="social-networks__img">
-				<use xlink:href='#instagram' />
-			</svg>
-		</a>
-	</section>
+	<social-networks class="hello__social"></social-networks>
     <svg style="display: none">
        <symbol id='videocamera' viewBox="0 0 24 24">
         <path d="M17,10.5 L17,7 C17,6.45 16.55,6 16,6 L4,6 C3.45,6 3,6.45 3,7 L3,17 C3,17.55 3.45,18 4,18 L16,18 C16.55,18 17,17.55 17,17 L17,13.5 L21,17.5 L21,6.5 L17,10.5 L17,10.5 Z"
@@ -70,11 +54,14 @@
 <script>
 import ButtonMembership from '@/components/buttons/ButtonMembership.vue';
 import ButtonBookRoom from '@/components/buttons/ButtonBookRoom.vue';
+import SocialNetworks from '@/components/SocialNetworks.vue';
+
 export default {
-    name: 'hello',
+    name: 'Hello',
     components: {
     ButtonMembership,
-    ButtonBookRoom
+    ButtonBookRoom,
+    SocialNetworks
   }
 };
 </script>
@@ -138,8 +125,6 @@ export default {
 		white-space: nowrap;
         color: white;
         font-weight: 500;
-	
-        
         @media (min-width: 600px) and (max-width: 810px) {
             flex-direction: column;
             align-items: flex-start;
@@ -153,7 +138,6 @@ export default {
             width: 100%;
         }
     }
-
     &__logo {
         align-self: flex-end;
         margin: 0;
@@ -227,6 +211,30 @@ export default {
                 margin-bottom: 2rem;
             }
         }
+    }
+    &__social {
+        display: none;
+        @media (max-width: 600px), (max-height: 500px) {
+            padding-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, auto);
+            grid-column-gap: 3rem;
+            align-items: center;
+            grid-area: social;
+        }
+        .social-networks__link {
+            @media (max-width: 600px), (max-height: 500px) {
+                width: 42px;
+                height: 42px;
+            }
+        }
+        .social-networks__img {
+            @media (max-width: 600px), (max-height: 500px) {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        
     }
 }
 

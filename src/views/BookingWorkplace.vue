@@ -1,5 +1,12 @@
 <template>
 <div class="booking-workplace__wrapper">
+	<transition 
+		appear
+		name="custom-classes-transition"
+		enter-active-class="animated fadeIn"
+		mode="out-in">
+	<booking-done v-if='bookingDone'></booking-done>
+	</transition>
     <transition
     name="custom-classes-transition"
     enter-active-class="animated faster fadeIn"
@@ -8,8 +15,10 @@
     </transition>
 	<logo></logo>
 	<section class="booking-workplace" :style="onStyleAnimate">
+		<button-close-mini class="booking-workplace__close" @close='goBack'></button-close-mini>
 		<div class="booking-workplace__inner booking-workplace__inner--back-button">
-			<button-back @goBack='goBack'></button-back>
+			<button-back class="booking-workplace__button-back" @goBack='goBack'></button-back>
+			<p class="booking-workplace__button-text">go back</p>
 		</div>
 		<h1 class="booking-workplace__title">Booking of the
 			workplace
@@ -89,8 +98,7 @@
 								name="custom-classes-transition"
 								enter-active-class="animated03 pullDown"
 								leave-active-class="animated02 pullUp">
-                    		<p class='booking-workplace__validate booking-workplace__validate--name' 
-                        		v-if="errors.name">Please enter {{ errors.name }} to continue</p>
+							<p class='booking-workplace__validate booking-workplace__validate--name' v-if="errors.name">Please enter {{ errors.name }} to continue</p>
 							</transition>
 					</div>
 					<div class="booking-workplace__input-wrapper">
@@ -103,13 +111,12 @@
                             placeholder="+38 (000) 000 00-00"
 							@blur="checkPhone"
                             v-model.trim="form.phone">
-							<transition 
-								name="custom-classes-transition"
-								enter-active-class="animated03 pullDown"
-								leave-active-class="animated02 pullUp">
-							<p class='booking-workplace__validate booking-workplace__validate--phone' 
-                        		v-if="errors.phone">Please enter {{ errors.phone }} to continue</p>
-                    		</transition>
+						<transition 
+							name="custom-classes-transition"
+							enter-active-class="animated03 pullDown"
+							leave-active-class="animated02 pullUp">
+						<p class='booking-workplace__validate booking-workplace__validate--phone' v-if="errors.phone">Please enter {{ errors.phone }} to continue</p>
+						</transition>
 					</div>
 				</div>
 				<div class="booking-workplace__inner booking-workplace__inner--form booking-workplace__inner--email-career">
@@ -124,13 +131,12 @@
                             placeholder="example@mail.com"
 							@blur="checkEmail"
                             v-model.trim="form.email">
-							<transition 
-								name="custom-classes-transition"
-								enter-active-class="animated03 pullDown"
-								leave-active-class="animated02 pullUp">
-                   			 <p class='booking-workplace__validate booking-workplace__validate--email' 
-                        		v-if="errors.email">Please enter {{ errors.email }} to continue</p>
-                    		</transition>
+						<transition 
+							name="custom-classes-transition"
+							enter-active-class="animated03 pullDown"
+							leave-active-class="animated02 pullUp">
+						<p class='booking-workplace__validate booking-workplace__validate--email'  v-if="errors.email">Please enter {{ errors.email }} to continue</p>
+						</transition>
 					</div>
 					<div class="booking-workplace__input-wrapper">
 						<label for="career-label" class="booking-workplace__label">career</label>
@@ -166,21 +172,24 @@
 </template>
 
 <script>
-import axios from 'axios';
+import http from 'axios';
 import { TweenLite } from 'gsap';
 import ButtonBack from '@/components/buttons/ButtonBack.vue';
 import ButtonApply from '@/components/buttons/ButtonApply.vue';
 import ResidentCard from '@/components/ResidentCard.vue';
 import Logo from '@/components/Logo.vue';
-
+import ButtonCloseMini from '@/components/buttons/ButtonCloseMini.vue';
+import BookingDone from '@/views/BookingDone.vue';
 
 export default {
-	name: 'booking-workplace',
+	name: 'BookingWorkplace',
 	components: {
 		ButtonBack,
 		ButtonApply,
 		ResidentCard,
-		Logo
+		Logo,
+		ButtonCloseMini,
+		BookingDone
 	},
 	data() {
 		return {
@@ -210,22 +219,22 @@ export default {
 				transform: 'translateX(-200%)',
 				transition: 'transform ease-in-out 0.3s'
 			},
-			onStyleAnimate: null
+			onStyleAnimate: null,
+			bookingDone: false
 		};
 	},
 	methods: {
 		goBack() {
 			this.onStyleAnimate = this.styleAnimate;
-			let onThis = this;
-			setTimeout(function() {
+			setTimeout(() => {
 				if (window.history.length > 1) {
-					onThis.$router.go(-1);
+					this.$router.go(-1);
 				} else {
-					onThis.$router.go(-1);
+					this.$router.push('/');
 				}
 			}, 100);
 		},
-		checkName: function() {
+		checkName() {
 			if (!this.form.name) {
 				this.errors.name = 'your name and surname';
 				this.showSubmit();
@@ -237,7 +246,7 @@ export default {
 				this.showSubmit();
 			}
 		},
-		checkPhone: function() {
+		checkPhone() {
 			if (!this.form.phone) {
 				this.errors.phone = 'your phone';
 				this.showSubmit();
@@ -249,7 +258,7 @@ export default {
 				this.showSubmit();
 			}
 		},
-		checkEmail: function() {
+		checkEmail() {
 			if (!this.form.email) {
 				this.errors.email = 'your e-mail';
 				this.showSubmit();
@@ -261,19 +270,22 @@ export default {
 				this.showSubmit();
 			}
 		},
-		validEmail: function(email) {
+		validEmail(email) {
+			// eslint-disable-next-line
 			let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(email);
 		},
-		validPhone: function(phone) {
+		validPhone(phone) {
+			// eslint-disable-next-line
 			let re = /^((((\+?)+(3?)+8)?)+((\(|\-)?([0-9]){3}(\)|\-)?)+(\-?)+(([0-9]){3})+(\-?)+(([0-9]){2})+(\-?)+(([0-9]){2}))$/;
 			return re.test(phone);
 		},
-		validName: function(name) {
+		validName(name) {
+			// eslint-disable-next-line
 			let re = /^((([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]{1,}))+\s+(([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]){1,}))$/;
 			return re.test(name);
 		},
-		showSubmit: function() {
+		showSubmit() {
 			if (
 				this.form.name &&
 				this.form.phone &&
@@ -287,13 +299,12 @@ export default {
 				return true;
 			}
 		},
-		sendForm: function() {
+		sendForm() {
 			if (!this.showSubmit()) {
 				let params = JSON.stringify(this.form);
-				axios
-					.post('https://jsonplaceholder.typicode.com/posts', params)
-					.then(response => {
-						console.log(response);
+				http.post('https://jsonplaceholder.typicode.com/posts', params)
+					.then(()=> {
+						this.bookingDone = true;
 					})
 					.catch(e => {
 						this.errors.arr.push(e);
@@ -302,31 +313,31 @@ export default {
 		}
 	},
 	computed: {
-		animatedNumber: function() {
+		animatedNumber() {
 			return this.tweenedNumber.toFixed(0);
 		}
 	},
 	watch: {
-		'form.name': function() {
+		'form.name'() {
 			if (this.form.name && this.validName(this.form.name)) {
 				this.errors.name = null;
 				this.showSubmit();
 				this.validEmail(this.form.email);
 			}
 		},
-		'form.phone': function() {
+		'form.phone'() {
 			if (this.form.phone && this.validPhone(this.form.phone)) {
 				this.errors.phone = null;
 				this.showSubmit();
 			}
 		},
-		'form.email': function() {
+		'form.email'() {
 			if (this.form.email && this.validEmail(this.form.email)) {
 				this.errors.email = null;
 				this.showSubmit();
 			}
 		},
-		'form.picked': function() {
+		'form.picked'() {
 			let val = this.price[this.form.picked];
 			TweenLite.to(this.$data, 0.5, { tweenedNumber: val });
 		}
@@ -353,6 +364,7 @@ export default {
 	@extend %flex-col-sb;
 	will-change: transform;
 	align-items: flex-start;
+	position: relative;
 	@media (min-width: 600px) {
 		min-width: 430px;
 	}
@@ -367,14 +379,30 @@ export default {
 		align-items: center;
 		@media (max-width: 600px) {
 			padding: 2rem;
-			padding-top: 4rem;
-			.logo__wrapper {
-				position: absolute;
-				left: auto;
-				right: auto;
-				top: 1rem;
-			}
+			padding-top: 3rem;
 		}
+	}
+	&__close {
+		right: 0;
+		top: 2.2rem;
+		animation-name: fadeIn;
+		animation-duration: 0.2s;
+		animation-timing-function: ease-in-out;
+		@media (max-width: 600px) {
+			display: none;
+		}
+	}
+	&__button-back {
+		margin-right: 1rem;
+	}
+	&__button-text {
+		text-transform: uppercase;
+		font-family: $base-font;
+		font-size: 0.625rem;
+		font-weight: bold;
+		letter-spacing: 0.7px;
+		text-align: left;
+		color: $GREY;
 	}
 	&__validate {
 		font-family: $base-font;
@@ -403,8 +431,12 @@ export default {
 
 		&--back-button {
 			justify-content: flex-start;
-			padding-bottom: 22px;
+			padding-bottom: 1.375rem;
 			border-bottom: 1px solid $MIDDLE-GREY;
+			@media (max-width: 600px) {
+				justify-content: center;
+				padding: 2rem 0;
+			}
 		}
 		&--choice {
 			justify-content: space-between;
@@ -426,7 +458,6 @@ export default {
 			@media (max-width: 550px) {
 				flex-direction: column;
 			}
-			
 		}
 		&--price {
 			justify-content: space-between;
@@ -507,7 +538,7 @@ export default {
 	}
 }
 .workplace-choice {
-	width: 128px;
+	flex: 0 0 30%;
 	height: 74px;
 	border-radius: 3px;
 	background-color: $MAIN-DARK-COLOR;

@@ -1,5 +1,5 @@
 <template>
-<button class="button-book" form='book-form'>
+<button class="button-book" form='book-form' @click="book">
 	<p class="button-book__text">
 		book
 	</p> 
@@ -9,7 +9,12 @@
 <script>
 
 export default {
-  name: 'button-book'
+  name: 'button-book',
+  methods: {
+	  book() {
+		  this.$emit('book');
+	  }
+  }
 }
 </script>
 

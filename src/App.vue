@@ -2,19 +2,19 @@
   <div id="app">
 
 	<transition 
-	appear
-    name="custom-classes-transition"
-    enter-active-class="animatedInNav fadeIn"
-    leave-active-class="animated fast fadeOut">
-        <navigation v-show='navi'></navigation>
+		appear
+		name="custom-classes-transition"
+		enter-active-class="animatedInNav fadeIn"
+		leave-active-class="animated fast fadeOut">
+        <navigation v-show='navi' :navi='navi'></navigation>
     </transition>
 
     <transition 
-	appear
-    name="custom-classes-transition"
-    enter-active-class="animated fadeInLeft"
-    leave-active-class="animated02 fadeOut"
-	mode="out-in">
+		appear
+		name="custom-classes-transition"
+		enter-active-class="animated fadeInLeft"
+		leave-active-class="animated02 fadeOut"
+		mode="out-in">
         <router-view/>
     </transition>
 
@@ -38,11 +38,11 @@ export default {
 		onNavi() {
 			let name = this.$route.name;
 			if (
-				name == 'hello' ||
-				name == 'coworking' ||
-				name == 'meeting-room' ||
-				name == 'events' ||
-				name == 'about'
+				name == 'Hello' ||
+				name == 'Coworking' ||
+				name == 'MeetingRoom' ||
+				name == 'Events' ||
+				name == 'About'
 			) {
 				return true;
 			} else {
@@ -50,25 +50,23 @@ export default {
 			}
 		}
 	},
-	beforeUpdate: function() {
+	beforeUpdate() {
 		if (this.navi !== this.onNavi()) {
-			let onThis = this;
 			if (this.navi) {
-				setTimeout(function() {
-					onThis.navi = onThis.onNavi();
-				}, 150);
+				setTimeout(() => {
+					this.navi = this.onNavi();
+				}, 250);
 			} else {
 				this.navi = this.onNavi();
 			}
 		}
 	},
-	beforeMount: function() {
+	beforeMount() {
 		if (this.navi !== this.onNavi()) {
-			let onThis = this;
 			if (this.navi) {
-				setTimeout(function() {
-					onThis.navi = onThis.onNavi();
-				}, 350);
+				setTimeout(() => {
+					this.navi = this.onNavi();
+				}, 250);
 			} else {
 				this.navi = this.onNavi();
 			}
