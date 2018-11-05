@@ -20,8 +20,7 @@ export default {
 <style lang="scss">
 @import '../../assets/scss/style.scss';
 .button-book-room {
-	width: 187px;
-	height: 40px;
+	padding: 1rem 2rem;
 	background-color: $BUTTON-COLOR;
 	outline: none;
 	border: none;
@@ -50,6 +49,7 @@ export default {
 		color: white;
 		letter-spacing: 0.7px;
 		transition: color ease-in-out 0.1s;
+		white-space: nowrap;
 		&::before {
 			position: absolute;
 			content: '';

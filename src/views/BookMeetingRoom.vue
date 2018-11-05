@@ -1,12 +1,7 @@
 <template>
 <div class="book-meeting-room__wrapper">
 	<logo></logo>
-	<transition 
-		appear
-		name="custom-classes-transition"
-		enter-active-class="animated fadeInBubble"
-		mode="out-in">
-	<div class="book-meeting-room" :style="onStyleAnimate">
+	<div class="book-meeting-room" :style="onStyleAnimate" >
 		<button-close-mini class="book-meeting-room__close" @close='goBack'></button-close-mini>
 		<div class="book-meeting-room__button-back-wrapper">
 			<button-back class="book-meeting-room__button-back" @goBack='goBack'></button-back>
@@ -131,7 +126,6 @@
 			<button-book :disabled='showSubmit'></button-book>
 		</div>
 	</div>
-	</transition>
     <svg style="display: none">
         <symbol id='icon-checkbox' viewBox="0 0 24 24">
 			<path fill-rule="evenodd" d="M5 12.192l1.4-1.346 3.6 3.462L17.6 7 19 8.346 10 17z"/>
@@ -261,7 +255,7 @@ export default {
 		},
 		validPhone(phone) {
 			// eslint-disable-next-line
-			let re = /^((((\+?)+(3?)+8)?)+((\(|\-)?([0-9]){3}(\)|\-)?)+(\-?)+(([0-9]){3})+(\-?)+(([0-9]){2})+(\-?)+(([0-9]){2}))$/;
+			let re = /^((((\+?)+(3?)+8)?)+(((\(|\-)?)+0+([0-9]){2}(\)|\-)?)+(\-?)+(([0-9]){3})+(\-?)+(([0-9]){2})+(\-?)+(([0-9]){2}))$/;
 			return re.test(phone);
 		},
 		validName(name) {
@@ -401,6 +395,9 @@ export default {
 	will-change: height;
 	transition: height ease-in-out 0.3s;
 	position: relative;
+	animation-name: fadeInBubble;
+	animation-duration: 0.6s;
+	animation-timing-function: ease-in-out;
 	@media (min-width: 600px) {
 		min-width: 430px;
 	}
@@ -665,6 +662,7 @@ export default {
 		color: $TEXT-COLOR;
 		transition: border-color ease-in-out 0.1s;
 		border: 2px solid $MAIN-DARK-COLOR;
+		box-shadow: none;
 		&:-webkit-autofill,
 		&:-webkit-autofill:hover,
 		&:-webkit-autofill:focus,

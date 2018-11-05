@@ -1,4 +1,5 @@
 <template>
+<div class="resident-card__wrapper-all" @click.self='close'>
 <div class="resident-card__wrapper" @click.self='close'>
     <div class="resident-card animated faster fadeInBubble">
         <button-close-mini @close='close'></button-close-mini>
@@ -50,6 +51,8 @@
         <button-resident class="resident-card__button" @becomeResident='becomeResident'></button-resident>
     </div>
 </div>
+</div>
+
 </template>
 
 <script>
@@ -100,16 +103,30 @@ export default {
         right: 0;
         width: 100%;
         min-height: 100vh;
-        background-color: rgba(17, 17, 17, 0.8);
+        background-color: transparent;
         @extend %flex-row-c;
         align-items: center;
-        position: absolute;
+        position: fixed;
         z-index: 100;
         will-change: opacity;
+        @media (max-height: 800px) {
+            position: absolute;
+        }
         @media (max-width: 600px) {
             padding: 2rem 1rem;
             align-items: flex-start; 
         }
+    }
+    &__wrapper-all {
+        position: absolute;
+        z-index: 99;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        min-height: 100vh;
+        background-color: rgba(17, 17, 17, 0.7);
     }
     &__button {
         align-self: center;

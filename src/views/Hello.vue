@@ -33,7 +33,7 @@
 		in various specialties.
 	</p>
 	<div class="hello__button-wrapper">
-		<button-membership></button-membership>
+		<button-membership @becomeMember='becomeMember'></button-membership>
 		<button-book-room @book='meetingRoom'></button-book-room>
 	</div>
 	<social-networks class="hello__social"></social-networks>
@@ -66,6 +66,9 @@ export default {
   methods: {
       meetingRoom() {
           this.$router.push('/meeting-room');
+      },
+      becomeMember() {
+          this.$router.push('/booking-workplace');
       }
   }
 };

@@ -25,8 +25,7 @@ export default {
 <style lang="scss">
 @import '../../assets/scss/style.scss';
 .button-map {
-    width: 187px;
-    height: 40px;
+    padding: 1rem 2rem;
     background-color: $BUTTON-COLOR;
     outline: none;
     border: none;
@@ -57,6 +56,7 @@ export default {
         font-weight: 700;
         letter-spacing: 0.7px;
         color: $TEXT-COLOR;
+        white-space: nowrap;
         &::before {
             position: absolute;
             content: '';

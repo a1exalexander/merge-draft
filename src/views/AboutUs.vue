@@ -4,25 +4,25 @@
 		name="custom-classes-transition"
 		enter-active-class="animated faster fadeIn"
 		leave-active-class="animated faster fadeOut">
-    <resident-card v-if='visible.residentCard' @close='visible.residentCard = false'></resident-card>
+    <resident-card v-if='visible.residentCard' @close='visible.residentCard = false' @becomeResident='becomeResident'></resident-card>
     </transition>
 	<transition
 		name="custom-classes-transition"
 		enter-active-class="animated faster fadeIn"
 		leave-active-class="animated faster fadeOut">
-    <week-card v-if='visible.weekCard' :price='price' @close='visible.weekCard = false'></week-card>
+    <week-card v-if='visible.weekCard' :price='price' @close='visible.weekCard = false' @selectWeek='selectWeek'></week-card>
     </transition>
 	<transition
 		name="custom-classes-transition"
 		enter-active-class="animated faster fadeIn"
 		leave-active-class="animated faster fadeOut">
-    <day-card v-if='visible.dayCard' :price='price' @close='visible.dayCard = false'></day-card>
+    <day-card v-if='visible.dayCard' :price='price' @close='visible.dayCard = false' @selectDay='selectDay'></day-card>
     </transition>
 	<div class="about-us__wrapper">
 		<div class="about-us__main about-us__main--margin">
 			<header class="about-us__header">
 				<h1 class="about-us__title">About Us</h1>
-				<button-membership></button-membership>
+				<button-membership @becomeMember='becomeMember'></button-membership>
 			</header>
 			<section class="work-time work-time--margin">
 				<img src="../assets/image/time.svg" class="work-time__clock" alt="clock">
@@ -61,7 +61,7 @@
 					</a>
 				</div>
 			</section>
-			<section class="about-us__inf about-us__inf--margin" v-show='!residentCard'>
+			<section class="about-us__inf about-us__inf--margin">
 				<div class="about-us__inner">
 					<p class="about-us__caption">ABOUT US
 					</p>
@@ -73,10 +73,10 @@
 					</p>
 				</div>
 			</section>
-			<slider v-show='!residentCard'></slider>
+			<slider></slider>
 		</div>
 	</div>
-	<section class="next-page-nav" v-show='!residentCard'>
+	<section class="next-page-nav" >
 		<router-link to='/coworking' class="next-page-nav__link next-page-nav__link--interior">
 			<div class="next-page-nav__inner">
 				<p class="next-page-nav__text">Interior</p>
@@ -121,6 +121,23 @@ export default {
 				weekCard: false,
 			}	
 		};
+	},
+	methods: {
+		becomeMember() {
+			this.$router.push('/booking-workplace');
+		},
+		becomeResident() {
+			this.visible.residentCard = false;  
+			this.$router.push('/booking-workplace/month');
+		},
+		selectDay() {
+			this.visible.dayCard = false;
+			this.$router.push('/booking-workplace/day');
+		},
+		selectWeek() {
+			this.visible.weekCard = false;
+			this.$router.push('/booking-workplace/week');
+		}
 	}
 };
 </script>
@@ -253,6 +270,7 @@ export default {
 		font-weight: bold;
 		letter-spacing: 0.7px;
 		color: $MAIN-DARK-COLOR;
+		white-space: nowrap;
 	}
 	&__subtitle {
 		padding: 22px 0;
@@ -414,7 +432,7 @@ export default {
 			grid-area: 1 / 3 / 2 / 4;
 		}
 		&--time {
-			font-weight: normal;
+			font-weight: bold;
 			grid-area: 2 / 2 / 3 / 3;
 		}
 		&--weekend-time {

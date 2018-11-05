@@ -199,6 +199,7 @@ import BookingDone from '@/views/BookingDone.vue';
 
 export default {
 	name: 'BookingWorkplace',
+	props: ['tariff'],
 	components: {
 		ButtonBack,
 		ButtonApply,
@@ -228,7 +229,7 @@ export default {
 				phone: null,
 				email: null,
 				career: null,
-				picked: 'month'
+				picked: this.tariff?this.tariff:'month'
 			},
 			price: {
 				month: 1000,
@@ -306,7 +307,7 @@ export default {
 		},
 		validPhone(phone) {
 			// eslint-disable-next-line
-			let re = /^((((\+?)+(3?)+8)?)+((\(|\-)?([0-9]){3}(\)|\-)?)+(\-?)+(([0-9]){3})+(\-?)+(([0-9]){2})+(\-?)+(([0-9]){2}))$/;
+			let re = /^((((\+?)+(3?)+8)?)+(((\(|\-)?)+0+([0-9]){2}(\)|\-)?)+(\-?)+(([0-9]){3})+(\-?)+(([0-9]){2})+(\-?)+(([0-9]){2}))$/;
 			return re.test(phone);
 		},
 		validName(name) {

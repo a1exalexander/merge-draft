@@ -413,11 +413,16 @@ export default {
 		letter-spacing: 0.9px;
 		text-align: left;
 		line-height: 1.69;
+		@media (max-width: 850px) {
+			text-align: center;
+		}
 		&--day {
 			font-weight: 400;
+			white-space: nowrap;
 		}
 		&--time {
 			font-weight: 700;
+			white-space: nowrap;
 		}
 		&--city {
 			font-weight: 400;
@@ -525,6 +530,7 @@ export default {
 		text-align: left;
 		font-weight: 500;
 		text-decoration: none;
+		white-space: nowrap;
 	}
 }
 @for $i from 1 to 11 {

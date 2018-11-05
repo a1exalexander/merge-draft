@@ -46,6 +46,7 @@ export default {
 		color: $TEXT-COLOR;
 		text-transform: uppercase;
 		transition: color ease-in-out 0.1s;
+		white-space: nowrap;
 		&::before {
 			position: absolute;
 			content: '';

@@ -21,7 +21,7 @@ export default {
     name: 'button-membership',
     methods: {
 		becomeMember () {
-            this.$router.push('/booking-workplace');
+            this.$emit('becomeMember');  
         }
 	}
 }
@@ -30,9 +30,8 @@ export default {
 <style lang="scss">
 @import '../../assets/scss/style.scss';
 .button-membership {
-    width: 187px;
+    padding: 1rem 2rem;
     flex-shrink: 0;
-    height: 40px;
     background-color: $MERGE-SECONDARY-COLOR;
     outline: none;
     border: none;
@@ -60,6 +59,7 @@ export default {
         text-align: center;
         color: $MAIN-DARK-COLOR;
         letter-spacing: 0.7px;
+        white-space: nowrap;
         &::before {
             position: absolute;
             content: '';

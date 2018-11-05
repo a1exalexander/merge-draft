@@ -1,4 +1,5 @@
 <template>
+<div class="resident-card__wrapper-all" @click.self='close'>
 <div class="day-card__wrapper" @click.self='close'>
     <div class="day-card animated faster fadeInBubble">
         <button-close-mini @close='close'></button-close-mini>
@@ -39,6 +40,7 @@
         </div>
        
     </div>
+</div>
 </div>
 </template>
 
@@ -88,16 +90,30 @@ export default {
         right: 0;
         width: 100%;
         min-height: 100vh;
-        background-color: rgba(17, 17, 17, 0.8);
+        background-color: transparent;
         @extend %flex-row-c;
         align-items: center;
-        position: absolute;
+        position: fixed;
         z-index: 100;
         will-change: opacity;
+        @media (max-height: 800px) {
+            position: absolute;
+        }
         @media (max-width: 600px) {
             padding: 2rem 1rem;
             align-items: flex-start; 
         }
+    }
+    &__wrapper-all {
+        position: absolute;
+        z-index: 99;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        min-height: 100vh;
+        background-color: rgba(17, 17, 17, 0.7);
     }
     &__button {
 	padding: 1rem 2rem;
