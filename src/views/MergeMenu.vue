@@ -94,7 +94,7 @@
 		<a href="mailto: hello@merge.place" class="menu__contact menu__contact--mail menu-row-6">hello@merge.place
 		</a>
 		<div class="menu-row-10">
-			<button-membership></button-membership>
+			<button-membership @becomeMember='becomeMember'></button-membership>
 		</div>
 	</div>
 	<svg style="display: none;">
@@ -153,7 +153,10 @@ export default {
 					onThis.$router.go(-1);
 				}
 			}, 100);
-		}
+		},
+		becomeMember() {
+          this.$router.push('/booking-workplace');
+      	}
 	}
 };
 </script>

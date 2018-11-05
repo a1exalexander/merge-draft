@@ -48,29 +48,21 @@ export default {
 			} else {
 				return false;
 			}
+		},
+		checkNav() {
+			if (this.navi !== this.onNavi()) {
+				if (this.navi) {
+					setTimeout(() => {
+						this.navi = this.onNavi();
+					}, 250);
+				} else {
+					this.navi = this.onNavi();
+				}
+			}
 		}
 	},
 	beforeUpdate() {
-		if (this.navi !== this.onNavi()) {
-			if (this.navi) {
-				setTimeout(() => {
-					this.navi = this.onNavi();
-				}, 250);
-			} else {
-				this.navi = this.onNavi();
-			}
-		}
-	},
-	beforeMount() {
-		if (this.navi !== this.onNavi()) {
-			if (this.navi) {
-				setTimeout(() => {
-					this.navi = this.onNavi();
-				}, 250);
-			} else {
-				this.navi = this.onNavi();
-			}
-		}
+		this.checkNav();
 	}
 };
 </script>

@@ -1,7 +1,14 @@
 <template>
 <div class="book-meeting-room__wrapper">
 	<logo></logo>
-	<div class="book-meeting-room" :style="onStyleAnimate" >
+	<transition 
+		appear
+		name="custom-classes-transition"
+		enter-active-class="animated fadeIn"
+		mode="out-in">
+	<booking-room-done v-if='!bookingRoomDone'></booking-room-done>
+	</transition>
+	<div class="book-meeting-room" v-if='bookingRoomDone' :style="onStyleAnimate" >
 		<button-close-mini class="book-meeting-room__close" @close='goBack'></button-close-mini>
 		<div class="book-meeting-room__button-back-wrapper">
 			<button-back class="book-meeting-room__button-back" @goBack='goBack'></button-back>
@@ -142,6 +149,7 @@ import http from 'axios';
 import ButtonCloseMini from '@/components/buttons/ButtonCloseMini.vue';
 import ButtonBack from '@/components/buttons/ButtonBack.vue';
 import ButtonBook from '@/components/buttons/ButtonBook.vue';
+import BookingRoomDone from '@/views/BookingRoomDone.vue';
 import Logo from '@/components/Logo.vue';
 
 export default {
@@ -151,7 +159,8 @@ export default {
 		ButtonBack,
 		ButtonBook,
 		Logo,
-		ButtonCloseMini
+		ButtonCloseMini,
+		BookingRoomDone
 	},
 	data() {
 		return {
@@ -185,7 +194,8 @@ export default {
 				transform: 'translateX(-300%)',
 				transition: 'transform ease-in-out 0.3s'
 			},
-			onStyleAnimate: null
+			onStyleAnimate: null,
+			bookingRoomDone: true
 		};
 	},
 	methods: {
@@ -419,12 +429,6 @@ export default {
 		align-items: center;
 		@media (max-width: 600px) {
 			padding: 3rem 1rem;
-			.logo__wrapper {
-				position: absolute;
-				left: auto;
-				right: auto;
-				top: 1rem;
-			}
 		}
 	}
 	&__close {
