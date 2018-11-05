@@ -104,7 +104,7 @@ export default {
         animation-duration: 0.5s;
         animation-timing-function: ease-in-out;
     }
-    @media (min-width: 600px) and (max-height: 500px) {
+    @media (min-width: 600px) {
         grid-template-rows: repeat(6, auto);
         grid-template-areas:
         '. title    '
@@ -214,7 +214,7 @@ export default {
     }
     &__social {
         display: none;
-        @media (max-width: 600px), (max-height: 500px) {
+        @media (max-width: 600px) {
             padding-top: 2rem;
             display: grid;
             grid-template-columns: repeat(3, auto);
@@ -223,13 +223,13 @@ export default {
             grid-area: social;
         }
         .social-networks__link {
-            @media (max-width: 600px), (max-height: 500px) {
+            @media (max-width: 600px) {
                 width: 42px;
                 height: 42px;
             }
         }
         .social-networks__img {
-            @media (max-width: 600px), (max-height: 500px) {
+            @media (max-width: 600px) {
                 width: 32px;
                 height: 32px;
             }
@@ -259,11 +259,11 @@ export default {
 		}
     }
     @media (min-width: 601px) {
-    &:hover .hello-link__text,
-    &:hover .hello-link__img {
-        color: $MERGE-MAIN-COLOR;
-        fill: $MERGE-MAIN-COLOR;
-	}
+        &:hover .hello-link__text,
+        &:hover .hello-link__img {
+            color: $MERGE-MAIN-COLOR;
+            fill: $MERGE-MAIN-COLOR;
+        }
     }
 	&:focus {
 		border: solid 2.5px rgba(55, 205, 171, 0.5);

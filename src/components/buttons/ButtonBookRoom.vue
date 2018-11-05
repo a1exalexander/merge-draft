@@ -1,5 +1,5 @@
 <template>
-<button class="button-book-room" @click="bookMeetingRoom">
+<button class="button-book-room" @click="book">
 	<p class='button-book-room__text'>
 		book a meeting room
 	</p>
@@ -8,10 +8,10 @@
 
 <script>
 export default {
-	name: 'buttonBookRoom',
+	name: 'ButtonBookRoom',
     methods: {
-        bookMeetingRoom () {
-            this.$emit('bookMeetingRoom');
+        book() {
+            this.$emit('book');
         }
     }
 };

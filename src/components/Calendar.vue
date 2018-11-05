@@ -1,20 +1,12 @@
 <template>
 <section class="calendar">
-  <transition 
-		appear
-		name="custom-classes-transition"
-		enter-active-class="animated fadeIn"
-		leave-active-class="animated fadeOut"
-		mode="out-in">
-	<book-meeting-room  v-if='bookMeetingRoom' @goBack='bookMeetingRoom = !bookMeetingRoom'></book-meeting-room>
-	</transition>
 	<div class="calendar__wrapper">
 		<h3 class="calendar__title">
 			Availability calenda
 		</h3>
 		<div id='fullcalendar'></div>
 		<div class="calendar__inner">
-			<button-book :disabled='buttonShow' @book='bookMeetingRoom = !bookMeetingRoom'></button-book>
+			<button-book :disabled='buttonShow' @book='showBook'></button-book>
 			<p class="calendar__text">Choose a time on the calendar when you need a Meeting Room. After click "Reserve"
 			</p>
 		</div>
@@ -44,55 +36,72 @@ export default {
   data() {
     return {
       event: {
+        day: null,
         start: null,
-        end: null
+        end: null,
+        dateStart: null,
+        dateEnd: null,
+        duration: null
       },
-      buttonShow: true,
-      bookMeetingRoom: false
+      buttonShow: true
+    }
+  },
+  methods: {
+    showBook() {
+      this.$emit('showBook', this.event);  
     }
   },
   mounted() {
-      let _this = this;
-     $('#fullcalendar').fullCalendar({
-        footer: false,
-				height: 'auto',
-				defaultView: 'agendaWeek',
-				allDaySlot: false,
-				minTime: '08:00:00',
-				maxTime: '20:00:00',
-				slotEventOverlap: false,
-				selectOverlap: false,
-				slotDuration: '00:30:00',
-				columnHeaderFormat: 'dddd',
-				titleFormat: 'DD MMMM, YYYY',
-        timeFormat: 'h(:mm)T',
-        unselectAuto: false,
-				header: {
-					left: 'prev title next',
-					center: '',
-					right: ''
-				},
-				navLinks: false,
-				selectable: true,
-        selectHelper: true,
-        googleCalendarApiKey: 'AIzaSyC-8JGRFhvrAw3gFAS4L7P3lMS0KaV9rJU',
-        events: {
-          googleCalendarId: '13g6skar8uf2s0um2kmushttnc@group.calendar.google.com'
-        },
-        eventClick(event){
-          if (event.url) {
-            return false;
-          }
-        },
-        select(start, end) {
-          _this.event.start = start.format();
-          _this.event.end = end.format();
-          _this.buttonShow = false;
-          window.console.log(JSON.stringify(_this.event));
-        },
-        unselect() {
-          _this.buttonShow = true;
+    let _this = this;
+    $('#fullcalendar').fullCalendar({
+      footer: false,
+      height: 'auto',
+      defaultView: 'agendaWeek',
+      allDaySlot: false,
+      minTime: '08:00:00',
+      maxTime: '20:00:00',
+      slotEventOverlap: false,
+      selectOverlap: false,
+      slotDuration: '00:30:00',
+      columnHeaderFormat: 'dddd',
+      titleFormat: 'DD MMMM, YYYY',
+      timeFormat: 'h(:mm)T',
+      unselectAuto: false,
+      header: {
+        left: 'prev title next',
+        center: '',
+        right: ''
+      },
+      navLinks: false,
+      selectable: true,
+      selectHelper: true,
+      googleCalendarApiKey: 'AIzaSyC-8JGRFhvrAw3gFAS4L7P3lMS0KaV9rJU',
+      events: {
+        googleCalendarId: '13g6skar8uf2s0um2kmushttnc@group.calendar.google.com'
+      },
+      eventClick(event){
+        if (event.url) {
+          return false;
         }
+      },
+      select(start, end) {
+        _this.event.day = start.format('DD MMMM,YYYY');
+        _this.event.start = start.format('hh:mm');
+        _this.event.end = end.format('hh:mm');
+        _this.event.duration = (+end.format('H') - +start.format('H')) + 'h - ' + Math.abs((+end.format('m') - +start.format('m'))) + 'm';
+        _this.event.dateStart = start.format();
+        _this.event.dateEnd = end.format();
+        _this.buttonShow = false;
+      },
+      unselect() {
+        _this.buttonShow = true;
+        _this.event.day = null;
+        _this.event.start = null;
+        _this.event.end = null;
+        _this.event.duration = null;
+        _this.event.dateStart = null;
+        _this.event.dateEnd = null;
+      }
     });
   }
 };
@@ -110,7 +119,10 @@ export default {
 .calendar {
 	padding-left: 112px;
 	width: 100%;
-	color: $TEXT-COLOR;
+  color: $TEXT-COLOR;
+  @media (max-width: 980px) {
+    display: none;
+  }
 	&__wrapper {
 		padding: 0 5% 0 10%;
 	}

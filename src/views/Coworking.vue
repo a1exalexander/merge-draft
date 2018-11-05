@@ -10,9 +10,7 @@
 			</header>
 			<section class="view-360">
 				<div class="view-360__row">
-					<button class="view-360__button">
-						360° view
-					</button>
+					<button class="view-360__button">360° view</button>
 				</div>
 				<div class="view-360__inner">
 					<img src="../assets/image/merge-4.png" alt="image" class="view-360__image">
@@ -59,9 +57,7 @@
 				</div>
 			</section>
 			<section class="coworking__slider">
-				<button class="coworking__label-button">
-					Photos
-				</button>
+				<button class="coworking__label-button">Photos</button>
 				<slider></slider>
 			</section>
 		</div>
@@ -69,16 +65,12 @@
 	<section class="next-page-nav">
 		<router-link to='/meeting-room' class="next-page-nav__link next-page-nav__link--meeting-room">
 			<div class="next-page-nav__inner">
-				<p class="next-page-nav__text">
-					MEETING ROOM
-				</p>
+				<p class="next-page-nav__text">MEETING ROOM</p>
 			</div>
 		</router-link>
 		<router-link to='/events' class="next-page-nav__link next-page-nav__link--events">
 			<div class="next-page-nav__inner">
-				<p class="next-page-nav__text">
-					Events
-				</p>
+				<p class="next-page-nav__text">Events</p>
 			</div>
 		</router-link>
 	</section>

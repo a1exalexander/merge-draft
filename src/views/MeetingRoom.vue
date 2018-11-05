@@ -6,21 +6,17 @@
 		enter-active-class="animated fadeIn"
 		leave-active-class="animated fadeOut"
 		mode="out-in">
-	<book-meeting-room  v-if='bookMeetingRoom' @goBack='bookMeetingRoom = !bookMeetingRoom'></book-meeting-room>
+	<book-meeting-room  v-if='bookMeetingRoom' :event='event' @goBack='bookMeetingRoom = false'></book-meeting-room>
 	</transition>
 	<!-- 2 wrappers to implement dual adaptive indents -->
-	<div class="meeting-room__wrapper">
+	<div class="meeting-room__wrapper" v-show='!bookMeetingRoom'>
 		<div class="meeting-room__inner">
 			<header class="meeting-room__header">
-				<h1 class="meeting-room__title">
-					Meeting Room
-				</h1>
-				<button-book-room @bookMeetingRoom='bookMeetingRoom = !bookMeetingRoom'></button-book-room>
+				<h1 class="meeting-room__title">Meeting Room</h1>
+				<button-book-room @book='showBook'></button-book-room>
 			</header>
 			<section class="meeting-room__slider">
-				<button class="meeting-room__label-button">
-					Photos
-				</button>
+				<button class="meeting-room__label-button">Photos</button>
 				<slider></slider>
 			</section>
 			<section class="meeting-room-inf">
@@ -31,7 +27,7 @@
 								<span class="meeting-room-inf__description meeting-room-inf__description--hour">UAH PER HOUR
 								</span>
 							</p>
-							<button-book-now @bookMeetingRoom='bookMeetingRoom = !bookMeetingRoom'></button-book-now>
+							<button-book-now @book='showBook'></button-book-now>
 						</div>
 						<div class="meeting-room-inf__card meeting-room-inf__card--resident">
 							<p class="meeting-room-inf__text meeting-room-inf__text--resident">FREE
@@ -44,47 +40,35 @@
 					<div class="meeting-room-inf__labels">
 						<div class="beneffits__label">
 							<img src="../assets/image/meeting.png" alt="meeting" class="beneffits__img">
-							<p class="beneffits__text">
-								Capacity: 10 people
-							</p>
+							<p class="beneffits__text">Capacity: 10 people</p>
 						</div>
 						<div class="beneffits__label">
 							<img src="../assets/image/tv.svg" class="beneffits__image">
-							<p class="beneffits__text">
-								50” TV with internet, Windows 10 and webcam
-							</p>
+							<p class="beneffits__text">50” TV with internet, Windows 10 and webcam</p>
 						</div>
 						<div class="beneffits__label">
 							<img src="../assets/image/flipchart.svg" class="beneffits__image">
-							<p class="beneffits__text">
-								Flipchart with markers
-							</p>
+							<p class="beneffits__text">Flipchart with markers</p>
 						</div>
 						<div class="beneffits__label">
 							<img src="../assets/image/wireless-speaker.svg" class="beneffits__image">
-							<p class="beneffits__text">
-								Wireless speaker
-							</p>
+							<p class="beneffits__text">Wireless speaker</p>
 						</div>
 					</div>
 				</div>
 			</section>
 		</div>
 	</div>
-	<calendar></calendar>
-	<section class="next-page-nav">
+	<calendar @showBook='showBook' v-show='!bookMeetingRoom'></calendar>
+	<section class="next-page-nav" v-show='!bookMeetingRoom'>
 		<router-link to="/coworking" class="next-page-nav__link next-page-nav__link--interior">
 			<div class="next-page-nav__inner">
-				<p class="next-page-nav__text">
-					INTERIOR
-				</p>
+				<p class="next-page-nav__text">INTERIOR</p>
 			</div>
 		</router-link>
 		<router-link to="/events" class="next-page-nav__link next-page-nav__link--events">
 			<div class="next-page-nav__inner">
-				<p class="next-page-nav__text">
-					EVENTS
-				</p>
+				<p class="next-page-nav__text">EVENTS</p>
 			</div>
 		</router-link>
 	</section>
@@ -100,7 +84,7 @@ import Calendar from '@/components/Calendar.vue';
 import BookMeetingRoom from '@/views/BookMeetingRoom.vue';
 
 export default {
-	name: 'meeting-room',
+	name: 'MeetingRoom',
 	components: {
 		ButtonBookRoom,
 		ButtonResidentLink,
@@ -111,8 +95,18 @@ export default {
 	},
 	data() {
 		return {
-			bookMeetingRoom: false
+			bookMeetingRoom: false,
+			event: null
 		};
+	},
+	methods: {
+		showBook(data) {
+			if(data) {
+				this.event = data;
+			}
+			window.console.log(this.event);
+			this.bookMeetingRoom = true;
+		}
 	}
 };
 </script>
@@ -240,6 +234,9 @@ export default {
 	width: 100%;
 	border-bottom: 1px solid $MIDDLE-GREY;
 	@extend %flex-row;
+	@media (max-width: 980px) {
+		margin-bottom: 4rem;
+	}
 	@media (max-width: 720px) {
 		justify-content: center;
 	}

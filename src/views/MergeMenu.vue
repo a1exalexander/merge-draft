@@ -8,9 +8,7 @@
 			</svg>
 			<div class="menu-button-close__outside"></div>
 		</button>
-		<p class="menu-button-close__description">
-			CLOSE
-		</p>
+		<p class="menu-button-close__description">CLOSE</p>
 	</div>
 	<div class="menu__col">
 	</div>

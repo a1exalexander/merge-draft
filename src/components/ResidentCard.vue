@@ -86,11 +86,11 @@ export default {
         padding: 2rem;
     }
     &__wrapper {
+        padding: 2rem;
         top: 0;
-        bottom: 0;
         left: 0;
         right: 0;
-        width: 100vw;
+        width: 100%;
         min-height: 100vh;
         background-color: rgba(17, 17, 17, 0.7);
         @extend %flex-row-c;
@@ -99,11 +99,8 @@ export default {
         z-index: 100;
         will-change: opacity;
         @media (max-width: 600px) {
-            padding-top: 2rem;
+            padding: 2rem 1rem;
             align-items: flex-start; 
-        }
-        @media (max-width: 500px) {
-            padding-top: 0;
         }
     }
     &__title {

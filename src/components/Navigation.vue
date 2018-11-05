@@ -119,20 +119,6 @@ export default {
             border-bottom: 1px solid $DARK-GREY;
         }
     }
-    @media (max-height: 500px)  {
-        width: 80px;
-        height: 100vh;
-        padding: 0;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        grid-template-columns: none;
-        grid-template-rows: repeat(2, 1fr);
-        &--border {
-            border-right: 1px solid $DARK-GREY;
-            border-bottom: none;
-        }
-    }
     &__logo {
     fill: $MERGE-MAIN-COLOR;
     width: 31px;
@@ -146,14 +132,14 @@ export default {
         text-decoration: none;
         outline: none;
         border: none;
-        @media (max-width: 600px), (max-height: 500px) {
+        @media (max-width: 600px) {
             grid-column: 1;
             grid-row: 1;
             align-self: center;
         }
     }
     &__social {
-        @media (max-width: 600px), (max-height: 500px) {
+        @media (max-width: 600px) {
             display: none;
         }
     }
@@ -204,17 +190,12 @@ export default {
         height: 30px;
         width: 30px;
         position: relative;
-        @media (max-width: 600px) and (orientation: portrait) {
+        @media (max-width: 600px) {
             grid-column: 2;
             animation-name: slideRight;
             animation-duration: 0.5s;
             animation-timing-function: ease-in-out;
         }
-        @media (max-height: 500px) {
-            grid-column: 1;
-            grid-row: 2;
-        }
-    
     }
     &__tooltip {
         height: 24px;
@@ -230,7 +211,7 @@ export default {
         animation-name: fadeIn;
         animation-timing-function: ease-in-out;
         animation-duration: 3s;
-        @media (max-width: 600px), (max-height: 500px) {
+        @media (max-width: 600px) {
             display: none;
         }
         &:after {

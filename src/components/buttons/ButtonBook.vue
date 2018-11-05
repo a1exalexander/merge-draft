@@ -9,11 +9,11 @@
 <script>
 
 export default {
-  name: 'button-book',
+  name: 'ButtonBook',
   methods: {
-	  book() {
-		  this.$emit('book');
-	  }
+	book() {
+		this.$emit('book');
+	}
   }
 }
 </script>

@@ -4,13 +4,12 @@
     name="custom-classes-transition"
     enter-active-class="animated faster fadeIn"
     leave-active-class="animated faster fadeOut">
-    <resident-card v-if='residentCard' @closeResidentCard='residentCard = false'></resident-card>
+    <resident-card v-if='residentCard' @close='residentCard = false'></resident-card>
     </transition>
 	<div class="about-us__wrapper">
 		<div class="about-us__main about-us__main--margin">
 			<header class="about-us__header">
-				<h1 class="about-us__title">About Us
-				</h1>
+				<h1 class="about-us__title">About Us</h1>
 				<button-membership></button-membership>
 			</header>
 			<section class="work-time work-time--margin">
@@ -50,7 +49,7 @@
 					</a>
 				</div>
 			</section>
-			<section class="about-us__inf about-us__inf--margin">
+			<section class="about-us__inf about-us__inf--margin" v-show='!residentCard'>
 				<div class="about-us__inner">
 					<p class="about-us__caption">ABOUT US
 					</p>
@@ -62,22 +61,18 @@
 					</p>
 				</div>
 			</section>
-			<slider></slider>
+			<slider v-show='!residentCard'></slider>
 		</div>
 	</div>
-	<section class="next-page-nav">
-		<router-link to='/meeting-room' class="next-page-nav__link next-page-nav__link--interior">
+	<section class="next-page-nav" v-show='!residentCard'>
+		<router-link to='/coworking' class="next-page-nav__link next-page-nav__link--interior">
 			<div class="next-page-nav__inner">
-				<p class="next-page-nav__text">
-					Interior
-				</p>
+				<p class="next-page-nav__text">Interior</p>
 			</div>
 		</router-link>
 		<router-link to='/meeting-room' class="next-page-nav__link next-page-nav__link--meeting-room">
 			<div class="next-page-nav__inner">
-				<p class="next-page-nav__text">
-					MEETING ROOM
-				</p>
+				<p class="next-page-nav__text">MEETING ROOM</p>
 			</div>
 		</router-link>
 	</section>
@@ -120,9 +115,6 @@ export default {
 	flex-shrink: 1;
 	flex-grow: 0;
 	padding-top: 7rem;
-	@media (max-height: 500px) {
-		padding-top: 3rem;
-	}
 	&__wrapper {
 		width: 100%;
 		display: flex;
@@ -429,10 +421,6 @@ export default {
 	@media (max-width: 600px) {
 		height: 304px;
 		padding-left: 0;
-	}
-	@media (max-height: 500px) {
-		padding-left: 80px;
-		height: 100vh;
 	}
 	&__link {
 		height: 100%;

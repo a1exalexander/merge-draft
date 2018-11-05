@@ -12,101 +12,146 @@
 			<button-back class="book-meeting-room__button-back" @goBack='goBack'></button-back>
 			<p class="book-meeting-room__button-text">go back</p>
 		</div>
-		<h2 class="book-meeting-room__title">Meeting Room<br>Resevation
+		<h2 class="book-meeting-room__title">Meeting Room<br>Reservation
 		</h2>
 		<form action="" id='book-meeting-room-form' name='book-meeting-room' class="book-meeting-room__form">
-			<p class="book-meeting-room__date-label">
-				Day
-			</p>
-			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--day">
-				12 May, 2018
-			</p>
-			<p class="book-meeting-room__date-label book-meeting-room__date-label--time">
-				Time
-			</p>	
-			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--time">
-				11:00 — 12:20 (1h 20m)
-			</p>
-			<button class="book-meeting-room__edit-date">
+			<p class="book-meeting-room__date-label">Day</p>
+			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--day">{{ event? event.day: "date" }}</p>
+			<p class="book-meeting-room__date-label book-meeting-room__date-label--time">Time {{ viewDate.start }}</p>	
+			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--time">{{ event? event.start: "start" }} - {{ event? event.end: "end" }} ({{ event? event.duration: "duration" }})</p>
+			<button class="book-meeting-room__edit-date" @click.prevent='showPicker = "show"'>
 				<svg class="book-meeting-room__edit-icon">
-					<use xlink:href='#icon-edit' />
+					<use xlink:href='#icon-edit'/>
 				</svg>
 				<p class="book-meeting-room__edit-text">edit</p>
 			</button>
+			<transition 
+				appear
+				name="custom-classes-transition"
+				enter-active-class="animated fadeInBubble"
+				leave-active-class="animated fadeOut"
+				mode="out-in">
+				<div class="book-meeting-room__picker" v-show='showPicker'>
+					<input id='picker-date' 
+						placeholder='Pick date' 
+						class="ui-timepicker-input book-meeting-room__picker-date" 
+						type="text">
+					<input id='picker-start' 
+						placeholder='pick start' 
+						class="ui-timepicker-input book-meeting-room__picker-time" 
+						type="text"
+						v-model="viewDate.start">
+					<p class="book-meeting-room__date-label book-meeting-room__date-label--picker">-</p>
+					<input id='picker-end' 
+						placeholder='pick end' 
+						class="ui-timepicker-input book-meeting-room__picker-time" 
+						type="text">
+				</div>
+			</transition>
 			<div class="book-meeting-room__input-wrapper">
-				<label for="book-meeting-name" class="book-meeting-room__label book-meeting-room__label--name">
-					NAME
-				</label>
-				<input type="text" id="book-meeting-name" class="book-meeting-room__input book-meeting-room__input--name" required placeholder="Andrey Malishko">
-				<label for="book-meeting-phone" class="book-meeting-room__label book-meeting-room__label--phone">
-					PHONE
-				</label>
-				<input type="tel" id='book-meeting-phone' class="book-meeting-room__input book-meeting-room__input--phone" required placeholder="+38 (000) 000 00-00">
+				<label for="book-meeting-name" class="book-meeting-room__label book-meeting-room__label--name">NAME</label>
+				<input type="text" 
+					autocomplete='on'
+					id="book-meeting-name" 
+					class="book-meeting-room__input book-meeting-room__input--name" 
+					required 
+					placeholder="Andrey Malishko"
+					v-model.trim="bookRoomData.name"
+					:class="{inputError: errors.name}"
+					@blur="checkName">
+				<transition 
+					name="custom-classes-transition"
+					enter-active-class="animated03 pullDown"
+					leave-active-class="animated02 pullUp">
+				<p class='book-meeting-room__validate book-meeting-room__validate--name' v-if="errors.name">Please enter {{ errors.name }} to continue</p>
+				</transition>
+				<label for="book-meeting-phone" class="book-meeting-room__label book-meeting-room__label--phone">PHONE</label>
+				<input type="tel" 
+					id='book-meeting-phone' 
+					autocomplete='on'
+					class="book-meeting-room__input book-meeting-room__input--phone" 
+					required 
+					placeholder="+38 (000) 000 00-00"
+					v-model.trim="bookRoomData.phone"
+					:class="{inputError: errors.phone}"
+					@blur="checkPhone">
+				<transition 
+					name="custom-classes-transition"
+					enter-active-class="animated03 pullDown"
+					leave-active-class="animated02 pullUp">
+				<p class='book-meeting-room__validate book-meeting-room__validate--phone' v-if="errors.phone">Please enter {{ errors.phone }} to continue</p>
+				</transition>
 			</div>
 			<label for="book-meeting-resident" class="book-meeting-room__resident-label">
-				<input type="checkbox" form='meeting-room-form' id='book-meeting-resident' class="book-meeting-room__resident-input" value='checkResident' v-model="checked">
+				<input type="checkbox" 
+				form='meeting-room-form' 
+				id='book-meeting-resident' 
+				class="book-meeting-room__resident-input" 
+				value='checkResident' 
+				v-model="bookRoomData.resident">
 				<div class="book-meeting-room__resident-check">
 					<svg class="book-meeting-room__resident-img">
 						<use xlink:href='#icon-checkbox'/>
 					</svg>
 				</div>
-				<p class="book-meeting-room__resident-text">
-					I'm a Resident
-				</p>
+				<p class="book-meeting-room__resident-text">I'm a Resident</p>
 			</label>
 		</form>
-        <div class="book-meeting-room__check-frame" v-if='checked'>
+        <div class="book-meeting-room__check-frame" v-if='bookRoomData.resident'>
             <transition 
-            appear
-            name="custom-classes-transition"
-            enter-active-class="animated pullDown"
-            leave-active-class="animatedOut02 pullUp">
+				appear
+				name="custom-classes-transition"
+				enter-active-class="animated pullDown"
+				leave-active-class="animated02 pullUp">
             <div class="check-free-time__wrapper" v-show='checkFrameIn'>
 			<form id='check-free-time' class="check-free-time">
 				<p class="check-free-time__text">Put your E-Mail for checking availability of free hours for Meeting Room's using
 				</p>
-				<input form='check-free-time' type="email" class="check-free-time__email" placeholder="Email">
-				<button form='check-free-time' class="check-free-time__button" @click.prevent="checkResidentTime">
+				<input form='check-free-time' 
+					type="email" 
+					autocomplete='on'
+					class="check-free-time__email" 
+					placeholder="Email"
+					:class="{inputError: errors.email}"
+					@blur="checkEmail"
+					v-model.trim="bookRoomData.email">
+				<transition 
+					name="custom-classes-transition"
+					enter-active-class="animated03 pullDown"
+					leave-active-class="animated02 pullUp">
+				<p class='book-meeting-room__validate book-meeting-room__validate--email'  v-if="errors.email">Please enter {{ errors.email }} to continue</p>
+				</transition>
+				<button	class="check-free-time__button" 
+					@click.prevent="checkResidentTime"
+					:disabled='showCheck'>
 					<p class="check-free-time__button-text">CHECK</p>
 				</button>
 			</form>
             </div>
             </transition>
             <transition 
-            appear
-            name="custom-classes-transition"
-            enter-active-class="animated pullDown"
-            leave-active-class="animated pullUp">
+				appear
+				name="custom-classes-transition"
+				enter-active-class="animated pullDown"
+				leave-active-class="animated pullUp">
             <div class="resident-time-info__wrapper" v-show='checkFrameOut'>
-			<div class="resident-time-info">
-				<p class="resident-time-info__title">
-					Resident
-				</p>
-				<p class="resident-time-info__title">
-					Duration
-				</p>
-				<p class="resident-time-info__title">
-					Count of Free Hours
-				</p>
-				<p class="resident-time-info__text">
-					(Pasha Tseluyko)
-				</p>
-				<p class="resident-time-info__text">
-					14 – 20 May
-				</p>
-				<p class="resident-time-info__text resident-time-info__text--red">
-					(1 h.)
-				</p>
-			</div>
+				<div class="resident-time-info">
+					<p class="resident-time-info__title">Resident</p>
+					<p class="resident-time-info__title">Duration</p>
+					<p class="resident-time-info__title">Count of Free Hours</p>
+					<p class="resident-time-info__text">({{ bookRoomData.name }})</p>
+					<p class="resident-time-info__text">{{ checkFreeDuration }}</p>
+					<p class="resident-time-info__text"
+						:class="{redText: !freeHours}">{{ freeHours? freeHours + 'h.': 'No More' }}</p>
+				</div>
             </div>
             </transition>
         </div>
 		<div class="book-meeting-room__apply-wrapper">
-			<p class="booking-price book-meeting-room__price">
-				Price:
+			<p class="booking-price book-meeting-room__price">Price:
 				<span class="booking-price__sum">1000</span>
 			</p>
-			<button-book disabled></button-book>
+			<button-book :disabled='showSubmit'></button-book>
 		</div>
 	</div>
 	</transition>
@@ -122,32 +167,73 @@
 </template>
 
 <script>
+import $ from 'jquery';
+import 'timepicker/jquery.timepicker.min.js';
+import 'timepicker/jquery.timepicker.min.css';
+import http from 'axios';
 import ButtonCloseMini from '@/components/buttons/ButtonCloseMini.vue';
 import ButtonBack from '@/components/buttons/ButtonBack.vue';
 import ButtonBook from '@/components/buttons/ButtonBook.vue';
 import Logo from '@/components/Logo.vue';
+import Calendar from '@/components/Calendar.vue';
 
 export default {
-	name: 'book-meeting-room',
+	name: 'BookMeetingRoom',
+	props: ['event'],
 	components: {
 		ButtonBack,
 		ButtonBook,
 		Logo,
-		ButtonCloseMini
+		ButtonCloseMini,
+		Calendar
 	},
 	data() {
 		return {
+			errors: {
+				name: null,
+				phone: null,
+				email: null,
+				arr: []
+			},
+			viewDate: {
+				start: null,
+				end: null
+			},
+			bookRoomData: {
+				time: this.event,
+				name: null,
+				phone: null,
+				email: null,
+				resident: false
+			},
+			checkData: {
+				name: null,
+				phone: null,
+				email: null
+			},
+			freeHours: null,
+			validStatus: {
+				name: false,
+				phone: false,
+				email: false
+			},
 			checkFrameIn: false,
 			checkFrameOut: false,
-			checked: null,
 			styleAnimate: {
 				transform: 'translateX(-200%)',
 				transition: 'transform ease-in-out 0.3s'
 			},
-			onStyleAnimate: null
+			onStyleAnimate: null,
+			showPicker: true
 		};
 	},
 	methods: {
+		onData(data){
+			if(data) {
+				this.event = data;
+			}
+			this.showCalendar = false;
+		},
 		goBack() {
 			this.onStyleAnimate = this.styleAnimate;
 			setTimeout(() => {
@@ -155,26 +241,178 @@ export default {
 			}, 150);
 		},
 		checkResidentTime() {
+			let params = JSON.stringify(this.checkData);
+			http.post('https://jsonplaceholder.typicode.com/posts', params)
+			.then(()=> {
+				this.freeHours = false;
+			})
+			.catch(e => {
+				this.errors.arr.push(e);
+			});
 			this.checkFrameIn = false;
 			setTimeout(()=> {
 				this.checkFrameOut = true;
 			}, 200);
+		},
+		checkName() {
+			if (!this.bookRoomData.name) {
+				this.errors.name = 'your name and surname';
+			} else if (!this.validName(this.bookRoomData.name)) {
+				this.errors.name = 'correct name and surname';
+			} else {
+				this.errors.name = null;
+			}
+		},
+		checkPhone() {
+			if (!this.bookRoomData.phone) {
+				this.errors.phone = 'your phone';
+			} else if (!this.validPhone(this.bookRoomData.phone)) {
+				this.errors.phone = 'correct phone';
+			} else {
+				this.errors.phone = null;
+			}
+		},
+		checkEmail() {
+			if (!this.bookRoomData.email) {
+				this.errors.email = 'your e-mail';
+			} else if (!this.validEmail(this.bookRoomData.email)) {
+				this.errors.email = 'correct e-mail';
+			} else {
+				this.errors.email = null;
+			}
+		},
+		validEmail(email) {
+			// eslint-disable-next-line
+			let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			return re.test(email);
+		},
+		validPhone(phone) {
+			// eslint-disable-next-line
+			let re = /^((((\+?)+(3?)+8)?)+((\(|\-)?([0-9]){3}(\)|\-)?)+(\-?)+(([0-9]){3})+(\-?)+(([0-9]){2})+(\-?)+(([0-9]){2}))$/;
+			return re.test(phone);
+		},
+		validName(name) {
+			// eslint-disable-next-line
+			let re = /^((([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]{1,}))+\s+(([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]){1,}))$/;
+			return re.test(name);
+		},
+		showCheck() {
+			if (this.bookRoomData.name &&
+			this.bookRoomData.phone &&
+			this.bookRoomData.email &&
+			this.validStatus.name &&
+			this.validStatus.phone &&
+			this.validStatus.email &&
+			!this.errors.name &&
+			!this.errors.phone &&
+			!this.errors.email) {
+				this.checkData.name = this.bookRoomData.name;
+				this.checkData.phone = this.bookRoomData.phone; 
+				this.checkData.email = this.bookRoomData.email;
+				return false;
+			} else {
+				return true;
+			}
+		},
+		showSubmit() {
+			if(this.bookRoomData.resident) {
+				if (this.bookRoomData.name &&
+				this.bookRoomData.phone &&
+				this.bookRoomData.email &&
+				this.freeHours &&
+				this.validStatus.name &&
+				this.validStatus.phone &&
+				this.validStatus.email &&
+				!this.errors.name &&
+				!this.errors.phone &&
+				!this.errors.email) {
+					return false;
+				} else {
+					return true;
+				}
+			} else {
+				if(this.bookRoomData.name &&
+				this.bookRoomData.phone &&
+				this.validStatus.name &&
+				this.validStatus.phone &&
+				!this.errors.name &&
+				!this.errors.phone) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+		}
+	},
+	computed: {
+		checkFreeDuration() {
+			return new Date().getDate() + ' - ' + (+new Date().getDate() + 6) + ' ' + new Date().toLocaleString("en-US", {month: 'long'});
 		}
 	},
 	watch: {
-		checked: function() {
+		'bookRoomData.resident': function() {
 			this.checkFrameIn = true;
 			this.checkFrameOut = false;
+		},
+		'bookRoomData.name'() {
+			if (this.bookRoomData.name && this.validName(this.bookRoomData.name)) {
+				this.errors.name = null;
+				this.validStatus.name = true;
+			} else {
+				this.validStatus.name = false;
+			}
+		},
+		'bookRoomData.phone'() {
+			if (this.bookRoomData.phone && this.validPhone(this.bookRoomData.phone)) {
+				this.errors.phone = null
+				this.validStatus.phone = true;
+			} else {
+				this.validStatus.phone = false;
+			}
+		},
+		'bookRoomData.email'() {
+			if (this.bookRoomData.email && this.validEmail(this.bookRoomData.email)) {
+				this.errors.email = null
+				this.validStatus.email = true;
+			} else {
+				this.validStatus.email = false;
+			}
 		}
+	},
+	mounted() {
+		let _this = this;
+		$("#picker-start").timepicker({ 'timeFormat': 'h:i A' });
+		$("#picker-end").timepicker({ 'timeFormat': 'h:i A' });
 	}
 };
 </script>
 
 <style lang="scss">
 @import '../assets/scss/style.scss';
+.redText {
+	color: $ERROR-COLOR !important;
+}
+.ui-timepicker-wrapper {
+	background-color: $MAIN-DARK-COLOR;
+	border: none;
+	.ui-timepicker-am {
+		font-family: $base-font;
+		color: $TEXT-COLOR;
+		transition: color ease-in-out 0.1s;
+		&:hover {
+			background-color: transparent;
+			color: $GREY;
+		}
+		
+	}
+	.ui-timepicker-am.ui-timepicker-selected {
+		background-color: transparent;
+		color:$MERGE-MAIN-COLOR;
+	}
+}
+
 .book-meeting-room {
-	padding: 2rem 0;
-	flex: 0 0 30%;
+	flex: 0 0 35%;
 	display: grid;
 	grid-template-rows: repeat(5, auto);
 	align-items: center;
@@ -189,20 +427,19 @@ export default {
 		align-self: flex-start;
 	}
 	&__wrapper {
+		padding: 3rem;
 		background-color: $MAIN-DARK-COLOR;
 		z-index: 1000;
-		position: fixed;
+		position: absolute;
 		top: 0;
 		left: 0;
 		right: 0;
-		bottom: 0;
 		width: 100%;
 		min-height: 100vh;
 		@extend %flex-row-c;
 		align-items: center;
 		@media (max-width: 600px) {
-			padding: 2rem;
-			padding-top: 4rem;
+			padding: 3rem 1rem;
 			.logo__wrapper {
 				position: absolute;
 				left: auto;
@@ -213,13 +450,40 @@ export default {
 	}
 	&__close {
 		right: 0;
-		top: 2.2rem;
+		top: 5px;
 		animation-name: fadeIn;
 		animation-duration: 0.2s;
 		animation-timing-function: ease-in-out;
 		@media (max-width: 600px) {
 			display: none;
 		}
+	}
+	&__picker {
+		grid-area: picker;
+		@extend %flex-row;
+		align-items: center;
+	}
+	&__picker-time {
+		outline: none;
+		height: auto;
+		width: 5rem;
+		border: none;
+		text-align: center;
+		background-color: transparent;
+		color: $TEXT-COLOR;
+		font-family: $base-font;
+		cursor: pointer;
+	}
+	&__picker-date {
+		outline: none;
+		background-color: transparent;
+		border: none;
+		height: auto;
+		width: 6rem;
+		color: $TEXT-COLOR;
+		font-family: $base-font;
+		cursor: pointer;
+		margin-right: 1rem;
 	}
 	&__button-back-wrapper {
 		align-self: start;
@@ -261,10 +525,11 @@ export default {
 		display: grid;
 		grid-template-rows: repeat(5, auto);
 		grid-template-columns: 1fr 2fr 1fr;
+		grid-column-gap: 1rem;
 		grid-template-areas:
 			'day 	       time 	     .'
 			'day-input     time-input    edit'
-			'input-wrapper input-wrapper input-wrapper'
+			'picker 	   picker 		 picker'
 			'input-wrapper input-wrapper input-wrapper'
 			'check 		   check 		 check';
 		border-top: 1px solid $BUTTON-COLOR;
@@ -285,7 +550,6 @@ export default {
 			justify-content: stretch;
 		}
 	}
-
 	&__date-label {
 		grid-area: day;
 		font-family: $base-font;
@@ -295,6 +559,9 @@ export default {
 		color: $GREY;
 		&--time {
 			grid-area: time;
+		}
+		&--picker {
+			padding: 0 2px;
 		}
 	}
 	&__date-choice {
@@ -310,6 +577,7 @@ export default {
 		color: $TEXT-COLOR;
 		outline: none;
 		border: none;
+		white-space: nowrap;
 		&--time {
 			grid-area: time-input;
 		}
@@ -341,27 +609,49 @@ export default {
 	}
 
 	&__input-wrapper {
-		padding: 1.5rem 0 1.375rem 0;
+		padding: 1.5rem 0 0.5rem 0;
 		justify-items: start;
 		justify-self: stretch;
 		grid-area: input-wrapper;
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		grid-template-rows: repeat(2, auto);
+		grid-template-rows: repeat(3, auto);
 		grid-template-areas:
 			'label-name label-phone'
-			'input-name input-phone';
+			'input-name input-phone'
+			'error-name error-phone';
 		grid-column-gap: 1.5rem;
 		grid-row-gap: 0.6875rem;
 		@media (max-width: 500px) {
 			width: 100%;
 			grid-template-columns: none;
-			grid-template-rows: repeat(4, auto);
+			grid-template-rows: repeat(6, auto);
 			grid-template-areas:
 				'label-name '
 				'input-name '
+				'error-name'
 				'label-phone'
-				'input-phone';
+				'input-phone'
+				'error-phone';
+		}
+	}
+	&__validate {
+		font-family: $base-font;
+		font-size: 0.625rem;
+		font-weight: 500;
+		text-align: left;
+		color: $ERROR-COLOR;
+		padding-bottom: 0.5rem;
+		&--name {
+			grid-area: error-name;
+		}
+		&--phone {
+			grid-area: error-phone;
+		}
+		&--email {
+			grid-column: 1;
+			grid-row: 3;
+			padding-bottom: 1.5rem;
 		}
 	}
 	&__label {
@@ -472,11 +762,11 @@ export default {
 .check-free-time {
 	position: relative;
 	background-color: black;
-	padding: 1rem 0 0.7rem 1.1rem;
+	padding: 1rem 0 0 1.1rem;
 	display: grid;
 	transform: scaleX(1.04);
 	transform-origin: right center;
-	grid-template-rows: repeat(2, auto);
+	grid-template-rows: repeat(3, auto);
 	grid-template-columns: repeat(2, 1fr);
 	grid-column-gap: 1.5rem;
 	grid-row-gap: 1.25rem;
@@ -560,6 +850,12 @@ export default {
 		}
 		&:focus .check-free-time__button-text::before {
 			visibility: visible;
+		}
+		&:disabled {
+		background-color: $BUTTON-COLOR;
+		}
+		&:disabled &-text {
+			color: $MIDDLE-GREY;
 		}
 	}
 

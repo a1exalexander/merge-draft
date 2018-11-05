@@ -20,9 +20,7 @@
 			<button-back class="booking-workplace__button-back" @goBack='goBack'></button-back>
 			<p class="booking-workplace__button-text">go back</p>
 		</div>
-		<h1 class="booking-workplace__title">Booking of the
-			workplace
-		</h1>
+		<h1 class="booking-workplace__title">Booking of the	workplace</h1>
 		<div class="booking-workplace__inner booking-workplace__inner--choice">
 			<label for='book-month' class="workplace-choice">
 				<input id='book-month' 
@@ -87,11 +85,12 @@
 					<div class="booking-workplace__input-wrapper">
 						<label for="full-name-label" class="booking-workplace__label">FULL NAME*</label>
 						<input id='full-name-label' 
-                            required autocomplete='on' 
+                            required 
+							autocomplete='on' 
                             type="text" 
                             class="booking-workplace__input" 
-                            :class="{inputError: inputError && errors.name}"
-                            placeholder="Андрій Малишко"
+                            :class="{inputError: errors.name}"
+                            placeholder="Andrey Malishko"
 							@blur="checkName"
                             v-model.trim="form.name">
 							<transition 
@@ -107,7 +106,7 @@
                             required autocomplete='on' 
                             type="tel" 
                             class="booking-workplace__input" 
-                            :class="{inputError: inputError && errors.phone}"
+                            :class="{inputError: errors.phone}"
                             placeholder="+38 (000) 000 00-00"
 							@blur="checkPhone"
                             v-model.trim="form.phone">
@@ -127,7 +126,7 @@
                             autocomplete='on' 
                             type="email" 
                             class="booking-workplace__input booking-workplace__input--required" 
-                            :class="{inputError: inputError && errors.email}"
+                            :class="{inputError: errors.email}"
                             placeholder="example@mail.com"
 							@blur="checkEmail"
                             v-model.trim="form.email">
@@ -152,12 +151,11 @@
 		</div>
 		<p class="booking-workplace__description">* — Required fields</p>
 		<div class="booking-workplace__inner booking-workplace__inner--price">
-			<p class="booking-price">
-				Price:
+			<p class="booking-price">Price:
 				<span class="booking-price__sum">{{ animatedNumber }}</span>
 			</p>
 			<button-apply 
-                :disabled='showSubmit()'
+                :disabled='showSubmit'
                 form='booking-form'
                 @click.prevent="sendForm">
             </button-apply>
@@ -213,8 +211,12 @@ export default {
 				week: 400,
 				day: 80
 			},
+			validStatus: {
+				name: false,
+				phone: false,
+				email: false
+			},
 			tweenedNumber: 0,
-			inputError: true,
 			styleAnimate: {
 				transform: 'translateX(-200%)',
 				transition: 'transform ease-in-out 0.3s'
@@ -237,37 +239,28 @@ export default {
 		checkName() {
 			if (!this.form.name) {
 				this.errors.name = 'your name and surname';
-				this.showSubmit();
 			} else if (!this.validName(this.form.name)) {
 				this.errors.name = 'correct name and surname';
-				this.showSubmit();
 			} else {
 				this.errors.name = null;
-				this.showSubmit();
 			}
 		},
 		checkPhone() {
 			if (!this.form.phone) {
 				this.errors.phone = 'your phone';
-				this.showSubmit();
 			} else if (!this.validPhone(this.form.phone)) {
 				this.errors.phone = 'correct phone';
-				this.showSubmit();
 			} else {
 				this.errors.phone = null;
-				this.showSubmit();
 			}
 		},
 		checkEmail() {
 			if (!this.form.email) {
 				this.errors.email = 'your e-mail';
-				this.showSubmit();
 			} else if (!this.validEmail(this.form.email)) {
 				this.errors.email = 'correct e-mail';
-				this.showSubmit();
 			} else {
 				this.errors.email = null;
-				this.showSubmit();
 			}
 		},
 		validEmail(email) {
@@ -285,11 +278,24 @@ export default {
 			let re = /^((([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]{1,}))+\s+(([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]){1,}))$/;
 			return re.test(name);
 		},
+		sendForm() {
+			let params = JSON.stringify(this.form);
+			http.post('https://jsonplaceholder.typicode.com/posts', params)
+			.then(()=> {
+				this.bookingDone = true;
+			})
+			.catch(e => {
+				this.errors.arr.push(e);
+			});
+		},
 		showSubmit() {
 			if (
 				this.form.name &&
 				this.form.phone &&
 				this.form.email &&
+				this.validStatus.name &&
+				this.validStatus.phone &&
+				this.validStatus.email &&
 				!this.errors.name &&
 				!this.errors.phone &&
 				!this.errors.email
@@ -297,18 +303,6 @@ export default {
 				return false;
 			} else {
 				return true;
-			}
-		},
-		sendForm() {
-			if (!this.showSubmit()) {
-				let params = JSON.stringify(this.form);
-				http.post('https://jsonplaceholder.typicode.com/posts', params)
-					.then(()=> {
-						this.bookingDone = true;
-					})
-					.catch(e => {
-						this.errors.arr.push(e);
-					});
 			}
 		}
 	},
@@ -321,20 +315,25 @@ export default {
 		'form.name'() {
 			if (this.form.name && this.validName(this.form.name)) {
 				this.errors.name = null;
-				this.showSubmit();
-				this.validEmail(this.form.email);
+				this.validStatus.name = true;
+			} else {
+				this.validStatus.name = false;
 			}
 		},
 		'form.phone'() {
 			if (this.form.phone && this.validPhone(this.form.phone)) {
 				this.errors.phone = null;
-				this.showSubmit();
+				this.validStatus.phone = true;
+			} else {
+				this.validStatus.phone = false;
 			}
 		},
 		'form.email'() {
 			if (this.form.email && this.validEmail(this.form.email)) {
 				this.errors.email = null;
-				this.showSubmit();
+				this.validStatus.email = true;
+			} else {
+				this.validStatus.email = false;
 			}
 		},
 		'form.picked'() {
