@@ -1,5 +1,5 @@
 <template>
-<button class="button-resident" @click="becomeMembe">
+<button class="button-resident" @click="becomeResident">
 	<p class='button-resident__text'>
 		BECOME A RESIDENT
 	</p>
@@ -8,10 +8,10 @@
 
 <script>
 export default {
-    name: 'button-resident',
+    name: 'ButtonResident',
     methods: {
-		becomeMember () {
-            this.$router.push('/booking-workplace');
+		becomeResident() {
+			this.$emit('becomeResident');
         }
 	}
 };

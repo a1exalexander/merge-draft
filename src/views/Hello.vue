@@ -34,7 +34,7 @@
 	</p>
 	<div class="hello__button-wrapper">
 		<button-membership></button-membership>
-		<button-book-room></button-book-room>
+		<button-book-room @book='meetingRoom'></button-book-room>
 	</div>
 	<social-networks class="hello__social"></social-networks>
     <svg style="display: none">
@@ -62,6 +62,11 @@ export default {
     ButtonMembership,
     ButtonBookRoom,
     SocialNetworks
+  },
+  methods: {
+      meetingRoom() {
+          this.$router.push('/meeting-room');
+      }
   }
 };
 </script>

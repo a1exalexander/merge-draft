@@ -16,7 +16,8 @@
     "timepicker": "^1.11.14",
     "vue": "^2.5.17",
     "vue-cookies": "^1.5.7",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-scrollto": "^2.13.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.5",

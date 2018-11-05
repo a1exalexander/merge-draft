@@ -1610,6 +1610,9 @@ be a descendant of the grid when it is being dragged.
     text-align: left;
     color: #f1465a;
 }
+.fc-time span {
+	white-space: normal;
+}
 .fc-header-toolbar {
 	padding: 1.75rem 4.5625rem;
 	margin: 0;

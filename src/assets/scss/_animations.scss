@@ -1301,15 +1301,6 @@
 	}
 }
 
-@keyframes borderIn {
-	0% {
-		border-color: transparent;
-	}
-	100% {
-		border-color: $ERROR-COLOR;
-	}
-}
-
 @media (max-width: 600px) {
 	.animated {
 		-webkit-animation: unset !important;
@@ -1331,3 +1322,16 @@
 	}
 }
 
+@-webkit-keyframes autofill {
+	to {
+		color: $TEXT-COLOR;
+		background: $BUTTON-COLOR;
+	}
+}
+
+@keyframes autofill {
+	to {
+		color: $TEXT-COLOR;
+		background: $BUTTON-COLOR;
+	}
+}

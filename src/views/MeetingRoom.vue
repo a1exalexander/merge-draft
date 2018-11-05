@@ -6,20 +6,20 @@
 		enter-active-class="animated fadeIn"
 		leave-active-class="animated fadeOut"
 		mode="out-in">
-	<book-meeting-room  v-if='bookMeetingRoom' :event='event' @goBack='bookMeetingRoom = false'></book-meeting-room>
+	<book-meeting-room  v-show='bookMeetingRoom' :event='event' @editDate='editDate("fullcalendar")' @goBack='bookMeetingRoom = false'></book-meeting-room>
 	</transition>
 	<!-- 2 wrappers to implement dual adaptive indents -->
-	<div class="meeting-room__wrapper" v-show='!bookMeetingRoom'>
+	<div class="meeting-room__wrapper">
 		<div class="meeting-room__inner">
-			<header class="meeting-room__header">
+			<header class="meeting-room__header" v-show='!bookMeetingRoom'>
 				<h1 class="meeting-room__title">Meeting Room</h1>
 				<button-book-room @book='showBook'></button-book-room>
 			</header>
 			<section class="meeting-room__slider">
 				<button class="meeting-room__label-button">Photos</button>
-				<slider></slider>
+				<slider v-show='!bookMeetingRoom'></slider>
 			</section>
-			<section class="meeting-room-inf">
+			<section class="meeting-room-inf" v-show='!bookMeetingRoom'>
 				<div class="meeting-room-inf__wrapper">
 					<div class="meeting-room-inf__buttons">
 						<div class="meeting-room-inf__card meeting-room-inf__card--hour">
@@ -100,11 +100,21 @@ export default {
 		};
 	},
 	methods: {
+		editDate(href) {
+			this.bookMeetingRoom = false;
+			let time = setInterval(()=>{
+				let top = document.getElementById(href).getBoundingClientRect().top;
+				if(top > 500) {
+					window.console.log(top);
+					window.scrollTo(0, (top - 2));
+					clearTimeout(time);	
+				}
+			}, 10 );
+		},
 		showBook(data) {
 			if(data) {
 				this.event = data;
 			}
-			window.console.log(this.event);
 			this.bookMeetingRoom = true;
 		}
 	}

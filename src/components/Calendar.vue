@@ -1,7 +1,7 @@
 <template>
 <section class="calendar">
 	<div class="calendar__wrapper">
-		<h3 class="calendar__title">
+		<h3 class="calendar__title" id='toCal'>
 			Availability calenda
 		</h3>
 		<div id='fullcalendar'></div>
@@ -120,7 +120,7 @@ export default {
 	padding-left: 112px;
 	width: 100%;
   color: $TEXT-COLOR;
-  @media (max-width: 980px) {
+  @media (max-width: 700px) {
     display: none;
   }
 	&__wrapper {

@@ -16,38 +16,15 @@
 		</h2>
 		<form action="" id='book-meeting-room-form' name='book-meeting-room' class="book-meeting-room__form">
 			<p class="book-meeting-room__date-label">Day</p>
-			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--day">{{ event? event.day: "date" }}</p>
-			<p class="book-meeting-room__date-label book-meeting-room__date-label--time">Time {{ viewDate.start }}</p>	
-			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--time">{{ event? event.start: "start" }} - {{ event? event.end: "end" }} ({{ event? event.duration: "duration" }})</p>
-			<button class="book-meeting-room__edit-date" @click.prevent='showPicker = !showPicker'>
+			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--day">{{ event? event.day: "" }}</p>
+			<p class="book-meeting-room__date-label book-meeting-room__date-label--time">Time</p>	
+			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--time">{{ event? event.start + ' - ': "" }}{{ event? event.end: "" }} {{ event?"(" + event.duration + ")": "" }}</p>
+			<button class="book-meeting-room__edit-date" @click='editDate'>
 				<svg class="book-meeting-room__edit-icon">
 					<use xlink:href='#icon-edit'/>
 				</svg>
 				<p class="book-meeting-room__edit-text">edit</p>
 			</button>
-			<transition 
-				appear
-				name="custom-classes-transition"
-				enter-active-class="animated fadeInBubble"
-				leave-active-class="animated fadeOut"
-				mode="out-in">
-				<div class="book-meeting-room__picker" v-show='showPicker'>
-					<input id='picker-date' 
-						placeholder='Pick date' 
-						class="ui-timepicker-input book-meeting-room__picker-date" 
-						type="text">
-					<input id='picker-start' 
-						placeholder='pick start' 
-						class="ui-timepicker-input book-meeting-room__picker-time" 
-						type="text"
-						v-model="viewDate.start">
-					<p class="book-meeting-room__date-label book-meeting-room__date-label--picker">-</p>
-					<input id='picker-end' 
-						placeholder='pick end' 
-						class="ui-timepicker-input book-meeting-room__picker-time" 
-						type="text">
-				</div>
-			</transition>
 			<div class="book-meeting-room__input-wrapper">
 				<label for="book-meeting-name" class="book-meeting-room__label book-meeting-room__label--name">NAME</label>
 				<input type="text" 
@@ -57,7 +34,7 @@
 					required 
 					placeholder="Andrey Malishko"
 					v-model.trim="bookRoomData.name"
-					:class="{inputError: errors.name}"
+					:class="{inputError: errors.name, greenBorder: !errors.name}"
 					@blur="checkName">
 				<transition 
 					name="custom-classes-transition"
@@ -73,7 +50,7 @@
 					required 
 					placeholder="+38 (000) 000 00-00"
 					v-model.trim="bookRoomData.phone"
-					:class="{inputError: errors.phone}"
+					:class="{inputError: errors.phone, greenBorder: !errors.phone}"
 					@blur="checkPhone">
 				<transition 
 					name="custom-classes-transition"
@@ -112,7 +89,7 @@
 					autocomplete='on'
 					class="check-free-time__email" 
 					placeholder="Email"
-					:class="{inputError: errors.email}"
+					:class="{inputError: errors.email, greenBorder: !errors.email}"
 					@blur="checkEmail"
 					v-model.trim="bookRoomData.email">
 				<transition 
@@ -167,15 +144,11 @@
 </template>
 
 <script>
-import $ from 'jquery';
-import 'timepicker/jquery.timepicker.min.js';
-import 'timepicker/jquery.timepicker.min.css';
 import http from 'axios';
 import ButtonCloseMini from '@/components/buttons/ButtonCloseMini.vue';
 import ButtonBack from '@/components/buttons/ButtonBack.vue';
 import ButtonBook from '@/components/buttons/ButtonBook.vue';
 import Logo from '@/components/Logo.vue';
-import Calendar from '@/components/Calendar.vue';
 
 export default {
 	name: 'BookMeetingRoom',
@@ -184,8 +157,7 @@ export default {
 		ButtonBack,
 		ButtonBook,
 		Logo,
-		ButtonCloseMini,
-		Calendar
+		ButtonCloseMini
 	},
 	data() {
 		return {
@@ -194,10 +166,6 @@ export default {
 				phone: null,
 				email: null,
 				arr: []
-			},
-			viewDate: {
-				start: null,
-				end: null
 			},
 			bookRoomData: {
 				time: this.event,
@@ -220,14 +188,16 @@ export default {
 			checkFrameIn: false,
 			checkFrameOut: false,
 			styleAnimate: {
-				transform: 'translateX(-200%)',
+				transform: 'translateX(-300%)',
 				transition: 'transform ease-in-out 0.3s'
 			},
-			onStyleAnimate: null,
-			showPicker: false
+			onStyleAnimate: null
 		};
 	},
 	methods: {
+		editDate() {
+			this.$emit("editDate");
+		},
 		onData(data){
 			if(data) {
 				this.event = data;
@@ -238,6 +208,9 @@ export default {
 			this.onStyleAnimate = this.styleAnimate;
 			setTimeout(() => {
 				this.$emit('goBack');
+				setTimeout(()=>{
+					this.onStyleAnimate = null;
+				}, 500)
 			}, 150);
 		},
 		checkResidentTime() {
@@ -283,7 +256,7 @@ export default {
 		},
 		validEmail(email) {
 			// eslint-disable-next-line
-			let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,10}\.[0-9]{1,10}\.[0-9]{1,10}\.[0-9]{1,10}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,20}))$/;
 			return re.test(email);
 		},
 		validPhone(phone) {
@@ -293,8 +266,18 @@ export default {
 		},
 		validName(name) {
 			// eslint-disable-next-line
-			let re = /^((([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]{1,}))+\s+(([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]){1,}))$/;
+			let re = /^((([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]{1,30}))+\s+(([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]){1,30}))$/;
 			return re.test(name);
+		},
+		addDataToCheck() {
+			this.checkData.name = this.bookRoomData.name;
+			this.checkData.phone = this.bookRoomData.phone; 
+			this.checkData.email = this.bookRoomData.email;
+		}
+	},
+	computed: {
+		checkFreeDuration() {
+			return new Date().getDate() + ' - ' + (+new Date().getDate() + 6) + ' ' + new Date().toLocaleString("en-US", {month: 'long'});
 		},
 		showCheck() {
 			if (this.bookRoomData.name &&
@@ -306,9 +289,7 @@ export default {
 			!this.errors.name &&
 			!this.errors.phone &&
 			!this.errors.email) {
-				this.checkData.name = this.bookRoomData.name;
-				this.checkData.phone = this.bookRoomData.phone; 
-				this.checkData.email = this.bookRoomData.email;
+				this.addDataToCheck();
 				return false;
 			} else {
 				return true;
@@ -344,11 +325,6 @@ export default {
 			}
 		}
 	},
-	computed: {
-		checkFreeDuration() {
-			return new Date().getDate() + ' - ' + (+new Date().getDate() + 6) + ' ' + new Date().toLocaleString("en-US", {month: 'long'});
-		}
-	},
 	watch: {
 		'bookRoomData.resident': function() {
 			this.checkFrameIn = true;
@@ -378,11 +354,6 @@ export default {
 				this.validStatus.email = false;
 			}
 		}
-	},
-	mounted() {
-		let _this = this;
-		$("#picker-start").timepicker({ 'timeFormat': 'h:i A' });
-		$("#picker-end").timepicker({ 'timeFormat': 'h:i A' });
 	}
 };
 </script>
@@ -391,6 +362,17 @@ export default {
 @import '../assets/scss/style.scss';
 .redText {
 	color: $ERROR-COLOR !important;
+}
+.greenBorder {
+	border: 2px solid $MAIN-DARK-COLOR !important;
+	&:active {
+		border: 2px solid $GREEN !important;
+		outline: none;
+	}
+	&:focus {
+		outline: none;
+		border: 2px solid $GREEN !important;
+	}
 }
 .ui-timepicker-wrapper {
 	background-color: $MAIN-DARK-COLOR;
@@ -681,6 +663,32 @@ export default {
 		font-weight: 500;
 		text-align: left;
 		color: $TEXT-COLOR;
+		transition: border-color ease-in-out 0.1s;
+		border: 2px solid $MAIN-DARK-COLOR;
+		&:-webkit-autofill,
+		&:-webkit-autofill:hover,
+		&:-webkit-autofill:focus,
+		&:-webkit-autofill:active {
+			animation-name: autofill;
+  			animation-fill-mode: both;
+		}
+		&:active {
+			background-color: $BUTTON-COLOR;
+			outline: none;
+			border: 2px solid $MAIN-DARK-COLOR;
+		}
+		&:focus {
+			outline: none;
+			background-color: $BUTTON-COLOR;
+			border: 2px solid $MAIN-DARK-COLOR;
+			outline: none; 
+		}
+		&:disabled {
+			background-color: $BLACK;
+		}
+		&:disabled &::placeholder {
+			color: $MIDDLE-GREY;
+		}
 		&--name {
 			grid-area: input-name;
 		}

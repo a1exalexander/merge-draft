@@ -1,74 +1,62 @@
 <template>
-<div class="resident-card__wrapper" @click.self='close'>
-    <div class="resident-card animated faster fadeInBubble">
+<div class="week-card__wrapper" @click.self='close'>
+    <div class="week-card animated faster fadeInBubble">
         <button-close-mini @close='close'></button-close-mini>
-        <div class="resident-card__inner resident-card__inner--top">
-            <p class="resident-card__title">Resident Card
-            </p>
-            <p class="resident-card__description">Access for the Month
-            </p>
-            <div class="resident-card__label resident-card__label--room">
-                <img src="../assets/image/meeting-room.svg" alt="wi-fi" class="resident-card__image">
-                <p class="resident-card__text">1 hour two times per week of Meeting Room's using is free
-                </p>
+        <p class="week-card__title">Week access
+        </p>
+        <div class="week-card__inner week-card__inner--middle">
+            <div class="week-card__label">
+                <img src="../assets/image/wi-fi.svg" alt="wi-fi" class="week-card__image">
+                <p class="week-card__text">Super-fast Internet</p>
             </div>
-            <div class="resident-card__label resident-card__label--lecture">
-                <img src="../assets/image/lectures.svg" alt="wi-fi" class="resident-card__image">
-                <p class="resident-card__text">Free accessment to paid events in Merge
-                </p>
+            <div class="week-card__label">
+                <img src="../assets/image/unlimited-coffee-tea.svg" alt="wi-fi" class="week-card__image">
+                <p class="week-card__text">Unlimited coffee, tea, snacks</p>
             </div>
-        </div>
-        <div class="resident-card__line"></div>
-        <div class="resident-card__inner resident-card__inner--middle">
-            <div class="resident-card__label">
-                <img src="../assets/image/wi-fi.svg" alt="wi-fi" class="resident-card__image">
-                <p class="resident-card__text">Super-fast Internet</p>
+            <div class="week-card__label">
+                <img src="../assets/image/printer.svg" alt="wi-fi" class="week-card__image">
+                <p class="week-card__text">Wireless Printer/ Scanner/ Copier</p>
             </div>
-            <div class="resident-card__label">
-                <img src="../assets/image/unlimited-coffee-tea.svg" alt="wi-fi" class="resident-card__image">
-                <p class="resident-card__text">Unlimited coffee, tea, snacks</p>
+            <div class="week-card__label">
+                <img src="../assets/image/shower.svg" alt="wi-fi" class="week-card__image">
+                <p class="week-card__text">Shower</p>
             </div>
-            <div class="resident-card__label">
-                <img src="../assets/image/printer.svg" alt="wi-fi" class="resident-card__image">
-                <p class="resident-card__text">Wireless Printer/ Scanner/ Copier</p>
-            </div>
-            <div class="resident-card__label">
-                <img src="../assets/image/shower.svg" alt="wi-fi" class="resident-card__image">
-                <p class="resident-card__text">Shower</p>
-            </div>
-            <div class="resident-card__label">
-                <img src="../assets/image/microwave.svg" alt="wi-fi" class="resident-card__image">
-                <p class="resident-card__text">Kitchen with a microvawe and fridge</p>
+            <div class="week-card__label">
+                <img src="../assets/image/microwave.svg" alt="wi-fi" class="week-card__image">
+                <p class="week-card__text">Kitchen with a microvawe and fridge</p>
             </div>
         </div>
-        <div class="resident-card__inner resident-card__inner--price">
-            <p class="resident-card__price">
+        <div class="week-card__inner week-card__inner--price">
+            <p class="week-card__price">
                 Price:
-                <span class="resident-card__sum">{{ price? price.month: 1000 }}</span>
+                <span class="week-card__sum">{{ price? price.week: 400 }}</span>
             </p>
+            <button class="week-card__button" @click="selectWeek">
+                <p class='week-card__button-text'>
+                    CHOOSE
+                </p>
+            </button>
         </div>
-        <button-resident class="resident-card__button" @becomeResident='becomeResident'></button-resident>
+       
     </div>
 </div>
 </template>
 
 <script>
 import ButtonCloseMini from '@/components/buttons/ButtonCloseMini.vue';
-import ButtonResident from '@/components/buttons/ButtonResident.vue';
 
 export default {
-    name: 'ResidentCard',
+    name: 'WeekCard',
     props: ['price'],
     components: {
-        ButtonCloseMini,
-        ButtonResident
+        ButtonCloseMini
     },
     methods: {
         close() {
             this.$emit('close');  
         },
-        becomeResident() {
-            this.$emit('becomeResident');  
+        selectWeek() {
+            this.$emit('selectWeek');  
         }     
     }
 }
@@ -76,7 +64,7 @@ export default {
 
 <style lang="scss">
 @import '../assets/scss/style.scss';
-.resident-card {
+.week-card {
     padding: 2rem 2.4rem 3.5rem 2.4rem;
     flex: 0 0 36%;
     border-radius: 3px;
@@ -112,7 +100,46 @@ export default {
         }
     }
     &__button {
-        align-self: center;
+	padding: 1rem 2rem;
+	background-color: $MERGE-SECONDARY-COLOR;
+	outline: none;
+	border: none;
+	border-radius: 3px;
+	@extend %flex-row-c;
+	align-items: center;
+	position: relative;
+	transition: background-color ease-in-out 0.1s;
+	z-index: 2;
+        &:active {
+            background-color: $MERGE-DARK-COLOR;
+        }
+        &:focus &-text::before {
+            visibility: visible;
+        }
+    }
+	&__button-text {
+		text-align: center;
+		text-transform: uppercase;
+		font-family: $base-font;
+		font-size: 10px;
+		font-weight: 700;
+		text-align: center;
+		color: $MAIN-DARK-COLOR;
+		letter-spacing: 0.7px;
+		&::before {
+			position: absolute;
+			content: '';
+			background-color: transparent;
+			left: -2px;
+			right: -2px;
+			top: -2px;
+			bottom: -2px;
+			border: 1px solid $MERGE-SECONDARY-COLOR;
+			border-radius: 4px;
+			transition: border ease-in-out 0.1s;
+			z-index: 0;
+			visibility: hidden;
+		    }
     }
     &__title {
         font-family: $title-font;
@@ -120,7 +147,7 @@ export default {
         font-weight: 500;
         text-align: left;
         color: $TEXT-COLOR;
-        grid-area: 1 / 1 / 2 / 3;
+        margin-bottom: 2.5rem;
     }
     &__description {
         padding: 0.3125rem 0 1.9375rem 0;
@@ -132,33 +159,22 @@ export default {
         color: $GREY;
         grid-area: 2 / 1 / 3 / 3;
     }
-    &__line {
-        width: 100%;
-        height: 1px;
-        background-color: $DARK-GREY;
-        margin: 2rem 0;
-    }
     &__inner {
-        display: grid;
         align-items: center;
-        &--top {
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(3, auto);
-            grid-column-gap: 2rem;
-        }
         &--middle {
+            display: grid;
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(3, auto);
             grid-row-gap: 1.5rem;
             grid-column-gap: 2rem;
-            margin-bottom: 2.625rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid $DARK-GREY;
         }
         &--price {
-            grid-template-rows: repeat(2, auto);
-            grid-row-gap: 1.5rem;
-            justify-content: center;
-            justify-items: center;
+            padding: 2.5rem 0 0;
+            @extend %flex-row-sb;
             @media (max-width: 500px) {
+                flex-direction: column;
                 button {
                     width: 100%;
                 }

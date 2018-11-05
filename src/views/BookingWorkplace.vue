@@ -8,10 +8,22 @@
 	<booking-done v-if='bookingDone'></booking-done>
 	</transition>
     <transition
-    name="custom-classes-transition"
-    enter-active-class="animated faster fadeIn"
-    leave-active-class="animated faster fadeOut">
-    <resident-card v-if='residentCard' @close='residentCard = false'></resident-card>
+		name="custom-classes-transition"
+		enter-active-class="animated faster fadeIn"
+		leave-active-class="animated faster fadeOut">
+    <resident-card v-if='visible.residentCard' :price='price' @close='visible.residentCard = false' @becomeResident='becomeResident'></resident-card>
+    </transition>
+	<transition
+		name="custom-classes-transition"
+		enter-active-class="animated faster fadeIn"
+		leave-active-class="animated faster fadeOut">
+    <week-card v-if='visible.weekCard' :price='price' @close='visible.weekCard = false' @selectWeek='selectWeek'></week-card>
+    </transition>
+	<transition
+		name="custom-classes-transition"
+		enter-active-class="animated faster fadeIn"
+		leave-active-class="animated faster fadeOut">
+    <day-card v-if='visible.dayCard' :price='price' @close='visible.dayCard = false' @selectDay='selectDay'></day-card>
     </transition>
 	<logo></logo>
 	<section class="booking-workplace" :style="onStyleAnimate">
@@ -35,7 +47,7 @@
 					<p class="workplace-choice__title">Month</p>
 					<p class="workplace-choice__resident">Resident card</p>
 					<p class="workplace-choice__price">{{ price.month }}</p>
-					<a href='#' class="workplace-choice__link-img" @click.prevent="residentCard = true">
+					<a href='#' class="workplace-choice__link-img" @click.prevent="visible.residentCard = true">
 						<svg class="workplace-choice__img workplace-choice__img--resident">
 							<use xlink:href='#infoborder' />
 						</svg>
@@ -54,9 +66,11 @@
 				<div class="workplace-choice__inner">
 					<p class="workplace-choice__title">Week</p>
 					<p class="workplace-choice__price">{{ price.week }}</p>
-					<svg class="workplace-choice__img">
-						<use xlink:href='#infoborder' />
-					</svg>
+					<a href='#' class="workplace-choice__link-img" @click.prevent="visible.weekCard = true">
+						<svg class="workplace-choice__img">
+							<use xlink:href='#infoborder' />
+						</svg>
+					</a>
 				</div>
 			</label>
 			<label for='book-day' class="workplace-choice">
@@ -70,9 +84,11 @@
 				<div class="workplace-choice__inner">
 					<p class="workplace-choice__title">Day</p>
 					<p class="workplace-choice__price">{{ price.day }}</p>
-					<svg class="workplace-choice__img">
-						<use xlink:href='#infoborder' />
-					</svg>
+					<a href='#' class="workplace-choice__link-img" @click.prevent="visible.dayCard = true">
+						<svg class="workplace-choice__img">
+							<use xlink:href='#infoborder' />
+						</svg>
+					</a>
 				</div>
 			</label>
 		</div>
@@ -89,7 +105,7 @@
 							autocomplete='on' 
                             type="text" 
                             class="booking-workplace__input" 
-                            :class="{inputError: errors.name}"
+                            :class="{inputError: errors.name, greenBorder: !errors.name}"
                             placeholder="Andrey Malishko"
 							@blur="checkName"
                             v-model.trim="form.name">
@@ -106,7 +122,7 @@
                             required autocomplete='on' 
                             type="tel" 
                             class="booking-workplace__input" 
-                            :class="{inputError: errors.phone}"
+                            :class="{inputError: errors.phone, greenBorder: !errors.phone}"
                             placeholder="+38 (000) 000 00-00"
 							@blur="checkPhone"
                             v-model.trim="form.phone">
@@ -126,7 +142,7 @@
                             autocomplete='on' 
                             type="email" 
                             class="booking-workplace__input booking-workplace__input--required" 
-                            :class="{inputError: errors.email}"
+                            :class="{inputError: errors.email, greenBorder: !errors.email}"
                             placeholder="example@mail.com"
 							@blur="checkEmail"
                             v-model.trim="form.email">
@@ -175,6 +191,8 @@ import { TweenLite } from 'gsap';
 import ButtonBack from '@/components/buttons/ButtonBack.vue';
 import ButtonApply from '@/components/buttons/ButtonApply.vue';
 import ResidentCard from '@/components/ResidentCard.vue';
+import DayCard from '@/components/DayCard.vue';
+import WeekCard from '@/components/WeekCard.vue';
 import Logo from '@/components/Logo.vue';
 import ButtonCloseMini from '@/components/buttons/ButtonCloseMini.vue';
 import BookingDone from '@/views/BookingDone.vue';
@@ -185,13 +203,19 @@ export default {
 		ButtonBack,
 		ButtonApply,
 		ResidentCard,
+		DayCard,
+		WeekCard,
 		Logo,
 		ButtonCloseMini,
 		BookingDone
 	},
 	data() {
 		return {
-			residentCard: false,
+			visible: {
+				residentCard: false,
+				dayCard: false,
+				weekCard: false,
+			},
 			errors: {
 				name: null,
 				phone: null,
@@ -236,6 +260,18 @@ export default {
 				}
 			}, 100);
 		},
+		becomeResident() {
+			this.form.picked = 'month';
+			this.visible.residentCard = false;
+		},
+		selectDay() {
+			this.form.picked = 'day';
+			this.visible.dayCard = false;
+		},
+		selectWeek() {
+			this.form.picked = 'week';
+			this.visible.weekCard = false;
+		},
 		checkName() {
 			if (!this.form.name) {
 				this.errors.name = 'your name and surname';
@@ -265,7 +301,7 @@ export default {
 		},
 		validEmail(email) {
 			// eslint-disable-next-line
-			let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,10}\.[0-9]{1,10}\.[0-9]{1,10}\.[0-9]{1,10}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,20}))$/;
 			return re.test(email);
 		},
 		validPhone(phone) {
@@ -275,7 +311,7 @@ export default {
 		},
 		validName(name) {
 			// eslint-disable-next-line
-			let re = /^((([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]{1,}))+\s+(([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]){1,}))$/;
+			let re = /^((([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]{1,30}))+\s+(([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]){1,30}))$/;
 			return re.test(name);
 		},
 		sendForm() {
@@ -287,6 +323,11 @@ export default {
 			.catch(e => {
 				this.errors.arr.push(e);
 			});
+		}
+	},
+	computed: {
+		animatedNumber() {
+			return this.tweenedNumber.toFixed(0);
 		},
 		showSubmit() {
 			if (
@@ -304,11 +345,6 @@ export default {
 			} else {
 				return true;
 			}
-		}
-	},
-	computed: {
-		animatedNumber() {
-			return this.tweenedNumber.toFixed(0);
 		}
 	},
 	watch: {
@@ -353,9 +389,15 @@ export default {
 @import '../assets/scss/style.scss';
 .inputError {
 	border-bottom: 2px solid $ERROR-COLOR !important;
-	animation-name: borderIn;
-	animation-timing-function: ease-in-out;
-	animation-duration: 0.5s;
+	transition: border ease-in-out 0.2s;
+	&:active {
+		border-bottom: 2px solid $ERROR-COLOR !important;
+		background-color: $BUTTON-COLOR;
+		outline: none;
+	}
+	&:focus {
+		border-bottom: 2px solid $ERROR-COLOR !important;
+	}
 }
 .booking-workplace {
 	padding: 2rem 0;
@@ -515,6 +557,13 @@ export default {
 		text-align: left;
 		color: $TEXT-COLOR;
 		border-radius: 3px;
+		&:-webkit-autofill,
+		&:-webkit-autofill:hover,
+		&:-webkit-autofill:focus,
+		&:-webkit-autofill:active {
+			animation-name: autofill;
+  			animation-fill-mode: both;
+		}
 		&::placeholder {
 			text-indent: 16px;
 			color: $GREY;
@@ -631,18 +680,13 @@ export default {
 		top: 12px;
 	}
 	&__img {
-		position: absolute;
-		width: 16px;
-		height: 16px;
+		position: static;
+		width: 100%;
+		height: 100%;
 		fill: $GREY;
 		right: 12px;
 		top: 12px;
 		transition: fill ease-in-out 0.2s;
-		&--resident {
-			position: static;
-			width: 100%;
-			height: 100%;
-		}
 	}
 	&:hover .workplace-choice__link-img:hover > svg {
 		fill: white;

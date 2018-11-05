@@ -1,10 +1,22 @@
 <template>
 <div class="about-us">
 	<transition
-    name="custom-classes-transition"
-    enter-active-class="animated faster fadeIn"
-    leave-active-class="animated faster fadeOut">
-    <resident-card v-if='residentCard' @close='residentCard = false'></resident-card>
+		name="custom-classes-transition"
+		enter-active-class="animated faster fadeIn"
+		leave-active-class="animated faster fadeOut">
+    <resident-card v-if='visible.residentCard' @close='visible.residentCard = false'></resident-card>
+    </transition>
+	<transition
+		name="custom-classes-transition"
+		enter-active-class="animated faster fadeIn"
+		leave-active-class="animated faster fadeOut">
+    <week-card v-if='visible.weekCard' :price='price' @close='visible.weekCard = false'></week-card>
+    </transition>
+	<transition
+		name="custom-classes-transition"
+		enter-active-class="animated faster fadeIn"
+		leave-active-class="animated faster fadeOut">
+    <day-card v-if='visible.dayCard' :price='price' @close='visible.dayCard = false'></day-card>
     </transition>
 	<div class="about-us__wrapper">
 		<div class="about-us__main about-us__main--margin">
@@ -20,7 +32,7 @@
 				<p class="work-time__text work-time__text--weekend-time">10:00 - 18:00</p>
 			</section>
 			<section class="subscription-type__wrapper subscription-type__wrapper--margin">
-				<div class="subscription-type subscription-type--resident" @click="residentCard = true">
+				<div class="subscription-type subscription-type--resident" @click="visible.residentCard = true">
 					<p class="subscription-type__title">Month</p>
 					<p class="subscription-type__resident">Resident card</p>
 					<p class="subscription-type__price">1000</p>
@@ -30,7 +42,7 @@
 						</svg>
 					</a>
 				</div>
-				<div class="subscription-type">
+				<div class="subscription-type" @click="visible.weekCard = true">
 					<p class="subscription-type__title">Week</p>
 					<p class="subscription-type__price">400</p>
 					<a href='#' class="subscription-type__link-img">
@@ -39,7 +51,7 @@
 						</svg>
 					</a>
 				</div>
-				<div class="subscription-type">
+				<div class="subscription-type" @click="visible.dayCard = true">
 					<p class="subscription-type__title">Day</p>
 					<p class="subscription-type__price">80</p>
 					<a href='#' class="subscription-type__link-img">
@@ -88,6 +100,8 @@
 <script>
 import ButtonMembership from '@/components/buttons/ButtonMembership.vue';
 import ResidentCard from '@/components/ResidentCard.vue';
+import DayCard from '@/components/DayCard.vue';
+import WeekCard from '@/components/WeekCard.vue';
 import Slider from '@/components/Slider.vue';
 
 export default {
@@ -95,11 +109,17 @@ export default {
 	components: {
 		ButtonMembership,
 		ResidentCard,
+		DayCard,
+		WeekCard,
 		Slider
 	},
 	data() {
 		return {
-			residentCard: false
+			visible: {
+				residentCard: false,
+				dayCard: false,
+				weekCard: false,
+			}	
 		};
 	}
 };
