@@ -19,7 +19,7 @@
 			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--day">{{ event? event.day: "date" }}</p>
 			<p class="book-meeting-room__date-label book-meeting-room__date-label--time">Time {{ viewDate.start }}</p>	
 			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--time">{{ event? event.start: "start" }} - {{ event? event.end: "end" }} ({{ event? event.duration: "duration" }})</p>
-			<button class="book-meeting-room__edit-date" @click.prevent='showPicker = "show"'>
+			<button class="book-meeting-room__edit-date" @click.prevent='showPicker = !showPicker'>
 				<svg class="book-meeting-room__edit-icon">
 					<use xlink:href='#icon-edit'/>
 				</svg>
@@ -224,7 +224,7 @@ export default {
 				transition: 'transform ease-in-out 0.3s'
 			},
 			onStyleAnimate: null,
-			showPicker: true
+			showPicker: false
 		};
 	},
 	methods: {
