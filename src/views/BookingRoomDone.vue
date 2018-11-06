@@ -8,8 +8,8 @@
 	<div class="booking-room-done__inner booking-room-done__inner--name">
 		<p class="booking-room-done__label booking-room-done__label--name">Full Name</p>
 		<p class="booking-room-done__label booking-room-done__label--phone">Phone</p>
-		<p class="booking-room-done__text booking-room-done__text--name">sdfsdf</p>
-		<p class="booking-room-done__text booking-room-done__text--phone">sdfsdf</p>
+		<p class="booking-room-done__text booking-room-done__text--name">{{ bookRoomData.name?bookRoomData.name: 'name' }}</p>
+		<p class="booking-room-done__text booking-room-done__text--phone">{{ bookRoomData.phone?bookRoomData.phone: 'phone' }}</p>
 		<button class="booking-room-done__edit-button" >
 			<svg class="booking-room-done__edit-icon">
 				<use xlink:href='#icon-edit'/>
@@ -21,18 +21,18 @@
 		<p class="booking-room-done__label booking-room-done__label--day">Date</p>
 		<p class="booking-room-done__label booking-room-done__label--time">Time</p>
 		<p class="booking-room-done__label booking-room-done__label--price">Price</p>
-		<p class="booking-room-done__text booking-room-done__text---day">4353dfgd</p>
-		<p class="booking-room-done__text booking-room-done__text---time">34534dfgdf</p>
-		<p class="booking-room-done__text booking-room-done__text---price">345dfgd</p>
+		<p class="booking-room-done__text booking-room-done__text---day">{{ bookRoomData.event?bookRoomData.event.day: 'day' }}</p>
+		<p class="booking-room-done__text booking-room-done__text---time">{{ bookRoomData.event?bookRoomData.event.duration: 'duration' }}</p>
+		<p class="booking-room-done__text booking-room-done__text---price">{{ bookRoomData.price?bookRoomData.price: 100 }}</p>
 		<a href="#" class="booking-room-done__link">put on the calendar</a>
 	</div>
-	<p class="booking-room-done__text">Payment occurs in coworking. Wait for a call by our administrator.</p>
+	<p class="booking-room-done__text booking-room-done__text--description">Payment occurs in coworking. Wait for a call by our administrator.</p>
 	<div class="booking-room-done__inner booking-room-done__inner--back-button">
 		<button-back class="booking-room-done__button-back" @goBack='goHome'></button-back>
 		<p class="booking-room-done__button-text">BACK TO THE START PAGE</p>
 	</div>
 	<svg style="display: none;">
-		 <symbol id='icon-edit' viewBox="0 0 24 24">
+		<symbol id='icon-edit' viewBox="0 0 24 24">
 			<path fill-rule="evenodd" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
 		</symbol>
 	</svg>
@@ -45,6 +45,7 @@ import ButtonBack from '@/components/buttons/ButtonBack.vue';
 
 export default {
 	name: 'BookingDone',
+	props: ['bookRoomData'],
 	components: {
 		ButtonMap,
 		ButtonBack
@@ -110,28 +111,28 @@ export default {
 		&--back-button {
 			@extend %flex-row;
 			align-items: center;
-			padding-top: 2rem;
-			padding-top: 1.375rem;
-			border-top: 1px solid $MIDDLE-GREY;
+			padding-top: 1rem;
 			@media (max-width: 600px) {
 				justify-content: center;
 			}
 		}
 		&--name {
-			padding: 1.2rem 0;
+			padding: 1rem 0;
 			display: grid;
-			grid-template-columns: repeat(3,auto);
+			grid-template-columns: 2fr 4fr 1fr;
 			grid-template-rows: repeat(2, auto);
-			grid-column-gap: 1.2rem;
-			grid-row-gap: 1.2rem;
+			grid-column-gap: 1rem;
+			grid-row-gap: 0.2rem;
+			justify-items: start;
 		}
 		&--date {
-			padding: 1.2rem 0;
+			padding: 1rem 0;
 			display: grid;
-			grid-template-columns: repeat(3,auto);
+			grid-template-columns: repeat(3, auto);
 			grid-template-rows: repeat(3, auto);
-			grid-column-gap: 1.2rem;
-			grid-row-gap: 1.2rem;
+			grid-column-gap: 1rem;
+			grid-row-gap: 0.2rem;
+			justify-items: start;
 			border-top: 1px solid $BUTTON-COLOR;
 			border-bottom: 1px solid $BUTTON-COLOR;
 			@media (max-width: 600px) {
@@ -184,6 +185,10 @@ export default {
 			grid-column: 3;
 			grid-row: 2;
 		}
+		&--description {
+			line-height: 2;
+			padding: 1.2rem 0;
+		}
 	}
 	&__label {
 		font-family: $base-font;
@@ -218,6 +223,16 @@ export default {
 	&__link {
 		grid-column: 1/4;
 		grid-row: 3;
+		font-family: Montserrat;
+		font-size: 0.625rem;
+		font-weight: 700;
+		letter-spacing: 0.7px;
+		text-align: left;
+		color: $MERGE-MAIN-COLOR;
+		text-transform: uppercase;
+		text-decoration: none;
+		outline: none;
+		padding-top: 0.7rem;
 	}
 	&__edit-button {
 		@extend %flex-row;
@@ -227,6 +242,7 @@ export default {
 		background-color: transparent;
 		grid-column: 3;
 		grid-row: 2;
+		justify-self: end;
 	}
 	&__edit-icon {
 		width: 12px;

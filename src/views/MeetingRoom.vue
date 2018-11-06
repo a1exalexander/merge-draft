@@ -102,13 +102,16 @@ export default {
 	},
 	methods: {
 		editDate(href) {
-			this.bookMeetingRoom = false;
+			this.hideElements = true;
+			setTimeout(()=>{
+				this.showBookMeetingRoom = false;
+			},100)
 			let time = setInterval(()=>{
 				let top = document.getElementById(href).getBoundingClientRect().top;
-				if(top > 500) {
+				if(top > 1000) {
 					window.console.log(top);
 					window.scrollTo(0, (top - 2));
-					clearTimeout(time);	
+					clearInterval(time);	
 				}
 			}, 10 );
 		},

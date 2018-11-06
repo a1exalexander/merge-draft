@@ -6,9 +6,9 @@
 		name="custom-classes-transition"
 		enter-active-class="animated fadeIn"
 		mode="out-in">
-	<booking-room-done v-if='!bookingRoomDone'></booking-room-done>
+	<booking-room-done :bookRoomData='bookRoomData' v-if='bookingRoomDone'></booking-room-done>
 	</transition>
-	<div class="book-meeting-room" v-if='bookingRoomDone' :style="onStyleAnimate" >
+	<div class="book-meeting-room" v-if='!bookingRoomDone' :style="onStyleAnimate" >
 		<button-close-mini class="book-meeting-room__close" @close='goBack'></button-close-mini>
 		<div class="book-meeting-room__button-back-wrapper">
 			<button-back class="book-meeting-room__button-back" @goBack='goBack'></button-back>
@@ -21,7 +21,7 @@
 			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--day">{{ event? event.day: "" }}</p>
 			<p class="book-meeting-room__date-label book-meeting-room__date-label--time">Time</p>	
 			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--time">{{ event? event.start + ' - ': "" }}{{ event? event.end: "" }} {{ event?"(" + event.duration + ")": "" }}</p>
-			<button class="book-meeting-room__edit-date" @click='editDate'>
+			<button class="book-meeting-room__edit-date" @click.prevent='editDate'>
 				<svg class="book-meeting-room__edit-icon">
 					<use xlink:href='#icon-edit'/>
 				</svg>
@@ -175,7 +175,8 @@ export default {
 				name: null,
 				phone: null,
 				email: null,
-				resident: false
+				resident: false,
+				price: null
 			},
 			checkData: {
 				name: null,
@@ -201,12 +202,6 @@ export default {
 	methods: {
 		editDate() {
 			this.$emit("editDate");
-		},
-		onData(data){
-			if(data) {
-				this.event = data;
-			}
-			this.showCalendar = false;
 		},
 		goBack() {
 			this.onStyleAnimate = this.styleAnimate;
@@ -672,7 +667,7 @@ export default {
 		&:-webkit-autofill:focus,
 		&:-webkit-autofill:active {
 			animation-name: autofill;
-  			animation-fill-mode: both;
+			animation-fill-mode: both;
 		}
 		&:active {
 			background-color: $BUTTON-COLOR;

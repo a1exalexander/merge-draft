@@ -155,8 +155,8 @@ export default {
 			}, 100);
 		},
 		becomeMember() {
-          this.$router.push('/booking-workplace');
-      	}
+			this.$router.push('/booking-workplace');
+		}
 	}
 };
 </script>
