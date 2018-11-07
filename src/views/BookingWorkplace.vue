@@ -11,19 +11,19 @@
 		name="custom-classes-transition"
 		enter-active-class="animated faster fadeIn"
 		leave-active-class="animated faster fadeOut">
-    <resident-card v-if='visible.residentCard' :price='price' @close='visible.residentCard = false' @becomeResident='becomeResident'></resident-card>
+    <resident-card v-if='visible.residentCard' :price='price' @closeCard='closeCard'></resident-card>
     </transition>
 	<transition
 		name="custom-classes-transition"
 		enter-active-class="animated faster fadeIn"
 		leave-active-class="animated faster fadeOut">
-    <week-card v-if='visible.weekCard' :price='price' @close='visible.weekCard = false' @selectWeek='selectWeek'></week-card>
+    <week-card v-if='visible.weekCard' :price='price' @closeCard='closeCard'></week-card>
     </transition>
 	<transition
 		name="custom-classes-transition"
 		enter-active-class="animated faster fadeIn"
 		leave-active-class="animated faster fadeOut">
-    <day-card v-if='visible.dayCard' :price='price' @close='visible.dayCard = false' @selectDay='selectDay'></day-card>
+    <day-card v-if='visible.dayCard' :price='price' @closeCard='closeCard'></day-card>
     </transition>
 	<logo></logo>
 	<section class="booking-workplace" :style="onStyleAnimate">
@@ -32,7 +32,7 @@
 			<button-back class="booking-workplace__button-back" @click.native='goBack'></button-back>
 			<p class="booking-workplace__button-text">go back</p>
 		</div>
-		<h1 class="booking-workplace__title">Booking of the	workplace</h1>
+		<h1 class="booking-workplace__title">Booking of the	workplace {{ tariff }}</h1>
 		<div class="booking-workplace__inner booking-workplace__inner--choice">
 			<label for='book-month' class="workplace-choice">
 				<input id='book-month' 
@@ -40,8 +40,8 @@
                     name='booking-type' 
                     form='booking-form' 
                     class="workplace-choice__input"
-                    value='month'
-                    v-model="form.picked"
+					value="month"
+                    v-model="tariff"
                     checked>
 				<div class="workplace-choice__inner">
 					<p class="workplace-choice__title">Month</p>
@@ -61,8 +61,8 @@
                     name='booking-type' 
                     form='booking-form' 
                     class="workplace-choice__input" 
-                    value='week'
-                    v-model="form.picked">
+					value="week"
+                    v-model="tariff">
 				<div class="workplace-choice__inner">
 					<p class="workplace-choice__title">Week</p>
 					<p class="workplace-choice__price">{{ price.week }}</p>
@@ -79,8 +79,8 @@
                     name='booking-type'
                     form='booking-form'
                     class="workplace-choice__input"
-                    value='day'
-                    v-model="form.picked">
+					value="day"
+                    v-model="tariff">
 				<div class="workplace-choice__inner">
 					<p class="workplace-choice__title">Day</p>
 					<p class="workplace-choice__price">{{ price.day }}</p>
@@ -198,7 +198,6 @@ import BookingDone from '@/views/BookingDone.vue';
 
 export default {
 	name: 'BookingWorkplace',
-	props: ['tariff'],
 	components: {
 		ButtonBack,
 		ButtonApply,
@@ -228,12 +227,7 @@ export default {
 				phone: null,
 				email: null,
 				career: null,
-				picked: this.tariff?this.tariff:'month'
-			},
-			price: {
-				month: 1000,
-				week: 400,
-				day: 80
+				picked: null
 			},
 			validStatus: {
 				name: false,
@@ -260,16 +254,9 @@ export default {
 				}
 			}, 100);
 		},
-		becomeResident() {
-			this.form.picked = 'month';
+		closeCard() {
 			this.visible.residentCard = false;
-		},
-		selectDay() {
-			this.form.picked = 'day';
 			this.visible.dayCard = false;
-		},
-		selectWeek() {
-			this.form.picked = 'week';
 			this.visible.weekCard = false;
 		},
 		checkName() {
@@ -323,9 +310,26 @@ export default {
 			.catch(e => {
 				this.errors.arr.push(e);
 			});
+		},
+		updateTariff(value){
+			this.$store.commit('change', value.target.value);
 		}
 	},
 	computed: {
+		tariff: {
+			get () {
+				let val = this.$store.state.tariff;
+				let price = this.price[val];
+				TweenLite.to(this.$data, 0.5, { tweenedNumber: price });
+				return this.form.picked = val;
+			},
+			set (value) {
+				this.$store.commit('change', value)
+			}
+		},
+		price() {
+			return this.$store.state.price;
+		},
 		animatedNumber() {
 			return this.tweenedNumber.toFixed(0);
 		},
@@ -371,16 +375,10 @@ export default {
 			} else {
 				this.validStatus.email = false;
 			}
-		},
-		'form.picked'() {
-			let val = this.price[this.form.picked];
-			TweenLite.to(this.$data, 0.5, { tweenedNumber: val });
 		}
 	},
 	mounted() {
-		TweenLite.to(this.$data, 0.5, {
-			tweenedNumber: this.price[this.form.picked]
-		});
+		this.tariff
 	}
 };
 </script>
@@ -562,7 +560,7 @@ export default {
 		&:-webkit-autofill:focus,
 		&:-webkit-autofill:active {
 			animation-name: autofill;
-  			animation-fill-mode: both;
+			animation-fill-mode: both;
 		}
 		&::placeholder {
 			text-indent: 16px;

@@ -30,7 +30,7 @@
         <div class="week-card__inner week-card__inner--price">
             <p class="week-card__price">
                 Price:
-                <span class="week-card__sum">{{ price? price.week: 400 }}</span>
+                <span class="week-card__sum">{{ price }}</span>
             </p>
             <button class="week-card__button" @click="selectWeek">
                 <p class='week-card__button-text'>
@@ -49,18 +49,23 @@ import ButtonCloseMini from '@/components/buttons/ButtonCloseMini.vue';
 
 export default {
     name: 'WeekCard',
-    props: ['price'],
     components: {
         ButtonCloseMini
     },
     methods: {
         close() {
-            this.$emit('close');  
+            this.$emit('closeCard');  
         },
         selectWeek() {
-            this.$emit('selectWeek');  
+            this.$store.commit('change', 'week');
+            this.$emit('closeCard', 'week');  
         }     
-    }
+    },
+    computed: {
+        price() {
+            return this.$store.state.price.week;
+        }
+}
 }
 </script>
 
@@ -154,8 +159,8 @@ export default {
 			border-radius: 4px;
 			transition: border ease-in-out 0.1s;
 			z-index: 0;
-			visibility: hidden;
-		    }
+            visibility: hidden;
+        }
     }
     &__title {
         font-family: $title-font;

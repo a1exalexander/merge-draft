@@ -24,6 +24,11 @@ button {
     cursor: pointer;
 }
 
+input,
+input:invalid {
+    box-shadow: none;
+}
+
 .page {
     width: 100%;
     background-color: $MAIN-DARK-COLOR;

@@ -30,7 +30,7 @@
         <div class="day-card__inner day-card__inner--price">
             <p class="day-card__price">
                 Price:
-                <span class="day-card__sum">{{  price? price.day: 80 }}</span>
+                <span class="day-card__sum">{{ price }}</span>
             </p>
             <button class="day-card__button" @click="selectDay">
                 <p class='day-card__button-text'>
@@ -49,17 +49,22 @@ import ButtonCloseMini from '@/components/buttons/ButtonCloseMini.vue';
 
 export default {
     name: 'DayCard',
-    props: ['price'],
     components: {
         ButtonCloseMini
     },
     methods: {
         close() {
-            this.$emit('close');  
+            this.$emit('closeCard');  
         },
         selectDay() {
-            this.$emit('selectDay');  
+            this.$store.commit('change', 'day');
+            this.$emit('closeCard', 'day');  
         }     
+    },
+    computed: {
+        price() {
+            return this.$store.state.price.day;
+        }
     }
 }
 </script>
@@ -143,19 +148,19 @@ export default {
 		color: $MAIN-DARK-COLOR;
 		letter-spacing: 0.7px;
 		&::before {
-			position: absolute;
-			content: '';
-			background-color: transparent;
-			left: -2px;
-			right: -2px;
-			top: -2px;
-			bottom: -2px;
-			border: 1px solid $MERGE-SECONDARY-COLOR;
-			border-radius: 4px;
-			transition: border ease-in-out 0.1s;
-			z-index: 0;
-			visibility: hidden;
-		    }
+            position: absolute;
+            content: '';
+            background-color: transparent;
+            left: -2px;
+            right: -2px;
+            top: -2px;
+            bottom: -2px;
+            border: 1px solid $MERGE-SECONDARY-COLOR;
+            border-radius: 4px;
+            transition: border ease-in-out 0.1s;
+            z-index: 0;
+            visibility: hidden;
+        }
     }
     &__title {
         font-family: $title-font;

@@ -45,7 +45,7 @@
         <div class="resident-card__inner resident-card__inner--price">
             <p class="resident-card__price">
                 Price:
-                <span class="resident-card__sum">{{ price? price.month: 1000 }}</span>
+                <span class="resident-card__sum">{{ price }}</span>
             </p>
         </div>
         <button-resident class="resident-card__button" @click.native='becomeResident'></button-resident>
@@ -61,18 +61,23 @@ import ButtonResident from '@/components/buttons/ButtonResident.vue';
 
 export default {
     name: 'ResidentCard',
-    props: ['price'],
     components: {
         ButtonCloseMini,
         ButtonResident
     },
     methods: {
         close() {
-            this.$emit('close');  
+            this.$emit('closeCard');  
         },
         becomeResident() {
-            this.$emit('becomeResident');  
-        }     
+            this.$store.commit('change', 'month');
+            this.$emit('closeCard', 'month');  
+        }  
+    },
+    computed: {
+        price() {
+            return this.$store.state.price.month;
+        }
     }
 }
 </script>

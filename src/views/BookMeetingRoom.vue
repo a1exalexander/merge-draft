@@ -1,14 +1,14 @@
 <template>
 <div class="book-meeting-room__wrapper">
 	<logo></logo>
-	<transition 
+	<!-- <transition 
 		appear
 		name="custom-classes-transition"
 		enter-active-class="animated fadeIn"
-		mode="out-in">
-	<booking-room-done :bookRoomData='bookRoomData' v-if='bookingRoomDone'></booking-room-done>
-	</transition>
-	<div class="book-meeting-room" v-if='!bookingRoomDone' :style="onStyleAnimate" >
+		mode="out-in"> -->
+	<booking-room-done :bookRoomData='bookRoomData' v-show='bookingRoomDone' @edit='bookingRoomDone = false'></booking-room-done>
+	<!-- </transition> -->
+	<div class="book-meeting-room" v-show='!bookingRoomDone' :style="onStyleAnimate" >
 		<button-close-mini class="book-meeting-room__close" @click.native='goBack'></button-close-mini>
 		<div class="book-meeting-room__button-back-wrapper">
 			<button-back class="book-meeting-room__button-back" @click.native='goBack'></button-back>
@@ -130,7 +130,7 @@
 			<p class="booking-price book-meeting-room__price">Price:
 				<span class="booking-price__sum">1000</span>
 			</p>
-			<button-book :disabled='showSubmit'></button-book>
+			<button-book :disabled='showSubmit' @click.native='bookingRoomDone = true'></button-book>
 		</div>
 	</div>
     <svg style="display: none">
@@ -196,7 +196,8 @@ export default {
 				transition: 'transform ease-in-out 0.3s'
 			},
 			onStyleAnimate: null,
-			bookingRoomDone: true
+			bookCard: true,
+			bookingRoomDone: false
 		};
 	},
 	methods: {

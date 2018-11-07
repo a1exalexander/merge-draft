@@ -58,11 +58,9 @@ export default new Router({
 			component: AboutUs
 		},
 		{
-			path: '/booking-workplace/:tariff?',
+			path: '/booking-workplace',
 			name: 'BookingWorkplace',
-			component: BookingWorkplace,
-			props: true,
-			alias: '/booking-woorkplace'
+			component: BookingWorkplace
 		}
 	]
 });

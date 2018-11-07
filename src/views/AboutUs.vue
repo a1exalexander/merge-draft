@@ -4,19 +4,19 @@
 		name="custom-classes-transition"
 		enter-active-class="animated faster fadeIn"
 		leave-active-class="animated faster fadeOut">
-    <resident-card v-if='visible.residentCard' @close='visible.residentCard = false' @becomeResident='becomeResident'></resident-card>
+    <resident-card v-if='visible.residentCard' @closeCard='closeCard'></resident-card>
     </transition>
 	<transition
 		name="custom-classes-transition"
 		enter-active-class="animated faster fadeIn"
 		leave-active-class="animated faster fadeOut">
-    <week-card v-if='visible.weekCard' :price='price' @close='visible.weekCard = false' @selectWeek='selectWeek'></week-card>
+    <week-card v-if='visible.weekCard' @closeCard='closeCard'></week-card>
     </transition>
 	<transition
 		name="custom-classes-transition"
 		enter-active-class="animated faster fadeIn"
 		leave-active-class="animated faster fadeOut">
-    <day-card v-if='visible.dayCard' :price='price' @close='visible.dayCard = false' @selectDay='selectDay'></day-card>
+    <day-card v-if='visible.dayCard' @closeCard='closeCard'></day-card>
     </transition>
 	<div class="about-us__wrapper">
 		<div class="about-us__main about-us__main--margin">
@@ -118,25 +118,20 @@ export default {
 			visible: {
 				residentCard: false,
 				dayCard: false,
-				weekCard: false,
+				weekCard: false
 			}	
 		};
 	},
 	methods: {
-		becomeMember() {
-			this.$router.push('/booking-workplace');
-		},
-		becomeResident() {
-			this.visible.residentCard = false;  
-			this.$router.push('/booking-workplace');
-		},
-		selectDay() {
-			this.visible.dayCard = false;
-			this.$router.push('/booking-workplace/day');
-		},
-		selectWeek() {
-			this.visible.weekCard = false;
-			this.$router.push('/booking-workplace/week');
+		closeCard(type) {
+			if (type) {
+				this.$router.push('/booking-workplace');
+			} else {
+				this.visible.residentCard = false;
+				this.visible.dayCard = false;
+				this.visible.weekCard = false;
+			}
+			
 		}
 	}
 };

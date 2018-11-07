@@ -58,6 +58,9 @@ export default {
 		}
 	},
 	methods: {
+		edit() {
+			this.$emit('edit');
+		},
 		goHome() {
 			this.onStyleAnimate = this.styleAnimate;
 			setTimeout(()=> {
