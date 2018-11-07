@@ -1,5 +1,5 @@
 <template>
-	<button class="button-close" @click="goBack">
+	<button class="button-close">
 		<svg class='button-close__img'>
 			<use xlink:href='#close' />
 		</svg>
@@ -15,12 +15,7 @@
 <script>
 
 export default {
-	name: 'ButtonClose',
-	methods: {
-		goBack() {
-			this.$emit('goBack');
-		}
-	}
+	name: 'ButtonClose'
 }
 </script>
 

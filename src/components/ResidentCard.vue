@@ -2,7 +2,7 @@
 <div class="resident-card__wrapper-all" @click.self='close'>
 <div class="resident-card__wrapper" @click.self='close'>
     <div class="resident-card animated faster fadeInBubble">
-        <button-close-mini @close='close'></button-close-mini>
+        <button-close-mini @click.native='close'></button-close-mini>
         <div class="resident-card__inner resident-card__inner--top">
             <p class="resident-card__title">Resident Card
             </p>
@@ -48,7 +48,7 @@
                 <span class="resident-card__sum">{{ price? price.month: 1000 }}</span>
             </p>
         </div>
-        <button-resident class="resident-card__button" @becomeResident='becomeResident'></button-resident>
+        <button-resident class="resident-card__button" @click.native='becomeResident'></button-resident>
     </div>
 </div>
 </div>

@@ -13,7 +13,7 @@
 		<div class="meeting-room__inner">
 			<header class="meeting-room__header" v-show='hideElements'>
 				<h1 class="meeting-room__title">Meeting Room</h1>
-				<button-book-room @book='showBook'></button-book-room>
+				<button-book-room @click.native='showBook'></button-book-room>
 			</header>
 			<section class="meeting-room__slider">
 				<button class="meeting-room__label-button">Photos</button>
@@ -27,7 +27,7 @@
 								<span class="meeting-room-inf__description meeting-room-inf__description--hour">UAH PER HOUR
 								</span>
 							</p>
-							<button-book-now @book='showBook'></button-book-now>
+							<button-book-now @click.native='showBook'></button-book-now>
 						</div>
 						<div class="meeting-room-inf__card meeting-room-inf__card--resident">
 							<p class="meeting-room-inf__text meeting-room-inf__text--resident">FREE

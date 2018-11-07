@@ -2,7 +2,7 @@
 <div class="resident-card__wrapper-all" @click.self='close'>
 <div class="week-card__wrapper" @click.self='close'>
     <div class="week-card animated faster fadeInBubble">
-        <button-close-mini @close='close'></button-close-mini>
+        <button-close-mini @click.native='close'></button-close-mini>
         <p class="week-card__title">Week access
         </p>
         <div class="week-card__inner week-card__inner--middle">

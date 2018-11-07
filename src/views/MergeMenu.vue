@@ -94,7 +94,7 @@
 		<a href="mailto: hello@merge.place" class="menu__contact menu__contact--mail menu-row-6">hello@merge.place
 		</a>
 		<div class="menu-row-10">
-			<button-membership @becomeMember='becomeMember'></button-membership>
+			<button-membership @click.native='becomeMember'></button-membership>
 		</div>
 	</div>
 	<svg style="display: none;">
@@ -145,12 +145,11 @@ export default {
 	methods: {
 		goBack() {
 			this.onStyleAnimate = this.styleAnimate;
-			let onThis = this;
-			setTimeout(function() {
+			setTimeout(()=> {
 				if (window.history.length > 1) {
-					onThis.$router.go(-1);
+					this.$router.go(-1);
 				} else {
-					onThis.$router.go(-1);
+					this.$router.go(-1);
 				}
 			}, 100);
 		},

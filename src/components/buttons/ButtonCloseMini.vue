@@ -1,5 +1,5 @@
 <template>
-	<button class='button-close-mini' @click='close'>
+	<button class='button-close-mini'>
 		<svg class="button-close-mini__img">
 			<use xlink:href='#close' />
 		</svg>
@@ -14,12 +14,7 @@
 <script>
 
 export default {
-	name: 'residentCard',
-	methods: {
-        close() {
-            this.$emit('close');  
-        }
-    }
+	name: 'residentCard'
 }
 </script>
 

@@ -19,7 +19,7 @@
 		</div>
 		<button-map class="booking-done__button-map"></button-map>
 		<div class="booking-done__inner booking-done__inner--back-button">
-			<button-back class="booking-done__button-back" @goBack='goHome'></button-back>
+			<button-back class="booking-done__button-back" @click.native='goHome'></button-back>
 			<p class="booking-done__button-text">BACK TO THE START PAGE</p>
 		</div>
 	</div>

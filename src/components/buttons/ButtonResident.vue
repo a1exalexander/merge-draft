@@ -1,5 +1,5 @@
 <template>
-<button class="button-resident" @click="becomeResident">
+<button class="button-resident">
 	<p class='button-resident__text'>
 		BECOME A RESIDENT
 	</p>
@@ -9,11 +9,6 @@
 <script>
 export default {
     name: 'ButtonResident',
-    methods: {
-		becomeResident() {
-			this.$emit('becomeResident');
-        }
-	}
 };
 </script>
 

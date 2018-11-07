@@ -1,5 +1,5 @@
 <template>
-<button class="button-membership button-membership--hello" @click='becomeMember'>
+<button class="button-membership button-membership--hello">
 	<p class='button-membership__text'>
 		BECOME A MEMBER
 		<svg class='button-membership__img'>
@@ -18,12 +18,7 @@
 <script>
 
 export default {
-    name: 'button-membership',
-    methods: {
-		becomeMember () {
-            this.$emit('becomeMember');  
-        }
-	}
+    name: 'button-membership'
 }
 </script>
 

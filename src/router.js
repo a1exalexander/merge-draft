@@ -61,7 +61,8 @@ export default new Router({
 			path: '/booking-workplace/:tariff?',
 			name: 'BookingWorkplace',
 			component: BookingWorkplace,
-			props: true
+			props: true,
+			alias: '/booking-woorkplace'
 		}
 	]
 });

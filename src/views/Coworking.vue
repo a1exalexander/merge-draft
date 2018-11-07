@@ -6,7 +6,7 @@
 			<header class="coworking__header">
 				<h1 class="coworking__title">Coworking<br>Space
 				</h1>
-				<button-membership></button-membership>
+				<button-membership @click.native='becomeMember'></button-membership>
 			</header>
 			<section class="view-360">
 				<div class="view-360__row">
@@ -53,7 +53,7 @@
 					</p>
 				</div>
 				<div class="beneffits__button">
-					<button-membership></button-membership>
+					<button-membership @click.native='becomeMember'></button-membership>
 				</div>
 			</section>
 			<section class="coworking__slider">
@@ -83,11 +83,16 @@ import ButtonMembership from '@/components/buttons/ButtonMembership.vue';
 import Slider from '@/components/Slider.vue';
 
 export default {
-  name: 'coworking',
-  components: {
-	ButtonMembership,
-	Slider
-  }
+	name: 'coworking',
+	components: {
+		ButtonMembership,
+		Slider
+	},
+	methods: {
+		becomeMember() {
+			this.$router.push('/booking-workplace');
+		}
+	}
 }
 </script>
 

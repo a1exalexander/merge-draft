@@ -9,9 +9,9 @@
 	<booking-room-done :bookRoomData='bookRoomData' v-if='bookingRoomDone'></booking-room-done>
 	</transition>
 	<div class="book-meeting-room" v-if='!bookingRoomDone' :style="onStyleAnimate" >
-		<button-close-mini class="book-meeting-room__close" @close='goBack'></button-close-mini>
+		<button-close-mini class="book-meeting-room__close" @click.native='goBack'></button-close-mini>
 		<div class="book-meeting-room__button-back-wrapper">
-			<button-back class="book-meeting-room__button-back" @goBack='goBack'></button-back>
+			<button-back class="book-meeting-room__button-back" @click.native='goBack'></button-back>
 			<p class="book-meeting-room__button-text">go back</p>
 		</div>
 		<h2 class="book-meeting-room__title">Meeting Room<br>Reservation

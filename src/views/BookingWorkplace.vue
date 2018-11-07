@@ -27,9 +27,9 @@
     </transition>
 	<logo></logo>
 	<section class="booking-workplace" :style="onStyleAnimate">
-		<button-close-mini class="booking-workplace__close" @close='goBack'></button-close-mini>
+		<button-close-mini class="booking-workplace__close" @click.native='goBack'></button-close-mini>
 		<div class="booking-workplace__inner booking-workplace__inner--back-button">
-			<button-back class="booking-workplace__button-back" @goBack='goBack'></button-back>
+			<button-back class="booking-workplace__button-back" @click.native='goBack'></button-back>
 			<p class="booking-workplace__button-text">go back</p>
 		</div>
 		<h1 class="booking-workplace__title">Booking of the	workplace</h1>
@@ -172,8 +172,7 @@
 			</p>
 			<button-apply 
                 :disabled='showSubmit'
-                form='booking-form'
-                @click.prevent="sendForm">
+                @click.native="sendForm">
             </button-apply>
 		</div>
 	</section>

@@ -33,8 +33,8 @@
 		in various specialties.
 	</p>
 	<div class="hello__button-wrapper">
-		<button-membership @becomeMember='becomeMember'></button-membership>
-		<button-book-room @book='meetingRoom'></button-book-room>
+		<button-membership @click.native='becomeMember'></button-membership>
+		<button-book-room @click.native='meetingRoom'></button-book-room>
 	</div>
 	<social-networks class="hello__social"></social-networks>
     <svg style="display: none">

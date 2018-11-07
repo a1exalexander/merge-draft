@@ -6,7 +6,7 @@
 		</h3>
 		<div id='fullcalendar'></div>
 		<div class="calendar__inner">
-			<button-book :disabled='buttonShow' @book='showBook'></button-book>
+			<button-book :disabled='buttonShow' @click.native='showBook'></button-book>
 			<p class="calendar__text">Choose a time on the calendar when you need a Meeting Room. After click "Reserve"
 			</p>
 		</div>

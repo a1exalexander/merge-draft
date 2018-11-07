@@ -1,5 +1,5 @@
 <template>
-<button class="button-back" @click="goBack"> 
+<button class="button-back"> 
 	<svg class="button-back__img">
 		<use xlink:href='#arrow-left' />
 	</svg>
@@ -14,12 +14,7 @@
 
 <script>
 export default {
-	name: 'ButtonBack',
-	methods: {
-		goBack() {
-			this.$emit('goBack');
-		}
-	}
+	name: 'ButtonBack'
 };
 </script>
 

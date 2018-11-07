@@ -10,7 +10,7 @@
 		<p class="booking-room-done__label booking-room-done__label--phone">Phone</p>
 		<p class="booking-room-done__text booking-room-done__text--name">{{ bookRoomData.name?bookRoomData.name: 'name' }}</p>
 		<p class="booking-room-done__text booking-room-done__text--phone">{{ bookRoomData.phone?bookRoomData.phone: 'phone' }}</p>
-		<button class="booking-room-done__edit-button" >
+		<button class="booking-room-done__edit-button">
 			<svg class="booking-room-done__edit-icon">
 				<use xlink:href='#icon-edit'/>
 			</svg>
@@ -28,7 +28,7 @@
 	</div>
 	<p class="booking-room-done__text booking-room-done__text--description">Payment occurs in coworking. Wait for a call by our administrator.</p>
 	<div class="booking-room-done__inner booking-room-done__inner--back-button">
-		<button-back class="booking-room-done__button-back" @goBack='goHome'></button-back>
+		<button-back class="booking-room-done__button-back" @click.native='goHome'></button-back>
 		<p class="booking-room-done__button-text">BACK TO THE START PAGE</p>
 	</div>
 	<svg style="display: none;">
@@ -40,14 +40,12 @@
 </template>
 
 <script>
-import ButtonMap from '@/components/buttons/ButtonMap.vue';
 import ButtonBack from '@/components/buttons/ButtonBack.vue';
 
 export default {
 	name: 'BookingDone',
 	props: ['bookRoomData'],
 	components: {
-		ButtonMap,
 		ButtonBack
 	},
 	data () {
