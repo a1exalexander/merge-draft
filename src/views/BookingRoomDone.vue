@@ -8,9 +8,9 @@
 	<div class="booking-room-done__inner booking-room-done__inner--name">
 		<p class="booking-room-done__label booking-room-done__label--name">Full Name</p>
 		<p class="booking-room-done__label booking-room-done__label--phone">Phone</p>
-		<p class="booking-room-done__text booking-room-done__text--name">{{ bookRoomData.name?bookRoomData.name: 'name' }}</p>
-		<p class="booking-room-done__text booking-room-done__text--phone">{{ bookRoomData.phone?bookRoomData.phone: 'phone' }}</p>
-		<button class="booking-room-done__edit-button">
+		<p class="booking-room-done__text booking-room-done__text--name">{{ bookRoomData.name }}</p>
+		<p class="booking-room-done__text booking-room-done__text--phone">{{ bookRoomData.phone }}</p>
+		<button class="booking-room-done__edit-button" @click.prevent='edit'>
 			<svg class="booking-room-done__edit-icon">
 				<use xlink:href='#icon-edit'/>
 			</svg>
@@ -21,9 +21,9 @@
 		<p class="booking-room-done__label booking-room-done__label--day">Date</p>
 		<p class="booking-room-done__label booking-room-done__label--time">Time</p>
 		<p class="booking-room-done__label booking-room-done__label--price">Price</p>
-		<p class="booking-room-done__text booking-room-done__text---day">{{ bookRoomData.event?bookRoomData.event.day: 'day' }}</p>
-		<p class="booking-room-done__text booking-room-done__text---time">{{ bookRoomData.event?bookRoomData.event.duration: 'duration' }}</p>
-		<p class="booking-room-done__text booking-room-done__text---price">{{ bookRoomData.price?bookRoomData.price: 100 }}</p>
+		<p class="booking-room-done__text booking-room-done__text---day">{{ bookRoomData.day }}</p>
+		<p class="booking-room-done__text booking-room-done__text---time">{{ bookRoomData.duration }}</p>
+		<p class="booking-room-done__text booking-room-done__text---price">{{ bookRoomData.price }}</p>
 		<a href="#" class="booking-room-done__link">put on the calendar</a>
 	</div>
 	<p class="booking-room-done__text booking-room-done__text--description">Payment occurs in coworking. Wait for a call by our administrator.</p>
@@ -67,7 +67,12 @@ export default {
 				this.$router.push('/');
 			}, 100);
 		}
-	}
+	},
+	computed: {
+	    event() {
+	      return this.$store.state.event;
+	    }
+  }
 };
 </script>
 

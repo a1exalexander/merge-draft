@@ -35,20 +35,23 @@ export default {
 	},
   data() {
     return {
-      event: {
-        day: null,
-        start: null,
-        end: null,
-        dateStart: null,
-        dateEnd: null,
-        duration: null
-      },
       buttonShow: true
     }
   },
   methods: {
     showBook() {
-      this.$emit('showBook', this.event);  
+      this.$emit('showBook');  
+    },
+    saveEvent(data) {
+      this.$store.commit('changeEvent', data);
+    },
+    removeEvent(value){
+      this.$store.commit('removeEvent', value);
+    }
+  },
+  computed: {
+    event() {
+      return this.$store.state.event;
     }
   },
   mounted() {
@@ -85,22 +88,21 @@ export default {
         }
       },
       select(start, end) {
-        _this.event.day = start.format('DD MMMM,YYYY');
-        _this.event.start = start.format('hh:mm');
-        _this.event.end = end.format('hh:mm');
-        _this.event.duration = (+end.format('H') - +start.format('H')) + 'h - ' + Math.abs((+end.format('m') - +start.format('m'))) + 'm';
-        _this.event.dateStart = start.format();
-        _this.event.dateEnd = end.format();
-        _this.buttonShow = false;
+        let hours = Math.floor((end - start)/3600000);
+        let eventData = {
+          dateStart: start.format(),
+          dateEnd: end.format(),
+          duration: hours + 'h - ' + Math.abs((+end.format('m') - +start.format('m'))) + 'm',
+        }
+        _this.saveEvent(eventData);
+        if(hours){
+          _this.buttonShow = false;
+        } else {
+          _this.buttonShow = true;
+        }
       },
       unselect() {
-        _this.buttonShow = true;
-        _this.event.day = null;
-        _this.event.start = null;
-        _this.event.end = null;
-        _this.event.duration = null;
-        _this.event.dateStart = null;
-        _this.event.dateEnd = null;
+        _this.removeEvent('');
       }
     });
   }

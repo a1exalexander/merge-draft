@@ -1,13 +1,7 @@
 <template>
 <div class="book-meeting-room__wrapper">
 	<logo></logo>
-	<!-- <transition 
-		appear
-		name="custom-classes-transition"
-		enter-active-class="animated fadeIn"
-		mode="out-in"> -->
-	<booking-room-done :bookRoomData='bookRoomData' v-show='bookingRoomDone' @edit='bookingRoomDone = false'></booking-room-done>
-	<!-- </transition> -->
+	<booking-room-done :bookRoomData='bookRoomData' v-show='bookingRoomDone' @edit='editName'></booking-room-done>
 	<div class="book-meeting-room" v-show='!bookingRoomDone' :style="onStyleAnimate" >
 		<button-close-mini class="book-meeting-room__close" @click.native='goBack'></button-close-mini>
 		<div class="book-meeting-room__button-back-wrapper">
@@ -18,9 +12,9 @@
 		</h2>
 		<form action="" id='book-meeting-room-form' name='book-meeting-room' class="book-meeting-room__form">
 			<p class="book-meeting-room__date-label">Day</p>
-			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--day">{{ event? event.day: "" }}</p>
+			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--day">{{ day }}</p>
 			<p class="book-meeting-room__date-label book-meeting-room__date-label--time">Time</p>	
-			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--time">{{ event? event.start + ' - ': "" }}{{ event? event.end: "" }} {{ event?"(" + event.duration + ")": "" }}</p>
+			<p class="book-meeting-room__date-choice book-meeting-room__date-choice--time">{{ duration }}</p>
 			<button class="book-meeting-room__edit-date" @click.prevent='editDate'>
 				<svg class="book-meeting-room__edit-icon">
 					<use xlink:href='#icon-edit'/>
@@ -128,7 +122,7 @@
         </div>
 		<div class="book-meeting-room__apply-wrapper">
 			<p class="booking-price book-meeting-room__price">Price:
-				<span class="booking-price__sum">1000</span>
+				<span class="booking-price__sum">{{ price }}</span>
 			</p>
 			<button-book :disabled='showSubmit' @click.native='bookingRoomDone = true'></button-book>
 		</div>
@@ -154,7 +148,6 @@ import Logo from '@/components/Logo.vue';
 
 export default {
 	name: 'BookMeetingRoom',
-	props: ['event'],
 	components: {
 		ButtonBack,
 		ButtonBook,
@@ -171,11 +164,14 @@ export default {
 				arr: []
 			},
 			bookRoomData: {
-				time: this.event,
 				name: null,
 				phone: null,
 				email: null,
 				resident: false,
+				day: null,
+				start: null,
+				end: null,
+				duration: null,
 				price: null
 			},
 			checkData: {
@@ -201,6 +197,10 @@ export default {
 		};
 	},
 	methods: {
+		editName() {
+			this.bookingRoomDone = false;
+			this.bookCard = true;
+		},
 		editDate() {
 			this.$emit("editDate");
 		},
@@ -322,6 +322,47 @@ export default {
 				} else {
 					return true;
 				}
+			}
+		},
+		event() {
+      		return this.$store.state.event;
+    	},
+		day() {
+			if (this.event.dateStart) {
+				let date = new Date(this.event.dateStart);
+				return this.bookRoomData.day = `${date.toLocaleString("en-US", {day: '2-digit'})} of ${date.toLocaleString("en-US", {month: 'long'})}, ${date.toLocaleString("en-US", {year: 'numeric'})}`;
+			} 
+			return '';
+		},
+		start() {
+			if (this.event.dateStart) {
+				let date = new Date(this.event.dateStart);
+				return this.bookRoomData.start = `${date.getHours()}:${date.getMinutes()=='0'?'00':date.getMinutes()}`
+			} 
+			return '';
+		},
+		end() {
+			if (this.event.dateEnd) {
+				let date = new Date(this.event.dateEnd);
+				return this.bookRoomData.end = `${date.getHours()}:${date.getMinutes()=='0'?'00':date.getMinutes()}`
+			} 
+			return '';
+		},
+		price() {
+			if(this.event.duration) {
+				let time = (new Date(this.event.dateEnd) - new Date(this.event.dateStart))/3600000;
+				let hours = Math.ceil(time);
+				let cash = this.$store.state.price.hour;
+				return this.bookRoomData.price = +hours * +cash;
+			} else {
+				return '';
+			}
+		},
+		duration() {
+			if(this.event.duration) {
+				return this.bookRoomData.duration = `${this.start} - ${this.end} (${this.event.duration})`;
+			} else {
+				return '';
 			}
 		}
 	},

@@ -22,7 +22,7 @@
 		<div class="about-us__main about-us__main--margin">
 			<header class="about-us__header">
 				<h1 class="about-us__title">About Us</h1>
-				<button-membership @click.native='becomeMember'></button-membership>
+				<button-membership @click.native='closeCard'></button-membership>
 			</header>
 			<section class="work-time work-time--margin">
 				<img src="../assets/image/time.svg" class="work-time__clock" alt="clock">

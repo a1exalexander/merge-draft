@@ -6,7 +6,7 @@
 		enter-active-class="animated fadeIn"
 		leave-active-class="animated fadeOut"
 		mode="out-in">
-	<book-meeting-room  v-show='showBookMeetingRoom' :event='event' @editDate='editDate("fullcalendar")' @goBack='goBack'></book-meeting-room>
+	<book-meeting-room  v-show='showBookMeetingRoom' @editDate='editDate("fullcalendar")' @goBack='goBack'></book-meeting-room>
 	</transition>
 	<!-- 2 wrappers to implement dual adaptive indents -->
 	<div class="meeting-room__wrapper">
@@ -96,8 +96,7 @@ export default {
 	data() {
 		return {
 			hideElements: true,
-			showBookMeetingRoom: false,
-			event: null
+			showBookMeetingRoom: false
 		};
 	},
 	methods: {
@@ -108,16 +107,13 @@ export default {
 			},100)
 			let time = setInterval(()=>{
 				let top = document.getElementById(href).getBoundingClientRect().top;
-				if(top > 1000) {
+				if(top > 600) {
 					window.scrollTo(0, (top - 2));
 					clearInterval(time);	
 				}
 			}, 10 );
 		},
-		showBook(data) {
-			if(data) {
-				this.event = data;
-			}
+		showBook() {
 			this.showBookMeetingRoom = true;
 			setTimeout(()=>{
 				this.hideElements = false;
