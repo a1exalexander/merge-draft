@@ -1301,27 +1301,6 @@
 	}
 }
 
-@media (max-width: 600px) {
-	.animated {
-		-webkit-animation: unset !important;
-		animation: unset !important;
-		-webkit-transition: none !important;
-		transition: none !important;
-	}
-	.animatedOut {
-		-webkit-animation: unset !important;
-		animation: unset !important;
-		-webkit-transition: none !important;
-		transition: none !important;
-	}
-	.animatedNav {
-		-webkit-animation: unset !important;
-		animation: unset !important;
-		-webkit-transition: none !important;
-		transition: none !important;
-	}
-}
-
 @-webkit-keyframes autofill {
 	to {
 		color: $TEXT-COLOR;
@@ -1333,5 +1312,22 @@
 	to {
 		color: $TEXT-COLOR;
 		background: $BUTTON-COLOR;
+	}
+}
+
+@media (max-width: 600px) {
+	* {
+		-webkit-animation: unset !important;
+		animation: unset !important;
+		-webkit-transition: none !important;
+		transition: none !important;
+		animation-duration: 0;
+	}
+	.animated {
+		-webkit-animation: unset !important;
+		animation: unset !important;
+		-webkit-transition: none !important;
+		transition: none !important;
+		animation-duration: 0;
 	}
 }

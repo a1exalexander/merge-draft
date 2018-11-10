@@ -7,9 +7,9 @@
 		</svg>
 	</p>
     <svg style="display: none">
-     <symbol id='arrow-right-up' width="12" height="12" viewBox=" 0 0 24 24">
-        <path fill-rule="evenodd" d="M10 6v1.6h5.272L6 16.872 7.128 18 16.4 8.728V14H18V6z" />
-      </symbol>
+        <symbol id='arrow-right-up' width="12" height="12" viewBox=" 0 0 24 24">
+            <path fill-rule="evenodd" d="M10 6v1.6h5.272L6 16.872 7.128 18 16.4 8.728V14H18V6z" />
+        </symbol>
     </svg>
 </button>
 

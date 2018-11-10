@@ -5,6 +5,7 @@
             <use xlink:href='#logo'/>
         </svg>
     </router-link>
+    <router-link href="#" to='/menu' class="navigation__menu-link">MENU</router-link>
     <section class="button-menu__wrapper">
         <div class="button-menu__tooltip" v-if="tooltip">
             <span class="button-menu__text">
@@ -107,22 +108,36 @@ export default {
         border-right: 1px solid $DARK-GREY;
     }
     @media (max-width: 600px) {
+        position: static;
         width: 100%;
-        height: 60px;
-        padding: 0;
-        left: 0;
-        right: 0;
-        grid-template-rows: none;
-        grid-template-columns: repeat(2, 1fr);
+        padding: 32pt 32pt 24pt;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: auto;
         &--border {
-            border-right: none;
-            border-bottom: 1px solid $DARK-GREY;
+            border: none;
         }
     }
     &__logo {
-    fill: $MERGE-MAIN-COLOR;
-    width: 31px;
-    height: 40px;
+        fill: $MERGE-MAIN-COLOR;
+        width: 31px;
+        height: 40px;
+        @media (max-width: 600px) {
+            fill: $TEXT-COLOR;
+        }
+    }
+    &__menu-link {
+        display: none;
+        font-family: $base-font;
+        font-size: 12pt;
+        color: $MERGE-MAIN-COLOR;
+        text-decoration: none;
+        letter-spacing: 0.8pt;
+        font-weight: 700;
+         @media (max-width: 600px) {
+            display: block;
+        }
     }
     &__logo-wrapper {
         align-self: start;
@@ -132,11 +147,6 @@ export default {
         text-decoration: none;
         outline: none;
         border: none;
-        @media (max-width: 600px) {
-            grid-column: 1;
-            grid-row: 1;
-            align-self: center;
-        }
     }
     &__social {
         @media (max-width: 600px) {
@@ -191,10 +201,7 @@ export default {
         width: 30px;
         position: relative;
         @media (max-width: 600px) {
-            grid-column: 2;
-            animation-name: slideRight;
-            animation-duration: 0.5s;
-            animation-timing-function: ease-in-out;
+            display: none;
         }
     }
     &__tooltip {

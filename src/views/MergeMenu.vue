@@ -1,6 +1,10 @@
 <template>
 
 <div class="menu" :style='onStyleAnimate'>
+	<div class="menu__lines-mobile">
+		<div class="menu__line-mobile"></div>
+		<div class="menu__line-mobile"></div>
+	</div>
 	<div class="menu-button-close__wrapper">
 		<button id='back-to-home' class="menu-button-close" @click="goBack">
 			<svg class='menu-button-close__img'>
@@ -34,6 +38,24 @@
 				<router-link to="/about" class="menu__link">About us</router-link>
 			</li>
 		</ul>
+		<div class="menu__mobile-links">
+			<a href="callto:0970313451" class="menu__mobile-link">097 031 3451
+				<svg class='menu__mobile-link-img'>
+					<use xlink:href='#arrow-right-up' />
+				</svg>
+			</a>
+			<a href="mailto:hello@merge.place" class="menu__mobile-link">hello@merge.place
+				<svg class='menu__mobile-link-img'>
+					<use xlink:href='#arrow-right-up' />
+				</svg>
+			</a>
+			<a href="#" class="menu__mobile-link">Kremenchuk, Nebesna Sotnia st. 17А <span class="menu__mobile-link menu__mobile-link--nowrap">“Proletarsky”
+					<svg class='menu__mobile-link-img'>
+						<use xlink:href='#arrow-right-up' />
+					</svg>
+				</span> 
+			</a>
+		</div>
 		<div class="menu__language">
 			<label class="menu__language-link">
 				<input class="menu__language-input" type="radio" name='language' value='ua' v-model='language'>
@@ -84,20 +106,23 @@
 				<use xlink:href='#phone' />
 			</svg>
 		</div>
-		<a href="callto: 0970313451" class="menu__contact menu__contact--phone menu-row-2">097 031 3451
+		<a href="callto:0970313451" class="menu__contact menu__contact--phone menu-row-2">097 031 3451
 		</a>
 		<div class="menu__image-wrapper menu-row-4">
 			<svg class="menu__image menu__image--mail">
 				<use xlink:href='#mail' />
 			</svg>
 		</div>
-		<a href="mailto: hello@merge.place" class="menu__contact menu__contact--mail menu-row-6">hello@merge.place
+		<a href="mailto:hello@merge.place" class="menu__contact menu__contact--mail menu-row-6">hello@merge.place
 		</a>
 		<div class="menu-row-10">
 			<button-membership @click.native='becomeMember'></button-membership>
 		</div>
 	</div>
 	<svg style="display: none;">
+		<symbol id='arrow-right-up' width="12" height="12" viewBox=" 0 0 24 24">
+            <path fill-rule="evenodd" d="M10 6v1.6h5.272L6 16.872 7.128 18 16.4 8.728V14H18V6z" />
+        </symbol>
 		<symbol id='menu' viewBox="0 0 24 24">
 			<path d="M12,11 L20,11 L20,13 L12,13 L12,11 Z M8,6 L20,6 L20,8 L8,8 L8,6 Z M4,16 L20,16 L20,18 L4,18 L4,16 Z" id="Combined-Shape" transform="translate(12.000000, 12.000000) scale(-1, 1) translate(-12.000000, -12.000000)"></path>
 		</symbol>
@@ -144,7 +169,10 @@ export default {
 
 	methods: {
 		goBack() {
-			this.onStyleAnimate = this.styleAnimate;
+			let w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+			if (w > 850) {
+				this.onStyleAnimate = this.styleAnimate;
+			}
 			setTimeout(()=> {
 				if (window.history.length > 1) {
 					this.$router.go(-1);
@@ -184,6 +212,9 @@ export default {
 		&:hover &__img {
 			fill: $HOVER-ICON-COLOR;
 		}
+	}
+	@media (min-width: 600px) {
+		position: static;
 	}
 	&:focus {
 		background-color: $BUTTON-COLOR;
@@ -254,6 +285,15 @@ export default {
 			animation-duration: 0.5s;
 			animation-timing-function: ease-in-out;
 		}
+		@media (max-width: 600px) {
+			position: absolute;
+			bottom: auto;
+			left: auto;
+			top: 30pt;
+			right: 30pt;
+			width: 26pt;
+			height: 26pt;
+		}
 	}
 	&__img {
 		width: 26px;
@@ -273,6 +313,7 @@ export default {
 	grid-template-columns: repeat(5, 1fr);
 	justify-items: stretch;
 	align-items: stretch;
+	position: relative;
 	@media (max-width: 950px) {
 		grid-template-columns: 112px repeat(2, auto) repeat(2, 1fr);
 	}
@@ -280,7 +321,10 @@ export default {
 		grid-template-columns: none;
 		grid-template-rows: 4rem repeat(4, auto);
 	}
-
+	@media (max-width: 600px) {
+		display: block;
+		padding: 30pt;
+	}
 	&__col {
 		height: 100%;
 		grid-column: 1;
@@ -288,20 +332,46 @@ export default {
 		border-right: 0.5px solid $DARK-GREY;
 		@extend %flex-col-c;
 		align-items: flex-start;
-
 		&--links {
 			grid-column: 2;
 			grid-row: 1;
+			@media (max-width: 850px) {
+				grid-column: 1;
+				grid-row: 2;
+				border-bottom: none;
+			}
 		}
 		&--links-second {
 			grid-column: 3;
 			grid-row: 1;
+			@media (max-width: 850px) {
+				grid-column: 1;
+				grid-row: 3;
+			}
 		}
 		&--locate {
 			grid-column: 4;
+			@media (max-width: 850px) {
+				grid-column: 1;
+				grid-row: 4 / 5;
+				> :nth-child(odd),
+				.menu-row-9 {
+					margin-bottom: 2rem;
+				}
+				.menu-row-8 {
+					margin: 0;
+				}
+			}
 		}
 		&--contact {
 			grid-column: 5;
+			@media (max-width: 850px) {
+				grid-column: 1;
+				grid-row: 5;
+				> :nth-child(even) {
+					margin-bottom: 2rem;
+				}
+			}
 		}
 		&--locate,
 		&--contact {
@@ -316,6 +386,13 @@ export default {
 				2rem repeat(2, 1.3rem)
 				5.5rem 2.5rem 3rem
 				4rem;
+			@media (max-width: 850px) {
+				text-align: center;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
 		}
 		@media (max-width: 850px) {
 			padding: 2rem 0;
@@ -325,51 +402,11 @@ export default {
 			border-bottom: 0.5px solid $DARK-GREY;
 			justify-content: center;
 			justify-items: center;
-			&--links {
-				grid-column: 1;
-				grid-row: 2;
-				border-bottom: none;
-			}
-			&--links-second {
-				grid-column: 1;
-				grid-row: 3;
-			}
-			&--locate {
-				grid-column: 1;
-				grid-row: 4 / 5;
-				> :nth-child(odd),
-				.menu-row-9 {
-					margin-bottom: 2rem;
-				}
-				.menu-row-8 {
-					margin: 0;
-				}
-			}
-			&--contact {
-				grid-column: 1;
-				grid-row: 5;
-				> :nth-child(even) {
-					margin-bottom: 2rem;
-				}
-			}
-			&--locate,
-			&--contact {
-				text-align: center;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-			}
 		}
-		@media (max-width: 460px) {
-			.menu-row-10 {
-				width: 100%;
-				padding: 0 1rem;
-				button {
-					width: 100%;
-				}
-			}
+		@media (max-width: 600px) {
+			display: none;
 		}
+		
 	}
 	&__inner {
 		grid-column: 2 / 4;
@@ -380,6 +417,8 @@ export default {
 		align-content: center;
 		align-items: center;
 		justify-items: start;
+		position: relative;
+		z-index: 2;
 		@media (min-width: 850px) {
 			justify-content: start;
 			justify-items: start;
@@ -389,6 +428,9 @@ export default {
 			justify-items: center;
 			grid-column: 1;
 			grid-row: 2 / 4;
+		}
+		@media (max-width: 600px) {
+			display: block;
 		}
 	}
 	&__list {
@@ -533,6 +575,69 @@ export default {
 		font-weight: 500;
 		text-decoration: none;
 		white-space: nowrap;
+	}
+	&__lines-mobile {
+		padding: 0 30pt;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		display: none;
+		position: absolute;
+		flex-direction: row;
+		align-items: stretch;
+		justify-content: stretch;
+		flex-flow: nowrap;
+		@media (max-width: 600px) {
+			display: flex;	
+		}
+	}
+	&__line-mobile {
+		display: none;
+		width: 50%;
+		min-height: 100vh;
+		background-color: transparent;
+		border: none;
+		z-index: 0;
+		&:first-child {
+			border-left: 2px red solid;
+			border-right: 2px red solid;
+		}
+		&:last-child {
+			border-right: 2px red solid;
+		}
+		@media (max-width: 600px) {
+			display: block;
+		}
+	}
+	&__mobile-links {
+		display: none;
+		padding: 40pt 0;
+		@media (max-width: 600px) {
+			display: block;
+		}
+	}
+	&__mobile-link {
+		font-family: $base-font;
+		margin-bottom: 23pt;
+		font-size: 13pt;
+		letter-spacing: 0.9pt;
+		font-weight: 600;
+		color: $TEXT-COLOR;
+		@extend %flex-row;
+		align-items: center;
+		flex-flow: wrap;
+		text-decoration: none;
+		&--nowrap {
+			white-space: nowrap;
+		}
+	}
+	&__mobile-link-img {
+		display: inline-block;
+		fill: $MERGE-MAIN-COLOR;
+		width: 20pt;
+		height: 20pt;
 	}
 }
 @for $i from 1 to 11 {

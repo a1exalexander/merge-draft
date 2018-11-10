@@ -14,10 +14,10 @@ export default new Vuex.Store({
 			hour: 150
 		},
 		event: {
-	        dateStart: '',
-	        dateEnd: '',
-	        duration: ''
-      	}
+			dateStart: '',
+			dateEnd: '',
+			duration: ''
+		}
 	},
 	mutations: {
 		change(state, value) {

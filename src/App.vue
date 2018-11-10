@@ -50,11 +50,16 @@ export default {
 			}
 		},
 		checkNav() {
+			let w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 			if (this.navi !== this.onNavi()) {
 				if (this.navi) {
-					setTimeout(() => {
+					if(w > 600) {
+						setTimeout(() => {
+							this.navi = this.onNavi();
+						}, 250);
+					} else {
 						this.navi = this.onNavi();
-					}, 250);
+					}	
 				} else {
 					this.navi = this.onNavi();
 				}
@@ -78,12 +83,9 @@ export default {
 	@extend %flex-row;
 	background-color: $MAIN-DARK-COLOR;
 	align-items: center;
-}
-.routlinks {
-	position: fixed;
-	top: 0;
-	right: 0;
-	left: 0;
-	z-index: 100000;
+	@media (max-width: 600px) {
+        flex-direction: column;
+		justify-content: flex-start;
+    }
 }
 </style>

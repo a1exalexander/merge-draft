@@ -69,10 +69,10 @@ export default {
 		}
 	},
 	computed: {
-	    event() {
-	      return this.$store.state.event;
-	    }
-  }
+		event() {
+			return this.$store.state.event;
+		}
+	}
 };
 </script>
 

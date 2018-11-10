@@ -168,11 +168,11 @@ export default {
 				phone: null,
 				email: null,
 				resident: false,
-				day: null,
-				start: null,
-				end: null,
-				duration: null,
-				price: null
+				day: this.day,
+				start: this.start,
+				end: this.end,
+				duration: this.duration,
+				price: this.price
 			},
 			checkData: {
 				name: null,
@@ -325,26 +325,26 @@ export default {
 			}
 		},
 		event() {
-      		return this.$store.state.event;
-    	},
+			return this.$store.state.event;
+		},
 		day() {
 			if (this.event.dateStart) {
 				let date = new Date(this.event.dateStart);
-				return this.bookRoomData.day = `${date.toLocaleString("en-US", {day: '2-digit'})} of ${date.toLocaleString("en-US", {month: 'long'})}, ${date.toLocaleString("en-US", {year: 'numeric'})}`;
+				return `${date.toLocaleString("en-US", {day: '2-digit'})} of ${date.toLocaleString("en-US", {month: 'long'})}, ${date.toLocaleString("en-US", {year: 'numeric'})}`;
 			} 
 			return '';
 		},
 		start() {
 			if (this.event.dateStart) {
 				let date = new Date(this.event.dateStart);
-				return this.bookRoomData.start = `${date.getHours()}:${date.getMinutes()=='0'?'00':date.getMinutes()}`
+				return `${date.getHours()}:${date.getMinutes()=='0'?'00':date.getMinutes()}`
 			} 
 			return '';
 		},
 		end() {
 			if (this.event.dateEnd) {
 				let date = new Date(this.event.dateEnd);
-				return this.bookRoomData.end = `${date.getHours()}:${date.getMinutes()=='0'?'00':date.getMinutes()}`
+				return `${date.getHours()}:${date.getMinutes()=='0'?'00':date.getMinutes()}`
 			} 
 			return '';
 		},
@@ -353,14 +353,14 @@ export default {
 				let time = (new Date(this.event.dateEnd) - new Date(this.event.dateStart))/3600000;
 				let hours = Math.ceil(time);
 				let cash = this.$store.state.price.hour;
-				return this.bookRoomData.price = +hours * +cash;
+				return +hours * +cash;
 			} else {
 				return '';
 			}
 		},
 		duration() {
 			if(this.event.duration) {
-				return this.bookRoomData.duration = `${this.start} - ${this.end} (${this.event.duration})`;
+				return `${this.start} - ${this.end} (${this.event.duration})`;
 			} else {
 				return '';
 			}

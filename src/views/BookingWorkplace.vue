@@ -227,7 +227,7 @@ export default {
 				phone: null,
 				email: null,
 				career: null,
-				picked: null
+				picked: this.tariff
 			},
 			validStatus: {
 				name: false,
@@ -321,7 +321,7 @@ export default {
 				let val = this.$store.state.tariff;
 				let price = this.price[val];
 				TweenLite.to(this.$data, 0.5, { tweenedNumber: price });
-				return this.form.picked = val;
+				return val;
 			},
 			set (value) {
 				this.$store.commit('change', value)

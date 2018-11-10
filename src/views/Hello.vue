@@ -1,9 +1,12 @@
 <template>
 
 <section id="hello" class="hello">
-	<p class="hello__title">Hello!<br>We’re
-		<span class="hello__logo">MERGE</span>
-	</p>
+    <div class="hello__title-wrapper">
+        <h1 class="hello__title">Hello!</h1>
+        <h1 class="hello__title">We’re<span class="hello__title hello__title--line"></span><br class="hello__title-wrap">
+            <span class="hello__logo">MERGE</span>
+        </h1>
+    </div>
 	<h2 class="hello__subtitle">COWORKING IN THE CENTRE OF KREMENCHUK
 	</h2>
 	<div class="hello-link__wrapper">
@@ -36,7 +39,6 @@
 		<button-membership @click.native='becomeMember'></button-membership>
 		<button-book-room @click.native='meetingRoom'></button-book-room>
 	</div>
-	<social-networks class="hello__social"></social-networks>
     <svg style="display: none">
        <symbol id='videocamera' viewBox="0 0 24 24">
         <path d="M17,10.5 L17,7 C17,6.45 16.55,6 16,6 L4,6 C3.45,6 3,6.45 3,7 L3,17 C3,17.55 3.45,18 4,18 L16,18 C16.55,18 17,17.55 17,17 L17,13.5 L21,17.5 L21,6.5 L17,10.5 L17,10.5 Z"
@@ -54,14 +56,12 @@
 <script>
 import ButtonMembership from '@/components/buttons/ButtonMembership.vue';
 import ButtonBookRoom from '@/components/buttons/ButtonBookRoom.vue';
-import SocialNetworks from '@/components/SocialNetworks.vue';
 
 export default {
     name: 'Hello',
     components: {
     ButtonMembership,
-    ButtonBookRoom,
-    SocialNetworks
+    ButtonBookRoom
   },
   methods: {
       meetingRoom() {
@@ -77,7 +77,7 @@ export default {
 <style lang="scss">
 @import '../assets/scss/style.scss';
 .hello {
-    padding: 3rem 0 3rem 112px;
+    padding: 3rem 3rem 3rem 112px;
     width: 100%;
     grid-column: 2;
     display: grid;
@@ -93,38 +93,20 @@ export default {
     align-content: center;
     justify-items: start;
     justify-content: start;
-    @media (max-width: 810px) {
-        padding-right: 10%;
+    @media (max-width: 660px) {
+        grid-template-columns: 5% auto auto;
+        padding: 1rem 1rem 1rem 112px;
     }
     @media (max-width: 600px) {
-        grid-template-rows: repeat(6, auto);
-        padding: 5rem 1rem 3rem 1rem;
-        grid-template-areas:
-        'title title    '
-        'subtitle subtitle '
-        'link link     '
-        'text text     '
-        'btn btn      '
-        'social social';
-        justify-items: center;
-        justify-content: center;
-        animation-name: slideDown;
-        animation-duration: 0.5s;
-        animation-timing-function: ease-in-out;
-    }
-    @media (min-width: 600px) {
-        grid-template-rows: repeat(6, auto);
-        grid-template-areas:
-        '. title    '
-        '. subtitle '
-        '. link     '
-        '. text     '
-        '. btn      '
-        '. social   ';
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 0 32pt 32pt;
     }
     &__title {
-        grid-area: title;
-		@extend %flex-row;
+        @extend %flex-row;
+        align-items: center;
 		justify-content: flex-start;
         margin: 0;
         font-size: 5rem;
@@ -133,22 +115,53 @@ export default {
 		white-space: nowrap;
         color: white;
         font-weight: 500;
-        @media (min-width: 600px) and (max-width: 810px) {
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
+        flex-wrap: nowrap;
+        @media (max-width: 840px) {
+            flex-wrap: wrap;
         }
         @media (max-width: 600px) {
-            flex-direction: column;
-            font-size: 3.5rem;
-            align-items: center;
-            text-align: center;
+            text-align: left;
             width: 100%;
+        }
+        @media (max-width: 540px) {
+            font-size: 44pt;
+            line-height: 52pt;
+        }
+        &--line {
+            margin-left: 10pt;
+            display: none;
+            width: 48pt;
+            height: 3pt;
+            background-color: $TEXT-COLOR;
+            vertical-align: middle;
+            @media (max-width: 600px) {
+                display: inline-block;
+            }
+            @media (max-width: 360px) {
+                width: 30pt;
+            }
+        }
+    }
+    &__title-wrapper {
+        @extend %flex-col;
+        grid-area: title;
+        @media (max-width: 600px) {
+           margin-bottom: 10pt;
+        }
+        @media (max-width: 500px) {
+           margin-bottom: 26pt;
+        }
+    }
+    &__title-wrap {
+        display: none;
+        @media (max-width: 600px) {
+            display: block;
         }
     }
     &__logo {
         align-self: flex-end;
         margin: 0;
+        padding-left: 3rem;
         font-size: 5rem;
         text-align: left;
         font-family: $title-font;
@@ -156,28 +169,36 @@ export default {
         color: $MERGE-MAIN-COLOR;
 		letter-spacing: 20px;
 		white-space: normal;
+        @media (max-width: 840px) {
+            padding-left: 0;
+            padding-right: 2rem;
+        }
         @media (max-width: 600px) {
             width: 100%;
-            font-size: 3.5rem;
-            text-align: center;
+            text-align: left;
+            font-weight: 700;
+            letter-spacing: 8pt;
+        }
+        @media (max-width: 540px) {
+            font-size: 32pt;
+            line-height: 40pt;
         }
     }
-
     &__subtitle {
         margin: 0;
         grid-area: subtitle;
         text-transform: uppercase;
         font-family: $base-font;
         color: white;
-        font-size: 17px;
+        font-size: 1.1rem;
         font-weight: 700;
         white-space: nowrap;
-        @media (max-width: 460px) {
+        @media (max-width: 600px) {
+            font-size: 11pt;
+            line-height: 20pt;
             white-space: normal;
-            text-align: center;
         }
     }
-
     &__text {
         max-width: 45%;
         min-width: 553px;
@@ -195,6 +216,13 @@ export default {
             min-width: fit-content;
             width: 100%;
         }
+        @media (max-width: 600px) {
+            padding: 2rem 0;
+            border: none
+        }
+        @media (max-width: 500px) {
+            display: none
+        }
         &--link {
             text-decoration: none;
             color: $TEXT-LINK-COLOR;
@@ -207,7 +235,7 @@ export default {
         .button-membership {
             margin-right: 2rem;
         }
-        @media (max-width: 460px) {
+        @media (max-width: 540px) {
            flex-direction: column;
            width: 100%;
             .button-membership,
@@ -220,30 +248,6 @@ export default {
             }
         }
     }
-    &__social {
-        display: none;
-        @media (max-width: 600px) {
-            padding-top: 2rem;
-            display: grid;
-            grid-template-columns: repeat(3, auto);
-            grid-column-gap: 3rem;
-            align-items: center;
-            grid-area: social;
-        }
-        .social-networks__link {
-            @media (max-width: 600px) {
-                width: 42px;
-                height: 42px;
-            }
-        }
-        .social-networks__img {
-            @media (max-width: 600px) {
-                width: 32px;
-                height: 32px;
-            }
-        }
-        
-    }
 }
 
 .hello-link {
@@ -252,18 +256,17 @@ export default {
 	grid-template-columns: repeat(2, auto);
 	justify-items: start;
 	align-items: center;
-	grid-column-gap: 0.6em;
+	grid-column-gap: 0.6rem;
 	border-radius: 3px;
 	border: solid 2.5px transparent;
     padding: 4px 6px;
     transition: border-color ease-in-out 0.1s;
-	@media (max-width: 460px) {
-		grid-template-columns: 2rem auto;
-		padding-left: 2rem;
-		width: 100%;
+	@media (max-width: 600px) {
+        grid-column-gap: 9pt;
+        width: 100%;
+        justify-content: start;
 		&:first-child {
-			margin-right: 0;
-			margin-bottom: 2rem;
+			margin-bottom: 20pt;
 		}
     }
     @media (min-width: 601px) {
@@ -282,20 +285,22 @@ export default {
 		fill: $MERGE-DARK-COLOR;
 	}
 	&__wrapper {
-		justify-self: start;
+        justify-self: start;
+        position: relative;
+        left: -10px;
 		grid-area: link;
 		@extend %flex-row;
 		a:first-child {
 			margin-right: 2rem;
-		}
-		@media (max-width: 600px) {
-			justify-self: center;
-		}
-
-		@media (max-width: 460px) {
-			flex-direction: column;
-			width: 100%;
-		}
+        }
+        @media (max-width: 600px) {
+            flex-direction: column;
+            align-items: flex-start;
+            padding-top: 20pt;
+        }
+        @media (max-width: 500px) {
+            padding: 36pt 0 38pt;
+        }
 	}
 
 	&__img {
@@ -303,6 +308,10 @@ export default {
 		height: 16px;
         fill: $MERGE-SECONDARY-COLOR;
         transition: fill ease-in-out 0.1s;
+        @media (max-width: 600px) {
+            width: 16pt;
+            height: 16pt;
+        }
 	}
 
 	&__text {
@@ -313,6 +322,14 @@ export default {
 		font-weight: 700;
         white-space: nowrap;
         transition: color ease-in-out 0.1s;
+        @media (max-width: 600px) {
+           font-size: 10pt;
+           letter-spacing: 0.7pt
+        }
+        @media (max-width: 350px) {
+           font-size: 8pt;
+           letter-spacing: 0.5pt
+        }
 	}
 
 	&--how-get {
