@@ -23,7 +23,7 @@
 	<div class="menu__inner">
 		<ul class="menu__list">
 			<li class="menu__item">
-				<router-link to="/" class="menu__link">Merge</router-link>
+				<router-link to="/" class="menu__link menu__link--merge">Merge</router-link>
 			</li>
 			<li class="menu__item">
 				<router-link to="/coworking" class="menu__link">Coworking space</router-link>
@@ -59,15 +59,15 @@
 		<div class="menu__language">
 			<label class="menu__language-link">
 				<input class="menu__language-input" type="radio" name='language' value='ua' v-model='language'>
-				<p class="menu__language-text">UA</p>
+				<p class="menu__language-text menu__language-text--ua">UA</p>
 			</label>
 			<label class="menu__language-link">
 				<input class="menu__language-input" type="radio" name='language' value='ru' v-model='language'>
-				<p class="menu__language-text">RU</p>
+				<p class="menu__language-text menu__language-text--ru">RU</p>
 			</label>
 			<label class="menu__language-link">
 				<input class="menu__language-input" type="radio" name='language' value='en' v-model='language' checked>
-				<p class="menu__language-text">EN</p>
+				<p class="menu__language-text menu__language-text--en">EN</p>
 			</label>
 		</div>
 	</div>
@@ -214,6 +214,9 @@ export default {
 		}
 	}
 	@media (max-width: 600px) {
+		height: 24pt;
+		width: 24pt;
+		background-color: transparent;
 		position: static;
 	}
 	&:focus {
@@ -266,6 +269,9 @@ export default {
 		transition: border ease-in-out 0.2s;
 		z-index: 0;
 		visibility: hidden;
+		@media (max-width: 600px) {
+			display: none;
+		}
 	}
 	&__wrapper {
 		position: fixed;
@@ -289,10 +295,11 @@ export default {
 			position: absolute;
 			bottom: auto;
 			left: auto;
-			top: 30pt;
-			right: 30pt;
-			width: 26pt;
-			height: 26pt;
+			top: 36pt;
+			right: 28pt;
+			width: 24pt;
+			height: 24pt;
+			background-color: transparent;
 		}
 	}
 	&__img {
@@ -303,6 +310,10 @@ export default {
 		@extend %flex-row-c;
 		align-items: center;
 		transition: fill ease-in-out 0.1s;
+		@media (max-width: 600px) {
+			width: 100%;
+			height: 100%;
+		}
 	}
 }
 .menu {
@@ -323,7 +334,7 @@ export default {
 	}
 	@media (max-width: 600px) {
 		display: block;
-		padding: 30pt;
+		padding: 36pt 32pt;
 	}
 	&__col {
 		height: 100%;
@@ -432,6 +443,7 @@ export default {
 		}
 		@media (max-width: 600px) {
 			display: block;
+			padding: 0;
 		}
 	}
 	&__list {
@@ -516,6 +528,11 @@ export default {
 				transition: color ease-in-out 0.2s;
 			}
 		}
+		&--merge {
+			@media (max-width: 600px) {
+				color: $MERGE-MAIN-COLOR;
+			}
+		}
 	}
 	&__language {
 		display: grid;
@@ -531,8 +548,10 @@ export default {
 			justify-content: space-between;
 			align-items: center;
 			height: 10pt;
-			max-width: 45%;
-
+			max-width: 50%;
+		}
+		@media (max-width: 400) {
+			
 		}
 	}
 	&__language-link {
@@ -567,7 +586,6 @@ export default {
 	}
 	&__language-text {
 		position: absolute;
-		left: 0;
 		font-family: $base-font;
 		font-weight: 700;
 		font-size: 10px;
@@ -576,7 +594,19 @@ export default {
 		text-transform: uppercase;
 		text-align: left;
 		transition: color ease-in-out 0.1s,
-					opacity ease-in-out 0.1s;
+		opacity ease-in-out 0.1s;
+		@media (max-width: 600px) {
+			font-size: 12pt;
+		}
+		&--ua {
+			left: 0;
+		}
+		&--ru {
+			right: -8pt;
+		}
+		&--en {
+			right: 0;
+		}
 	}
 	&__image {
 		fill: $TEXT-COLOR;
@@ -614,7 +644,7 @@ export default {
 		white-space: nowrap;
 	}
 	&__lines-mobile {
-		padding: 0 30pt;
+		padding: 0 32pt;
 		top: 0;
 		bottom: 0;
 		left: 0;
@@ -638,11 +668,11 @@ export default {
 		border: none;
 		z-index: 0;
 		&:first-child {
-			border-left: 1px $MIDDLE-GREY solid;
-			border-right: 1px $MIDDLE-GREY solid;
+			border-left: 1pt $MIDDLE-GREY solid;
+			border-right: 1pt $MIDDLE-GREY solid;
 		}
 		&:last-child {
-			border-right: 1px $MIDDLE-GREY solid;
+			border-right: 1pt $MIDDLE-GREY solid;
 		}
 		@media (max-width: 600px) {
 			display: block;
