@@ -280,17 +280,17 @@ export default {
 		@extend %flex-col-c;
 		align-items: center;
 		z-index: 50;
-		@media (max-width: 850px) {
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			width: 100%;
-			height: 4rem;
-			animation-name: slideLeft;
-			animation-duration: 0.5s;
-			animation-timing-function: ease-in-out;
-		}
+		// @media (max-width: 850px) {
+		// 	position: absolute;
+		// 	top: 0;
+		// 	left: 0;
+		// 	right: 0;
+		// 	width: 100%;
+		// 	height: 4rem;
+		// 	animation-name: slideLeft;
+		// 	animation-duration: 0.5s;
+		// 	animation-timing-function: ease-in-out;
+		// }
 		@media (max-width: 600px) {
 			position: absolute;
 			bottom: auto;
@@ -328,10 +328,10 @@ export default {
 	@media (max-width: 950px) {
 		grid-template-columns: 112px repeat(2, auto) repeat(2, 1fr);
 	}
-	@media (max-width: 850px) {
-		grid-template-columns: none;
-		grid-template-rows: 4rem repeat(4, auto);
-	}
+	// @media (max-width: 850px) {
+	// 	grid-template-columns: none;
+	// 	grid-template-rows: 4rem repeat(4, auto);
+	// }
 	@media (max-width: 600px) {
 		display: block;
 		padding: 36pt 32pt;
@@ -346,45 +346,45 @@ export default {
 		&--links {
 			grid-column: 2;
 			grid-row: 1;
-			@media (max-width: 850px) {
-				grid-column: 1;
-				grid-row: 2;
-				border-bottom: none;
-			}
+			// @media (max-width: 850px) {
+			// 	grid-column: 1;
+			// 	grid-row: 2;
+			// 	border-bottom: none;
+			// }
 		}
 		&--links-second {
 			grid-column: 3;
 			grid-row: 1;
-			@media (max-width: 850px) {
-				grid-column: 1;
-				grid-row: 3;
-			}
+			// @media (max-width: 850px) {
+			// 	grid-column: 1;
+			// 	grid-row: 3;
+			// }
 		}
 		&--locate {
 			grid-row: 1;
 			grid-column: 4;
-			@media (max-width: 850px) {
-				grid-column: 1;
-				grid-row: 4 / 5;
-				> :nth-child(odd),
-				.menu-row-9 {
-					margin-bottom: 2rem;
-				}
-				.menu-row-8 {
-					margin: 0;
-				}
-			}
+			// @media (max-width: 850px) {
+			// 	grid-column: 1;
+			// 	grid-row: 4 / 5;
+			// 	> :nth-child(odd),
+			// 	.menu-row-9 {
+			// 		margin-bottom: 2rem;
+			// 	}
+			// 	.menu-row-8 {
+			// 		margin: 0;
+			// 	}
+			// }
 		}
 		&--contact {
 			grid-row: 1;
 			grid-column: 5;
-			@media (max-width: 850px) {
-				grid-column: 1;
-				grid-row: 5;
-				> :nth-child(even) {
-					margin-bottom: 2rem;
-				}
-			}
+			// @media (max-width: 850px) {
+			// 	grid-column: 1;
+			// 	grid-row: 5;
+			// 	> :nth-child(even) {
+			// 		margin-bottom: 2rem;
+			// 	}
+			// }
 		}
 		&--locate,
 		&--contact {
@@ -398,23 +398,23 @@ export default {
 				2rem repeat(2, 1.3rem)
 				5.5rem 2.5rem 3rem
 				4rem;
-			@media (max-width: 850px) {
-				text-align: center;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-			}
+			// @media (max-width: 850px) {
+			// 	text-align: center;
+			// 	display: flex;
+			// 	flex-direction: column;
+			// 	justify-content: center;
+			// 	align-items: center;
+			// }
 		}
-		@media (max-width: 850px) {
-			padding: 2rem 0;
-			height: auto;
-			width: 100%;
-			border-right: none;
-			border-bottom: 0.5px solid $DARK-GREY;
-			justify-content: center;
-			justify-items: center;
-		}
+		// @media (max-width: 850px) {
+		// 	padding: 2rem 0;
+		// 	height: auto;
+		// 	width: 100%;
+		// 	border-right: none;
+		// 	border-bottom: 0.5px solid $DARK-GREY;
+		// 	justify-content: center;
+		// 	justify-items: center;
+		// }
 		@media (max-width: 600px) {
 			display: none;
 		}
@@ -431,16 +431,16 @@ export default {
 		justify-items: start;
 		position: relative;
 		z-index: 2;
-		@media (min-width: 850px) {
-			justify-content: start;
-			justify-items: start;
-		}
-		@media (max-width: 850px) {
-			padding: 1rem 0;
-			justify-items: center;
-			grid-column: 1;
-			grid-row: 2 / 4;
-		}
+		// @media (min-width: 850px) {
+		// 	justify-content: start;
+		// 	justify-items: start;
+		// }
+		// @media (max-width: 850px) {
+		// 	padding: 1rem 0;
+		// 	justify-items: center;
+		// 	grid-column: 1;
+		// 	grid-row: 2 / 4;
+		// }
 		@media (max-width: 600px) {
 			display: block;
 			padding: 0;
@@ -454,9 +454,9 @@ export default {
 		justify-content: center;
 		align-items: center;
 		justify-items: start;
-		@media (max-width: 850px) {
-			justify-items: center;
-		}
+		// @media (max-width: 850px) {
+		// 	justify-items: center;
+		// }
 		@media (max-width: 600px) {
 			display: block;
 			text-align: left;
@@ -464,9 +464,9 @@ export default {
 		}
 	}
 	&__item {
-		@media (max-width: 850px) {
-			text-align: center;
-		}
+		// @media (max-width: 850px) {
+		// 	text-align: center;
+		// }
 		@media (max-width: 600px) {
 			text-align: left;
 			margin-bottom: 23pt;
@@ -482,9 +482,9 @@ export default {
 		letter-spacing: 0.9px;
 		text-align: left;
 		line-height: 1.69;
-		@media (max-width: 850px) {
-			text-align: center;
-		}
+		// @media (max-width: 850px) {
+		// 	text-align: center;
+		// }
 		&--day {
 			font-weight: 400;
 			white-space: nowrap;
@@ -508,11 +508,12 @@ export default {
 		font-size: 2.5rem;
 		font-weight: 500;
 		color: $TEXT-COLOR;
-		white-space: nowrap;
+		white-space: normal;
 		transition: font-size linear 0.3s;
-		@media (max-width: 910px) {
-			font-size: 2.1rem;
-		}
+		// @media (max-width: 910px) {
+		// 	white-space: normal;
+		// 	// font-size: 2.1rem;
+		// }
 		@media (max-width: 600px) {
 			text-align: left;
 			font-size: 32pt;
@@ -538,9 +539,9 @@ export default {
 		display: grid;
 		grid-template-columns: repeat(3, auto);
 		grid-column-gap: 0.5em;
-		@media (max-width: 850px) {
-			padding-bottom: 2rem;
-		}
+		// @media (max-width: 850px) {
+		// 	padding-bottom: 2rem;
+		// }
 		@media (max-width: 600px) {
 			padding: 0;
 			display: flex;
@@ -597,16 +598,17 @@ export default {
 		opacity ease-in-out 0.1s;
 		@media (max-width: 600px) {
 			font-size: 12pt;
-		}
-		&--ua {
+			&--ua {
 			left: 0;
+			}
+			&--ru {
+				right: -8pt;
+			}
+			&--en {
+				right: 0;
+			}
 		}
-		&--ru {
-			right: -8pt;
-		}
-		&--en {
-			right: 0;
-		}
+		
 	}
 	&__image {
 		fill: $TEXT-COLOR;
@@ -629,9 +631,9 @@ export default {
 	&__image-wrapper {
 		height: 24px;
 		width: 24px;
-		@media (max-width: 850px) {
-			margin-bottom: 0.5rem !important;
-		}
+		// @media (max-width: 850px) {
+		// 	margin-bottom: 0.5rem !important;
+		// }
 	}
 	&__contact {
 		font-family: $base-font;
@@ -718,7 +720,7 @@ export default {
 		grid-row: #{$i};
 	}
 }
-@media (min-width: 850px) {
+@media (min-width: 600px) {
 	.menu-row-1 {
 		align-self: start;
 	}
