@@ -34,7 +34,7 @@ export default {
         visibility: visible;
     }
 	&:disabled {
-		background-color: $BUTTON-COLOR;
+		background-color: $BLACK;
 	}
 	&:disabled &__text {
 		color: $MIDDLE-GREY;
@@ -48,6 +48,9 @@ export default {
 		color: $MAIN-DARK-COLOR;
 		text-transform: uppercase;
 		transition: color ease-in-out 0.1s; 
+		@media (max-width: 600px) {
+			font-size: 10pt;
+		}
 		&::before {
             position: absolute;
             content: '';

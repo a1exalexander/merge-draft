@@ -25,14 +25,43 @@
 		leave-active-class="animated faster fadeOut">
     <day-card v-if='visible.dayCard' :price='price' @closeCard='closeCard'></day-card>
     </transition>
-	<logo></logo>
+	<logo class='booking-workplace__logo'></logo>
 	<section class="booking-workplace" :style="onStyleAnimate">
 		<button-close-mini class="booking-workplace__close" @click.native='goBack'></button-close-mini>
 		<div class="booking-workplace__inner booking-workplace__inner--back-button">
 			<button-back class="booking-workplace__button-back" @click.native='goBack'></button-back>
 			<p class="booking-workplace__button-text">go back</p>
 		</div>
-		<h1 class="booking-workplace__title">Booking of the	workplace {{ tariff }}</h1>
+		<h1 class="booking-workplace__title">Booking of the	workplace</h1>
+		<div class="workplace-choice-mobile__wrapper">
+			<label for='book-month' class="workplace-choice-mobile">
+				<input id='book-month' 
+                    type="radio" 
+                    name='booking-type' 
+                    form='booking-form' 
+                    class="workplace-choice-mobile__input"
+					value="month"
+                    v-model="tariff"
+                    checked>
+				<div class="workplace-choice-mobile__inner">
+					<div class="workplace-choice-mobile__check">
+						<div class="workplace-choice-mobile__check-dot"></div>
+					</div>
+					<div class="workplace-choice-mobile__col">
+						<p class="workplace-choice-mobile__title">Month</p>
+						<p class="workplace-choice-mobile__resident">Resident card</p>
+					</div>
+				</div>
+				<div class="workplace-choice-mobile__inner">
+					<p class="workplace-choice-mobile__price">{{ price.month }}</p>
+					<a href='#' class="workplace-choice-mobile__link-img" @click.prevent="visible.residentCard = true">
+						<svg class="workplace-choice-mobile__img">
+							<use xlink:href='#infoborder' />
+						</svg>
+					</a>
+				</div>
+			</label>
+		</div>
 		<div class="booking-workplace__inner booking-workplace__inner--choice">
 			<label for='book-month' class="workplace-choice">
 				<input id='book-month' 
@@ -167,14 +196,16 @@
 		</div>
 		<p class="booking-workplace__description">* — Required fields</p>
 		<div class="booking-workplace__inner booking-workplace__inner--price">
-			<p class="booking-price">Price:
+			<p class="booking-price booking-workplace__price">Price:
 				<span class="booking-price__sum">{{ animatedNumber }}</span>
 			</p>
 			<button-apply 
                 :disabled='showSubmit'
-                @click.native="sendForm">
+                @click.native="sendForm"
+				class="booking-workplace__apply">
             </button-apply>
 		</div>
+		<button class="booking-workplace__cancel">CANCEL</button>
 	</section>
     <svg style="display: none">
         <symbol id='infoborder' width="16px" height="16px" viewBox="0 0 24 24">
@@ -408,8 +439,14 @@ export default {
 		min-width: 430px;
 	}
 	@media (max-width: 600px) {
+		padding: 0;
 		flex: 0 0 100%;
 		align-self: flex-start;
+	}
+	&__logo {
+		@media (max-width: 600px) {
+			display: none;
+		}
 	}
 	&__wrapper {
 		width: 100%;
@@ -417,8 +454,7 @@ export default {
 		@extend %flex-row-c;
 		align-items: center;
 		@media (max-width: 600px) {
-			padding: 2rem;
-			padding-top: 3rem;
+			padding: 32pt;
 		}
 	}
 	&__close {
@@ -473,8 +509,7 @@ export default {
 			padding-bottom: 1.375rem;
 			border-bottom: 1px solid $MIDDLE-GREY;
 			@media (max-width: 600px) {
-				justify-content: center;
-				padding: 2rem 0;
+				display: none;
 			}
 		}
 		&--choice {
@@ -482,8 +517,8 @@ export default {
 			align-items: center;
 			padding-bottom: 30px;
 			border-bottom: 1px solid $BUTTON-COLOR;
-			@media (max-width: 460px) {
-				flex-direction: column;
+			@media (max-width: 480px) {
+				display: none;
 			}
 		}
 		&--form {
@@ -494,8 +529,11 @@ export default {
 			&:last-child {
 				padding-bottom: 0;
 			}
-			@media (max-width: 550px) {
+			@media (max-width: 600px) {
 				flex-direction: column;
+			}
+			@media (max-width: 480px) {
+				padding: 0;
 			}
 		}
 		&--price {
@@ -503,6 +541,14 @@ export default {
 			align-items: center;
 			padding-top: 26px;
 			border-top: 1px solid $BUTTON-COLOR;
+			@media (max-width: 600px) {
+				margin-bottom: 22pt;
+			}
+			@media (max-width: 480px) {
+				padding: 0;
+				border: none;
+				justify-content: center;
+			}
 		}
 	}
 
@@ -515,9 +561,12 @@ export default {
 		margin: 24px 0 28px 0;
 		@media (max-width: 600px) {
 			text-align: center;
+			margin: 0 0 34pt;
+		}
+		@media (max-width: 480px) {
+			margin-bottom: 54pt;
 		}
 	}
-
 	&__col {
 		@extend %flex-col;
 		&--form {
@@ -528,9 +577,12 @@ export default {
 	&__input-wrapper {
 		@extend %flex-col;
 		width: 48%;
-		@media (max-width: 550px) {
+		@media (max-width: 600px) {
 			width: 100%;
-			margin-bottom: 1rem;
+			margin-bottom: 1.5rem;
+		}
+		@media (max-width: 480px) {
+			margin-bottom: 25pt;
 		}
 	}
 	&__description {
@@ -540,21 +592,26 @@ export default {
 		text-align: left;
 		color: $GREY;
 		padding-bottom: 1.5rem;
+		@media (max-width: 480px) {
+			display: none;
+		}
 	}
 
 	&__input {
 		width: 100%;
-		height: 40px;
 		background-color: $BUTTON-COLOR;
 		border: none;
 		outline: none;
-		text-indent: 16px;
 		font-family: $base-font;
 		font-size: 10px;
 		font-weight: 500;
 		text-align: left;
 		color: $TEXT-COLOR;
 		border-radius: 3px;
+		padding: 12px 16px;
+		@media (max-width: 480px) {
+			padding: 12pt 16pt;
+		}
 		&:-webkit-autofill,
 		&:-webkit-autofill:hover,
 		&:-webkit-autofill:focus,
@@ -563,14 +620,15 @@ export default {
 			animation-fill-mode: both;
 		}
 		&::placeholder {
-			text-indent: 16px;
 			color: $GREY;
 			font-size: 10px;
 			font-weight: 500;
 			font-family: $base-font;
+			@media (max-width: 480px) {
+				font-size: 12pt;
+			}
 		}
 	}
-
 	&__label {
 		text-transform: uppercase;
 		font-family: $base-font;
@@ -581,6 +639,40 @@ export default {
 		@extend %flex-col-fs;
 		align-items: flex-start;
 		margin-bottom: 11px;
+		@media (max-width: 600px) {
+			font-size: 10pt;
+		}
+		@media (max-width: 480px) {
+			margin-bottom: 12pt;
+		}
+	}
+	&__price {
+		@media (max-width: 480px) {
+			display: none;
+		}
+	}
+	&__apply {
+		@media (max-width: 480px) {
+			width: 100%;
+			align-self: center;
+		}
+	}
+	&__cancel {
+		font-family: $base-font;
+		font-size: 10pt;
+		text-transform: uppercase;
+		font-weight: bold;
+		text-align: center;
+		outline: none;
+		border: none;
+		color: $GREY;
+		background-color: transparent;
+		align-self: center;
+		display: none;
+		letter-spacing: 0.6pt;
+		@media (max-width: 600px) {
+			display: block;
+		}
 	}
 }
 .workplace-choice {
@@ -596,7 +688,7 @@ export default {
 	@media (max-width: 600px) {
 		width: 100%;
 	}
-	@media (max-width: 460px) {
+	@media (max-width: 480px) {
 		margin-right: 0;
 		margin-bottom: 1rem;
 	}
@@ -658,7 +750,6 @@ export default {
 		color: $GREY;
 		text-decoration: none;
 	}
-
 	&__price {
 		font-family: $base-font;
 		font-size: 10px;
@@ -688,6 +779,38 @@ export default {
 	}
 	&:hover .workplace-choice__link-img:hover > svg {
 		fill: white;
+	}
+}
+.workplace-choice-mobile {
+	@extend %flex-row-sb;
+	align-items: flex-start;
+	position: relative;
+	width: 100%;
+	flex-wrap: nowrap;
+	&__wrapper {
+		display: none;
+		@media (max-width: 480px) {
+			display: block;
+		}
+	}
+	&__inner {
+		@extend %flex-row;
+		flex-wrap: nowrap;
+	}
+	&__title {
+		font-family: $base-font;
+		font-size: 18pt;
+		font-weight: 700;
+		color: $TEXT-COLOR;
+	}
+	&__link-img {
+		padding: 0 8pt 8pt;
+	}
+	&__img {
+		fill: $TEXT-COLOR;
+		width: 16pt;
+		height: 16pt;
+		
 	}
 }
 .booking-price {
