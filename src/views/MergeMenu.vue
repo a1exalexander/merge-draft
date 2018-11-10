@@ -213,7 +213,7 @@ export default {
 			fill: $HOVER-ICON-COLOR;
 		}
 	}
-	@media (min-width: 600px) {
+	@media (max-width: 600px) {
 		position: static;
 	}
 	&:focus {
@@ -350,6 +350,7 @@ export default {
 			}
 		}
 		&--locate {
+			grid-row: 1;
 			grid-column: 4;
 			@media (max-width: 850px) {
 				grid-column: 1;
@@ -364,6 +365,7 @@ export default {
 			}
 		}
 		&--contact {
+			grid-row: 1;
 			grid-column: 5;
 			@media (max-width: 850px) {
 				grid-column: 1;
@@ -375,7 +377,6 @@ export default {
 		}
 		&--locate,
 		&--contact {
-			grid-row: 1;
 			display: grid;
 			align-content: center;
 			align-items: center;
@@ -444,10 +445,22 @@ export default {
 		@media (max-width: 850px) {
 			justify-items: center;
 		}
+		@media (max-width: 600px) {
+			display: block;
+			text-align: left;
+			margin-bottom: 23pt;
+		}
 	}
 	&__item {
 		@media (max-width: 850px) {
 			text-align: center;
+		}
+		@media (max-width: 600px) {
+			text-align: left;
+			margin-bottom: 23pt;
+			&:last-child {
+				margin: 0;
+			}
 		}
 	}
 	&__text {
@@ -488,15 +501,20 @@ export default {
 		@media (max-width: 910px) {
 			font-size: 2.1rem;
 		}
-		@media (max-width: 420px) {
-			font-size: 1.8rem;
+		@media (max-width: 600px) {
+			text-align: left;
+			font-size: 32pt;
+			line-height: 1;
+			white-space: normal;
 		}
-		&:hover {
-			color: $MERGE-MAIN-COLOR;
-			transition: color ease-in-out 0.2s;
-		}
-		&:not(:hover) {
-			transition: color ease-in-out 0.2s;
+		@media (min-width: 600px) {
+			&:hover {
+				color: $MERGE-MAIN-COLOR;
+				transition: color ease-in-out 0.2s;
+			}
+			&:not(:hover) {
+				transition: color ease-in-out 0.2s;
+			}
 		}
 	}
 	&__language {
@@ -506,6 +524,16 @@ export default {
 		@media (max-width: 850px) {
 			padding-bottom: 2rem;
 		}
+		@media (max-width: 600px) {
+			padding: 0;
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: space-between;
+			align-items: center;
+			height: 10pt;
+			max-width: 45%;
+
+		}
 	}
 	&__language-link {
 		background-color: transparent;
@@ -514,6 +542,9 @@ export default {
 		position: relative;
 		text-align: left;
 		cursor: pointer;
+		@media (max-width: 600px) {
+			margin: 0;
+		}
 		&:last-child {
 			margin: 0;
 		}
@@ -521,11 +552,14 @@ export default {
 	&__language-input {
 		visibility: hidden;
 		position: absolute;
+		@media (max-width: 600px) {
+			left: 0;
+			&:hover + .menu__language-text{
+				opacity: .8;
+			}
+		}
 		&:checked + .menu__language-text {
 			color: $TEXT-COLOR;
-		}
-		&:hover + .menu__language-text{
-			opacity: .8;
 		}
 		&:active + .menu__language-text{
 			opacity: .6;
@@ -565,6 +599,9 @@ export default {
 	&__image-wrapper {
 		height: 24px;
 		width: 24px;
+		@media (max-width: 850px) {
+			margin-bottom: 0.5rem !important;
+		}
 	}
 	&__contact {
 		font-family: $base-font;
@@ -588,7 +625,7 @@ export default {
 		flex-direction: row;
 		align-items: stretch;
 		justify-content: stretch;
-		flex-flow: nowrap;
+		flex-wrap: nowrap;
 		@media (max-width: 600px) {
 			display: flex;	
 		}
@@ -601,11 +638,11 @@ export default {
 		border: none;
 		z-index: 0;
 		&:first-child {
-			border-left: 2px red solid;
-			border-right: 2px red solid;
+			border-left: 1px $MIDDLE-GREY solid;
+			border-right: 1px $MIDDLE-GREY solid;
 		}
 		&:last-child {
-			border-right: 2px red solid;
+			border-right: 1px $MIDDLE-GREY solid;
 		}
 		@media (max-width: 600px) {
 			display: block;
@@ -622,18 +659,24 @@ export default {
 		font-family: $base-font;
 		margin-bottom: 23pt;
 		font-size: 13pt;
+		line-height: 18pt;
 		letter-spacing: 0.9pt;
 		font-weight: 600;
 		color: $TEXT-COLOR;
-		@extend %flex-row;
+		display: inline-block;
 		align-items: center;
-		flex-flow: wrap;
+		flex-wrap: wrap;
 		text-decoration: none;
+		&:last-child {
+			margin: 0;
+		}
 		&--nowrap {
 			white-space: nowrap;
+			margin: 0;
 		}
 	}
 	&__mobile-link-img {
+		vertical-align: middle;
 		display: inline-block;
 		fill: $MERGE-MAIN-COLOR;
 		width: 20pt;

@@ -8,7 +8,6 @@
 		leave-active-class="animated fast fadeOut">
         <navigation v-show='navi' :navi='navi'></navigation>
     </transition>
-
     <transition 
 		appear
 		name="custom-classes-transition"
@@ -50,24 +49,36 @@ export default {
 			}
 		},
 		checkNav() {
+			if (this.navi !== this.onNavi()) {
+				if (this.navi) {
+					this.navi = this.onNavi();
+				} else {
+					this.navi = this.onNavi();
+				}
+			}
+		},
+		checkNavUpdate() {
 			let w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 			if (this.navi !== this.onNavi()) {
 				if (this.navi) {
-					if(w > 600) {
-						setTimeout(() => {
+					if(w > 850) {
+						setTimeout(()=>{
 							this.navi = this.onNavi();
 						}, 250);
 					} else {
 						this.navi = this.onNavi();
-					}	
+					}
 				} else {
 					this.navi = this.onNavi();
 				}
 			}
 		}
 	},
-	beforeUpdate() {
+	created() {
 		this.checkNav();
+	},
+	beforeUpdate() {
+		this.checkNavUpdate();
 	}
 };
 </script>

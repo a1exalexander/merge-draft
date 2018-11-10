@@ -61,7 +61,7 @@ export default {
     },
     methods: {
         goToMenu() { 
-            this.$router.push('/menu');
+           this.$router.push('/menu');
         },
         setCookie() {
             this.$cookies.set("tooltipCookie","tooltipCookie","1y");
