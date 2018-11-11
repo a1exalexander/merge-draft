@@ -386,6 +386,7 @@ export default {
 			let params = JSON.stringify(this.form);
 			http.post('https://jsonplaceholder.typicode.com/posts', params)
 			.then(()=> {
+				window.scrollTo(0, 0);
 				this.bookingDone = true;
 			})
 			.catch(e => {
