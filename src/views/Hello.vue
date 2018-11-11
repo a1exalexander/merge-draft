@@ -8,8 +8,8 @@
                 :repeat='0'
                 :shuffle='false'
                 initial-action='typing'
-                :pre-type-delay='800'
-                :type-delay='400'
+                :pre-type-delay='700'
+                :type-delay='300'
                 :erase-on-complete='false'
                 caret-animation='blink'
                 @typed='onTyped'
@@ -22,8 +22,8 @@
                     :repeat='0'
                     :shuffle='false'
                     initial-action='typing'
-                    :pre-type-delay='800'
-                    :type-delay='400'
+                    :pre-type-delay='700'
+                    :type-delay='300'
                     :erase-on-complete='false'
                     caret-animation='blink'
                     v-if='secondString'
@@ -31,15 +31,14 @@
                 ></vue-typer>
                  <span class="hello__title hello__title--line" v-if='thirdString'></span>
             </span>
-            <!-- <br class="hello__title-wrap"> -->
             <span class="hello__logo">
                 <vue-typer
                 text="MERGE"
                 :repeat='0'
                 :shuffle='false'
                 initial-action='typing'
-                :pre-type-delay='800'
-                :type-delay='400'
+                :pre-type-delay='700'
+                :type-delay='300'
                 :erase-on-complete='false'
                 caret-animation='blink'
                 v-if='thirdString'
@@ -225,6 +224,9 @@ export default {
         @media (max-width: 500px) {
            margin-bottom: 26pt;
         }
+        @media (max-width: 375px) {
+           margin-bottom: 20pt;
+        }
         @media (max-width: 320px) {
            margin-bottom: 10pt;
         }
@@ -362,6 +364,11 @@ export default {
 			margin-bottom: 20pt;
 		}
     }
+    @media (max-width: 375px) {
+        &:first-child {
+            margin-bottom: 16pt;
+        }
+    }
     @media (max-width: 320px) {
         &:first-child {
             margin-bottom: 10pt;
@@ -398,6 +405,9 @@ export default {
         }
         @media (max-width: 500px) {
             padding: 28pt 0 30pt;
+        }
+        @media (max-width: 375px) {
+            padding: 20pt 0 22pt;
         }
         @media (max-width: 320px) {
             padding: 14pt 0 16pt;
