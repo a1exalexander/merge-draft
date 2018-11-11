@@ -667,6 +667,7 @@ export default {
 		color: $TEXT-COLOR;
 		border-radius: 3px;
 		padding: 12px 16px;
+		line-height: 1;
 		@media (max-width: 480px) {
 			padding: 12pt 16pt;
 			font-size: 12pt;
@@ -684,7 +685,9 @@ export default {
 			font-size: 10px;
 			font-weight: 500;
 			font-family: $base-font;
+			line-height: 1;
 			@media (max-width: 480px) {
+				padding-top: 2pt;
 				font-size: 12pt;
 				line-height: 1;
 			}
