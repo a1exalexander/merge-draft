@@ -255,7 +255,7 @@
 				class="booking-workplace__apply">
             </button-apply>
 		</div>
-		<button class="booking-workplace__cancel">CANCEL</button>
+		<button class="booking-workplace__cancel" @click.prevent='goBack'>CANCEL</button>
 	</section>
     <svg style="display: none">
         <symbol id='infoborder' width="16px" height="16px" viewBox="0 0 24 24">
@@ -506,6 +506,9 @@ export default {
 		@media (max-width: 600px) {
 			padding: 32pt;
 		}
+		@media (max-width: 320px) {
+			padding: 24pt;
+		}
 	}
 	&__close {
 		right: 0;
@@ -667,6 +670,7 @@ export default {
 		@media (max-width: 480px) {
 			padding: 12pt 16pt;
 			font-size: 12pt;
+			line-height: 1;
 		}
 		&:-webkit-autofill,
 		&:-webkit-autofill:hover,
@@ -682,7 +686,7 @@ export default {
 			font-family: $base-font;
 			@media (max-width: 480px) {
 				font-size: 12pt;
-				padding: 12pt 0;
+				line-height: 1;
 			}
 		}
 	}
