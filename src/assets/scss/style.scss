@@ -29,26 +29,3 @@ input:invalid {
     box-shadow: none;
 }
 
-.page {
-    width: 100%;
-    background-color: $MAIN-DARK-COLOR;
-
-    &--nav {
-        display: grid;
-        grid-template-columns: 112px auto;
-    }
-
-    &--center {
-        @extend %flex-row-c;
-    }
-
-    &--menu {
-        background-color: $DARK-GREY;
-    }
-
-    &--about-us {
-
-        @extend %flex-col-sb;
-        align-items: c;
-    }
-}
