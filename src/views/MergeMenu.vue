@@ -35,7 +35,7 @@
 				<router-link to="/" class="menu__link">Events</router-link>
 			</li>
 			<li class="menu__item">
-				<router-link to="/about" class="menu__link">About us</router-link>
+				<router-link to="/about" class="menu__link menu__link--last">About us</router-link>
 			</li>
 		</ul>
 		<div class="menu__mobile-links">
@@ -328,7 +328,7 @@ export default {
 		height: 100%;
 		grid-column: 1;
 		grid-row: 1;
-		border-right: 0.5px solid $DARK-GREY;
+		border-right: 0.5px solid $DARK-GREY-OPACITY;
 		@extend %flex-col-c;
 		align-items: flex-start;
 		&--links {
@@ -448,6 +448,8 @@ export default {
 		color: $TEXT-COLOR;
 		white-space: normal;
 		transition: font-size linear 0.3s;
+		position: relative;
+		left: -1px;
 		@media (max-width: 880px) {
 			font-size: 2rem;
 		}
@@ -456,7 +458,7 @@ export default {
 		}
 		@media (max-width: 600px) {
 			text-align: left;
-			font-size: 32pt;
+			font-size: 2rem;
 			line-height: 1;
 			white-space: normal;
 		}
@@ -473,6 +475,9 @@ export default {
 			@media (max-width: 600px) {
 				color: $MERGE-MAIN-COLOR;
 			}
+		}
+		&--last {
+			left: 0;
 		}
 	}
 	&__language {
@@ -534,7 +539,7 @@ export default {
 		transition: color ease-in-out 0.1s,
 		opacity ease-in-out 0.1s;
 		@media (max-width: 600px) {
-			font-size: 12pt;
+			font-size: 0.75rem;
 			&--ua {
 			left: 0;
 			}
@@ -604,11 +609,11 @@ export default {
 		border: none;
 		z-index: 0;
 		&:first-child {
-			border-left: 1pt $MIDDLE-GREY solid;
-			border-right: 1pt $MIDDLE-GREY solid;
+			border-left: 1pt $MIDDLE-GREY-OPACITY solid;
+			border-right: 1pt $MIDDLE-GREY-OPACITY solid;
 		}
 		&:last-child {
-			border-right: 1pt $MIDDLE-GREY solid;
+			border-right: 1pt $MIDDLE-GREY-OPACITY solid;
 		}
 		@media (max-width: 600px) {
 			display: block;
@@ -626,8 +631,8 @@ export default {
 	&__mobile-link {
 		font-family: $base-font;
 		margin-bottom: 23pt;
-		font-size: 13pt;
-		line-height: 18pt;
+		font-size: 0.8125rem;
+		line-height: 1rem;
 		letter-spacing: 0.9pt;
 		font-weight: 600;
 		color: $TEXT-COLOR;

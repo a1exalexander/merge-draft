@@ -2,9 +2,49 @@
 
 <section id="hello" class="hello">
     <div class="hello__title-wrapper">
-        <h1 class="hello__title">Hello!</h1>
-        <h1 class="hello__title">We’re<span class="hello__title hello__title--line"></span><br class="hello__title-wrap">
-            <span class="hello__logo">MERGE</span>
+        <h1 class="hello__title">
+            <vue-typer
+                text='Hello!'
+                :repeat='0'
+                :shuffle='false'
+                initial-action='typing'
+                :pre-type-delay='800'
+                :type-delay='400'
+                :erase-on-complete='false'
+                caret-animation='blink'
+                @typed='onTyped'
+            ></vue-typer>
+        </h1>
+        <h1 class="hello__title hello__title--second">
+            <span class="hello__title hello__title--nowrap">
+                <vue-typer
+                    text="We’re"
+                    :repeat='0'
+                    :shuffle='false'
+                    initial-action='typing'
+                    :pre-type-delay='800'
+                    :type-delay='400'
+                    :erase-on-complete='false'
+                    caret-animation='blink'
+                    v-if='secondString'
+                    @typed='onTypedSecond'
+                ></vue-typer>
+                 <span class="hello__title hello__title--line" v-if='thirdString'></span>
+            </span>
+            <!-- <br class="hello__title-wrap"> -->
+            <span class="hello__logo">
+                <vue-typer
+                text="MERGE"
+                :repeat='0'
+                :shuffle='false'
+                initial-action='typing'
+                :pre-type-delay='800'
+                :type-delay='400'
+                :erase-on-complete='false'
+                caret-animation='blink'
+                v-if='thirdString'
+            ></vue-typer>
+            </span>
         </h1>
     </div>
 	<h2 class="hello__subtitle">COWORKING IN THE CENTRE OF KREMENCHUK
@@ -36,8 +76,8 @@
 		in various specialties.
 	</p>
 	<div class="hello__button-wrapper">
-		<button-membership @click.native='becomeMember'></button-membership>
-		<button-book-room @click.native='meetingRoom'></button-book-room>
+		<button-membership class='hello__button' @click.native='becomeMember'></button-membership>
+		<button-book-room class='hello__button' @click.native='meetingRoom'></button-book-room>
 	</div>
     <svg style="display: none">
        <symbol id='videocamera' viewBox="0 0 24 24">
@@ -54,6 +94,7 @@
 </template>
 
 <script>
+import { VueTyper } from 'vue-typer'
 import ButtonMembership from '@/components/buttons/ButtonMembership.vue';
 import ButtonBookRoom from '@/components/buttons/ButtonBookRoom.vue';
 
@@ -61,15 +102,28 @@ export default {
     name: 'Hello',
     components: {
     ButtonMembership,
-    ButtonBookRoom
+    ButtonBookRoom,
+    VueTyper
+  },
+  data() {
+    return {
+        secondString: false,
+        thirdString: false
+    }
   },
   methods: {
-      meetingRoom() {
-          this.$router.push('/meeting-room');
-      },
-      becomeMember() {
-          this.$router.push('/booking-workplace');
-      }
+    onTyped() {
+        this.secondString = true;
+    },
+    onTypedSecond() {
+        this.thirdString = true;
+    },
+    meetingRoom() {
+        this.$router.push('/meeting-room');
+    },
+    becomeMember() {
+        this.$router.push('/booking-workplace');
+    }
   }
 };
 </script>
@@ -103,6 +157,10 @@ export default {
         justify-content: flex-start;
         align-items: flex-start;
         padding: 0 32pt 32pt;
+        flex: 1 0 100%;
+    }
+    @media (max-width: 320px) {
+        padding: 0 24pt 24pt;
     }
     &__title {
         @extend %flex-row;
@@ -113,19 +171,30 @@ export default {
         text-align: left;
 		font-family: $title-font;
 		white-space: nowrap;
-        color: white;
+        color: $TEXT-COLOR;
         font-weight: 500;
         flex-wrap: nowrap;
+        .vue-typer {
+            font-family: $title-font;
+            font-weight: 500;
+            .custom.char {
+                color: $TEXT-COLOR;
+            }
+            .custom.caret {
+                background-color: $TEXT-COLOR;
+            }
+        }
         @media (max-width: 840px) {
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: flex-start;
         }
         @media (max-width: 600px) {
             text-align: left;
             width: 100%;
         }
         @media (max-width: 540px) {
-            font-size: 44pt;
-            line-height: 52pt;
+            font-size: 2.8rem;
+            line-height: 1.2;
         }
         &--line {
             margin-left: 10pt;
@@ -141,6 +210,11 @@ export default {
                 width: 30pt;
             }
         }
+        &--nowrap {
+            flex-direction: row;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
     }
     &__title-wrapper {
         @extend %flex-col;
@@ -151,10 +225,13 @@ export default {
         @media (max-width: 500px) {
            margin-bottom: 26pt;
         }
+        @media (max-width: 320px) {
+           margin-bottom: 10pt;
+        }
     }
     &__title-wrap {
         display: none;
-        @media (max-width: 600px) {
+        @media (max-width: 840px) {
             display: block;
         }
     }
@@ -168,8 +245,21 @@ export default {
         font-weight: 500;
         color: $MERGE-MAIN-COLOR;
 		letter-spacing: 20px;
-		white-space: normal;
+		white-space: nowrap;
+        @extend %flex-row;
+        flex-wrap: nowrap;
+        .vue-typer {
+            font-family: $title-font;
+            font-weight: 500;
+            .custom.char {
+                color: $MERGE-MAIN-COLOR;
+            }
+            .custom.caret {
+                background-color: $MERGE-MAIN-COLOR;
+            }
+        }
         @media (max-width: 840px) {
+            align-self: flex-start;
             padding-left: 0;
             padding-right: 2rem;
         }
@@ -180,8 +270,8 @@ export default {
             letter-spacing: 8pt;
         }
         @media (max-width: 540px) {
-            font-size: 32pt;
-            line-height: 40pt;
+            font-size: 2.8rem;
+            line-height: 1.2;
         }
     }
     &__subtitle {
@@ -194,8 +284,9 @@ export default {
         font-weight: 700;
         white-space: nowrap;
         @media (max-width: 600px) {
-            font-size: 11pt;
-            line-height: 20pt;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            letter-spacing: 0.5pt;
             white-space: normal;
         }
     }
@@ -232,20 +323,22 @@ export default {
     &__button-wrapper {
         @extend %flex-row;
         grid-area: btn;
-        .button-membership {
-            margin-right: 2rem;
-        }
         @media (max-width: 540px) {
            flex-direction: column;
            width: 100%;
-            .button-membership,
-            .button-book-room {
-                width: 100%;
+           flex: 1 0 100%;
+           justify-content: flex-end;
+        }
+    }
+    &__button {
+        &:first-child {
+            margin-right: 2rem;
+            @media (max-width: 540px) {
+                margin: 0 0 16pt;
             }
-            .button-membership {
-                margin-right: 0;
-                margin-bottom: 2rem;
-            }
+        }
+        @media (max-width: 540px) {
+            width: 100%;
         }
     }
 }
@@ -269,7 +362,12 @@ export default {
 			margin-bottom: 20pt;
 		}
     }
-    @media (min-width: 601px) {
+    @media (max-width: 320px) {
+        &:first-child {
+            margin-bottom: 10pt;
+        }
+    }
+    @media (min-width: 600px) {
         &:hover .hello-link__text,
         &:hover .hello-link__img {
             color: $MERGE-MAIN-COLOR;
@@ -299,7 +397,10 @@ export default {
             padding-top: 20pt;
         }
         @media (max-width: 500px) {
-            padding: 36pt 0 38pt;
+            padding: 28pt 0 30pt;
+        }
+        @media (max-width: 320px) {
+            padding: 14pt 0 16pt;
         }
 	}
 
@@ -323,11 +424,11 @@ export default {
         white-space: nowrap;
         transition: color ease-in-out 0.1s;
         @media (max-width: 600px) {
-           font-size: 10pt;
+           font-size: 0.625rem;
            letter-spacing: 0.7pt
         }
         @media (max-width: 350px) {
-           font-size: 8pt;
+           font-size: 0.5rem;
            letter-spacing: 0.5pt
         }
 	}

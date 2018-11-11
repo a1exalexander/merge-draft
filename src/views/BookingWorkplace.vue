@@ -551,7 +551,6 @@ export default {
 			}
 		}
 	}
-
 	&__title {
 		font-family: $title-font;
 		font-size: 40px;
@@ -564,6 +563,7 @@ export default {
 			margin: 0 0 34pt;
 		}
 		@media (max-width: 480px) {
+			text-align: left;
 			margin-bottom: 54pt;
 		}
 	}

@@ -1,5 +1,5 @@
 <template>
-<button class="button-membership button-membership--hello">
+<button class="button-membership">
 	<p class='button-membership__text'>
 		BECOME A MEMBER
 		<svg class='button-membership__img'>

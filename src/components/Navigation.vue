@@ -119,6 +119,9 @@ export default {
             border: none;
         }
     }
+    @media (max-width: 320px) {
+        padding: 24pt 24pt 18pt;
+    }
     &__logo {
         fill: $MERGE-MAIN-COLOR;
         width: 31px;

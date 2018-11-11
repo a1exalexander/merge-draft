@@ -1329,3 +1329,11 @@
 		transition: none !important;
 	}
 }
+
+@keyframes type{
+    from { width: 0; }
+}
+ 
+@-webkit-keyframes type{
+    from { width: 0; }
+}
