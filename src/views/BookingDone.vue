@@ -21,7 +21,7 @@
 		<button-map class="booking-done__button-map"></button-map>
 		<div class="booking-done__inner booking-done__inner--back-button">
 			<button-back class="booking-done__button-back" @click.native='goHome'></button-back>
-			<p class="booking-done__button-text">BACK TO THE START PAGE</p>
+			<p class="booking-done__button-text" @click='goHome'>BACK TO THE START PAGE</p>
 		</div>
 	</div>
 	<svg style="display: none;">
@@ -132,6 +132,7 @@ export default {
 		letter-spacing: 0.7px;
 		text-align: left;
 		color: $GREY;
+		cursor: pointer;
 		@media (max-width: 600px) {
 			color: $TEXT-COLOR;
 			letter-spacing: 0.7pt;
