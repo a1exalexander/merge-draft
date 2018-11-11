@@ -2,7 +2,7 @@
 <div class="resident-card__wrapper-all" @click.self='close'>
 <div class="resident-card__wrapper" @click.self='close'>
     <div class="resident-card animated faster fadeInBubble">
-        <button-close-mini @click.native='close'></button-close-mini>
+        <button-close-mini class="resident-card__close" @click.native='close'></button-close-mini>
         <div class="resident-card__inner resident-card__inner--top">
             <p class="resident-card__title">Resident Card
             </p>
@@ -93,13 +93,16 @@ export default {
     @extend %flex-col;
     align-items: stretch;
     position: relative;
-    @media (min-width: 500px) {
+    @media (min-width: 600px) {
         min-width: 520px;
     }
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
+        padding: 20pt 24pt;
         flex: 0 0 100%;
         align-self: flex-start;
-        padding: 2rem;
+    }
+    @media (max-width: 320px) {
+        padding: 16pt 18pt;
     }
     &__wrapper {
         padding: 2rem;
@@ -118,8 +121,11 @@ export default {
             position: absolute;
         }
         @media (max-width: 600px) {
-            padding: 2rem 1rem;
+            padding: 54pt 20pt;
             align-items: flex-start; 
+        }
+        @media (max-width: 320px) {
+            padding: 24pt 20pt;
         }
     }
     &__wrapper-all {
@@ -133,8 +139,23 @@ export default {
         min-height: 100vh;
         background-color: rgba(17, 17, 17, 0.7);
     }
+    &__close {
+        @media (max-width: 600px) {
+            svg {
+                width: 20pt;
+                height: 20pt;
+            }
+            top: 28pt;
+        }
+        @media (max-width: 320px) {
+           top: 24pt;
+        }
+    }
     &__button {
         align-self: center;
+        @media (max-width: 600px) {
+            display: none;
+        }
     }
     &__title {
         font-family: $title-font;
@@ -143,6 +164,10 @@ export default {
         text-align: left;
         color: $TEXT-COLOR;
         grid-area: 1 / 1 / 2 / 3;
+        @media (max-width: 600px) {
+            font-size: 1.375rem;
+            line-height: 2;
+        }
     }
     &__description {
         padding: 0.3125rem 0 1.9375rem 0;
@@ -153,16 +178,32 @@ export default {
         text-align: left;
         color: $GREY;
         grid-area: 2 / 1 / 3 / 3;
+        @media (max-width: 600px) {
+            font-size: 0.75rem;
+            padding: 0;
+            margin-bottom: 22pt;
+        }
+        @media (max-width: 320px) {
+            margin-bottom: 12pt;
+        }
     }
     &__line {
         width: 100%;
         height: 1px;
-        background-color: $DARK-GREY;
+        background-color: $DARK-GREY-OPACITY;
         margin: 2rem 0;
+        @media (max-width: 600px) {
+            margin: 14pt 0;
+        }
     }
     &__inner {
         display: grid;
         align-items: center;
+        @media (max-width: 600px) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
         &--top {
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(3, auto);
@@ -174,26 +215,20 @@ export default {
             grid-row-gap: 1.5rem;
             grid-column-gap: 2rem;
             margin-bottom: 2.625rem;
+            @media (max-width: 600px) {
+                margin: 0;
+            }
         }
         &--price {
             grid-template-rows: repeat(2, auto);
             grid-row-gap: 1.5rem;
             justify-content: center;
             justify-items: center;
-            @media (max-width: 500px) {
-                button {
-                    width: 100%;
-                }
+            @media (max-width: 600px) {
+                display: none;
             }
         }
-        @media (max-width: 500px) {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            p {
-                margin-bottom: 1rem;
-            }
-        }
+       
     }
     &__label {
         display: grid;
@@ -201,21 +236,40 @@ export default {
         grid-column-gap: 1rem;
         align-items: center;
         justify-content: start;
+        @media (max-width: 600px) {
+            margin-bottom: 18pt;
+            &:last-child {
+                margin: 0;
+            }
+        }
+        @media (max-width: 320px) {
+            margin-bottom: 12pt;
+        }
         &--room {
             grid-area: 3 / 1 / 4 / 2;
+            @media (max-width: 600px) {
+                margin-bottom: 20pt;
+            }
+            @media (max-width: 320px) {
+                margin-bottom: 12pt;
+            }
         }
         &--lecture {
             grid-area: 3 / 2 / 4 / 3;
+            @media (max-width: 600px) {
+                margin: 0;
+            }
         }
-        @media (max-width: 500px) {
-           margin-bottom: 1rem;
-        }
+        
     }
-
     &__image {
         width: 32px;
         height: 32px;
         fill: $MERGE-MAIN-COLOR;
+        @media (max-width: 600px) {
+            width: 24pt;
+            height: 24pt;
+        }
     }
     &__text {
         font-family: $base-font;
@@ -224,6 +278,9 @@ export default {
         line-height: 1.6;
         text-align: left;
         color: $TEXT-COLOR;
+        @media (max-width: 600px) {
+            font-size: 0.75rem;
+        }
     }
     &__price {
         font-family: $base-font;
@@ -252,5 +309,4 @@ export default {
         }
     }
 }
-
 </style>

@@ -1,9 +1,10 @@
 <template>
 <div class="booking-done__wrapper">
-	<logo></logo>
+	<logo class='booking-done__logo'></logo>
 	<div class="booking-done" :style="onStyleAnimate">
 		<div class="booking-done__inner booking-done__inner--title">
-			<h2 class="booking-done__title">Waiting for you in</h2>
+			<h2 class="booking-done__title">Waiting for you in <span class="booking-done__title booking-done__title--merge-mobile">MERGE</span>	
+			</h2>
 			<p class="booking-done__title booking-done__title--merge">MERGE!</p>
 		</div>
 		<p class="booking-done__caption">You have applied for a workplace booking. Wait for a call by our administrator.</p>
@@ -82,7 +83,13 @@ export default {
 	@media (max-width: 600px) {
 		flex: 0 0 100%;
 		align-self: flex-start;
-		align-items: center;
+		align-items: flex-start;
+		padding: 0;
+	}
+	&__logo {
+		@media (max-width: 600px) {
+			display: none;
+		}
 	}
 	&__wrapper {
 		position: absolute;
@@ -97,12 +104,25 @@ export default {
 		@extend %flex-row-c;
 		align-items: center;
 		@media (max-width: 600px) {
-			padding: 2rem;
-			padding-top: 4rem;
+			padding: 30pt;
+		}
+		@media (max-width: 320px) {
+			padding: 24pt;
 		}
 	}
 	&__button-back {
 		margin-right: 1rem;
+		@media (max-width: 600px) {
+			width: 32pt;
+			height: 32pt;
+			background-color: $MERGE-MAIN-COLOR;
+			svg {
+				fill: $MAIN-DARK-COLOR;
+				width: 16pt;
+				height: 16pt;
+				stroke: $MAIN-DARK-COLOR;
+			}
+		}
 	}
 	&__button-text {
 		text-transform: uppercase;
@@ -112,16 +132,26 @@ export default {
 		letter-spacing: 0.7px;
 		text-align: left;
 		color: $GREY;
+		@media (max-width: 600px) {
+			color: $TEXT-COLOR;
+			letter-spacing: 0.7pt;
+		}
 	}
 	&__inner {
 		width: 100%;
 		@extend %flex-col;
 		align-items: flex-start;
 		@media (max-width: 600px) {
-			align-items: center;
+			text-align: left;
 		}
 		&--title {
 			margin-bottom: 1.6rem;
+			@media (max-width: 600px) {
+				margin-bottom: 25pt;
+			}
+			@media (max-width: 320px) {
+				margin-bottom: 16pt;
+			}
 		}
 		&--back-button {
 			flex-direction: row;
@@ -131,20 +161,34 @@ export default {
 			padding-top: 1.375rem;
 			border-top: 1px solid $MIDDLE-GREY;
 			@media (max-width: 600px) {
-				justify-content: center;
+				padding-top: 20pt;
+				border-color: $GREY;
+			}
+			@media (max-width: 320px) {
+				padding-top: 16pt;
 			}
 		}
 		&--social {
 			padding: 1.1875rem 0 1.5rem 0;
-			border-top: 1px solid $BUTTON-COLOR;
-			border-bottom: 1px solid $BUTTON-COLOR;
+			border-top: 1px solid $MIDDLE-GREY-OPACITY;
+			border-bottom: 1px solid $MIDDLE-GREY-OPACITY;
+			@media (max-width: 600px) {
+				padding: 13pt 0 20pt 0;
+			}
+			@media (max-width: 320px) {
+				padding: 9pt 0 14pt 0;
+			}
 		}
 		&--location {
 			flex-direction: row;
 			align-items: center;
 			padding: 1.125rem 0;
 			@media (max-width: 600px) {
-				justify-content: center;
+				padding: 18pt 0;
+				align-items: flex-start;
+			}
+			@media (max-width: 320px) {
+				padding: 12pt 0;
 			}
 		}
 	}
@@ -155,12 +199,30 @@ export default {
 		text-align: left;
 		color: $TEXT-COLOR;
 		@media (max-width: 600px) {
-			text-align: center;
+			display: inline-block;
+			font-size: 2rem;
+			line-height: 1.4;
+			letter-spacing: 0.5pt;
+		}
+		@media (max-width: 320px) {
+			font-size: 1.6rem;
 		}
 		&--merge {
 			text-transform: uppercase;
 			color: $MERGE-MAIN-COLOR;
 			letter-spacing: 0.5rem;
+			@media (max-width: 600px) {
+				display: none;
+			}
+		}
+		&--merge-mobile {
+			display: none;
+			text-transform: uppercase;
+			color: $MERGE-MAIN-COLOR;
+			letter-spacing: 0.5rem;
+			@media (max-width: 600px) {
+				display: inline-block;
+			}
 		}
 	}
 	&__caption {
@@ -172,7 +234,13 @@ export default {
 		color: $TEXT-COLOR;
 		margin-bottom: 1.3rem;
 		@media (max-width: 600px) {
-			text-align: center;
+			font-size: 0.75rem;
+			margin-bottom: 18pt;
+			font-weight: 600;
+			letter-spacing: 0.4pt;
+		}
+		@media (max-width: 320px) {
+			margin-bottom: 12pt;
 		}
 	}
 	&__text {
@@ -186,7 +254,11 @@ export default {
 		margin-bottom:  0.8rem;
 		text-transform: uppercase;
 		@media (max-width: 600px) {
-			text-align: center;
+			font-size: 0.625rem;
+			margin-bottom:  18pt;
+		}
+		@media (max-width: 320px) {
+			margin-bottom:  8pt;
 		}
 	}
 	&__social {
@@ -196,14 +268,27 @@ export default {
 		grid-column-gap: 1.25rem;
 		align-items: center;
 		@media (max-width: 600px) {
-			align-self: center;
+			grid-column-gap: 24pt;
+			a {
+				width: 2rem;
+				height: 2rem;
+				svg {
+					width: 1.3rem;
+					height: 1.3rem;
+				}
+			}
 		}
+		
 	}
 	&__image {
 		fill: $TEXT-COLOR;
 		width: 20px;
 		height: 20px;
 		margin-right: 6px;
+		@media (max-width: 600px) {
+			width: 20pt;
+			height: 20pt;
+		}
 	}
 	&__location-text {
 		font-family: $base-font;
@@ -212,11 +297,20 @@ export default {
 		line-height: 2;
 		text-align: left;
 		color: $TEXT-COLOR;
+		@media (max-width: 600px) {
+			font-weight: 600;
+			font-size: 0.75rem;
+			letter-spacing: 0.5pt;
+		}
 	}
 	&__button-map {
 		margin-bottom: 2rem;
-		@media (max-width: 460px) {
+		@media (max-width: 600px) {
+			margin-bottom: 20pt;
 			width: 100%;
+		}
+		@media (max-width: 320px) {
+			margin-bottom: 14pt;
 		}
 	}
 }

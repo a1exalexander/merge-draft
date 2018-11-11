@@ -2,7 +2,7 @@
 <div class="resident-card__wrapper-all" @click.self='close'>
 <div class="day-card__wrapper" @click.self='close'>
     <div class="day-card animated faster fadeInBubble">
-        <button-close-mini @click.native='close'></button-close-mini>
+        <button-close-mini class="resident-card__close" @click.native='close'></button-close-mini>
         <p class="day-card__title">Day access
         </p>
         <div class="day-card__inner day-card__inner--middle">
@@ -80,13 +80,16 @@ export default {
     @extend %flex-col;
     align-items: stretch;
     position: relative;
-    @media (min-width: 500px) {
+    @media (min-width: 600px) {
         min-width: 520px;
     }
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
         flex: 0 0 100%;
         align-self: flex-start;
-        padding: 2rem;
+        padding: 20pt 24pt;
+    }
+    @media (max-width: 320px) {
+        padding: 16pt 18pt;
     }
     &__wrapper {
         padding: 2rem;
@@ -105,8 +108,11 @@ export default {
             position: absolute;
         }
         @media (max-width: 600px) {
-            padding: 2rem 1rem;
+            padding: 54pt 20pt;
             align-items: flex-start; 
+        }
+        @media (max-width: 320px) {
+            padding: 24pt 20pt;
         }
     }
     &__wrapper-all {
@@ -120,17 +126,32 @@ export default {
         min-height: 100vh;
         background-color: rgba(17, 17, 17, 0.7);
     }
+    &__close {
+        @media (max-width: 600px) {
+            svg {
+                width: 20pt;
+                height: 20pt;
+            }
+            top: 28pt;
+        }
+        @media (max-width: 320px) {
+           top: 24pt;
+        }
+    }
     &__button {
-	padding: 1rem 2rem;
-	background-color: $MERGE-SECONDARY-COLOR;
-	outline: none;
-	border: none;
-	border-radius: 3px;
-	@extend %flex-row-c;
-	align-items: center;
-	position: relative;
-	transition: background-color ease-in-out 0.1s;
-	z-index: 2;
+        padding: 1rem 2rem;
+        background-color: $MERGE-SECONDARY-COLOR;
+        outline: none;
+        border: none;
+        border-radius: 3px;
+        @extend %flex-row-c;
+        align-items: center;
+        position: relative;
+        transition: background-color ease-in-out 0.1s;
+        z-index: 2;
+        @media (max-width: 600px) {
+                display: none;
+        }
         &:active {
             background-color: $MERGE-DARK-COLOR;
         }
@@ -169,6 +190,10 @@ export default {
         text-align: left;
         color: $TEXT-COLOR;
         margin-bottom: 2.5rem;
+        @media (max-width: 600px) {
+            font-size: 1.375rem;
+            line-height: 2;
+        }
     }
     &__description {
         padding: 0.3125rem 0 1.9375rem 0;
@@ -179,9 +204,22 @@ export default {
         text-align: left;
         color: $GREY;
         grid-area: 2 / 1 / 3 / 3;
+        @media (max-width: 600px) {
+            font-size: 0.75rem;
+            padding: 0;
+            margin-bottom: 22pt;
+        }
+        @media (max-width: 320px) {
+            margin-bottom: 12pt;
+        }
     }
     &__inner {
         align-items: center;
+        @media (max-width: 600px) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
         &--middle {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -190,23 +228,20 @@ export default {
             grid-column-gap: 2rem;
             padding-bottom: 2rem;
             border-bottom: 1px solid $DARK-GREY;
+            @media (max-width: 600px) {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                margin: 0;
+                border: none;
+                padding: 0;
+            }
         }
         &--price {
             padding: 2.5rem 0 0;
             @extend %flex-row-sb;
-            @media (max-width: 500px) {
-                flex-direction: column;
-                button {
-                    width: 100%;
-                }
-            }
-        }
-        @media (max-width: 500px) {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            p {
-                margin-bottom: 1rem;
+            @media (max-width: 600px) {
+                display: none;
             }
         }
     }
@@ -216,14 +251,20 @@ export default {
         grid-column-gap: 1rem;
         align-items: center;
         justify-content: start;
+        @media (max-width: 600px) {
+            margin-bottom: 18pt;
+            &:last-child {
+                margin: 0;
+            }
+        }
+        @media (max-width: 320px) {
+            margin-bottom: 12pt;
+        }
         &--room {
             grid-area: 3 / 1 / 4 / 2;
         }
         &--lecture {
             grid-area: 3 / 2 / 4 / 3;
-        }
-        @media (max-width: 500px) {
-           margin-bottom: 1rem;
         }
     }
 
@@ -231,6 +272,10 @@ export default {
         width: 32px;
         height: 32px;
         fill: $MERGE-MAIN-COLOR;
+        @media (max-width: 600px) {
+            width: 24pt;
+            height: 24pt;
+        }
     }
     &__text {
         font-family: $base-font;
@@ -239,6 +284,9 @@ export default {
         line-height: 1.6;
         text-align: left;
         color: $TEXT-COLOR;
+        @media (max-width: 600px) {
+            font-size: 0.75rem;
+        }
     }
     &__price {
         font-family: $base-font;

@@ -1,12 +1,15 @@
 <template>
 <button class="button-back"> 
 	<svg class="button-back__img">
-		<use xlink:href='#arrow-left' />
+		<use xlink:href='#left-arrow' />
 	</svg>
 	<div class="button-back__outside"></div>
 	<svg style="display: none">
-		<symbol id='arrow-left' width="17" height="17">
-			<path stroke="none" transform="matrix(-0.664679 0.664682 0.664682 0.664679 8.66016 0.303762)" d="M4 0L4 1.6L9.272 1.6L0 10.872L1.128 12L10.4 2.728L10.4 8L12 8L12 0L4 0L4 1.6L9.272 1.6L0 10.872L1.128 12L10.4 2.728L10.4 8L12 8L12 0L4 0Z" />
+		<symbol id='left-arrow' viewBox="0 0 400.004 400.004" style="enable-background:new 0 0 400.004 400.004;">
+			<path d="M382.688,182.686H59.116l77.209-77.214c6.764-6.76,6.764-17.726,0-24.485c-6.764-6.764-17.73-6.764-24.484,0L5.073,187.757
+		c-6.764,6.76-6.764,17.727,0,24.485l106.768,106.775c3.381,3.383,7.812,5.072,12.242,5.072c4.43,0,8.861-1.689,12.242-5.072
+		c6.764-6.76,6.764-17.726,0-24.484l-77.209-77.218h323.572c9.562,0,17.316-7.753,17.316-17.315
+		C400.004,190.438,392.251,182.686,382.688,182.686z"/>
 		</symbol>
 	</svg>
 </button> 

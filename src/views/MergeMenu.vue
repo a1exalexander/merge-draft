@@ -32,7 +32,7 @@
 				<router-link to="/meeting-room" class="menu__link">Meeting Room</router-link>
 			</li>
 			<li class="menu__item">
-				<router-link to="/" class="menu__link">Events</router-link>
+				<router-link to="/" class="menu__link menu__link--events">Events</router-link>
 			</li>
 			<li class="menu__item">
 				<router-link to="/about" class="menu__link menu__link--last">About us</router-link>
@@ -478,6 +478,9 @@ export default {
 		}
 		&--last {
 			left: 0;
+		}
+		&--events {
+			left: -2px;
 		}
 	}
 	&__language {

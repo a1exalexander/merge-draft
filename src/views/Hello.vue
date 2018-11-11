@@ -9,9 +9,9 @@
                 :shuffle='false'
                 initial-action='typing'
                 :pre-type-delay='700'
-                :type-delay='300'
+                :type-delay='200'
                 :erase-on-complete='false'
-                caret-animation='blink'
+                caret-animation='smooth'
                 @typed='onTyped'
             ></vue-typer>
         </h1>
@@ -23,9 +23,9 @@
                     :shuffle='false'
                     initial-action='typing'
                     :pre-type-delay='700'
-                    :type-delay='300'
+                    :type-delay='200'
                     :erase-on-complete='false'
-                    caret-animation='blink'
+                    caret-animation='smooth'
                     v-if='secondString'
                     @typed='onTypedSecond'
                 ></vue-typer>
@@ -38,9 +38,9 @@
                 :shuffle='false'
                 initial-action='typing'
                 :pre-type-delay='700'
-                :type-delay='300'
+                :type-delay='200'
                 :erase-on-complete='false'
-                caret-animation='blink'
+                caret-animation='smooth'
                 v-if='thirdString'
             ></vue-typer>
             </span>
@@ -257,7 +257,7 @@ export default {
                 color: $MERGE-MAIN-COLOR;
             }
             .custom.caret {
-                background-color: $MERGE-MAIN-COLOR;
+                background-color: $TEXT-COLOR;
             }
         }
         @media (max-width: 840px) {

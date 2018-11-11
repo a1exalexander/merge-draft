@@ -34,10 +34,10 @@
 		</div>
 		<h1 class="booking-workplace__title">Booking of the	workplace</h1>
 		<div class="workplace-choice-mobile__wrapper">
-			<label for='book-month' class="workplace-choice-mobile">
-				<input id='book-month' 
+			<label for='book-month-mobile' class="workplace-choice-mobile">
+				<input id='book-month-mobile' 
                     type="radio" 
-                    name='booking-type' 
+                    name='booking-type-mobile' 
                     form='booking-form' 
                     class="workplace-choice-mobile__input"
 					value="month"
@@ -52,9 +52,59 @@
 						<p class="workplace-choice-mobile__resident">Resident card</p>
 					</div>
 				</div>
-				<div class="workplace-choice-mobile__inner">
+				<div class="workplace-choice-mobile__inner workplace-choice-mobile__inner--price">
 					<p class="workplace-choice-mobile__price">{{ price.month }}</p>
 					<a href='#' class="workplace-choice-mobile__link-img" @click.prevent="visible.residentCard = true">
+						<svg class="workplace-choice-mobile__img">
+							<use xlink:href='#infoborder' />
+						</svg>
+					</a>
+				</div>
+			</label>
+			<label for='book-week-mobile' class="workplace-choice-mobile">
+				<input id='book-week-mobile' 
+                    type="radio" 
+                    name='booking-type-mobile' 
+                    form='booking-form' 
+                    class="workplace-choice-mobile__input"
+					value="week"
+                    v-model="tariff">
+				<div class="workplace-choice-mobile__inner">
+					<div class="workplace-choice-mobile__check">
+						<div class="workplace-choice-mobile__check-dot"></div>
+					</div>
+					<div class="workplace-choice-mobile__col">
+						<p class="workplace-choice-mobile__title">Week</p>
+					</div>
+				</div>
+				<div class="workplace-choice-mobile__inner workplace-choice-mobile__inner--price">
+					<p class="workplace-choice-mobile__price">{{ price.week }}</p>
+					<a href='#' class="workplace-choice-mobile__link-img" @click.prevent="visible.weekCard = true">
+						<svg class="workplace-choice-mobile__img">
+							<use xlink:href='#infoborder' />
+						</svg>
+					</a>
+				</div>
+			</label>
+			<label for='book-day-mobile' class="workplace-choice-mobile">
+				<input id='book-day-mobile' 
+                    type="radio" 
+                    name='booking-type-mobile' 
+                    form='booking-form' 
+                    class="workplace-choice-mobile__input"
+					value="day"
+                    v-model="tariff">
+				<div class="workplace-choice-mobile__inner">
+					<div class="workplace-choice-mobile__check">
+						<div class="workplace-choice-mobile__check-dot"></div>
+					</div>
+					<div class="workplace-choice-mobile__col">
+						<p class="workplace-choice-mobile__title">Day</p>
+					</div>
+				</div>
+				<div class="workplace-choice-mobile__inner workplace-choice-mobile__inner--price">
+					<p class="workplace-choice-mobile__price">{{ price.day }}</p>
+					<a href='#' class="workplace-choice-mobile__link-img" @click.prevent="visible.dayCard = true">
 						<svg class="workplace-choice-mobile__img">
 							<use xlink:href='#infoborder' />
 						</svg>
@@ -553,18 +603,23 @@ export default {
 	}
 	&__title {
 		font-family: $title-font;
-		font-size: 40px;
+		font-size: 2.5rem;
 		font-weight: 500;
 		text-align: left;
 		color: $TEXT-COLOR;
 		margin: 24px 0 28px 0;
 		@media (max-width: 600px) {
+			font-size: 2rem;
 			text-align: center;
 			margin: 0 0 34pt;
 		}
 		@media (max-width: 480px) {
 			text-align: left;
 			margin-bottom: 54pt;
+		}
+		@media (max-width: 320px) {
+			font-size: 1.8rem;
+			margin-bottom: 44pt;
 		}
 	}
 	&__col {
@@ -611,6 +666,7 @@ export default {
 		padding: 12px 16px;
 		@media (max-width: 480px) {
 			padding: 12pt 16pt;
+			font-size: 12pt;
 		}
 		&:-webkit-autofill,
 		&:-webkit-autofill:hover,
@@ -626,6 +682,7 @@ export default {
 			font-family: $base-font;
 			@media (max-width: 480px) {
 				font-size: 12pt;
+				padding: 12pt 0;
 			}
 		}
 	}
@@ -781,38 +838,6 @@ export default {
 		fill: white;
 	}
 }
-.workplace-choice-mobile {
-	@extend %flex-row-sb;
-	align-items: flex-start;
-	position: relative;
-	width: 100%;
-	flex-wrap: nowrap;
-	&__wrapper {
-		display: none;
-		@media (max-width: 480px) {
-			display: block;
-		}
-	}
-	&__inner {
-		@extend %flex-row;
-		flex-wrap: nowrap;
-	}
-	&__title {
-		font-family: $base-font;
-		font-size: 18pt;
-		font-weight: 700;
-		color: $TEXT-COLOR;
-	}
-	&__link-img {
-		padding: 0 8pt 8pt;
-	}
-	&__img {
-		fill: $TEXT-COLOR;
-		width: 16pt;
-		height: 16pt;
-		
-	}
-}
 .booking-price {
 	font-family: $base-font;
 	font-size: 13px;
@@ -837,6 +862,98 @@ export default {
 			text-align: left;
 			color: $GREY;
 		}
+	}
+}
+.workplace-choice-mobile {
+	@extend %flex-row-sb;
+	align-items: baseline;
+	position: relative;
+	width: 100%;
+	flex-wrap: nowrap;
+	padding: 16pt 0;
+	border-bottom: 1pt solid $MIDDLE-GREY-OPACITY;
+	&__wrapper {
+		display: none;
+		width: 100%;
+		@media (max-width: 480px) {
+			display: block;
+		}
+	}
+	&__inner {
+		@extend %flex-row;
+		flex-wrap: nowrap;
+		align-items: flex-start;
+		&--price {
+			align-items: center;
+		}
+	}
+	&__title {
+		font-family: $base-font;
+		font-size: 1.125rem;
+		font-weight: 700;
+		color: $TEXT-COLOR;
+	}
+	&__resident {
+		font-family: $base-font;
+		font-size: 0.625rem;
+		font-weight: 600;
+		color: $LIGHT-GREY;
+		padding-top: 3pt;
+	}
+	&__link-img {
+		padding: 0;
+		@extend %flex-row-c;
+		align-items: center;
+	}
+	&__img {
+		fill: $TEXT-COLOR;
+		width: 16pt;
+		height: 16pt;
+	}
+	&__price {
+		font-family: $base-font;
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: $TEXT-COLOR;
+		letter-spacing: 0.7pt;
+		margin-right: 12pt;
+		&::after {
+			content: ' UAH';
+		}
+	}
+	&__input {
+		opacity: 0;
+		position: absolute;
+		left: 4pt;
+		top: 20pt;
+		z-index: -10;
+		outline: none;
+		&:checked + .workplace-choice-mobile__inner .workplace-choice-mobile__check{
+			background-color: $MERGE-MAIN-COLOR;
+			border-color: $MERGE-MAIN-COLOR;
+		}
+		&:checked + .workplace-choice-mobile__inner .workplace-choice-mobile__check-dot {
+			opacity: 1;
+		}
+	}
+	&__check {
+		height: 16pt;
+		width: 16pt;
+		background-color: $DARK-GREY;
+		border-radius: 50%;
+		border: 1pt solid $MIDDLE-GREY;
+		@extend %flex-row-c;
+		align-items: center;
+		transition: color ease-in-out 0.2s;
+		margin-right: 15pt;
+	}
+	&__check-dot {
+		height: 8pt;
+		width: 8pt;
+		background-color: $MAIN-DARK-COLOR;
+		border-radius: 50%;
+		opacity: 0;
+		transition: opacity ease-in-out 0.2s;
 	}
 }
 </style>
