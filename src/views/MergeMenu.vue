@@ -213,6 +213,9 @@ export default {
 			fill: $HOVER-ICON-COLOR;
 		}
 	}
+	@media (orientation: landscape) and (max-width: 820px) {
+		top: -15pt;
+	}
 	@media (max-width: 600px) {
 		height: 24pt;
 		width: 24pt;

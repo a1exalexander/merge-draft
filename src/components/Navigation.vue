@@ -105,6 +105,7 @@ export default {
     justify-items: center;
     align-content: center;
     @media (orientation: landscape) and (max-width: 820px) {
+        width: 56pt;
         padding: 24pt 0 16pt;
     }	
     &--border {

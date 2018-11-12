@@ -49,9 +49,10 @@ export default {
         align-items: center;
         text-transform: uppercase;
         font-family: $base-font;
-        font-size: 10px;
+        font-size: 0.625rem;
         font-weight: 700;
         text-align: center;
+        line-height: 1;
         color: $MAIN-DARK-COLOR;
         letter-spacing: 0.7px;
         white-space: nowrap;
@@ -72,10 +73,9 @@ export default {
     }
     &__img {
         fill: $MAIN-DARK-COLOR;
-        height: 12px;
+        height: 16px;
         width: 16px;
         stroke: none;
-        margin-bottom: 2px;
     }
 }
 

@@ -148,6 +148,9 @@ export default {
 			justify-content: flex-start;
 			padding: 0 0 0 112px;
 		}
+		@media (orientation: landscape) and (max-width: 820px) {
+			padding: 0 0 0 56pt;
+		}
 		@media (max-width: 600px) {
 			justify-content: flex-start;
 			padding: 0;

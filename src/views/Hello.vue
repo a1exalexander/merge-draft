@@ -150,6 +150,10 @@ export default {
         grid-template-columns: 5% auto auto;
         padding: 1rem 1rem 1rem 112px;
     }
+    @media (orientation: landscape) and (max-width: 820px) {
+        grid-template-columns: 5% auto auto;
+        padding: 0 0 0 56pt;
+    }
     @media (max-width: 600px) {
         display: flex;
         flex-direction: column;

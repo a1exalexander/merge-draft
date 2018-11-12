@@ -53,6 +53,7 @@ export default {
         text-transform: uppercase;
         font-family: $base-font;
         font-size: 0.625rem;
+        line-height: 1;
         font-weight: 700;
         letter-spacing: 0.7px;
         color: $TEXT-COLOR;
