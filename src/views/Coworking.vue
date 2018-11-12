@@ -3,12 +3,12 @@
 <!-- 2 wrappers to implement dual adaptive indents -->
 	<div class="coworking__wrapper">
 		<div class="coworking__inner">
-			<header class="coworking__header">
+			<header class="coworking__header animated d06 delay-02s fadeInUp">
 				<h1 class="coworking__title">Coworking<br>Space
 				</h1>
 				<button-membership @click.native='becomeMember'></button-membership>
 			</header>
-			<section class="view-360">
+			<section class="view-360 animated d06 delay-03s fadeInUp">
 				<div class="view-360__row">
 					<button class="view-360__button">360° view</button>
 				</div>
@@ -16,7 +16,7 @@
 					<img src="../assets/image/merge-4.png" alt="image" class="view-360__image">
 				</div>
 			</section>
-			<section class="beneffits">
+			<section class="beneffits animated d06 delay-04s fadeInUp">
 				<div class="beneffits__label">
 					<img src="../assets/image/wi-fi.svg" alt="wi-fi" class='beneffits__image'>
 					<p class="beneffits__text">Super-fast Internet
@@ -52,17 +52,17 @@
 					<p class="beneffits__text">Merge community
 					</p>
 				</div>
-				<div class="beneffits__button">
+				<div class="beneffits__button animated d06 delay-05s fadeInUp">
 					<button-membership @click.native='becomeMember'></button-membership>
 				</div>
 			</section>
-			<section class="coworking__slider">
+			<section class="coworking__slider animated d06 delay-06s fadeInUp">
 				<button class="coworking__label-button">Photos</button>
 				<slider></slider>
 			</section>
 		</div>
 	</div>
-	<section class="next-page-nav">
+	<section class="next-page-nav animated d06 delay-07s fadeInUp">
 		<router-link to='/meeting-room' class="next-page-nav__link next-page-nav__link--meeting-room">
 			<div class="next-page-nav__inner">
 				<p class="next-page-nav__text">MEETING ROOM</p>

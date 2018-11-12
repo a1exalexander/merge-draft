@@ -11,25 +11,25 @@
 	<!-- 2 wrappers to implement dual adaptive indents -->
 	<div class="meeting-room__wrapper">
 		<div class="meeting-room__inner">
-			<header class="meeting-room__header" v-show='hideElements'>
+			<header class="meeting-room__header animated d06 delay-02s fadeInUp" v-show='hideElements'>
 				<h1 class="meeting-room__title">Meeting Room</h1>
 				<button-book-room @click.native='showBook'></button-book-room>
 			</header>
-			<section class="meeting-room__slider">
+			<section class="meeting-room__slider animated d06 delay-03s fadeInUp">
 				<button class="meeting-room__label-button">Photos</button>
 				<slider v-show='hideElements'></slider>
 			</section>
 			<section class="meeting-room-inf" v-show='hideElements'>
 				<div class="meeting-room-inf__wrapper">
-					<div class="meeting-room-inf__buttons">
-						<div class="meeting-room-inf__card meeting-room-inf__card--hour">
+					<div class="meeting-room-inf__buttons animated d06 delay-04s fadeInUp">
+						<div class="meeting-room-inf__card meeting-room-inf__card--hour animated d06 delay-05s fadeInUp">
 							<p class="meeting-room-inf__text meeting-room-inf__text--hour">150
 								<span class="meeting-room-inf__description meeting-room-inf__description--hour">UAH PER HOUR
 								</span>
 							</p>
 							<button-book-now @click.native='showBook'></button-book-now>
 						</div>
-						<div class="meeting-room-inf__card meeting-room-inf__card--resident">
+						<div class="meeting-room-inf__card meeting-room-inf__card--resident animated d06 delay-06s fadeInUp">
 							<p class="meeting-room-inf__text meeting-room-inf__text--resident">FREE
 								<span class="meeting-room-inf__description meeting-room-inf__description--resident">FOR RESIDENTS 1 HOUR not more than TWO TIMES PER WEEK
 								</span>
@@ -37,7 +37,7 @@
 							<button-resident-link></button-resident-link>
 						</div>
 					</div>
-					<div class="meeting-room-inf__labels">
+					<div class="meeting-room-inf__labels animated d06 delay-07s fadeInUp">
 						<div class="beneffits__label">
 							<img src="../assets/image/meeting.png" alt="meeting" class="beneffits__img">
 							<p class="beneffits__text">Capacity: 10 people</p>
@@ -59,8 +59,8 @@
 			</section>
 		</div>
 	</div>
-	<calendar @showBook='showBook' v-show='hideElements'></calendar>
-	<section class="next-page-nav" v-show='hideElements'>
+	<calendar class='animated d06 delay-08s fadeInUp' @showBook='showBook' v-show='hideElements'></calendar>
+	<section class="next-page-nav animated d06 delay-09s fadeInUp" v-show='hideElements'>
 		<router-link to="/coworking" class="next-page-nav__link next-page-nav__link--interior">
 			<div class="next-page-nav__inner">
 				<p class="next-page-nav__text">INTERIOR</p>
