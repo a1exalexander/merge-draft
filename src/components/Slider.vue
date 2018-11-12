@@ -99,10 +99,22 @@ export default {
 		@extend %flex-row;
 		align-items: center;
 		cursor: pointer;
+		@media (orientation: landscape) and (max-width: 820px) {
+			align-items: flex-end;
+        }
+		@media (max-width: 600px) {
+			align-items: flex-end;
+		}
 	}
 	&__slide {
 		@extend %flex-row;
 		align-items: center;
+		@media (orientation: landscape) and (max-width: 820px) {
+			align-items: flex-end;
+        }
+		@media (max-width: 600px) {
+			align-items: flex-end;
+		}
 	}
 	&__arrows {
 		width: 100%;
@@ -110,6 +122,11 @@ export default {
 		justify-content: flex-end;
 		align-items: center;
 		height: 96px;
+		@media (orientation: landscape) and (max-width: 820px) {
+			height: auto;
+			padding: 5pt 0;
+			justify-content: center;
+        }
 		@media (max-width: 600px) {
 			justify-content: center;
 		}

@@ -137,6 +137,9 @@ export default {
 	align-items: center;
 	justify-items: center;
 	padding-top: 7rem;
+	@media (orientation: landscape) and (max-width: 820px) {
+		padding-top: 20pt;
+	}
 	&__wrapper {
 		width: 100%;
 		display: flex;

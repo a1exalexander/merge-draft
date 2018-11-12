@@ -361,6 +361,15 @@ export default {
 				4rem;
 			padding-right: 1rem;
 		}
+		@media (orientation: landscape) and (max-width: 820px) {
+			padding: 20pt 0;
+            grid-template-rows:
+				2rem repeat(2, 1.3rem)
+				2rem repeat(2, 1.3rem)
+				3rem 2rem 2rem
+				5rem;
+			align-content: start;
+        }
 		@media (max-width: 600px) {
 			display: none;
 		}
@@ -371,7 +380,7 @@ export default {
 		grid-row: 1;
 		display: grid;
 		grid-template-rows: repeat(2, auto);
-		grid-row-gap: 3em;
+		grid-row-gap: 3rem;
 		align-content: center;
 		align-items: center;
 		justify-items: start;
@@ -380,6 +389,9 @@ export default {
 		justify-content: start;
 		justify-items: start;
 		padding-right: 1rem;
+		@media (orientation: landscape) and (max-width: 820px) {
+			grid-row-gap: 1rem;
+        }
 		@media (max-width: 600px) {
 			display: block;
 			padding: 0;
@@ -393,7 +405,14 @@ export default {
 		justify-content: center;
 		align-items: center;
 		justify-items: start;
+		padding-top: 2rem;
+		padding-bottom: 1rem;
+		@media (orientation: landscape) and (max-width: 820px) {
+			grid-row-gap: 18pt;
+			margin-bottom: 0;
+        }
 		@media (max-width: 600px) {
+			padding: 0;
 			display: block;
 			text-align: left;
 			margin-bottom: 23pt;
@@ -487,6 +506,7 @@ export default {
 		display: grid;
 		grid-template-columns: repeat(3, auto);
 		grid-column-gap: 0.5em;
+		padding-bottom: 4rem;
 		@media (max-width: 600px) {
 			padding: 0;
 			display: flex;
@@ -495,9 +515,6 @@ export default {
 			align-items: center;
 			height: 10pt;
 			max-width: 50%;
-		}
-		@media (max-width: 400) {
-			
 		}
 	}
 	&__language-link {

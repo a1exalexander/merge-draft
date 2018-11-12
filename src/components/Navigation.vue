@@ -103,7 +103,10 @@ export default {
     grid-template-rows: repeat(3, 1fr);
     align-items: center;
     justify-items: center;
-    align-content: center;	
+    align-content: center;
+    @media (orientation: landscape) and (max-width: 820px) {
+        padding: 24pt 0 16pt;
+    }	
     &--border {
         border-right: 1px solid $DARK-GREY;
     }
@@ -203,6 +206,10 @@ export default {
         height: 30px;
         width: 30px;
         position: relative;
+        @media (orientation: landscape) and (max-width: 820px) {
+            align-self: start;
+            margin-top: 15pt;
+        }
         @media (max-width: 600px) {
             display: none;
         }

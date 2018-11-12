@@ -73,7 +73,7 @@
 					</p>
 				</div>
 			</section>
-			<slider class="animated d06 delay-1s fadeInUp"></slider>
+			<slider class="about-us__slider animated d06 delay-1s fadeInUp"></slider>
 		</div>
 	</div>
 	<section class="next-page-nav animated d06 delay-11s fadeInUp" >
@@ -147,6 +147,9 @@ export default {
 	flex-shrink: 1;
 	flex-grow: 0;
 	padding-top: 7rem;
+	@media (orientation: landscape) and (max-width: 820px) {
+		padding-top: 30pt;
+	}
 	&__wrapper {
 		width: 100%;
 		display: flex;
@@ -155,16 +158,9 @@ export default {
 			justify-content: flex-start;
 			padding: 0 0 0 112px;
 		}
-		@media (max-height: 500px) {
-			padding: 0 0 0 80px;
-		}
 		@media (max-width: 600px) {
 			justify-content: flex-start;
 			padding: 0;
-		}
-		@media (max-width: 600px) and (max-height: 500px) {
-			justify-content: flex-start;
-			padding: 0 0 0 80px;
 		}
 	}
 	&__main {
@@ -232,8 +228,11 @@ export default {
 
 		&--margin {
 			margin-bottom: 90px;
+			@media (orientation: landscape) and (max-width: 820px) {
+				margin-bottom: 10pt;
+			}
 			@media (max-width: 600px) {
-				margin-bottom: 3rem;
+				margin-bottom: 10pt;
 			}
 		}
 		@media (max-width: 920px) {
@@ -244,6 +243,9 @@ export default {
 		@media (max-width: 600px) {
 			padding: 0 1rem;
 		}
+	}
+	&__slider {
+		width: 100%;
 	}
 	&__inner {
 		flex: 0 0 60%;

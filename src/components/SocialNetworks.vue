@@ -45,8 +45,11 @@ export default {
     align-self: end;
     display: grid;
     grid-template-rows: repeat(3, auto);
-    grid-row-gap: 1.5em;
+    grid-row-gap: 1.5rem;
     align-items: center;
+    @media (orientation: landscape) and (max-width: 820px) {
+        grid-row-gap: 1rem;
+    }
     &__link {
         border-radius: 3px;
         text-decoration: none;
