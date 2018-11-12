@@ -214,7 +214,7 @@ export default {
 		}
 	}
 	@media (orientation: landscape) and (max-width: 820px) {
-		top: -15pt;
+		top: -10pt;
 	}
 	@media (max-width: 600px) {
 		height: 24pt;
