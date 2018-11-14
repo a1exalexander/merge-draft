@@ -77,17 +77,20 @@
 		</div>
 	</div>
 	<section class="next-page-nav animated d06 delay-11s fadeInUp" >
-		<router-link to='/coworking' class="next-page-nav__link next-page-nav__link--interior">
+		<router-link to='/coworking' class="next-page-nav__link about-us__link-page about-us__link-page--interior">
 			<div class="next-page-nav__inner">
 				<p class="next-page-nav__text">Interior</p>
 			</div>
 		</router-link>
-		<router-link to='/meeting-room' class="next-page-nav__link next-page-nav__link--meeting-room">
+		<router-link to='/meeting-room' class="next-page-nav__link about-us__link-page about-us__link-page--meeting-room">
 			<div class="next-page-nav__inner">
 				<p class="next-page-nav__text">MEETING ROOM</p>
 			</div>
 		</router-link>
 	</section>
+	<div class="about-us__button-member">
+		<button-membership @click.native='closeCard'></button-membership>
+	</div>
 	<svg style="display: none">
 		<symbol id='infoborder' viewBox="0 0 24 24">
 			<path d="M11,17 L13,17 L13,11 L11,11 L11,17 L11,17 Z M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 L12,2 Z M12,20 C7.59,20 4,16.41 4,12 C4,7.59 7.59,4 12,4 C16.41,4 20,7.59 20,12 C20,16.41 16.41,20 12,20 L12,20 Z M11,9 L13,9 L13,7 L11,7 L11,9 L11,9 Z" id="Shape">
@@ -150,6 +153,9 @@ export default {
 	@media (orientation: landscape) and (max-width: 820px) {
 		padding-top: 30pt;
 	}
+	@media (max-width: 600px) {
+		padding: 0;
+	}
 	&__wrapper {
 		width: 100%;
 		display: flex;
@@ -182,6 +188,7 @@ export default {
 		}
 		@media (max-width: 600px) {
 			padding: 0;
+			margin: 0;
 		}
 	}
 	&__header {
@@ -193,15 +200,22 @@ export default {
 			flex-direction: column;
 			align-items: flex-start;
 		}
+		@media (max-width: 600px) {
+			margin: 0 0 35pt 0;
+			padding: 0 32pt;
+		}
+		@media (max-width: 375px) {
+			padding: 0 26pt;
+		}
+		@media (max-width: 320px) {
+			padding: 0 22pt;
+		}
 		.button-membership {
 			@media (max-width: 990px) {
 				align-self: flex-start;
 			}
 			@media (max-width: 600px) {
-				align-self: center;
-			}
-			@media (max-width: 450px) {
-				width: 90%;
+				display: none;
 			}
 		}
 	}
@@ -213,22 +227,23 @@ export default {
 		color: $TEXT-COLOR;
 		white-space: nowrap;
 		margin: 0;
-
 		@media (max-width: 990px) {
 			margin-bottom: 2rem;
 		}
 		@media (max-width: 600px) {
-			font-size: 4rem;
+			font-family: $title-font;
+			font-size: 2.6rem;
 			white-space: normal;
-			align-self: center;
-			text-align: center;
+			align-self: flex-start;
+			line-height: 1;
+			text-align: left;
+			margin: 0;
 		}
 	}
 	&__inf {
 		@extend %flex-row;
 		justify-content: flex-end;
 		transition: flex ease-in-out 0.3s;
-
 		&--margin {
 			margin-bottom: 90px;
 			@media (orientation: landscape) and (max-width: 820px) {
@@ -244,8 +259,15 @@ export default {
 			justify-content: flex-start;
 		}
 		@media (max-width: 600px) {
-			padding: 0 1rem;
+			padding: 0 32pt;
+			margin-bottom: 32pt;
 		}
+		@media (max-width: 375px) {
+			padding: 0 26pt;
+		}
+		@media (max-width: 320px) {
+			padding: 0 22pt;
+        }
 	}
 	&__slider {
 		width: 100%;
@@ -271,6 +293,9 @@ export default {
 		letter-spacing: 0.7px;
 		color: $MAIN-DARK-COLOR;
 		white-space: nowrap;
+		@media (max-width: 600px) {
+			display: none;
+		}
 	}
 	&__subtitle {
 		padding: 22px 0;
@@ -280,6 +305,9 @@ export default {
 		text-align: left;
 		color: $TEXT-COLOR;
 		position: relative;
+		@media (max-width: 600px) {
+			padding-top: 0;
+		}
 		&::after {
 			content: '';
 			width: 32px;
@@ -293,13 +321,53 @@ export default {
 	&__text {
 		flex-grow: 1;
 		flex-shrink: 1;
-		font-family: Montserrat;
+		font-family: $base-font;
 		font-size: 0.8125rem;
 		font-weight: 500;
 		line-height: 2.38;
 		letter-spacing: 0.9px;
 		text-align: left;
 		color: $TEXT-COLOR;
+		@media (max-width: 600px) {
+			font-size: 1rem;
+			font-weight: 400;
+		}
+	}
+	&__link-page {
+		&--meeting-room {
+			background-image: url('../assets/image/meeting-room.jpg');
+		}
+		&--interior {
+			background-image: url('../assets/image/interior.jpg');
+		}
+	}
+	&__button-member {
+		display: none;
+		@media (max-width: 600px) {
+			position: relative;
+			width: 100%;
+			display: flex;
+			padding: 32pt 32pt 40pt;
+		}
+		@media (max-width: 375px) {
+			padding: 32pt 26pt 40pt;
+		}
+		@media (max-width: 320px) {
+			padding: 32pt 22pt 40pt;
+		}
+		button {
+			@media (max-width: 600px) {
+				&::before {
+					position: absolute;
+					content: '';
+					top: -32pt;
+					right: 0;
+					left: 0;
+					border-top: 1px solid $MIDDLE-GREY-OPACITY;
+					width: 100%;
+				}
+			}
+		}
 	}
 }
 
@@ -336,11 +404,11 @@ export default {
 			align-items: flex-start;
 			padding: 0 2rem;
 		}
+		@media (max-width: 600px) {
+			display: none;
+		}
 		&--margin {
 			margin-bottom: 100px;
-			@media (max-width: 600px) {
-				margin-bottom: 3rem;
-			}
 		}
 	}
 	&__title {
@@ -405,8 +473,27 @@ export default {
 	grid-template-rows: repeat(2, auto);
 	grid-column-gap: 21px;
 	align-items: center;
+	
+	@media (max-width: 600px) {
+		justify-items: start;
+		justify-content: start;
+		padding: 0 32pt;
+		width: 100%;
+		grid-column-gap: 20pt;
+	}
+	@media (max-width: 375px) {
+		padding: 0 26pt;
+		grid-column-gap: 18pt;
+	}
+	@media (max-width: 320px) {
+		padding: 0 22pt;
+		grid-column-gap: 11pt;
+	}
 	&--margin {
 		margin-bottom: 56px;
+		@media (max-width: 600px) {
+			margin-bottom: 36pt;
+		}
 	}
 	&__clock {
 		grid-area: 1 / 1 / 3 / 2;
@@ -416,15 +503,26 @@ export default {
 		fill: $MERGE-MAIN-COLOR;
 		justify-self: start;
 		align-self: center;
+		@media (max-width: 600px) {
+			width: 46pt;
+			height: 46pt;
+		}
+		@media (max-width: 320px) {
+			width: 42pt;
+			height: 42pt;
+		}
 	}
 	&__text {
-		font-family: Montserrat;
+		font-family: $base-font;
 		font-size: 0.8125rem;
-		font-weight: normal;
+		font-weight: 400;
 		line-height: 1.69;
 		letter-spacing: 0.9px;
 		text-align: left;
 		color: $TEXT-COLOR;
+		@media (max-width: 320px) {
+			font-size: 0.74rem;
+		}
 		&--weekday {
 			grid-area: 1 / 2 / 2 / 3;
 		}
@@ -432,78 +530,13 @@ export default {
 			grid-area: 1 / 3 / 2 / 4;
 		}
 		&--time {
-			font-weight: bold;
+			font-weight: 700;
 			grid-area: 2 / 2 / 3 / 3;
 		}
 		&--weekend-time {
-			font-weight: bold;
+			font-weight: 700;
 			grid-area: 2 / 3 / 3 / 4;
 		}
-	}
-	@media (max-width: 600px) {
-		align-self: center;
-	}
-}
-
-.next-page-nav {
-	padding-left: 112px;
-	width: 100%;
-	@extend %flex-row;
-	height: 304px;
-
-	@media (max-width: 920px) {
-		flex-direction: column;
-		align-items: stretch;
-		height: 608px;
-	}
-	@media (max-width: 600px) {
-		height: 304px;
-		padding-left: 0;
-	}
-	&__link {
-		height: 100%;
-		flex-basis: auto;
-		flex-grow: 1;
-		position: relative;
-		background-size: cover;
-		background-repeat: no-repeat;
-		@media (min-width: 600px) {
-			&:hover .next-page-nav__inner {
-				background-color: transparent;
-				transition: background-color ease-in-out 0.2s;
-			}
-			&:not(:hover) .next-page-nav__inner {
-				transition: background-color ease-in-out 0.2s;
-			}
-		}
-		&--interior {
-			background-image: url('../assets/image/interior.jpg');
-		}
-		&--meeting-room {
-			background-image: url('../assets/image/meeting-room.jpg');
-		}
-		&--events {
-			background-image: url('../assets/image/events.jpg');
-		}
-	}
-	&__inner {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		@extend %flex-col-c;
-		align-items: center;
-		background-color: rgba(19, 19, 19, 0.8);
-	}
-	&__text {
-		text-transform: uppercase;
-		font-family: Montserrat;
-		font-size: 1.125rem;
-		font-weight: bold;
-		letter-spacing: 1.2px;
-		text-align: center;
-		color: $TEXT-COLOR;
 	}
 }
 </style>

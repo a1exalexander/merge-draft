@@ -1,7 +1,7 @@
 <template>
 <nav class="navigation navigation--border" :style='onTransparent'>
     <router-link to='/' class='navigation__logo-wrapper' :style='onVisibility'>
-        <svg class="navigation__logo">
+        <svg class="navigation__logo" :class="{'navigation__logo--white': logoColor}">
             <use xlink:href='#logo'/>
         </svg>
     </router-link>
@@ -39,7 +39,7 @@ import SocialNetworks from '@/components/SocialNetworks.vue';
 
 export default {
     name: 'navigation',
-    props: {'navi': Boolean},
+    props: {'showNav': Boolean},
     components: {
         SocialNetworks
     },
@@ -73,8 +73,17 @@ export default {
             return this.tooltip = false;
         }
     },
+    computed: {
+        logoColor() {
+            let name = this.$route.name;
+            if (name == 'Hello') {
+                return true;
+            }
+            return false;
+        }
+    },
     watch: {
-        navi(boolean) {
+        showNav(boolean) {
             if(!boolean) {
                 this.onVisibility = this.visibility;
                 this.onTransparent = this.transparent;
@@ -114,7 +123,7 @@ export default {
     @media (max-width: 600px) {
         position: static;
         width: 100%;
-        padding: 32pt 32pt 24pt;
+        padding: 32pt 32pt 22pt;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -123,15 +132,24 @@ export default {
             border: none;
         }
     }
+    @media (max-width: 375px) {
+        padding: 26pt 26pt 20pt;
+    }
     @media (max-width: 320px) {
-        padding: 24pt 24pt 18pt;
+        padding: 22pt 22pt 16pt;
     }
     &__logo {
         fill: $MERGE-MAIN-COLOR;
         width: 31px;
         height: 40px;
         @media (max-width: 600px) {
-            fill: $TEXT-COLOR;
+            width: 24pt;
+            height: 32pt;
+        }
+        &--white {
+            @media (max-width: 600px) {
+                fill: $TEXT-COLOR;
+            }    
         }
     }
     &__menu-link {
@@ -141,7 +159,7 @@ export default {
         color: $MERGE-MAIN-COLOR;
         text-decoration: none;
         letter-spacing: 0.8pt;
-        font-weight: 700;
+        font-weight: 600;
          @media (max-width: 600px) {
             display: block;
         }

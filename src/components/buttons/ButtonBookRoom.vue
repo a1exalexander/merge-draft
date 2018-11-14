@@ -2,7 +2,16 @@
 <button class="button-book-room">
 	<p class='button-book-room__text'>
 		book a meeting room
+		<svg class='button-book-room__img'>
+			<use xlink:href='#arrow-button' />
+		</svg>
 	</p>
+	<svg style="display: none">
+      <symbol id='arrow-button'>
+        <path stroke-width="1" stroke-miterlimit="4" transform="matrix(0.685894 0.685894 -0.685894 0.685894 6.45996 0.409277)"
+          d="M2.66654 0L2.66654 1.06667L6.18121 1.06667L-0.00012207 7.248L0.751878 8L6.93321 1.81867L6.93321 5.33333L7.99988 5.33333L7.99988 0L2.66654 0L2.66654 1.06667L6.18121 1.06667L-0.00012207 7.248L0.751878 8L6.93321 1.81867L6.93321 5.33333L7.99988 5.33333L7.99988 0L2.66654 0Z" />
+      </symbol>
+    </svg>
 </button>
 </template>
 
@@ -26,6 +35,10 @@ export default {
 	position: relative;
 	z-index: 2;
 	transition: background-color ease-in-out 0.1s;
+	@media (max-width: 600px) {
+		padding: 1.3rem 2rem;
+		width: 100%;
+	}
 	&:active &__text {
 		color: $LIGHT-GREY;
 	}
@@ -59,6 +72,26 @@ export default {
 			z-index: 0;
 			visibility: hidden;
 		}
+		@media (max-width: 600px) {
+			width: 100%;
+			font-size: 0.8rem;
+			font-weight: 700;
+			display: grid;
+			grid-template-columns: repeat(2, auto);
+			grid-column-gap: 7px;
+			align-items: center;
+		}
 	}
+	&__img {
+        fill: $MAIN-DARK-COLOR;
+        height: 16px;
+        width: 16px;
+        stroke: none;
+		margin-top: 3px;
+		display: none;
+		@media (max-width: 600px) {
+			display: block;
+		}
+    }
 }
 </style>

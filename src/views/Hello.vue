@@ -29,7 +29,6 @@
                     v-if='secondString'
                     @typed='onTypedSecond'
                 ></vue-typer>
-                 <span class="hello__title hello__title--line" v-if='thirdString'></span>
             </span>
             <span class="hello__logo">
                 <vue-typer
@@ -162,8 +161,11 @@ export default {
         padding: 0 32pt 32pt;
         flex: 1 0 100%;
     }
+    @media (max-width: 375px) {
+        padding: 0 26pt 26pt;
+    }
     @media (max-width: 320px) {
-        padding: 0 24pt 24pt;
+        padding: 0 22pt 22pt;
     }
     &__title {
         @extend %flex-row;
@@ -196,22 +198,14 @@ export default {
             width: 100%;
         }
         @media (max-width: 540px) {
-            font-size: 2.8rem;
+            font-size: 3.6rem;
             line-height: 1.2;
         }
-        &--line {
-            margin-left: 10pt;
-            display: none;
-            width: 48pt;
-            height: 3pt;
-            background-color: $TEXT-COLOR;
-            vertical-align: middle;
-            @media (max-width: 600px) {
-                display: inline-block;
-            }
-            @media (max-width: 360px) {
-                width: 30pt;
-            }
+        @media (max-width: 375px) {
+            font-size: 3.2rem;
+        }
+        @media (max-width: 320px) {
+            font-size: 2.8rem;
         }
         &--nowrap {
             flex-direction: row;
@@ -226,10 +220,10 @@ export default {
            margin-bottom: 10pt;
         }
         @media (max-width: 500px) {
-           margin-bottom: 26pt;
+           margin-bottom: 24pt;
         }
         @media (max-width: 375px) {
-           margin-bottom: 20pt;
+           margin-bottom: 16pt;
         }
         @media (max-width: 320px) {
            margin-bottom: 10pt;
@@ -276,8 +270,14 @@ export default {
             letter-spacing: 8pt;
         }
         @media (max-width: 540px) {
-            font-size: 2.8rem;
+            font-size: 3.6rem;
             line-height: 1.2;
+        }
+        @media (max-width: 375px) {
+            font-size: 3.2rem;
+        }
+        @media (max-width: 320px) {
+            font-size: 2.8rem;
         }
     }
     &__subtitle {
@@ -291,9 +291,13 @@ export default {
         white-space: nowrap;
         @media (max-width: 600px) {
             font-size: 0.8rem;
-            line-height: 1.5;
-            letter-spacing: 0.5pt;
+            line-height: 2;
+            font-weight: 600;
+            letter-spacing: 0.8pt;
             white-space: normal;
+        }
+        @media (max-width: 320px) {
+            font-size: 0.7rem;
         }
     }
     &__text {
@@ -365,17 +369,17 @@ export default {
         width: 100%;
         justify-content: start;
 		&:first-child {
-			margin-bottom: 20pt;
+			margin-bottom: 14pt;
 		}
     }
     @media (max-width: 375px) {
         &:first-child {
-            margin-bottom: 16pt;
+            margin-bottom: 10pt;
         }
     }
     @media (max-width: 320px) {
         &:first-child {
-            margin-bottom: 10pt;
+            margin-bottom: 6pt;
         }
     }
     @media (min-width: 600px) {
@@ -407,14 +411,14 @@ export default {
             align-items: flex-start;
             padding-top: 20pt;
         }
-        @media (max-width: 500px) {
-            padding: 28pt 0 30pt;
+        @media (max-width: 540px) {
+            padding: 26pt 0 22pt;
         }
         @media (max-width: 375px) {
-            padding: 20pt 0 22pt;
+            padding: 22pt 0 18pt;
         }
         @media (max-width: 320px) {
-            padding: 14pt 0 16pt;
+            padding: 14pt 0 10pt;
         }
 	}
 
@@ -438,11 +442,11 @@ export default {
         white-space: nowrap;
         transition: color ease-in-out 0.1s;
         @media (max-width: 600px) {
-           font-size: 0.625rem;
+           font-size: 0.8rem;
            letter-spacing: 0.7pt
         }
-        @media (max-width: 350px) {
-           font-size: 0.5rem;
+        @media (max-width: 320px) {
+           font-size: 0.6rem;
            letter-spacing: 0.5pt
         }
 	}

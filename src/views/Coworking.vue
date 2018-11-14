@@ -4,9 +4,9 @@
 	<div class="coworking__wrapper">
 		<div class="coworking__inner">
 			<header class="coworking__header animated d06 delay-02s fadeInUp">
-				<h1 class="coworking__title">Coworking<br>Space
+				<h1 class="coworking__title">Coworking<br>space
 				</h1>
-				<button-membership @click.native='becomeMember'></button-membership>
+				<button-membership class="coworking__button coworking__button--header" @click.native='becomeMember'></button-membership>
 			</header>
 			<section class="view-360 animated d06 delay-03s fadeInUp">
 				<div class="view-360__row">
@@ -17,38 +17,38 @@
 				</div>
 			</section>
 			<section class="beneffits animated d06 delay-04s fadeInUp">
-				<div class="beneffits__label">
+				<div class="beneffits__label beneffits__label--wifi">
 					<img src="../assets/image/wi-fi.svg" alt="wi-fi" class='beneffits__image'>
 					<p class="beneffits__text">Super-fast Internet
 					</p>
 				</div>
-				<div class="beneffits__label">
-					<img src="../assets/image/meeting-room.svg" alt="wi-fi" class='beneffits__image'>
+				<div class="beneffits__label beneffits__label--meeting">
+					<img src="../assets/image/meeting-room.svg" alt="meeting room" class='beneffits__image'>
 					<p class="beneffits__text">Meeting Room
 					</p>
 				</div>
-				<div class="beneffits__label">
-					<img src="../assets/image/printer.svg" alt="wi-fi" class='beneffits__image'>
-					<p class="beneffits__text">Wireless Printer/Scanner/Copier
+				<div class="beneffits__label beneffits__label--printer">
+					<img src="../assets/image/printer.svg" alt="printer" class='beneffits__image'>
+					<p class="beneffits__text">Wireless Printer/Scanner/ Copier
 					</p>
 				</div>
-				<div class="beneffits__label">
-					<img src="../assets/image/unlimited-coffee-tea.svg" alt="wi-fi" class='beneffits__image'>
-					<p class="beneffits__text">Unlimited coffee, tea, snacks
+				<div class="beneffits__label beneffits__label--cofee">
+					<img src="../assets/image/unlimited-coffee-tea.svg" alt="cofee and tee" class='beneffits__image'>
+					<p class="beneffits__text">Coffee, tea, snacks
 					</p>
 				</div>
-				<div class="beneffits__label">
-					<img src="../assets/image/microwave.svg" alt="wi-fi" class='beneffits__image'>
-					<p class="beneffits__text">Kitchen with a microvawe and fridge
+				<div class="beneffits__label beneffits__label--microwave">
+					<img src="../assets/image/microwave.svg" alt="microwave" class='beneffits__image'>
+					<p class="beneffits__text">Kitchen with a microwave and fridge
 					</p>
 				</div>
-				<div class="beneffits__label">
-					<img src="../assets/image/shower.svg" alt="wi-fi" class='beneffits__image'>
+				<div class="beneffits__label beneffits__label--shower">
+					<img src="../assets/image/shower.svg" alt="shower" class='beneffits__image'>
 					<p class="beneffits__text">Shower
 					</p>
 				</div>
-				<div class="beneffits__label">
-					<img src="../assets/image/merge-dots.svg" alt="wi-fi" class='beneffits__image'>
+				<div class="beneffits__label beneffits__label--merge">
+					<img src="../assets/image/merge-dots.svg" alt="merge" class='beneffits__image'>
 					<p class="beneffits__text">Merge community
 					</p>
 				</div>
@@ -63,12 +63,12 @@
 		</div>
 	</div>
 	<section class="next-page-nav animated d06 delay-07s fadeInUp">
-		<router-link to='/meeting-room' class="next-page-nav__link next-page-nav__link--meeting-room">
+		<router-link to='/meeting-room' class="next-page-nav__link coworking__link-page coworking__link-page--meeting-room">
 			<div class="next-page-nav__inner">
 				<p class="next-page-nav__text">MEETING ROOM</p>
 			</div>
 		</router-link>
-		<router-link to='/events' class="next-page-nav__link next-page-nav__link--events">
+		<router-link to='/events' class="next-page-nav__link coworking__link-page coworking__link-page--events">
 			<div class="next-page-nav__inner">
 				<p class="next-page-nav__text">Events</p>
 			</div>
@@ -107,6 +107,9 @@ export default {
 	@media (orientation: landscape) and (max-width: 820px) {
 		padding-top: 20pt;
 	}
+	@media (max-width: 600px) {
+		padding-top: 0;
+	}
 	&__wrapper {
         width: 100%;
         display: flex;
@@ -132,10 +135,25 @@ export default {
             padding: 0 5%; 
         }
         @media (max-width: 600px) {
-            padding: 0;
-            
-        }
-    }
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+			align-items: stretch;
+			padding: 0 0 32pt 0;
+			flex: 1 0 100%;
+		}
+	}
+	&__button {
+		&--header {
+			grid-area: button;
+            @media (max-width: 1000px) {
+                justify-self: start;
+            }
+			@media (max-width: 600px) {
+				display: none;
+			}
+		}
+	}
     &__header {
         width: 100%;
         display: grid;
@@ -153,19 +171,20 @@ export default {
                 'title title'
                 'button button';
             justify-content: stretch;
-        }
-        .button-membership {
-            grid-area: button;
-            @media (max-width: 1000px) {
-                justify-self: start;
-            }
-            @media (max-width: 600px) {
-                text-align: center;
-                justify-self: center;
-            }
-            @media (max-width: 450px) {
-                width: 90%;
-            }
+		}
+		@media (max-width: 600px) {
+			order: 0;
+			display: block;
+			margin-bottom: 40pt;
+			padding: 0 32pt;
+		}
+		@media (max-width: 375px) {
+			margin-bottom: 34pt;
+			padding: 0 26pt;
+		}
+		@media (max-width: 320px) {
+			margin-bottom: 30pt;
+			padding: 0 22pt;
         }
     }
     &__title {
@@ -177,27 +196,25 @@ export default {
         color: $TEXT-COLOR;
         white-space: nowrap;
         margin: 0;
-        
         @media (max-width: 990px) {
             margin-bottom: 2rem;
         }
         @media (max-width: 600px) {
-            align-self: center;
-            text-align: center;
+            align-self: flex-start;
+			text-align: left;
+			font-size: 2.6rem;
+			margin: 0;
         }
-        @media (max-width: 500px) {
-            font-size: 3rem;
-        }
-        
     }
     &__slider {
+		order: 1;
         @extend %flex-col;
         align-items: flex-start;
         padding-top: 5rem;
         padding-bottom: 3rem;
-        width: 100%;
-        @media (max-width: 450px) {
-            align-items: center;
+		width: 100%;
+		@media (max-width: 600px) {
+			padding: 0;
         }
     }
     &__label-button {
@@ -215,11 +232,25 @@ export default {
 		&:hover {
 			color: white;
 		}
+		@media (max-width: 600px) {
+            display: none;
+        }
         
-    }
+	}
+	&__link-page {
+		&--meeting-room {
+			background-image: url('../assets/image/meeting-room.jpg');
+		}
+		&--events {
+			background-image: url('../assets/image/events.jpg');
+		}
+	}
 }
 .view-360 {
 	@extend %flex-col;
+	@media (max-width: 600px) {
+		display: none;
+	}
 	&__row {
 		@extend %flex-row;
 		padding-bottom: 1.5rem;
@@ -253,63 +284,97 @@ export default {
 	}
 }
 .beneffits {
-	width: 100%;
+	width: 50%;
+	min-width: 600px;
 	padding: 5rem 0;
 	border: {
-		top: $MIDDLE-GREY 1px solid;
-		bottom: $MIDDLE-GREY 1px solid;
+		top: $MIDDLE-GREY-OPACITY 1px solid;
+		bottom: $MIDDLE-GREY-OPACITY 1px solid;
 	} 
 	display: grid;
 	grid-template-columns: repeat(2, auto);
 	grid-template-rows: repeat(5, auto);
 	grid-row-gap: 2.5rem;
-	grid-column-gap: 5rem;
+	grid-column-gap: 4rem;
 	justify-items: start;
 	justify-content: start;
 	@media (max-width: 750px) {
-		padding: 2rem 1rem;
-		justify-content: stretch;
-		grid-template-columns: none;
-		grid-template-rows: repeat(8, auto);
+		width: 100%;
+		min-width: auto;
+	}
+	@media (max-width: 600px) {
+		grid-template-columns: repeat(2, 47.5%);
+		padding: 30pt 32pt 0;
+		order: 3;
+		border: none;
+		grid-row-gap: 30pt;
+		grid-column-gap: 5%;
+	}
+	@media (max-width: 375px) {
+		padding: 26pt 26pt 0;
+	}
+	@media (max-width: 320px) {
+		padding: 22pt 22pt 0;
 	}
 	&__label {
 		@extend %flex-row;
 		align-items: center;
+		@media (max-width: 750px) {
+			flex-direction: column;
+			align-items: flex-start;
+			&--printer {
+				grid-area: 1 / 2 / 2 / 3;
+			}
+			&--meeting {
+				grid-area: 2 / 2 / 3 / 3;
+			}
+			&--microwave {
+				grid-area: 2 / 1 / 3 / 2;
+			}
+		}
 	}
 	&__image {
 		margin-right: 2rem;
-		width: 40px;
+		max-width: 40px;
 		height: 40px;
-	}
-	&__img {
-		margin-right: 2rem;
-		width: 40px;
-		height: 40px;
+		@media (max-width: 750px) {
+			margin: 0 0 5pt 0;
+		}
 	}
 	&__text {
 		max-width: 170px;
 		font-family: $title-font;
-		font-size: 16px;
+		font-size: 1rem;
 		font-weight: 500;
 		text-align: left;
+		line-height: 1.4;
 		color: $TEXT-COLOR;
-		white-space: normal;
 		@media (max-width: 750px) {
 			max-width: 100%;
+			font-family: $base-font;
+			font-size: 1.1rem;
+			font-weight: 400;
+			margin: 0;
+			letter-spacing: 0.3pt;
+		}
+		@media (max-width: 375px) {
+			font-size: 1.05rem;
+		}
+		@media (max-width: 320px) {
+			font-size: 0.88rem;
 		}
 	}
 	&__button {
 		padding-top: 2rem;
 		grid-area: 5 / 1 / 6 / 2;
-		@media (max-width: 750px) {
-			grid-area: 8 / 1 / 9 / 2;
-		}
 		@media (max-width: 600px) {
-			justify-self: center;
+			grid-area: 5 / 1 / 6 / 3;
 			width: 100%;
+			padding-top: 30pt;
+			border-top: $MIDDLE-GREY-OPACITY 1px solid;
 		}
 		.button-membership {
-            @media (max-width: 450px) {
+            @media (max-width: 600px) {
                 width: 100%;
             }
         }

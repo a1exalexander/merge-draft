@@ -24,7 +24,7 @@ export default new Router({
 	routes: [
 		{
 			path: '*',
-			name: 'Other',
+			name: 'Start',
 			component: Hello
 		},
 		{

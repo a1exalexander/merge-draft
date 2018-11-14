@@ -29,7 +29,7 @@
 				<router-link to="/coworking" class="menu__link">Coworking space</router-link>
 			</li>
 			<li class="menu__item animated d06 delay-04s fadeInLeft">
-				<router-link to="/meeting-room" class="menu__link">Meeting Room</router-link>
+				<router-link to="/meeting-room" class="menu__link">Meeting room</router-link>
 			</li>
 			<li class="menu__item animated d06 delay-05s fadeInLeft">
 				<router-link to="/" class="menu__link menu__link--events">Events</router-link>
@@ -296,6 +296,14 @@ export default {
 			height: 24pt;
 			background-color: transparent;
 		}
+		@media (max-width: 375px) {
+			top: 34pt;
+			right: 24pt;
+		}
+		@media (max-width: 320px) {
+			top: 30pt;
+			right: 18pt;
+		}
 	}
 	&__img {
 		width: 26px;
@@ -326,6 +334,12 @@ export default {
 	@media (max-width: 600px) {
 		display: block;
 		padding: 36pt 32pt;
+	}
+	@media (max-width: 375px) {
+		padding: 32pt 28pt;
+	}
+	@media (max-width: 320px) {
+		padding: 28pt 24pt;
 	}
 	&__col {
 		height: 100%;
@@ -420,11 +434,23 @@ export default {
 			text-align: left;
 			margin-bottom: 23pt;
 		}
+		@media (max-width: 375px) {
+			margin-bottom: 18pt;
+		}
+		@media (max-width: 320px) {
+			margin-bottom: 12pt;
+		}
 	}
 	&__item {
 		@media (max-width: 600px) {
 			text-align: left;
 			margin-bottom: 23pt;
+			&:last-child {
+				margin: 0;
+			}
+		}
+		@media (max-width: 320px) {
+			margin-bottom: 18pt;
 			&:last-child {
 				margin: 0;
 			}
@@ -480,9 +506,15 @@ export default {
 		}
 		@media (max-width: 600px) {
 			text-align: left;
-			font-size: 2rem;
+			font-size: 2.5rem;
 			line-height: 1;
 			white-space: normal;
+		}
+		@media (max-width: 375px) {
+			font-size: 2.2rem;
+		}
+		@media (max-width: 320px) {
+			font-size: 1.9rem;
 		}
 		@media (min-width: 600px) {
 			&:hover {
@@ -516,8 +548,9 @@ export default {
 			flex-flow: row nowrap;
 			justify-content: space-between;
 			align-items: center;
-			height: 10pt;
+			height: 1.5rem;
 			max-width: 50%;
+			padding-top: 10px;
 		}
 	}
 	&__language-link {
@@ -562,9 +595,11 @@ export default {
 		transition: color ease-in-out 0.1s,
 		opacity ease-in-out 0.1s;
 		@media (max-width: 600px) {
-			font-size: 0.75rem;
+			font-size: 0.9rem;
+			font-weight: 600;
+			bottom: 0;
 			&--ua {
-			left: 0;
+				left: 0;
 			}
 			&--ru {
 				right: -8pt;
@@ -644,25 +679,42 @@ export default {
 	}
 	&__mobile-links {
 		display: none;
-		padding: 40pt 0;
+		padding: 30pt 0;
 		flex-direction: column;
 		align-items: flex-start;
 		@media (max-width: 600px) {
 			display: flex;
 		}
+		@media (max-width: 375px) {
+			padding: 22pt 0;
+		}
+		@media (max-width: 320px) {
+			padding: 18pt 0;
+		}
 	}
 	&__mobile-link {
 		font-family: $base-font;
-		margin-bottom: 23pt;
-		font-size: 0.8125rem;
-		line-height: 1rem;
-		letter-spacing: 0.9pt;
-		font-weight: 600;
+		margin-bottom: 18pt;
+		font-size: 1rem;
+		line-height: 1.8;
+		letter-spacing: 1pt;
+		font-weight: 500;
 		color: $TEXT-COLOR;
 		display: inline-block;
 		align-items: center;
 		flex-wrap: wrap;
 		text-decoration: none;
+		@media (max-width: 375px) {
+			line-height: 1.4;
+			margin-bottom: 14pt;
+			letter-spacing: 0.5pt;
+		}
+		@media (max-width: 320px) {
+			font-size: 0.9rem;
+			line-height: 1.2;
+			margin-bottom: 11pt;
+			letter-spacing: 0.4pt;
+		}
 		&:last-child {
 			margin: 0;
 		}

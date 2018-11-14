@@ -36,6 +36,9 @@ export default {
     position: relative;
     transition: background-color ease-in-out 0.1s;
     z-index: 2;
+    @media (max-width: 600px) {
+        width: 100%;
+    }
     &:active {
         background-color: $MERGE-DARK-COLOR;
     }
@@ -56,6 +59,10 @@ export default {
         color: $MAIN-DARK-COLOR;
         letter-spacing: 0.7px;
         white-space: nowrap;
+        @media (max-width: 600px) {
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
         &::before {
             position: absolute;
             content: '';
@@ -76,6 +83,7 @@ export default {
         height: 16px;
         width: 16px;
         stroke: none;
+        margin-top: 2px;
     }
 }
 

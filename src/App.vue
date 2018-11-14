@@ -4,15 +4,15 @@
 	<transition 
 		appear
 		name="custom-classes-transition"
-		enter-active-class="animatedInNav fadeIn"
+		enter-active-class="animated d02 fadeIn"
 		leave-active-class="animated fast fadeOut">
-        <navigation v-show='navi' :navi='navi'></navigation>
+        <navigation v-show='showNav' :navi='showNav'></navigation>
     </transition>
     <transition 
 		appear
 		name="custom-classes-transition"
 		enter-active-class="animated fadeInLeft"
-		leave-active-class="animated02 fadeOut"
+		leave-active-class="animated d02 fadeOut"
 		mode="out-in">
         <router-view/>
     </transition>
@@ -28,16 +28,12 @@ export default {
 	components: {
 		Navigation
 	},
-	data() {
-		return {
-			navi: true
-		};
-	},
-	methods: {
-		onNavi() {
+	computed: {
+		showNav() {
 			let name = this.$route.name;
 			if (
 				name == 'Hello' ||
+				name == 'Start' ||
 				name == 'Coworking' ||
 				name == 'MeetingRoom' ||
 				name == 'Events' ||
@@ -47,38 +43,7 @@ export default {
 			} else {
 				return false;
 			}
-		},
-		checkNav() {
-			if (this.navi !== this.onNavi()) {
-				if (this.navi) {
-					this.navi = this.onNavi();
-				} else {
-					this.navi = this.onNavi();
-				}
-			}
-		},
-		checkNavUpdate() {
-			let w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-			if (this.navi !== this.onNavi()) {
-				if (this.navi) {
-					if(w > 850) {
-						setTimeout(()=>{
-							this.navi = this.onNavi();
-						}, 250);
-					} else {
-						this.navi = this.onNavi();
-					}
-				} else {
-					this.navi = this.onNavi();
-				}
-			}
 		}
-	},
-	created() {
-		this.checkNav();
-	},
-	beforeUpdate() {
-		this.checkNavUpdate();
 	}
 };
 </script>
