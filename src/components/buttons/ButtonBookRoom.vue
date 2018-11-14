@@ -75,7 +75,7 @@ export default {
 		@media (max-width: 600px) {
 			width: 100%;
 			line-height: 1;
-			font-size: 0.8rem;
+			font-size: 0.9rem;
 			font-weight: 600;
 			display: grid;
 			grid-template-columns: repeat(2, auto);

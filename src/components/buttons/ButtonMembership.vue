@@ -61,7 +61,7 @@ export default {
         letter-spacing: 0.7px;
         white-space: nowrap;
         @media (max-width: 600px) {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
 			font-weight: 600;
         }
         &::before {
