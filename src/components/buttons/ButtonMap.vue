@@ -58,6 +58,10 @@ export default {
         letter-spacing: 0.7px;
         color: $TEXT-COLOR;
         white-space: nowrap;
+        @media (max-width: 600px) {
+            font-size: 0.8rem;
+            font-weight: 600;
+		}
         &::before {
             position: absolute;
             content: '';
@@ -79,6 +83,10 @@ export default {
         width: 16px;
         fill: $TEXT-COLOR;
         margin-left: 10px;
+        @media (max-width: 600px) {
+            height: 18px;
+            width: 18px;
+		}
     }
 }
 </style>

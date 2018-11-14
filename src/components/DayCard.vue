@@ -2,7 +2,7 @@
 <div class="resident-card__wrapper-all" @click.self='close'>
 <div class="day-card__wrapper" @click.self='close'>
     <div class="day-card animated faster fadeInBubble">
-        <button-close-mini class="resident-card__close" @click.native='close'></button-close-mini>
+        <button-close-mini class="day-card__close" @click.native='close'></button-close-mini>
         <p class="day-card__title">Day access
         </p>
         <div class="day-card__inner day-card__inner--middle">
@@ -89,7 +89,7 @@ export default {
         padding: 20pt 24pt;
     }
     @media (max-width: 320px) {
-        padding: 16pt 18pt;
+        padding: 20pt 18pt;
     }
     &__wrapper {
         padding: 2rem;
@@ -132,10 +132,15 @@ export default {
                 width: 20pt;
                 height: 20pt;
             }
-            top: 28pt;
+            top: 20pt;
+            right: 20pt;
+        }
+        @media (max-width: 375px) {
+           top: 22pt;
         }
         @media (max-width: 320px) {
-           top: 24pt;
+           top: 22pt;
+           right: 14pt;
         }
     }
     &__button {
@@ -190,9 +195,11 @@ export default {
         text-align: left;
         color: $TEXT-COLOR;
         margin-bottom: 2.5rem;
-        @media (max-width: 600px) {
-            font-size: 1.375rem;
-            line-height: 2;
+       @media (max-width: 600px) {
+            font-size: 1.5rem;
+            letter-spacing: 0.4pt;
+            margin-bottom: 20pt;
+            line-height: 1;
         }
     }
     &__description {
@@ -204,7 +211,7 @@ export default {
         text-align: left;
         color: $GREY;
         grid-area: 2 / 1 / 3 / 3;
-        @media (max-width: 600px) {
+       @media (max-width: 600px) {
             font-size: 0.75rem;
             padding: 0;
             margin-bottom: 22pt;
@@ -285,7 +292,7 @@ export default {
         text-align: left;
         color: $TEXT-COLOR;
         @media (max-width: 600px) {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
         }
     }
     &__price {

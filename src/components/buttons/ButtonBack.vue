@@ -35,6 +35,10 @@ export default {
 	transition: background-color ease-in-out 0.1s;
 	position: relative;
 	z-index: 2;
+	@media (max-width: 600px) {
+		width: 32pt;
+		height: 32pt;
+	}
 	&:focus {
 		background-color: $BUTTON-COLOR;
 	}
@@ -64,8 +68,11 @@ export default {
 		height: 17px;
 		fill: $GREY;
 		transition: fill ease-in-out 0.1s;
+		@media (max-width: 600px) {
+			width: 20px;
+			height: 20px;
+		}
 	}
-
 	&__outside {
 		pointer-events: none;
 		position: absolute;

@@ -26,10 +26,10 @@
 				<router-link to="/" class="menu__link menu__link--merge">Merge</router-link>
 			</li>
 			<li class="menu__item animated d06 delay-03s fadeInLeft">
-				<router-link to="/coworking" class="menu__link">Coworking space</router-link>
+				<router-link to="/coworking" class="menu__link menu__link--coworking">Coworking space</router-link>
 			</li>
 			<li class="menu__item animated d06 delay-04s fadeInLeft">
-				<router-link to="/meeting-room" class="menu__link">Meeting room</router-link>
+				<router-link to="/meeting-room" class="menu__link menu__link--meeting">Meeting room</router-link>
 			</li>
 			<li class="menu__item animated d06 delay-05s fadeInLeft">
 				<router-link to="/" class="menu__link menu__link--events">Events</router-link>
@@ -297,12 +297,12 @@ export default {
 			background-color: transparent;
 		}
 		@media (max-width: 375px) {
-			top: 34pt;
-			right: 24pt;
+			top: 30pt;
+			right: 22pt;
 		}
 		@media (max-width: 320px) {
-			top: 30pt;
-			right: 18pt;
+			top: 26pt;
+			right: 17pt;
 		}
 	}
 	&__img {
@@ -336,10 +336,10 @@ export default {
 		padding: 36pt 32pt;
 	}
 	@media (max-width: 375px) {
-		padding: 32pt 28pt;
+		padding: 32pt 26pt;
 	}
 	@media (max-width: 320px) {
-		padding: 28pt 24pt;
+		padding: 28pt 22pt;
 	}
 	&__col {
 		height: 100%;
@@ -529,12 +529,23 @@ export default {
 			@media (max-width: 600px) {
 				color: $MERGE-MAIN-COLOR;
 			}
+			@media (max-width: 600px) {
+				
+			}
+		}
+		&--coworking {
+			@media (max-width: 375px) {
+				left: -0.5px;
+			}
 		}
 		&--last {
 			left: 0;
 		}
 		&--events {
 			left: -2px;
+			@media (max-width: 375px) {
+				left: -1px;
+			}
 		}
 	}
 	&__language {
@@ -656,7 +667,13 @@ export default {
 		justify-content: stretch;
 		flex-wrap: nowrap;
 		@media (max-width: 600px) {
-			display: flex;	
+			display: flex;
+			@media (max-width: 375px) {
+				padding: 0 26pt;
+			}
+			@media (max-width: 320px) {
+				padding: 0 22pt;
+			}	
 		}
 	}
 	&__line-mobile {

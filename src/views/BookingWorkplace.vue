@@ -27,10 +27,10 @@
     </transition>
 	<logo class='booking-workplace__logo'></logo>
 	<section class="booking-workplace" :style="onStyleAnimate">
-		<button-close-mini class="booking-workplace__close" @click.native='goBack'></button-close-mini>
-		<div class="booking-workplace__inner booking-workplace__inner--back-button">
+		<button-close-mini class="booking-workplace__close"></button-close-mini>
+		<div class="booking-workplace__inner booking-workplace__inner--back-button" @click='goBack'>
 			<button-back class="booking-workplace__button-back" @click.native='goBack'></button-back>
-			<p class="booking-workplace__button-text">go back</p>
+			<p class="booking-workplace__button-text" @click.native='goBack'>go back</p>
 		</div>
 		<h1 class="booking-workplace__title">Booking of the	workplace</h1>
 		<div class="workplace-choice-mobile__wrapper">
@@ -321,7 +321,7 @@ export default {
 				transition: 'transform ease-in-out 0.3s'
 			},
 			onStyleAnimate: null,
-			bookingDone: false
+			bookingDone: true
 		};
 	},
 	methods: {
@@ -521,9 +521,6 @@ export default {
 			display: none;
 		}
 	}
-	&__button-back {
-		margin-right: 1rem;
-	}
 	&__button-text {
 		text-transform: uppercase;
 		font-family: $base-font;
@@ -532,6 +529,12 @@ export default {
 		letter-spacing: 0.7px;
 		text-align: left;
 		color: $GREY;
+		padding-left: 1rem;
+		cursor: pointer;
+		@media (max-width: 600px) {
+			font-size: 0.8rem;
+			font-weight: 600;
+		}
 	}
 	&__validate {
 		font-family: $base-font;
@@ -563,7 +566,8 @@ export default {
 			padding-bottom: 1.375rem;
 			border-bottom: 1px solid $MIDDLE-GREY;
 			@media (max-width: 600px) {
-				display: none;
+				border: none;
+				padding-bottom: 24pt;
 			}
 		}
 		&--choice {
@@ -615,15 +619,13 @@ export default {
 		@media (max-width: 600px) {
 			font-size: 2rem;
 			text-align: center;
-			margin: 0 0 34pt;
+			margin: 0 0 22pt;
 		}
 		@media (max-width: 480px) {
 			text-align: left;
-			margin-bottom: 54pt;
 		}
 		@media (max-width: 320px) {
 			font-size: 1.8rem;
-			margin-bottom: 44pt;
 		}
 	}
 	&__col {
@@ -671,7 +673,8 @@ export default {
 		line-height: 1;
 		@media (max-width: 480px) {
 			padding: 12pt 16pt;
-			font-size: 12pt;
+			font-size: 11pt;
+			font-weight: 400;
 			line-height: 1;
 		}
 		&:-webkit-autofill,
@@ -689,8 +692,9 @@ export default {
 			line-height: 1;
 			@media (max-width: 480px) {
 				padding-top: 2pt;
-				font-size: 12pt;
+				font-size: 11pt;
 				line-height: 1;
+				font-weight: 400;
 			}
 		}
 	}
@@ -705,10 +709,9 @@ export default {
 		align-items: flex-start;
 		margin-bottom: 11px;
 		@media (max-width: 600px) {
-			font-size: 10pt;
-		}
-		@media (max-width: 480px) {
-			margin-bottom: 12pt;
+			font-weight: 500;
+			font-size: 9pt;
+			margin-bottom: 10pt;
 		}
 	}
 	&__price {
@@ -897,15 +900,15 @@ export default {
 	}
 	&__title {
 		font-family: $base-font;
-		font-size: 1.125rem;
-		font-weight: 700;
+		font-size: 1.3rem;
+		font-weight: 600;
 		color: $TEXT-COLOR;
 	}
 	&__resident {
 		font-family: $base-font;
-		font-size: 0.625rem;
-		font-weight: 600;
-		color: $LIGHT-GREY;
+		font-size: 0.7rem;
+		font-weight: 500;
+		color: $GREY-BORDER-COLOR;
 		padding-top: 3pt;
 	}
 	&__link-img {
@@ -920,7 +923,7 @@ export default {
 	}
 	&__price {
 		font-family: $base-font;
-		font-size: 0.75rem;
+		font-size: 0.8rem;
 		font-weight: 600;
 		color: $TEXT-COLOR;
 		letter-spacing: 0.7pt;

@@ -124,6 +124,9 @@ export default {
             padding: 54pt 20pt;
             align-items: flex-start; 
         }
+        @media (max-width: 375px) {
+            padding: 34pt 20pt;
+        }
         @media (max-width: 320px) {
             padding: 24pt 20pt;
         }
@@ -148,7 +151,7 @@ export default {
             top: 28pt;
         }
         @media (max-width: 320px) {
-           top: 24pt;
+           top: 22pt;
         }
     }
     &__button {
@@ -165,8 +168,13 @@ export default {
         color: $TEXT-COLOR;
         grid-area: 1 / 1 / 2 / 3;
         @media (max-width: 600px) {
-            font-size: 1.375rem;
+            font-size: 1.5rem;
             line-height: 2;
+            letter-spacing: 0.5pt;
+        }
+        @media (max-width: 320px) {
+           font-size: 1.3rem;
+           letter-spacing: 0.3pt;
         }
     }
     &__description {
@@ -179,9 +187,10 @@ export default {
         color: $GREY;
         grid-area: 2 / 1 / 3 / 3;
         @media (max-width: 600px) {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             padding: 0;
             margin-bottom: 22pt;
+            letter-spacing: 0.5pt;
         }
         @media (max-width: 320px) {
             margin-bottom: 12pt;
@@ -279,7 +288,11 @@ export default {
         text-align: left;
         color: $TEXT-COLOR;
         @media (max-width: 600px) {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
+        }
+        @media (max-width: 320px) {
+            font-size: 0.7rem;
+            font-weight: 500;
         }
     }
     &__price {

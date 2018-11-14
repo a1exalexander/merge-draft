@@ -83,7 +83,6 @@ export default {
         height: 16px;
         width: 16px;
         stroke: none;
-        margin-top: 2px;
     }
 }
 
