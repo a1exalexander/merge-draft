@@ -35,6 +35,10 @@ export default {
     flex-flow: nowrap;
     position: relative;
     z-index: 2;
+    @media (max-width: 600px) {
+		padding: 1.3rem 2rem;
+		width: 100%;
+	}
     &:active &__text {
         color: $LIGHT-GREY;
     }
@@ -79,7 +83,7 @@ export default {
     }
     &__img {
         stroke: none;
-        height: 16px;
+        height: 14px;
         width: 16px;
         fill: $TEXT-COLOR;
         margin-left: 10px;

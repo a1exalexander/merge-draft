@@ -74,8 +74,9 @@ export default {
 		}
 		@media (max-width: 600px) {
 			width: 100%;
+			line-height: 1;
 			font-size: 0.8rem;
-			font-weight: 700;
+			font-weight: 600;
 			display: grid;
 			grid-template-columns: repeat(2, auto);
 			grid-column-gap: 7px;
@@ -84,10 +85,9 @@ export default {
 	}
 	&__img {
         fill: $MAIN-DARK-COLOR;
-        height: 16px;
+        height: 14px;
         width: 16px;
         stroke: none;
-		margin-top: 3px;
 		display: none;
     }
 }

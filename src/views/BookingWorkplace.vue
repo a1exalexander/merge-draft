@@ -321,7 +321,7 @@ export default {
 				transition: 'transform ease-in-out 0.3s'
 			},
 			onStyleAnimate: null,
-			bookingDone: true
+			bookingDone: false
 		};
 	},
 	methods: {
