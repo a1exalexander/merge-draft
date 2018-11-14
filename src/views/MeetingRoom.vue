@@ -193,6 +193,11 @@ export default {
 		&__text {
 			color: $MAIN-DARK-COLOR;
 		}
+		&__img {
+			@media (max-width: 600px) {
+				display: block;
+			}
+		}
 		&:active {
 			background-color: $MERGE-DARK-COLOR;
 		}

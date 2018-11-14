@@ -89,9 +89,6 @@ export default {
         stroke: none;
 		margin-top: 3px;
 		display: none;
-		@media (max-width: 600px) {
-			display: block;
-		}
     }
 }
 </style>
