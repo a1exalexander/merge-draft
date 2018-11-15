@@ -98,7 +98,6 @@ import BookMeetingRoom from '@/views/BookMeetingRoom.vue';
 
 export default {
 	name: 'MeetingRoom',
-	props: ['calendar'],
 	components: {
 		ButtonBookRoom,
 		ButtonResidentLink,
@@ -144,7 +143,7 @@ export default {
 		if(this.$route.path == "/meeting-room/calendar") {
 			setTimeout(()=>{
 				this.toCalendar('fullcalendar');
-			}, 100);
+			}, 300);
 			
 		}
 	}

@@ -112,10 +112,10 @@ export default {
             }
         }
         @media (max-width: 375px) {
-			   top: 2pt;
+			top: 2pt;
         }
         @media (max-width: 320px) {
-				top: -1px;
+			top: -1px;
         }
 	}
 	&__wrapper {

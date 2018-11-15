@@ -21,15 +21,15 @@
 		<p class="booking-room-done__label booking-room-done__label--day">Date</p>
 		<p class="booking-room-done__label booking-room-done__label--time">Time</p>
 		<p class="booking-room-done__label booking-room-done__label--price">Price</p>
-		<p class="booking-room-done__text booking-room-done__text---day">{{ bookRoomData.day }}</p>
-		<p class="booking-room-done__text booking-room-done__text---time">{{ bookRoomData.duration }}</p>
-		<p class="booking-room-done__text booking-room-done__text---price">{{ bookRoomData.price }}</p>
-		<a href="#" class="booking-room-done__link">put on the calendar</a>
+		<p class="booking-room-done__text booking-room-done__text---day">{{ day }}</p>
+		<p class="booking-room-done__text booking-room-done__text---time">{{ duration }}</p>
+		<p class="booking-room-done__text booking-room-done__text---price">{{ price }}</p>
+		<a :href="hrefEvent" target='_blank' class="addeventatc booking-room-done__link">put on the calendar</a>
 	</div>
 	<p class="booking-room-done__text booking-room-done__text--description">Payment occurs in coworking. Wait for a call by our administrator.</p>
 	<div class="booking-room-done__inner booking-room-done__inner--back-button">
 		<button-back class="booking-room-done__button-back" @click.native='goHome'></button-back>
-		<p class="booking-room-done__button-text">BACK TO THE START PAGE</p>
+		<p class="booking-room-done__button-text" @click='goHome'>BACK TO THE START PAGE</p>
 	</div>
 	<svg style="display: none;">
 		<symbol id='icon-edit' viewBox="0 0 24 24">
@@ -41,10 +41,11 @@
 
 <script>
 import ButtonBack from '@/components/buttons/ButtonBack.vue';
+import cal from 'generate-calendar-url';
 
 export default {
 	name: 'BookingDone',
-	props: ['bookRoomData'],
+	props: {'bookRoomData': Object},
 	components: {
 		ButtonBack
 	},
@@ -54,7 +55,8 @@ export default {
 				transform: 'translateX(-200%)',
 				transition: 'transform ease-in-out 0.3s'
 			},
-			onStyleAnimate: null
+			onStyleAnimate: null,
+			hrefEvent: '#'
 		}
 	},
 	methods: {
@@ -71,7 +73,55 @@ export default {
 	computed: {
 		event() {
 			return this.$store.state.event;
+		},
+		day() {
+			if (this.event.dateStart) {
+				let date = new Date(this.event.dateStart);
+				return `${date.toLocaleString("en-US", {day: '2-digit'})} ${date.toLocaleString("en-US", {month: 'long'})}, ${date.toLocaleString("en-US", {year: 'numeric'})}`;
+			} 
+			return '';
+		},
+		start() {
+			if (this.event.dateStart) {
+				let date = new Date(this.event.dateStart);
+				return `${date.getHours()}:${date.getMinutes()=='0'?'00':date.getMinutes()}`;
+			} 
+			return '';
+		},
+		end() {
+			if (this.event.dateEnd) {
+				let date = new Date(this.event.dateEnd);
+				return `${date.getHours()}:${date.getMinutes()=='0'?'00':date.getMinutes()}`;
+			} 
+			return '';
+		},
+		price() {
+			if(this.event.duration) {
+				let time = (new Date(this.event.dateEnd) - new Date(this.event.dateStart))/3600000;
+				let hours = Math.ceil(time);
+				let cash = this.$store.state.price.hour;
+				return +hours * +cash;
+			} else {
+				return '';
+			}
+		},
+		duration() {
+			if(this.event.duration) {
+				return `${this.start} - ${this.end} (${this.event.duration})`;
+			} else {
+				return '';
+			}
 		}
+	},
+	beforeUpdate() {
+		let toCalendar = {
+			title: 'Merge@place meeting room',
+			start: new Date(this.event.dateStart),
+			end: new Date(this.event.dateEnd),
+			location: "39600, Nebesnoi Sotni St, 17А, Kremenchuk, Poltavs'ka oblast, 39600"
+		}
+		this.hrefEvent = cal.google(toCalendar);
+		
 	}
 };
 </script>
@@ -95,10 +145,8 @@ export default {
 		align-self: flex-start;
 		align-items: center;
 	}
-	&__button-back {
-		margin-right: 1rem;
-	}
 	&__button-text {
+		padding-left: 1rem;
 		text-transform: uppercase;
 		font-family: $base-font;
 		font-size: 0.625rem;
@@ -106,6 +154,7 @@ export default {
 		letter-spacing: 0.7px;
 		text-align: left;
 		color: $GREY;
+		cursor: pointer;
 	}
 	&__inner {
 		width: 100%;
@@ -125,22 +174,24 @@ export default {
 		&--name {
 			padding: 1rem 0;
 			display: grid;
-			grid-template-columns: 2fr 4fr 1fr;
+			grid-template-columns: 35% 40% 20%;
 			grid-template-rows: repeat(2, auto);
-			grid-column-gap: 1rem;
+			grid-column-gap: 2.5%;
 			grid-row-gap: 0.2rem;
 			justify-items: start;
+			justify-content: space-between;
 		}
 		&--date {
 			padding: 1rem 0;
 			display: grid;
-			grid-template-columns: repeat(3, auto);
+			grid-template-columns: 35% 40% 20%;
 			grid-template-rows: repeat(3, auto);
-			grid-column-gap: 1rem;
+			grid-column-gap: 2.5%;
 			grid-row-gap: 0.2rem;
 			justify-items: start;
-			border-top: 1px solid $BUTTON-COLOR;
-			border-bottom: 1px solid $BUTTON-COLOR;
+			justify-content: space-between;
+			border-top: 1px solid $MIDDLE-GREY-OPACITY;
+			border-bottom: 1px solid $MIDDLE-GREY-OPACITY;
 			@media (max-width: 600px) {
 				
 			}
@@ -249,6 +300,7 @@ export default {
 		grid-column: 3;
 		grid-row: 2;
 		justify-self: end;
+		flex-wrap: nowrap;
 	}
 	&__edit-icon {
 		width: 12px;
@@ -264,6 +316,7 @@ export default {
 		letter-spacing: 0.7px;
 		text-align: left;
 		color: $MERGE-MAIN-COLOR;
+		white-space: nowrap;
 	}
 }
 </style>

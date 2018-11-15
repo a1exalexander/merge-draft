@@ -27,7 +27,7 @@
     </transition>
 	<logo class='booking-workplace__logo'></logo>
 	<section class="booking-workplace" :style="onStyleAnimate">
-		<button-close-mini class="booking-workplace__close"></button-close-mini>
+		<button-close-mini class="booking-workplace__close" @click.native='goBack'></button-close-mini>
 		<div class="booking-workplace__inner booking-workplace__inner--back-button" @click='goBack'>
 			<button-back class="booking-workplace__button-back" @click.native='goBack'></button-back>
 			<p class="booking-workplace__button-text" @click.native='goBack'>go back</p>
@@ -369,7 +369,7 @@ export default {
 			return re.test(phone);
 		},
 		validFormatPhone(phone) {
-			let re = /^(\+38\s\(0(([0-9]){2})\)\s(([0-9]){3})\s(([0-9]){2})\-(([0-9]){2}))$/;
+			let re = /^(\+38\s\(0(([0-9]){2})\)\s(([0-9]){3})\s(([0-9]){2})-(([0-9]){2}))$/;
 			return re.test(phone);
 		},
 		validName(name) {

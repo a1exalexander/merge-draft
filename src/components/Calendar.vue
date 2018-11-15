@@ -92,7 +92,7 @@ export default {
         let eventData = {
           dateStart: start.format(),
           dateEnd: end.format(),
-          duration: hours + 'h - ' + Math.abs((+end.format('m') - +start.format('m'))) + 'm',
+          duration: hours + 'h' + (Math.abs((+end.format('m') - +start.format('m')))? ' - ' + Math.abs((+end.format('m') - +start.format('m'))) + 'm':''),
         }
         _this.saveEvent(eventData);
         if(hours){

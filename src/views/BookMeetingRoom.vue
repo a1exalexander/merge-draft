@@ -19,7 +19,7 @@
 				<svg class="book-meeting-room__edit-icon">
 					<use xlink:href='#icon-edit'/>
 				</svg>
-				<p class="book-meeting-room__edit-text">edit</p>
+				<p class="book-meeting-room__edit-text">Back to Calendar</p>
 			</button>
 			<div class="book-meeting-room__input-wrapper">
 				<label for="book-meeting-name" class="book-meeting-room__label book-meeting-room__label--name">NAME</label>
@@ -30,8 +30,7 @@
 					required 
 					placeholder="Andrey Malishko"
 					v-model.trim="bookRoomData.name"
-					:class="{inputError: errors.name, greenBorder: !errors.name}"
-					@blur="checkName">
+					:class="{inputError: errors.name, greenBorder: !errors.name}">
 				<transition 
 					name="custom-classes-transition"
 					enter-active-class="animated03 pullDown"
@@ -46,8 +45,7 @@
 					required 
 					placeholder="+38 (000) 000 00-00"
 					v-model.trim="bookRoomData.phone"
-					:class="{inputError: errors.phone, greenBorder: !errors.phone}"
-					@blur="checkPhone">
+					:class="{inputError: errors.phone, greenBorder: !errors.phone}">
 				<transition 
 					name="custom-classes-transition"
 					enter-active-class="animated03 pullDown"
@@ -86,7 +84,6 @@
 					class="check-free-time__email" 
 					placeholder="Email"
 					:class="{inputError: errors.email, greenBorder: !errors.email}"
-					@blur="checkEmail"
 					v-model.trim="bookRoomData.email">
 				<transition 
 					name="custom-classes-transition"
@@ -167,12 +164,7 @@ export default {
 				name: null,
 				phone: null,
 				email: null,
-				resident: false,
-				day: this.day,
-				start: this.start,
-				end: this.end,
-				duration: this.duration,
-				price: this.price
+				resident: false
 			},
 			checkData: {
 				name: null,
@@ -228,28 +220,22 @@ export default {
 			}, 200);
 		},
 		checkName() {
-			if (!this.bookRoomData.name) {
+			if (this.bookRoomData.name && !this.validName(this.bookRoomData.name) && this.bookRoomData.phone) {
 				this.errors.name = 'your name and surname';
-			} else if (!this.validName(this.bookRoomData.name)) {
-				this.errors.name = 'correct name and surname';
 			} else {
 				this.errors.name = null;
 			}
 		},
 		checkPhone() {
-			if (!this.bookRoomData.phone) {
+			if (this.bookRoomData.phone && !this.validPhone(this.bookRoomData.phone) && !this.validFormatPhone(this.bookRoomData.phone) && this.bookRoomData.name) {
 				this.errors.phone = 'your phone';
-			} else if (!this.validPhone(this.bookRoomData.phone)) {
-				this.errors.phone = 'correct phone';
 			} else {
 				this.errors.phone = null;
 			}
 		},
 		checkEmail() {
-			if (!this.bookRoomData.email) {
+			if (this.bookRoomData.email && !this.validEmail(this.bookRoomData.email) && this.bookRoomData.name && this.bookRoomData.phone) {
 				this.errors.email = 'your e-mail';
-			} else if (!this.validEmail(this.bookRoomData.email)) {
-				this.errors.email = 'correct e-mail';
 			} else {
 				this.errors.email = null;
 			}
@@ -261,12 +247,16 @@ export default {
 		},
 		validPhone(phone) {
 			// eslint-disable-next-line
-			let re = /^((((\+?)+(3?)+8)?)+(((\(|\-)?)+0+([0-9]){2}(\)|\-)?)+(\-?)+(([0-9]){3})+(\-?)+(([0-9]){2})+(\-?)+(([0-9]){2}))$/;
+			let re = /^((((\+?)+(3?)+8)?)0([0-9]){2})(([0-9]){3})(([0-9]){2})(([0-9]){2})$/;
+			return re.test(phone);
+		},
+		validFormatPhone(phone) {
+			let re = /^(\+38\s\(0(([0-9]){2})\)\s(([0-9]){3})\s(([0-9]){2})-(([0-9]){2}))$/;
 			return re.test(phone);
 		},
 		validName(name) {
 			// eslint-disable-next-line
-			let re = /^((([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]{1,30}))+\s+(([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]){1,30}))$/;
+			let re = /^([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]{1,40})((\s?)([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]{1,40})){1,3}?$/;
 			return re.test(name);
 		},
 		addDataToCheck() {
@@ -293,6 +283,41 @@ export default {
 				return false;
 			} else {
 				return true;
+			}
+		},
+		formatNumber() {
+			if(this.validPhone(this.bookRoomData.phone)) {
+				let phone = this.bookRoomData.phone,
+				lenPhone = phone.length,
+				arr = phone.split('');
+				if( lenPhone == 10 ){
+					arr.splice(0,"", "+38 ");
+					arr.splice(1,"", "(");
+					arr.splice(5,"", ") ");
+					arr.splice(9,"", " ");
+					arr.splice(12,"", "-");
+				} else if (lenPhone == 11) {
+					arr.splice(0,"", "+3");
+					arr.splice(2,"", " ");
+					arr.splice(3,"", "(");
+					arr.splice(7,"", ") ");
+					arr.splice(11,"", " ");
+					arr.splice(14,"", "-");
+				} else if (lenPhone == 12) {
+					arr.splice(0,"", "+");
+					arr.splice(4,"", " ");
+					arr.splice(5,"", "(");
+					arr.splice(8,"", ") ");
+					arr.splice(12,"", " ");
+					arr.splice(15,"", "-");
+				} else if (lenPhone == 13) {
+					arr.splice(3,"", " ");
+					arr.splice(4,"", "(");
+					arr.splice(8,"", ") ");
+					arr.splice(12,"", " ");
+					arr.splice(15,"", "-");
+				}
+				return arr.join('');
 			}
 		},
 		showSubmit() {
@@ -330,21 +355,21 @@ export default {
 		day() {
 			if (this.event.dateStart) {
 				let date = new Date(this.event.dateStart);
-				return `${date.toLocaleString("en-US", {day: '2-digit'})} of ${date.toLocaleString("en-US", {month: 'long'})}, ${date.toLocaleString("en-US", {year: 'numeric'})}`;
+				return `${date.toLocaleString("en-US", {day: '2-digit'})} ${date.toLocaleString("en-US", {month: 'long'})}, ${date.toLocaleString("en-US", {year: 'numeric'})}`;
 			} 
 			return '';
 		},
 		start() {
 			if (this.event.dateStart) {
 				let date = new Date(this.event.dateStart);
-				return `${date.getHours()}:${date.getMinutes()=='0'?'00':date.getMinutes()}`
+				return `${date.getHours()}:${date.getMinutes()=='0'?'00':date.getMinutes()}`;
 			} 
 			return '';
 		},
 		end() {
 			if (this.event.dateEnd) {
 				let date = new Date(this.event.dateEnd);
-				return `${date.getHours()}:${date.getMinutes()=='0'?'00':date.getMinutes()}`
+				return `${date.getHours()}:${date.getMinutes()=='0'?'00':date.getMinutes()}`;
 			} 
 			return '';
 		},
@@ -372,6 +397,9 @@ export default {
 			this.checkFrameOut = false;
 		},
 		'bookRoomData.name'() {
+			this.checkName();
+			this.checkPhone();
+			this.checkEmail();
 			if (this.bookRoomData.name && this.validName(this.bookRoomData.name)) {
 				this.errors.name = null;
 				this.validStatus.name = true;
@@ -380,7 +408,13 @@ export default {
 			}
 		},
 		'bookRoomData.phone'() {
-			if (this.bookRoomData.phone && this.validPhone(this.bookRoomData.phone)) {
+			this.checkName();
+			this.checkPhone();
+			this.checkEmail();
+			if (this.bookRoomData.phone && (this.validPhone(this.bookRoomData.phone) || this.validFormatPhone(this.bookRoomData.phone))) {
+				if(!this.validFormatPhone(this.bookRoomData.phone)) {
+					this.bookRoomData.phone = this.formatNumber;
+				}
 				this.errors.phone = null
 				this.validStatus.phone = true;
 			} else {
@@ -388,6 +422,9 @@ export default {
 			}
 		},
 		'bookRoomData.email'() {
+			this.checkName();
+			this.checkPhone();
+			this.checkEmail();
 			if (this.bookRoomData.email && this.validEmail(this.bookRoomData.email)) {
 				this.errors.email = null
 				this.validStatus.email = true;
@@ -609,6 +646,7 @@ export default {
 		align-items: center;
 		outline: none;
 		border: none;
+		flex-wrap: nowrap;
 		background-color: transparent;
 		justify-self: end;
 	}
@@ -626,6 +664,7 @@ export default {
 		letter-spacing: 0.7px;
 		text-align: left;
 		color: $MERGE-MAIN-COLOR;
+		white-space: nowrap;
 	}
 
 	&__input-wrapper {
