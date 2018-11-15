@@ -43,9 +43,10 @@ export default new Router({
 			component: Coworking
 		},
 		{
-			path: '/meeting-room',
+			path: '/meeting-room/:calendar?',
 			name: 'MeetingRoom',
-			component: MeetingRoom
+			component: MeetingRoom,
+			props: true
 		},
 		{
 			path: '/events',

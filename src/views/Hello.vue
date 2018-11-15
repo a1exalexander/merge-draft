@@ -117,7 +117,7 @@ export default {
         this.thirdString = true;
     },
     meetingRoom() {
-        this.$router.push('/meeting-room');
+        this.$router.push('/meeting-room/calendar');
     },
     becomeMember() {
         this.$router.push('/booking-workplace');

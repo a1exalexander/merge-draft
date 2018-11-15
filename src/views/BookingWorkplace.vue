@@ -185,8 +185,7 @@
                             type="text" 
                             class="booking-workplace__input" 
                             :class="{inputError: errors.name, greenBorder: !errors.name}"
-                            placeholder="Andrey Malishko"
-							@blur="checkName"
+                            placeholder="Andrey Malishko"	
                             v-model.trim="form.name">
 							<transition 
 								name="custom-classes-transition"
@@ -203,7 +202,6 @@
                             class="booking-workplace__input" 
                             :class="{inputError: errors.phone, greenBorder: !errors.phone}"
                             placeholder="+38 (000) 000 00-00"
-							@blur="checkPhone"
                             v-model.trim="form.phone">
 						<transition 
 							name="custom-classes-transition"
@@ -223,7 +221,6 @@
                             class="booking-workplace__input booking-workplace__input--required" 
                             :class="{inputError: errors.email, greenBorder: !errors.email}"
                             placeholder="example@mail.com"
-							@blur="checkEmail"
                             v-model.trim="form.email">
 						<transition 
 							name="custom-classes-transition"
@@ -341,28 +338,22 @@ export default {
 			this.visible.weekCard = false;
 		},
 		checkName() {
-			if (!this.form.name) {
+			if (this.form.name && !this.validName(this.form.name) && this.form.phone && this.form.email) {
 				this.errors.name = 'your name and surname';
-			} else if (!this.validName(this.form.name)) {
-				this.errors.name = 'correct name and surname';
 			} else {
 				this.errors.name = null;
 			}
 		},
 		checkPhone() {
-			if (!this.form.phone) {
+			if (this.form.phone && !this.validPhone(this.form.phone) && !this.validFormatPhone(this.form.phone) && this.form.name && this.form.email) {
 				this.errors.phone = 'your phone';
-			} else if (!this.validPhone(this.form.phone)) {
-				this.errors.phone = 'correct phone';
 			} else {
 				this.errors.phone = null;
 			}
 		},
 		checkEmail() {
-			if (!this.form.email) {
+			if (this.form.email && !this.validEmail(this.form.email) && this.form.name && this.form.phone) {
 				this.errors.email = 'your e-mail';
-			} else if (!this.validEmail(this.form.email)) {
-				this.errors.email = 'correct e-mail';
 			} else {
 				this.errors.email = null;
 			}
@@ -374,12 +365,16 @@ export default {
 		},
 		validPhone(phone) {
 			// eslint-disable-next-line
-			let re = /^((((\+?)+(3?)+8)?)+(((\(|\-)?)+0+([0-9]){2}(\)|\-)?)+(\-?)+(([0-9]){3})+(\-?)+(([0-9]){2})+(\-?)+(([0-9]){2}))$/;
+			let re = /^((((\+?)+(3?)+8)?)0([0-9]){2})(([0-9]){3})(([0-9]){2})(([0-9]){2})$/;
+			return re.test(phone);
+		},
+		validFormatPhone(phone) {
+			let re = /^(\+38\s\(0(([0-9]){2})\)\s(([0-9]){3})\s(([0-9]){2})\-(([0-9]){2}))$/;
 			return re.test(phone);
 		},
 		validName(name) {
 			// eslint-disable-next-line
-			let re = /^((([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]{1,30}))+\s+(([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]){1,30}))$/;
+			let re = /^([A-ZА-ЯА-ЩЬЮЯЇІЄҐ])+([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]{1,40})((\s?)([a-zA-Zа-яА-Яа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]{1,40})){1,3}?$/;
 			return re.test(name);
 		},
 		sendForm() {
@@ -431,10 +426,48 @@ export default {
 			} else {
 				return true;
 			}
+		},
+		formatNumber() {
+			if(this.validPhone(this.form.phone)) {
+				let phone = this.form.phone,
+				lenPhone = phone.length,
+				arr = phone.split('');
+				if( lenPhone == 10 ){
+					arr.splice(0,"", "+38 ");
+					arr.splice(1,"", "(");
+					arr.splice(5,"", ") ");
+					arr.splice(9,"", " ");
+					arr.splice(12,"", "-");
+				} else if (lenPhone == 11) {
+					arr.splice(0,"", "+3");
+					arr.splice(2,"", " ");
+					arr.splice(3,"", "(");
+					arr.splice(7,"", ") ");
+					arr.splice(11,"", " ");
+					arr.splice(14,"", "-");
+				} else if (lenPhone == 12) {
+					arr.splice(0,"", "+");
+					arr.splice(4,"", " ");
+					arr.splice(5,"", "(");
+					arr.splice(8,"", ") ");
+					arr.splice(12,"", " ");
+					arr.splice(15,"", "-");
+				} else if (lenPhone == 13) {
+					arr.splice(3,"", " ");
+					arr.splice(4,"", "(");
+					arr.splice(8,"", ") ");
+					arr.splice(12,"", " ");
+					arr.splice(15,"", "-");
+				}
+				return arr.join('');
+			}
 		}
 	},
 	watch: {
 		'form.name'() {
+			this.checkName();
+			this.checkPhone();
+			this.checkEmail();
 			if (this.form.name && this.validName(this.form.name)) {
 				this.errors.name = null;
 				this.validStatus.name = true;
@@ -443,14 +476,24 @@ export default {
 			}
 		},
 		'form.phone'() {
-			if (this.form.phone && this.validPhone(this.form.phone)) {
+			this.checkName();
+			this.checkPhone();
+			this.checkEmail();
+			if (this.form.phone && (this.validPhone(this.form.phone) || this.validFormatPhone(this.form.phone))) {
+				if(!this.validFormatPhone(this.form.phone)) {
+					this.form.phone = this.formatNumber;
+				}
 				this.errors.phone = null;
 				this.validStatus.phone = true;
+				
 			} else {
 				this.validStatus.phone = false;
 			}
 		},
 		'form.email'() {
+			this.checkName();
+			this.checkPhone();
+			this.checkEmail();
 			if (this.form.email && this.validEmail(this.form.email)) {
 				this.errors.email = null;
 				this.validStatus.email = true;

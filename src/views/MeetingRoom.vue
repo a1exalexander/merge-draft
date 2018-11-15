@@ -27,7 +27,7 @@
 								<span class="meeting-room-inf__description meeting-room-inf__description--hour">UAH PER HOUR
 								</span>
 							</p>
-							<button-book-now @click.native='showBook'></button-book-now>
+							<button-book-now @click.native='toCalendar("fullcalendar")'></button-book-now>
 						</div>
 						<div class="meeting-room-inf__card meeting-room-inf__card--hour-mobile">
 							<p class="meeting-room-inf__text meeting-room-inf__text--hour">150
@@ -72,7 +72,7 @@
 	<div class="meeting-room__button-book">
 		<button-book-room @click.native='showBook'></button-book-room>
 	</div>
-	<calendar class='animated d06 delay-08s fadeInUp' @showBook='showBook' v-show='hideElements'></calendar>
+	<calendar @showBook='showBook' v-show='hideElements'></calendar>
 	<section class="next-page-nav animated d06 delay-09s fadeInUp" v-show='hideElements'>
 		<router-link to="/coworking" class="next-page-nav__link next-page-nav__link--interior">
 			<div class="next-page-nav__inner">
@@ -98,6 +98,7 @@ import BookMeetingRoom from '@/views/BookMeetingRoom.vue';
 
 export default {
 	name: 'MeetingRoom',
+	props: ['calendar'],
 	components: {
 		ButtonBookRoom,
 		ButtonResidentLink,
@@ -118,13 +119,7 @@ export default {
 			setTimeout(()=>{
 				this.showBookMeetingRoom = false;
 			},100)
-			let time = setInterval(()=>{
-				let top = document.getElementById(href).getBoundingClientRect().top;
-				if(top > 600) {
-					window.scrollTo(0, (top - 2));
-					clearInterval(time);	
-				}
-			}, 10 );
+			this.toCalendar(href);
 		},
 		showBook() {
 			this.showBookMeetingRoom = true;
@@ -137,6 +132,20 @@ export default {
 			setTimeout(()=>{
 				this.showBookMeetingRoom = false;
 			}, 100)
+		},
+		toCalendar(href) {
+			let top = document.getElementById(href).getBoundingClientRect().top;
+			let coord = top + pageYOffset;
+			window.scrollTo(0, (coord - 2));
+			window.console.log(coord);	
+		}
+	},
+	mounted() {
+		if(this.$route.path == "/meeting-room/calendar") {
+			setTimeout(()=>{
+				this.toCalendar('fullcalendar');
+			}, 100);
+			
 		}
 	}
 };

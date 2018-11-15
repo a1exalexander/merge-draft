@@ -14,7 +14,7 @@
 		enter-active-class="animated fadeInLeft"
 		leave-active-class="animated d02 fadeOut"
 		mode="out-in">
-        <router-view/>
+         <router-view/>
     </transition>
 
   </div>
