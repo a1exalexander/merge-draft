@@ -74,12 +74,12 @@
 	</div>
 	<calendar @showBook='showBook' v-show='hideElements'></calendar>
 	<section class="next-page-nav animated d06 delay-09s fadeInUp" v-show='hideElements'>
-		<router-link to="/coworking" class="next-page-nav__link next-page-nav__link--interior">
+		<router-link to="/coworking" class="next-page-nav__link meeting-room__link-page meeting-room__link-page--interior">
 			<div class="next-page-nav__inner">
 				<p class="next-page-nav__text">INTERIOR</p>
 			</div>
 		</router-link>
-		<router-link to="/events" class="next-page-nav__link next-page-nav__link--events">
+		<router-link to="/events" class="next-page-nav__link meeting-room__link-page meeting-room__link-page--events">
 			<div class="next-page-nav__inner">
 				<p class="next-page-nav__text">EVENTS</p>
 			</div>
@@ -137,7 +137,6 @@ export default {
 			let top = document.getElementById(href).getBoundingClientRect().top;
 			let coord = top + pageYOffset;
 			window.scrollTo(0, (coord - 2));
-			window.console.log(coord);	
 		}
 	},
 	mounted() {
@@ -312,6 +311,14 @@ export default {
 		}
 		&:hover {
 			color: white;
+		}
+	}
+	&__link-page {
+		&--interior {
+			background-image: url('../assets/image/interior.jpg');
+		}
+		&--events {
+			background-image: url('../assets/image/events.jpg');
 		}
 	}
 }

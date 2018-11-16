@@ -24,8 +24,8 @@
 				</button>
 			</div>
 			<div class="book-meeting-room__time-wrapper-mobile">
-				<date-picker class='book-meeting-room__timepicker book-meeting-room__timepicker--day' format='DD MMMM, YYYY' v-model="mobile.day" lang="en" :not-before="new Date()"></date-picker>
-				<date-picker class='book-meeting-room__timepicker book-meeting-room__timepicker--time' v-model="mobile.time" range type="time" placeholder='Select Time' range-separator='-' lang="en" format="HH:mm" :time-picker-options="{ start: '08:00', step: '00:30', end: '20:00' }"></date-picker>
+				<date-picker class='book-meeting-room__timepicker book-meeting-room__timepicker--day' :editable='false' :confirm='true' format='DD MMMM, YYYY' v-model="mobile.day" lang="en" :not-before="new Date()"></date-picker>
+				<date-picker class='book-meeting-room__timepicker book-meeting-room__timepicker--time' :editable='false' :confirm='true' v-model="mobile.time" range type="time" placeholder='Select Time' range-separator='-' lang="en" format="HH:mm" :time-picker-options="{ start: '08:00', step: '00:30', end: '20:00' }"></date-picker>
 			</div>
 			<div class="book-meeting-room__input-wrapper">
 				<label for="book-meeting-name" class="book-meeting-room__label book-meeting-room__label--name">NAME</label>
@@ -1026,26 +1026,37 @@ export default {
 		}
 		.mx-panel.mx-panel-date {
 			@media (max-width: 480px) {
-				width: 95vw
+				width: 100%;
+				tbody,
+				thead {
+					width: 100%;
+				}
 			}
 		}
+		.mx-input-icon {
+			display: none;
+		}
+		.mx-clear-icon::before {
+			display: none;
+		}
 		.mx-calendar {
-			width: 50%;
+			margin-bottom: 20pt;
 			@media (max-width: 480px) {
-				height: 100%;
+				height: auto;
 				text-align: center;
 			}
 		}
+
 		.mx-calendar-content {
 			width: 100%;
 			@media (max-width: 480px) {
-				height: 100%;
+				height: 45vh;
 			}
 		}
 		.mx-range-wrapper {
 			width: 100%;
 			@media (max-width: 480px) {
-				height: 100%;
+				height: auto;
 			}
 			
 		}
@@ -1053,13 +1064,18 @@ export default {
 			min-width: 100% !important;
 			top: 2rem !important;
 			@media (max-width: 480px) {
-				top: 50% !important;
-				bottom: 0 !important;
+				top: 0 !important;
 				width: 100vw;
+				height: 65vh;
 				position: fixed !important;
 				left: 0 !important;
 				right: 0 !important;
+				padding: 10pt;
 			}
+		}
+		.mx-datepicker-btn-confirm {
+			padding: 1rem 0;
+			width: 100%;
 		}
 		.mx-input-append {
 			width: 5px;
@@ -1076,6 +1092,16 @@ export default {
 				border-color: transparent;
 				border-top-color: $GREY;
 				border-width: 5px;
+			}
+		}
+		&--day {
+			.mx-calendar {
+				width: 100%;
+			}
+		}
+		&--time {
+			.mx-calendar {
+				width: 50%;
 			}
 		}
 	}
