@@ -24,7 +24,8 @@
 				</button>
 			</div>
 			<div class="book-meeting-room__time-wrapper-mobile">
-
+				<date-picker class='book-meeting-room__timepicker book-meeting-room__timepicker--day' format='DD MMMM, YYYY' v-model="mobile.day" lang="en" :not-before="new Date()"></date-picker>
+				<date-picker class='book-meeting-room__timepicker book-meeting-room__timepicker--time' v-model="mobile.time" range type="time" placeholder='Select Time' range-separator='-' lang="en" format="HH:mm" :time-picker-options="{ start: '08:00', step: '00:30', end: '20:00' }"></date-picker>
 			</div>
 			<div class="book-meeting-room__input-wrapper">
 				<label for="book-meeting-name" class="book-meeting-room__label book-meeting-room__label--name">NAME</label>
@@ -136,6 +137,7 @@
 				<span class="booking-price__sum">{{ price }}</span>
 			</p>
 			<button-book class='book-meeting-room__book-button' :disabled='showSubmit' @click.native='bookingRoomDone = true'></button-book>
+			<button class="book-meeting-room__cancel" @click.prevent='goBack'>CANCEL</button>
 		</div>
 	</div>
     <svg style="display: none">
@@ -151,6 +153,7 @@
 
 <script>
 import http from 'axios';
+import DatePicker from 'vue2-datepicker'
 import ButtonCloseMini from '@/components/buttons/ButtonCloseMini.vue';
 import ButtonBack from '@/components/buttons/ButtonBack.vue';
 import ButtonBook from '@/components/buttons/ButtonBook.vue';
@@ -164,7 +167,8 @@ export default {
 		ButtonBook,
 		Logo,
 		ButtonCloseMini,
-		BookingRoomDone
+		BookingRoomDone,
+		DatePicker
 	},
 	data() {
 		return {
@@ -190,6 +194,10 @@ export default {
 				name: false,
 				phone: false,
 				email: false
+			},
+			mobile: {
+				day: '',
+				time: ''
 			},
 			checkFrameIn: false,
 			checkFrameOut: false,
@@ -443,6 +451,7 @@ export default {
 
 <style lang="scss">
 @import '../assets/scss/style.scss';
+
 .redText {
 	color: $ERROR-COLOR !important;
 }
@@ -457,24 +466,7 @@ export default {
 		border: 2px solid $GREEN !important;
 	}
 }
-.ui-timepicker-wrapper {
-	background-color: $MAIN-DARK-COLOR;
-	border: none;
-	.ui-timepicker-am {
-		font-family: $base-font;
-		color: $TEXT-COLOR;
-		transition: color ease-in-out 0.1s;
-		&:hover {
-			background-color: transparent;
-			color: $GREY;
-		}
-		
-	}
-	.ui-timepicker-am.ui-timepicker-selected {
-		background-color: transparent;
-		color:$MERGE-MAIN-COLOR;
-	}
-}
+
 
 .book-meeting-room {
 	flex: 0 0 35%;
@@ -528,33 +520,6 @@ export default {
 		@media (max-width: 600px) {
 			display: none;
 		}
-	}
-	&__picker {
-		grid-area: picker;
-		@extend %flex-row;
-		align-items: center;
-	}
-	&__picker-time {
-		outline: none;
-		height: auto;
-		width: 5rem;
-		border: none;
-		text-align: center;
-		background-color: transparent;
-		color: $TEXT-COLOR;
-		font-family: $base-font;
-		cursor: pointer;
-	}
-	&__picker-date {
-		outline: none;
-		background-color: transparent;
-		border: none;
-		height: auto;
-		width: 6rem;
-		color: $TEXT-COLOR;
-		font-family: $base-font;
-		cursor: pointer;
-		margin-right: 1rem;
 	}
 	&__button-back-wrapper {
 		align-self: start;
@@ -610,11 +575,15 @@ export default {
 		align-items: center;
 		justify-items: start;
 		justify-content: start;
+		@media (max-width: 700px) {
+			justify-content: stretch;
+		}
 		@media (max-width: 600px) {
 			grid-template-rows: repeat(2, auto) 2rem;
-			justify-content: stretch;
+			justify-items: stretch;
 			border: none;
 			padding: 0 0 20pt 0;
+			width: 100%;
 		}
 	}
 	&__time-wrapper {
@@ -626,12 +595,9 @@ export default {
 		grid-template-areas:
 			'day 	       time 	     .'
 			'day-input     time-input    edit';
-			@media (max-width: 600px) {
+			@media (max-width: 700px) {
 				display: none;
 			}
-	}
-	&__time-wrapper-mobile {
-		display: none;
 	}
 	&__date-label {
 		grid-area: day;
@@ -927,6 +893,7 @@ export default {
 	}
 	&__book-button {
 		@media (max-width: 480px) {
+			margin-bottom: 16pt;
 			width: 100%;
 		}
 	}
@@ -954,6 +921,165 @@ export default {
 			padding-bottom: 20pt;
 		}
 	}
+	&__cancel {
+		padding: 1rem 2rem;
+		width: 100%;
+		font-family: $base-font;
+		font-size: 10pt;
+		text-transform: uppercase;
+		font-weight: bold;
+		text-align: center;
+		outline: none;
+		border: none;
+		color: $GREY;
+		background-color: transparent;
+		align-self: center;
+		letter-spacing: 0.6pt;
+		display: none;
+		@media (max-width: 480px) {
+			display: block;
+		}
+	}
+	&__time-wrapper-mobile {
+		grid-area: time;
+		width: 100%;
+		display: none;
+		@media (max-width: 700px) {
+			display: flex;
+			flex-direction: row;
+		}
+	}
+	&__timepicker.mx-datepicker-range {
+		width: 47%;
+	}
+	&__timepicker {
+		width: 56%;
+		margin-right: 4%;
+		&:last-child {
+			width: 40%;
+			margin: 0;
+		}
+		.mx-input {
+			border-radius: 4px;
+			width: 101%;
+			border: none;
+			outline: none;
+			background-color: $BUTTON-COLOR;
+			font-family: $base-font;
+			font-size: 0.625rem;
+			font-weight: 500;
+			text-align: left;
+			color: $TEXT-COLOR;
+			transition: border-color ease-in-out 0.1s;
+			border: 2px solid $MAIN-DARK-COLOR;
+			box-shadow: none;
+			position: relative;
+			padding: 21px 16px;
+			left: -2px;
+		@media (max-width: 480px) {
+			font-size: 11pt;
+			font-weight: 400;
+			line-height: 1;
+		}
+		&:-webkit-autofill,
+		&:-webkit-autofill:hover,
+		&:-webkit-autofill:focus,
+		&:-webkit-autofill:active {
+			animation-name: autofill;
+			animation-fill-mode: both;
+		}
+		&:active {
+			background-color: $BUTTON-COLOR;
+			outline: none;
+			border: 2px solid $MAIN-DARK-COLOR;
+		}
+		&:focus {
+			outline: none;
+			background-color: $BUTTON-COLOR;
+			border: 2px solid $MAIN-DARK-COLOR;
+			outline: none; 
+		}
+		&:disabled {
+			background-color: $BLACK;
+		}
+		&:disabled &::placeholder {
+			color: $MIDDLE-GREY;
+		}
+		&::placeholder {
+			color: $GREY;
+			font-size: 0.8rem;
+			font-weight: 500;
+			font-family: $base-font;
+			line-height: 1;
+			@media (max-width: 480px) {
+				font-size: 11pt;
+				line-height: 1;
+				font-weight: 400;
+			}
+		}
+		}
+		.mx-shortcuts-wrapper {
+			display: none;
+		}
+		.mx-calendar-header {
+			display: none;
+		}
+		.mx-panel.mx-panel-date {
+			@media (max-width: 480px) {
+				width: 95vw
+			}
+		}
+		.mx-calendar {
+			width: 50%;
+			@media (max-width: 480px) {
+				height: 100%;
+				text-align: center;
+			}
+		}
+		.mx-calendar-content {
+			width: 100%;
+			@media (max-width: 480px) {
+				height: 100%;
+			}
+		}
+		.mx-range-wrapper {
+			width: 100%;
+			@media (max-width: 480px) {
+				height: 100%;
+			}
+			
+		}
+		.mx-datepicker-popup {
+			min-width: 100% !important;
+			top: 2rem !important;
+			@media (max-width: 480px) {
+				top: 50% !important;
+				bottom: 0 !important;
+				width: 100vw;
+				position: fixed !important;
+				left: 0 !important;
+				right: 0 !important;
+			}
+		}
+		.mx-input-append {
+			width: 5px;
+			background-color: transparent;
+			
+			svg {
+				top: 10px;
+				left: -12px;
+				border: solid transparent;
+				height: 0;
+				width: 0;
+				position: relative;
+				pointer-events: none;
+				border-color: transparent;
+				border-top-color: $GREY;
+				border-width: 5px;
+			}
+		}
+	}
+	
 }
 .check-free-time {
 	position: relative;

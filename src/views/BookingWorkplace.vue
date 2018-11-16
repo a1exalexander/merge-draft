@@ -637,7 +637,7 @@ export default {
 			padding-top: 26px;
 			border-top: 1px solid $BUTTON-COLOR;
 			@media (max-width: 600px) {
-				margin-bottom: 22pt;
+				margin-bottom: 16pt;
 			}
 			@media (max-width: 480px) {
 				padding: 0;
@@ -763,6 +763,8 @@ export default {
 		}
 	}
 	&__cancel {
+		padding: 1rem 2rem;
+		width: 100%;
 		font-family: $base-font;
 		font-size: 10pt;
 		text-transform: uppercase;
