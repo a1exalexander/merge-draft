@@ -186,7 +186,7 @@
                             class="booking-workplace__input" 
                             :class="{inputError: errors.name, greenBorder: !errors.name}"
                             placeholder="Andrey Malishko"	
-							@blur="checkName"
+							@blur="checkAll"
                             v-model.trim="form.name">
 							<transition 
 								name="custom-classes-transition"
@@ -203,7 +203,7 @@
                             class="booking-workplace__input" 
                             :class="{inputError: errors.phone, greenBorder: !errors.phone}"
                             placeholder="+38 (000) 000 00-00"
-							@blur="checkPhone"
+							@blur="checkAll"
                             v-model.trim="form.phone">
 						<transition 
 							name="custom-classes-transition"
@@ -223,7 +223,7 @@
                             class="booking-workplace__input booking-workplace__input--required" 
                             :class="{inputError: errors.email, greenBorder: !errors.email}"
                             placeholder="example@mail.com"
-							@blur="checkEmail"
+							@blur="checkAll"
                             v-model.trim="form.email">
 						<transition 
 							name="custom-classes-transition"
@@ -339,6 +339,11 @@ export default {
 			this.visible.residentCard = false;
 			this.visible.dayCard = false;
 			this.visible.weekCard = false;
+		},
+		checkAll() {
+			this.checkName();
+			this.checkPhone();
+			this.checkEmail();
 		},
 		checkName() {
 			if (this.form.name && !this.validName(this.form.name) && this.form.phone && this.form.email) {
