@@ -117,8 +117,9 @@ export default {
 			this.hideElements = true;
 			setTimeout(()=>{
 				this.showBookMeetingRoom = false;
-			},100)
-			this.toCalendar(href);
+				this.toCalendar(href);
+			}, 100)
+			
 		},
 		showBook() {
 			this.showBookMeetingRoom = true;

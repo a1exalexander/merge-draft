@@ -186,6 +186,7 @@
                             class="booking-workplace__input" 
                             :class="{inputError: errors.name, greenBorder: !errors.name}"
                             placeholder="Andrey Malishko"	
+							@blur="checkName"
                             v-model.trim="form.name">
 							<transition 
 								name="custom-classes-transition"
@@ -202,6 +203,7 @@
                             class="booking-workplace__input" 
                             :class="{inputError: errors.phone, greenBorder: !errors.phone}"
                             placeholder="+38 (000) 000 00-00"
+							@blur="checkPhone"
                             v-model.trim="form.phone">
 						<transition 
 							name="custom-classes-transition"
@@ -221,6 +223,7 @@
                             class="booking-workplace__input booking-workplace__input--required" 
                             :class="{inputError: errors.email, greenBorder: !errors.email}"
                             placeholder="example@mail.com"
+							@blur="checkEmail"
                             v-model.trim="form.email">
 						<transition 
 							name="custom-classes-transition"
@@ -465,9 +468,6 @@ export default {
 	},
 	watch: {
 		'form.name'() {
-			this.checkName();
-			this.checkPhone();
-			this.checkEmail();
 			if (this.form.name && this.validName(this.form.name)) {
 				this.errors.name = null;
 				this.validStatus.name = true;
@@ -476,9 +476,6 @@ export default {
 			}
 		},
 		'form.phone'() {
-			this.checkName();
-			this.checkPhone();
-			this.checkEmail();
 			if (this.form.phone && (this.validPhone(this.form.phone) || this.validFormatPhone(this.form.phone))) {
 				if(!this.validFormatPhone(this.form.phone)) {
 					this.form.phone = this.formatNumber;
@@ -491,9 +488,6 @@ export default {
 			}
 		},
 		'form.email'() {
-			this.checkName();
-			this.checkPhone();
-			this.checkEmail();
 			if (this.form.email && this.validEmail(this.form.email)) {
 				this.errors.email = null;
 				this.validStatus.email = true;
@@ -576,7 +570,7 @@ export default {
 		cursor: pointer;
 		@media (max-width: 600px) {
 			font-size: 0.8rem;
-			font-weight: 600;
+			font-weight: 700;
 		}
 	}
 	&__validate {
@@ -744,7 +738,7 @@ export default {
 	&__label {
 		text-transform: uppercase;
 		font-family: $base-font;
-		font-size: 8px;
+		font-size: 0.5rem;
 		font-weight: bold;
 		text-align: left;
 		color: $TEXT-COLOR;

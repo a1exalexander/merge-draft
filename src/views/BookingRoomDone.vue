@@ -118,7 +118,8 @@ export default {
 			title: 'Merge@place meeting room',
 			start: new Date(this.event.dateStart),
 			end: new Date(this.event.dateEnd),
-			location: "39600, Nebesnoi Sotni St, 17А, Kremenchuk, Poltavs'ka oblast, 39600"
+			location: "39600, Nebesnoi Sotni St, 17А, Kremenchuk, Poltavs'ka oblast, 39600",
+			description: `Meeting room reservation ${this.day} from ${this.start} to ${this.end}`
 		}
 		this.hrefEvent = cal.google(toCalendar);
 		
