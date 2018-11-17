@@ -24,8 +24,11 @@
 				</button>
 			</div>
 			<div class="book-meeting-room__time-wrapper-mobile">
+				<p class="book-meeting-room__date-label">Day</p>
 				<date-picker class='book-meeting-room__timepicker book-meeting-room__timepicker--day' :editable='false' :confirm='true' format='DD MMMM, YYYY' v-model="mobile.day" lang="en" :not-before="new Date()"></date-picker>
+				<p class="book-meeting-room__date-label book-meeting-room__date-label--time">Time</p>	
 				<date-picker class='book-meeting-room__timepicker book-meeting-room__timepicker--time' :editable='false' :confirm='true' v-model="mobile.time" range type="time" placeholder='Select Time' range-separator='-' lang="en" format="HH:mm" :time-picker-options="{ start: '08:00', step: '00:30', end: '20:00' }"></date-picker>
+				<p class="book-meeting-room__mobile-duration">(2h 20m)</p>
 			</div>
 			<div class="book-meeting-room__input-wrapper">
 				<label for="book-meeting-name" class="book-meeting-room__label book-meeting-room__label--name">NAME</label>
@@ -137,6 +140,7 @@
 				<span class="booking-price__sum">{{ price }}</span>
 			</p>
 			<button-book class='book-meeting-room__book-button' :disabled='showSubmit' @click.native='bookingRoomDone = true'></button-book>
+			<button-book class='book-meeting-room__book-button-mobile' :disabled='showSubmitMobile' @click.native='bookingRoomDone = true'></button-book>
 			<button class="book-meeting-room__cancel" @click.prevent='goBack'>CANCEL</button>
 		</div>
 	</div>
@@ -197,7 +201,9 @@ export default {
 			},
 			mobile: {
 				day: '',
-				time: ''
+				time: '',
+				start: '',
+				end: ''
 			},
 			checkFrameIn: false,
 			checkFrameOut: false,
@@ -351,6 +357,7 @@ export default {
 				this.validStatus.name &&
 				this.validStatus.phone &&
 				this.validStatus.email &&
+				this.event &&
 				!this.errors.name &&
 				!this.errors.phone &&
 				!this.errors.email) {
@@ -361,6 +368,40 @@ export default {
 			} else {
 				if(this.bookRoomData.name &&
 				this.bookRoomData.phone &&
+				this.event &&
+				this.validStatus.name &&
+				this.validStatus.phone &&
+				!this.errors.name &&
+				!this.errors.phone) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+		},
+		showSubmitMobile() {
+			if(this.bookRoomData.resident) {
+				if (this.bookRoomData.name &&
+				this.bookRoomData.phone &&
+				this.bookRoomData.email &&
+				this.freeHours &&
+				this.validStatus.name &&
+				this.validStatus.phone &&
+				this.validStatus.email &&
+				this.mobile.day &&
+				this.mobile.time &&
+				!this.errors.name &&
+				!this.errors.phone &&
+				!this.errors.email) {
+					return false;
+				} else {
+					return true;
+				}
+			} else {
+				if(this.bookRoomData.name &&
+				this.bookRoomData.phone &&
+				this.mobile.day &&
+				this.mobile.time &&
 				this.validStatus.name &&
 				this.validStatus.phone &&
 				!this.errors.name &&
@@ -412,8 +453,23 @@ export default {
 				return '';
 			}
 		}
+		// TODO: duration for n=mobile
+		// durationMobile() {
+		// 	if(this.event.duration) {
+		// 		return `${this.start} - ${this.end} (${this.event.duration})`;
+		// 	} else {
+		// 		return '';
+		// 	}
+		// }
 	},
 	watch: {
+		'mobile'() {
+			let time = this.mobile.time;
+			if(time) {
+				this.mobile.start = `${time[0].getHours()}:${time[0].getMinutes()=='0'?'00':time[0].getMinutes()}`;
+				this.mobile.end = `${time[1].getHours()}:${time[1].getMinutes()=='0'?'00':time[1].getMinutes()}`;
+			}
+		},
 		'bookRoomData.resident': function() {
 			this.checkFrameIn = true;
 			this.checkFrameOut = false;
@@ -580,6 +636,7 @@ export default {
 		}
 		@media (max-width: 600px) {
 			grid-template-rows: repeat(2, auto) 2rem;
+			grid-row-gap: 10pt;
 			justify-items: stretch;
 			border: none;
 			padding: 0 0 20pt 0;
@@ -606,6 +663,13 @@ export default {
 		font-weight: 500;
 		text-align: left;
 		color: $GREY;
+		@media (max-width: 600px) {
+			text-transform: uppercase;
+			color: $TEXT-COLOR;
+			font-weight: 500;
+			font-size: 0.65rem;
+			letter-spacing: 0.4pt;
+		}
 		&--time {
 			grid-area: time;
 		}
@@ -674,7 +738,6 @@ export default {
 		grid-row-gap: 0.6875rem;
 		@media (max-width: 480px) {
 			padding: 0;
-			margin-bottom: 10pt;
 			width: 100%;
 			grid-template-columns: none;
 			grid-template-rows: repeat(6, auto);
@@ -715,7 +778,7 @@ export default {
 		color: $TEXT-COLOR;
 		@media (max-width: 600px) {
 			font-weight: 500;
-			font-size: 8pt;
+			font-size: 0.65rem;
 			letter-spacing: 0.4pt;
 		}
 		&--name {
@@ -893,6 +956,13 @@ export default {
 	}
 	&__book-button {
 		@media (max-width: 480px) {
+			display: none;
+		}
+	}
+	&__book-button-mobile {
+		display: none;
+		@media (max-width: 480px) {
+			display: flex;
 			margin-bottom: 16pt;
 			width: 100%;
 		}
@@ -944,21 +1014,33 @@ export default {
 		grid-area: time;
 		width: 100%;
 		display: none;
+		grid-template-rows: repeat(3, auto);
+		grid-template-columns: 56% 40%;
+		grid-column-gap: 4%;
+		grid-row-gap: 8pt;
+		grid-template-areas:
+			'day 	       time'
+			'day-input     time-input'
+			'.  	       duration';
 		@media (max-width: 700px) {
-			display: flex;
+			display: grid;
 			flex-direction: row;
 		}
 	}
+	&__mobile-duration {
+		grid-area: duration;
+		justify-self: end;
+		font-family: $base-font;
+		font-weight: 300;
+		font-size: 0.85rem;
+		color: $TEXT-COLOR;
+		padding-right: 4px;
+	}
 	&__timepicker.mx-datepicker-range {
-		width: 47%;
+		// width: 47%;
 	}
 	&__timepicker {
-		width: 56%;
-		margin-right: 4%;
-		&:last-child {
-			width: 40%;
-			margin: 0;
-		}
+		width: 100%;
 		.mx-input {
 			border-radius: 4px;
 			width: 101%;
@@ -977,9 +1059,15 @@ export default {
 			padding: 21px 16px;
 			left: -2px;
 		@media (max-width: 480px) {
-			font-size: 11pt;
+			font-size: 0.95rem;;
 			font-weight: 400;
 			line-height: 1;
+		}
+		@media (max-width: 375px) {
+			font-size: 0.79rem;
+		}
+		@media (max-width: 320px) {
+			font-size: 0.65rem;
 		}
 		&:-webkit-autofill,
 		&:-webkit-autofill:hover,
@@ -1012,16 +1100,19 @@ export default {
 			font-family: $base-font;
 			line-height: 1;
 			@media (max-width: 480px) {
-				font-size: 11pt;
-				line-height: 1;
+				font-size: 0.95rem;;
 				font-weight: 400;
+				line-height: 1;
+			}
+			@media (max-width: 375px) {
+				font-size: 0.79rem;
+			}
+			@media (max-width: 320px) {
+				font-size: 0.65rem;
 			}
 		}
 		}
 		.mx-shortcuts-wrapper {
-			display: none;
-		}
-		.mx-calendar-header {
 			display: none;
 		}
 		.mx-panel.mx-panel-date {
@@ -1062,7 +1153,10 @@ export default {
 		}
 		.mx-datepicker-popup {
 			min-width: 100% !important;
-			top: 2rem !important;
+			top: 43px !important;
+			left: 0 !important;
+			right: auto !important;
+			width: 40vw !important;
 			@media (max-width: 480px) {
 				top: 0 !important;
 				width: 100vw;
@@ -1070,7 +1164,7 @@ export default {
 				position: fixed !important;
 				left: 0 !important;
 				right: 0 !important;
-				padding: 10pt;
+				padding: 15pt;
 			}
 		}
 		.mx-datepicker-btn-confirm {
@@ -1095,13 +1189,18 @@ export default {
 			}
 		}
 		&--day {
+			grid-area: day-input;
 			.mx-calendar {
 				width: 100%;
 			}
 		}
 		&--time {
+			grid-area: time-input;
 			.mx-calendar {
 				width: 50%;
+			}
+			.mx-calendar-header {
+				display: none;
 			}
 		}
 	}
