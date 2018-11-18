@@ -9,7 +9,6 @@
 			<p class="book-meeting-room__button-text" @click='goBack'>go back</p>
 		</div>
 		<h2 class="book-meeting-room__title">Meeting room<br>Reservation
-		<time-picker></time-picker>
 		</h2>
 		<form action="" id='book-meeting-room-form' name='book-meeting-room' class="book-meeting-room__form">
 			<div class='book-meeting-room__time-wrapper'>
@@ -26,9 +25,9 @@
 			</div>
 			<div class="book-meeting-room__time-wrapper-mobile">
 				<p class="book-meeting-room__date-label">Day</p>
-				<date-picker class='book-meeting-room__timepicker book-meeting-room__timepicker--day' :editable='false' :confirm='true' format='DD MMMM, YYYY' v-model="mobile.day" lang="en" :not-before="new Date()"></date-picker>
+				<input type='date'>
 				<p class="book-meeting-room__date-label book-meeting-room__date-label--time">Time</p>	
-				<date-picker class='book-meeting-room__timepicker book-meeting-room__timepicker--time' :editable='false' :confirm='true' v-model="mobile.time" range type="time" placeholder='Select Time' range-separator='-' lang="en" format="HH:mm" :time-picker-options="mobile.timeOptions"></date-picker>
+				<time-picker class="book-meeting-room__timepicker"></time-picker>
 				<p class="book-meeting-room__mobile-duration">{{ durationMobile }}</p>
 			</div>
 			<div class="book-meeting-room__input-wrapper">
@@ -204,10 +203,8 @@ export default {
 			},
 			mobile: {
 				day: '',
-				time: '',
 				start: '',
 				end: '',
-				timeOptions: { start: '08:00', step: '00:30', end: '20:00' }
 			},
 			checkFrameIn: false,
 			checkFrameOut: false,
@@ -456,26 +453,18 @@ export default {
 			} else {
 				return '';
 			}
-		},
-		durationMobile() {
-			if(this.mobile.time) {
-				let start = this.mobile.time[0],
-					end = this.mobile.time[1];
-				return `(${Math.floor((end - start)/3600000)}h ${Math.abs((+end.getMinutes() - +start.getMinutes()))? ' ' + Math.abs((+end.getMinutes() - +start.getMinutes())) + 'm':''})`;
-			} else {
-				return '';
-			}
 		}
+		// durationMobile() {
+		// 	if(this.mobile.time) {
+		// 		let start = this.mobile.time[0],
+		// 			end = this.mobile.time[1];
+		// 		return `(${Math.floor((end - start)/3600000)}h ${Math.abs((+end.getMinutes() - +start.getMinutes()))? ' ' + Math.abs((+end.getMinutes() - +start.getMinutes())) + 'm':''})`;
+		// 	} else {
+		// 		return '';
+		// 	}
+		// }
 	},
 	watch: {
-		'mobile'() {
-			if(this.mobile.time) {
-				let start = this.mobile.time[0],
-					end = this.mobile.time[1];
-				this.mobile.start = `${start.getHours()}:${start.getMinutes()=='0'?'00':start.getMinutes()}`;
-				this.mobile.end = `${end.getHours()}:${end.getMinutes()=='0'?'00':end.getMinutes()}`;
-			}
-		},
 		'bookRoomData.resident': function() {
 			this.checkFrameIn = true;
 			this.checkFrameOut = false;
@@ -673,8 +662,11 @@ export default {
 			text-transform: uppercase;
 			color: $TEXT-COLOR;
 			font-weight: 500;
-			font-size: 0.65rem;
+			font-size: 0.7rem;
 			letter-spacing: 0.4pt;
+		}
+		@media (max-width: 375px) {
+			font-size: 0.65rem;
 		}
 		&--time {
 			grid-area: time;
@@ -784,8 +776,11 @@ export default {
 		color: $TEXT-COLOR;
 		@media (max-width: 600px) {
 			font-weight: 500;
-			font-size: 0.65rem;
+			font-size: 0.7rem;
 			letter-spacing: 0.4pt;
+		}
+		@media (max-width: 375px) {
+			font-size: 0.65rem;
 		}
 		&--name {
 			grid-area: label-name;
@@ -812,7 +807,7 @@ export default {
 		padding: 12px 16px;
 		left: -2px;
 		@media (max-width: 480px) {
-			font-size: 11pt;
+			font-size: 1rem;
 			font-weight: 400;
 			line-height: 1;
 		}
@@ -854,7 +849,7 @@ export default {
 			line-height: 1;
 			@media (max-width: 480px) {
 				padding-top: 2pt;
-				font-size: 11pt;
+				font-size: 1rem;
 				line-height: 1;
 				font-weight: 400;
 			}
@@ -897,7 +892,8 @@ export default {
 	}
 	&__resident-input {
 		position: absolute;
-		z-index: -1;
+		top: 4px;
+		z-index: -10;
 		outline: none;
 		border: none;
 		visibility: hidden;
@@ -1042,176 +1038,9 @@ export default {
 		color: $TEXT-COLOR;
 		padding-right: 4px;
 	}
-	&__timepicker.mx-datepicker-range {
-		// width: 47%;
-	}
+	
 	&__timepicker {
-		width: 100%;
-		.mx-input {
-			border-radius: 4px;
-			width: 101%;
-			border: none;
-			outline: none;
-			background-color: $BUTTON-COLOR;
-			font-family: $base-font;
-			font-size: 0.625rem;
-			font-weight: 500;
-			text-align: left;
-			color: $TEXT-COLOR;
-			transition: border-color ease-in-out 0.1s;
-			border: 2px solid $MAIN-DARK-COLOR;
-			box-shadow: none;
-			position: relative;
-			padding: 21px 16px;
-			left: -2px;
-		@media (max-width: 480px) {
-			font-size: 0.95rem;;
-			font-weight: 400;
-			line-height: 1;
-		}
-		@media (max-width: 375px) {
-			font-size: 0.79rem;
-		}
-		@media (max-width: 320px) {
-			font-size: 0.65rem;
-		}
-		&:-webkit-autofill,
-		&:-webkit-autofill:hover,
-		&:-webkit-autofill:focus,
-		&:-webkit-autofill:active {
-			animation-name: autofill;
-			animation-fill-mode: both;
-		}
-		&:active {
-			background-color: $BUTTON-COLOR;
-			outline: none;
-			border: 2px solid $MAIN-DARK-COLOR;
-		}
-		&:focus {
-			outline: none;
-			background-color: $BUTTON-COLOR;
-			border: 2px solid $MAIN-DARK-COLOR;
-			outline: none; 
-		}
-		&:disabled {
-			background-color: $BLACK;
-		}
-		&:disabled &::placeholder {
-			color: $MIDDLE-GREY;
-		}
-		&::placeholder {
-			color: $GREY;
-			font-size: 0.8rem;
-			font-weight: 500;
-			font-family: $base-font;
-			line-height: 1;
-			@media (max-width: 480px) {
-				font-size: 0.95rem;;
-				font-weight: 400;
-				line-height: 1;
-			}
-			@media (max-width: 375px) {
-				font-size: 0.79rem;
-			}
-			@media (max-width: 320px) {
-				font-size: 0.65rem;
-			}
-		}
-		}
-		.mx-shortcuts-wrapper {
-			display: none;
-		}
-		.mx-panel.mx-panel-date {
-			@media (max-width: 480px) {
-				width: 100%;
-				tbody,
-				thead {
-					width: 100%;
-				}
-			}
-		}
-		.mx-input-icon {
-			display: none;
-		}
-		.mx-clear-icon::before {
-			display: none;
-		}
-		.mx-calendar {
-			margin-bottom: 20pt;
-			@media (max-width: 480px) {
-				height: auto;
-				text-align: center;
-			}
-		}
-
-		.mx-calendar-content {
-			width: 100%;
-			@media (max-width: 480px) {
-				height: 45vh;
-			}
-		}
-		.mx-range-wrapper {
-			width: 100%;
-			@media (max-width: 480px) {
-				height: auto;
-			}
-			
-		}
-		.mx-datepicker-popup {
-			min-width: 100% !important;
-			top: 43px !important;
-			left: 0 !important;
-			right: auto !important;
-			width: 40vw !important;
-			@media (max-width: 480px) {
-				top: 0 !important;
-				width: 100vw;
-				height: 70vh;
-				position: fixed !important;
-				left: 0 !important;
-				right: 0 !important;
-				padding: 15pt;
-			}
-			@media (max-width: 320px) {
-				height: 75vh;
-			}
-		}
-		.mx-datepicker-btn-confirm {
-			padding: 1rem 0;
-			width: 100%;
-		}
-		.mx-input-append {
-			width: 5px;
-			background-color: transparent;
-			
-			svg {
-				top: 10px;
-				left: -12px;
-				border: solid transparent;
-				height: 0;
-				width: 0;
-				position: relative;
-				pointer-events: none;
-				border-color: transparent;
-				border-top-color: $GREY;
-				border-width: 5px;
-			}
-		}
-		&--day {
-			grid-area: day-input;
-			.mx-calendar {
-				width: 100%;
-			}
-		}
-		&--time {
-			grid-area: time-input;
-			.mx-calendar {
-				width: 50%;
-			}
-			.mx-calendar-header {
-				display: none;
-			}
-		}
+		grid-area: time-input;
 	}
 	
 }

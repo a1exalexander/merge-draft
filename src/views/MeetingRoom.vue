@@ -6,7 +6,7 @@
 		enter-active-class="animated fadeIn"
 		leave-active-class="animated fadeOut"
 		mode="out-in">
-	<book-meeting-room  v-show='showBookMeetingRoom' @editDate='editDate("fullcalendar")' @goBack='goBack'></book-meeting-room>
+	<book-meeting-room  v-if='showBookMeetingRoom' @editDate='editDate("fullcalendar")' @goBack='goBack'></book-meeting-room>
 	</transition>
 	<!-- 2 wrappers to implement dual adaptive indents -->
 	<div class="meeting-room__wrapper">
