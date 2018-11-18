@@ -9,6 +9,7 @@
 			<p class="book-meeting-room__button-text" @click='goBack'>go back</p>
 		</div>
 		<h2 class="book-meeting-room__title">Meeting room<br>Reservation
+		<time-picker></time-picker>
 		</h2>
 		<form action="" id='book-meeting-room-form' name='book-meeting-room' class="book-meeting-room__form">
 			<div class='book-meeting-room__time-wrapper'>
@@ -27,8 +28,8 @@
 				<p class="book-meeting-room__date-label">Day</p>
 				<date-picker class='book-meeting-room__timepicker book-meeting-room__timepicker--day' :editable='false' :confirm='true' format='DD MMMM, YYYY' v-model="mobile.day" lang="en" :not-before="new Date()"></date-picker>
 				<p class="book-meeting-room__date-label book-meeting-room__date-label--time">Time</p>	
-				<date-picker class='book-meeting-room__timepicker book-meeting-room__timepicker--time' :editable='false' :confirm='true' v-model="mobile.time" range type="time" placeholder='Select Time' range-separator='-' lang="en" format="HH:mm" :time-picker-options="{ start: '08:00', step: '00:30', end: '20:00' }"></date-picker>
-				<p class="book-meeting-room__mobile-duration">(2h 20m)</p>
+				<date-picker class='book-meeting-room__timepicker book-meeting-room__timepicker--time' :editable='false' :confirm='true' v-model="mobile.time" range type="time" placeholder='Select Time' range-separator='-' lang="en" format="HH:mm" :time-picker-options="mobile.timeOptions"></date-picker>
+				<p class="book-meeting-room__mobile-duration">{{ durationMobile }}</p>
 			</div>
 			<div class="book-meeting-room__input-wrapper">
 				<label for="book-meeting-name" class="book-meeting-room__label book-meeting-room__label--name">NAME</label>
@@ -163,6 +164,7 @@ import ButtonBack from '@/components/buttons/ButtonBack.vue';
 import ButtonBook from '@/components/buttons/ButtonBook.vue';
 import BookingRoomDone from '@/views/BookingRoomDone.vue';
 import Logo from '@/components/Logo.vue';
+import TimePicker from '@/components/TimePicker'
 
 export default {
 	name: 'BookMeetingRoom',
@@ -172,7 +174,8 @@ export default {
 		Logo,
 		ButtonCloseMini,
 		BookingRoomDone,
-		DatePicker
+		DatePicker,
+		TimePicker
 	},
 	data() {
 		return {
@@ -203,7 +206,8 @@ export default {
 				day: '',
 				time: '',
 				start: '',
-				end: ''
+				end: '',
+				timeOptions: { start: '08:00', step: '00:30', end: '20:00' }
 			},
 			checkFrameIn: false,
 			checkFrameOut: false,
@@ -452,22 +456,24 @@ export default {
 			} else {
 				return '';
 			}
+		},
+		durationMobile() {
+			if(this.mobile.time) {
+				let start = this.mobile.time[0],
+					end = this.mobile.time[1];
+				return `(${Math.floor((end - start)/3600000)}h ${Math.abs((+end.getMinutes() - +start.getMinutes()))? ' ' + Math.abs((+end.getMinutes() - +start.getMinutes())) + 'm':''})`;
+			} else {
+				return '';
+			}
 		}
-		// TODO: duration for n=mobile
-		// durationMobile() {
-		// 	if(this.event.duration) {
-		// 		return `${this.start} - ${this.end} (${this.event.duration})`;
-		// 	} else {
-		// 		return '';
-		// 	}
-		// }
 	},
 	watch: {
 		'mobile'() {
-			let time = this.mobile.time;
-			if(time) {
-				this.mobile.start = `${time[0].getHours()}:${time[0].getMinutes()=='0'?'00':time[0].getMinutes()}`;
-				this.mobile.end = `${time[1].getHours()}:${time[1].getMinutes()=='0'?'00':time[1].getMinutes()}`;
+			if(this.mobile.time) {
+				let start = this.mobile.time[0],
+					end = this.mobile.time[1];
+				this.mobile.start = `${start.getHours()}:${start.getMinutes()=='0'?'00':start.getMinutes()}`;
+				this.mobile.end = `${end.getHours()}:${end.getMinutes()=='0'?'00':end.getMinutes()}`;
 			}
 		},
 		'bookRoomData.resident': function() {
@@ -1015,7 +1021,7 @@ export default {
 		width: 100%;
 		display: none;
 		grid-template-rows: repeat(3, auto);
-		grid-template-columns: 56% 40%;
+		grid-template-columns: 54% 42%;
 		grid-column-gap: 4%;
 		grid-row-gap: 8pt;
 		grid-template-areas:
@@ -1160,11 +1166,14 @@ export default {
 			@media (max-width: 480px) {
 				top: 0 !important;
 				width: 100vw;
-				height: 65vh;
+				height: 70vh;
 				position: fixed !important;
 				left: 0 !important;
 				right: 0 !important;
 				padding: 15pt;
+			}
+			@media (max-width: 320px) {
+				height: 75vh;
 			}
 		}
 		.mx-datepicker-btn-confirm {

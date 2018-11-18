@@ -143,7 +143,7 @@ export default {
 		if(this.$route.path == "/meeting-room/calendar") {
 			setTimeout(()=>{
 				this.toCalendar('fullcalendar');
-			}, 300);
+			}, 350);
 			
 		}
 	}
