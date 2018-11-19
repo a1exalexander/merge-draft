@@ -1,28 +1,30 @@
 <template>
-<div class="booking-done__wrapper">
-	<logo class='booking-done__logo'></logo>
-	<div class="booking-done" :style="onStyleAnimate">
-		<button-close-mini class="booking-done__close" @click.native="goHome"></button-close-mini>
-		<div class="booking-done__inner booking-done__inner--title">
-			<h2 class="booking-done__title">Waiting for you in
+<div class="booking-done-mobile__wrapper">
+	<div class="booking-done-mobile" :style="onStyleAnimate">
+		<button-close-mini class="booking-done-mobile__close" @click.native="goHome"></button-close-mini>
+		<div class="booking-done-mobile__inner booking-done-mobile__inner--title">
+			<h2 class="booking-done-mobile__title">Waiting for You in
 			</h2>
-			<p class="booking-done__title booking-done__title--merge">MERGE</p>
+			<p class="booking-done-mobile__title booking-done-mobile__title--merge">MERGE</p>
 		</div>
-		<p class="booking-done__caption">You have applied for a workplace booking. Wait for a call by our administrator.</p>
-		<div class="booking-done__inner booking-done__inner--social">
+		<p class="booking-done-mobile__caption">You have reserved a Meeting Room</p>
+		<p class="booking-done-mobile__info">Payment occurs in coworking.</p>
+		<p class="booking-done-mobile__info">Wait for a call by our</p>
+		<p class="booking-done-mobile__info">administrator.</p>
+		<div class="booking-done-mobile__inner booking-done-mobile__inner--social">
 			<p class="booking-done__text">FOLLOW US IN SOCIAL MEDIA to keep up our latest news and announcements</p>
-			<social-networks class="booking-done__social"></social-networks>
+			<social-networks class="booking-done-mobile__social"></social-networks>
 		</div>
-		<div class="booking-done__inner booking-done__inner--location">
-			<svg class="booking-done__image">
+		<div class="booking-done-mobile__inner booking-done-mobile__inner--location">
+			<svg class="booking-done-mobile__image">
 				<use xlink:href='#location' />
 			</svg>
-			<p class="booking-done__location-text">Kremenchug, Nebesna Sotnia st. 17А, “Proletarsky”</p>
+			<p class="booking-done-mobile__location-text">Kremenchug, Nebesna Sotnia st. 17А, “Proletarsky”</p>
 		</div>
-		<button-map class="booking-done__button-map"></button-map>
-		<div class="booking-done__inner booking-done__inner--back-button">
-			<button-back class="booking-done__button-back" @click.native='goHome'></button-back>
-			<p class="booking-done__button-text" @click='goHome'>BACK TO THE START PAGE</p>
+		<button-map class="booking-done-mobile__button-map"></button-map>
+		<div class="booking-done-mobile__inner booking-done-mobile__inner--back-button">
+			<button-back class="booking-done-mobile__button-back" @click.native='goHome'></button-back>
+			<p class="booking-done-mobile__button-text" @click='goHome'>BACK TO THE START PAGE</p>
 		</div>
 	</div>
 	<svg style="display: none;">
@@ -32,21 +34,18 @@
 	</svg>
 </div>
 </template>
-
 <script>
 import ButtonMap from '@/components/buttons/ButtonMap.vue';
 import SocialNetworks from '@/components/SocialNetworks.vue';
 import ButtonBack from '@/components/buttons/ButtonBack.vue';
 import ButtonCloseMini from '@/components/buttons/ButtonCloseMini';
-import Logo from '@/components/Logo.vue';
 
 export default {
-	name: 'BookingDone',
+	name: 'BookingRoomDoneMobile',
 	components: {
 		ButtonMap,
 		SocialNetworks,
 		ButtonBack,
-		Logo,
 		ButtonCloseMini
 	},
 	data () {
@@ -68,15 +67,16 @@ export default {
 	}
 }
 </script>
-
 <style lang="scss">
 @import '../assets/scss/style.scss';
-.booking-done {
+
+.booking-done-mobile {
 	padding: 2rem 0;
 	flex: 0 0 30%;
-	@extend %flex-col;
+	flex-direction: column;
 	will-change: transform;
 	align-items: flex-start;
+	display: flex;
 	animation-name: fadeInBubble;
 	animation-duration: 0.5s;
 	animation-timing-function: ease-in-out;
@@ -87,13 +87,7 @@ export default {
 	@media (max-width: 600px) {
 		flex: 0 0 100%;
 		align-self: flex-start;
-		align-items: flex-start;
 		padding: 0;
-	}
-	&__logo {
-		@media (max-width: 600px) {
-			display: none;
-		}
 	}
 	&__close {
 		display: none;
@@ -128,8 +122,13 @@ export default {
 		left: 0;
 		right: 0;
 		min-height: 100vh;
-		@extend %flex-row-c;
+		flex-direction: row;
+		display: none;
+		justify-content: center;
 		align-items: center;
+		@media (max-width: 700px) {
+			display: flex;
+		}
 		@media (max-width: 600px) {
 			padding: 28pt;
 		}
@@ -206,6 +205,7 @@ export default {
 			border-top: 1px solid $MIDDLE-GREY-OPACITY;
 			border-bottom: 1px solid $MIDDLE-GREY-OPACITY;
 			@media (max-width: 600px) {
+				border-top: none;
 				padding: 14pt 0;
 			}
 			@media (max-width: 320px) {
@@ -286,6 +286,27 @@ export default {
 			margin-bottom: 12pt;
 		}
 	}
+	&__info {
+		font-family: $base-font;
+		font-size: 0.8125rem;
+		font-weight: 500;
+		line-height: 2;
+		text-align: left;
+		color: $TEXT-COLOR;
+		@media (max-width: 600px) {
+			font-size: 1rem;
+			font-weight: 500;
+			letter-spacing: 0.4pt;
+		}
+		@media (max-width: 375px) {
+			font-size: 0.8rem;
+			letter-spacing: 0.6pt;
+		}
+		@media (max-width: 320px) {
+			font-size: 0.75rem;
+			letter-spacing: 0.6pt;
+		}
+	}
 	&__text {
 		font-family: $base-font;
 		font-size: 0.5rem;
@@ -361,12 +382,12 @@ export default {
 		color: $TEXT-COLOR;
 		@media (max-width: 600px) {
 			font-weight: 500;
-			font-size: 0.9rem;
+			font-size: 1rem;
 			line-height: 1.5;
 			letter-spacing: 0.6pt;
 		}
 		@media (max-width: 375px) {
-			font-size: 0.85rem;
+			font-size: 0.9rem;
 			letter-spacing: 0.6pt;
 		}
 	}

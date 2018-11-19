@@ -1,8 +1,9 @@
 <template>
 <div class="book-meeting-room__wrapper">
 	<logo class="book-meeting-room__logo"></logo>
-	<booking-room-done :bookRoomData='bookRoomData' v-show='bookingRoomDone' @edit='editName'></booking-room-done>
-	<div class="book-meeting-room" v-show='!bookingRoomDone' :style="onStyleAnimate" >
+	<booking-room-done :bookRoomData='bookRoomData' v-if='visible.bookingRoomDone' @edit='editName'></booking-room-done>
+	<booking-room-done-mobile v-if='visible.bookingRoomDoneMobile'></booking-room-done-mobile>
+	<div class="book-meeting-room" v-show='!visible.bookingRoomDone || !visible.bookingRoomDoneMobile' :style="onStyleAnimate" >
 		<button-close-mini class="book-meeting-room__close" @click.native='goBack'></button-close-mini>
 		<div class="book-meeting-room__button-back-wrapper">
 			<button-back class="book-meeting-room__button-back" @click.native='goBack'></button-back>
@@ -88,7 +89,7 @@
 				name="custom-classes-transition"
 				enter-active-class="animated pullDown"
 				leave-active-class="animated02 pullUp">
-            <div class="check-free-time__wrapper" v-if='checkFrameIn'>
+            <div class="check-free-time__wrapper" v-if='visible.checkFrameIn'>
 			<form id='check-free-time' class="check-free-time">
 				<p class="check-free-time__text">Put your E-Mail for checking availability of free hours for Meeting Room's using
 				</p>
@@ -115,7 +116,7 @@
             </div>
             </transition>
 			<button	class="check-free-time__button check-free-time__button--mobile" 
-				v-if='checkFrameIn'
+				v-if='visile.checkFrameIn'
 				@click.prevent="checkResidentTime"
 				:disabled='showCheck'>
 				<p class="check-free-time__button-text">CHECK</p>
@@ -125,7 +126,7 @@
 				name="custom-classes-transition"
 				enter-active-class="animated pullDown"
 				leave-active-class="animated pullUp">
-            <div class="resident-time-info__wrapper" v-if='checkFrameOut'>
+            <div class="resident-time-info__wrapper" v-if='visible.checkFrameOut'>
 				<div class="resident-time-info">
 					<p class="resident-time-info__title resident-time-info__title--name">Resident</p>
 					<p class="resident-time-info__title resident-time-info__title--duration">Duration</p>
@@ -143,8 +144,8 @@
 				<span class="booking-price__sum book-meeting-room__sum">{{ price }}</span>
 				<span class="booking-price__sum book-meeting-room__sum book-meeting-room__sum--mobile">{{ priceMobile }}</span>
 			</p>
-			<button-book class='book-meeting-room__book-button' :disabled='showSubmit' @click.native='bookingRoomDone = true'></button-book>
-			<button-book class='book-meeting-room__book-button-mobile' :disabled='showSubmitMobile' @click.native='bookingRoomDone = true'></button-book>
+			<button-book class='book-meeting-room__book-button' :disabled='showSubmit' @click.native='visible.bookingRoomDone = true'></button-book>
+			<button-book class='book-meeting-room__book-button-mobile' :disabled='showSubmitMobile' @click.native='visible.bookingRoomDoneMobile = true'></button-book>
 			<button class="book-meeting-room__cancel" @click.prevent='goBack'>CANCEL</button>
 		</div>
 	</div>
@@ -166,6 +167,7 @@ import ButtonCloseMini from '@/components/buttons/ButtonCloseMini.vue';
 import ButtonBack from '@/components/buttons/ButtonBack.vue';
 import ButtonBook from '@/components/buttons/ButtonBook.vue';
 import BookingRoomDone from '@/views/BookingRoomDone.vue';
+import BookingRoomDoneMobile from '@/views/BookingRoomDoneMobile.vue';
 import Logo from '@/components/Logo.vue';
 import TimePicker from '@/components/TimePicker'
 
@@ -177,6 +179,7 @@ export default {
 		Logo,
 		ButtonCloseMini,
 		BookingRoomDone,
+		BookingRoomDoneMobile,
 		DatePicker,
 		TimePicker
 	},
@@ -199,7 +202,6 @@ export default {
 				phone: null,
 				email: null
 			},
-			freeHours: null,
 			validStatus: {
 				name: false,
 				phone: false,
@@ -210,21 +212,25 @@ export default {
 				start: '',
 				end: '',
 			},
-			checkFrameIn: false,
-			checkFrameOut: false,
+			visible: {
+				checkFrameIn: false,
+				checkFrameOut: false,
+				bookCard: true,
+				bookingRoomDone: false,
+				bookingRoomDoneMobile: false
+			},
 			styleAnimate: {
 				transform: 'translateX(-300%)',
 				transition: 'transform ease-in-out 0.3s'
 			},
 			onStyleAnimate: null,
-			bookCard: true,
-			bookingRoomDone: false
+			freeHours: null,
 		};
 	},
 	methods: {
 		editName() {
-			this.bookingRoomDone = false;
-			this.bookCard = true;
+			this.visible.bookingRoomDone = false;
+			this.visible.bookCard = true;
 		},
 		editDate() {
 			this.$emit("editDate");
@@ -247,9 +253,9 @@ export default {
 			.catch(e => {
 				this.errors.arr.push(e);
 			});
-			this.checkFrameIn = false;
+			this.visible.checkFrameIn = false;
 			setTimeout(()=> {
-				this.checkFrameOut = true;
+				this.visible.checkFrameOut = true;
 			}, 200);
 		},
 		checkName() {
@@ -501,8 +507,8 @@ export default {
 	},
 	watch: {
 		'bookRoomData.resident': function() {
-			this.checkFrameIn = true;
-			this.checkFrameOut = false;
+			this.visible.checkFrameIn = true;
+			this.visible.checkFrameOut = false;
 		},
 		'bookRoomData.name'() {
 			if (this.bookRoomData.name && this.validName(this.bookRoomData.name)) {
