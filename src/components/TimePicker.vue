@@ -256,5 +256,4 @@ export default {
 					opacity ease-in-out 0.1s;
 	}
 }
-
 </style>
