@@ -25,9 +25,12 @@
 			</div>
 			<div class="book-meeting-room__time-wrapper-mobile">
 				<p class="book-meeting-room__date-label">Day</p>
-				<input type='date'>
+				<label class="datepicker book-meeting-room__datepicker">
+					<input type='date' class="datepicker__input" v-model='mobile.day'>
+					<p class="datepicker__text">{{ mobileDay }}</p>
+				</label>
 				<p class="book-meeting-room__date-label book-meeting-room__date-label--time">Time</p>	
-				<time-picker class="book-meeting-room__timepicker"></time-picker>
+				<time-picker class="book-meeting-room__timepicker" @mobileTime='inboxTime' :day='mobile.day'></time-picker>
 				<p class="book-meeting-room__mobile-duration">{{ durationMobile }}</p>
 			</div>
 			<div class="book-meeting-room__input-wrapper">
@@ -292,9 +295,21 @@ export default {
 			this.checkData.name = this.bookRoomData.name;
 			this.checkData.phone = this.bookRoomData.phone; 
 			this.checkData.email = this.bookRoomData.email;
+		},
+		inboxTime(data) {
+			this.mobile.start = data.start;
+			this.mobile.end = data.end;
 		}
 	},
 	computed: {
+		mobileDay() {
+			if(this.mobile.day) {
+				let date = new Date(this.mobile.day);
+				return `${date.toLocaleString("en-US", {day: '2-digit'})} ${date.toLocaleString("en-US", {month: 'long'})}, ${date.toLocaleString("en-US", {year: 'numeric'})}`;
+			} else {
+				return 'Select date';
+			}
+		},
 		checkFreeDuration() {
 			return new Date().getDate() + ' - ' + (+new Date().getDate() + 6) + ' ' + new Date().toLocaleString("en-US", {month: 'long'});
 		},
@@ -390,7 +405,8 @@ export default {
 				this.validStatus.phone &&
 				this.validStatus.email &&
 				this.mobile.day &&
-				this.mobile.time &&
+				this.mobile.start &&
+				this.mobile.end &&
 				!this.errors.name &&
 				!this.errors.phone &&
 				!this.errors.email) {
@@ -402,7 +418,8 @@ export default {
 				if(this.bookRoomData.name &&
 				this.bookRoomData.phone &&
 				this.mobile.day &&
-				this.mobile.time &&
+				this.mobile.start &&
+				this.mobile.end &&
 				this.validStatus.name &&
 				this.validStatus.phone &&
 				!this.errors.name &&
@@ -453,16 +470,21 @@ export default {
 			} else {
 				return '';
 			}
+		},
+		durationMobile() {
+			if(this.mobile.day && this.mobile.start && this.mobile.end) {
+				let startHours = +this.mobile.start.slice(0, 2),
+					startMinutes = +this.mobile.start.slice(3, 5),
+					endHours = +this.mobile.end.slice(0, 2),
+					endMinutes = +this.mobile.end.slice(3, 5),
+					hours = Math.floor(+`${endHours}.${endMinutes}` - +`${startHours}.${startMinutes}`),
+					minutes = Math.abs(endMinutes - startMinutes);
+					window.console.log(startHours, startMinutes, hours, minutes);
+				return `(${hours}h${minutes?' ' + minutes + 'm':''})`;
+			} else {
+				return '';
+			}
 		}
-		// durationMobile() {
-		// 	if(this.mobile.time) {
-		// 		let start = this.mobile.time[0],
-		// 			end = this.mobile.time[1];
-		// 		return `(${Math.floor((end - start)/3600000)}h ${Math.abs((+end.getMinutes() - +start.getMinutes()))? ' ' + Math.abs((+end.getMinutes() - +start.getMinutes())) + 'm':''})`;
-		// 	} else {
-		// 		return '';
-		// 	}
-		// }
 	},
 	watch: {
 		'bookRoomData.resident': function() {
@@ -1017,7 +1039,7 @@ export default {
 		width: 100%;
 		display: none;
 		grid-template-rows: repeat(3, auto);
-		grid-template-columns: 54% 42%;
+		grid-template-columns: 56% 40%;
 		grid-column-gap: 4%;
 		grid-row-gap: 8pt;
 		grid-template-areas:
@@ -1038,11 +1060,12 @@ export default {
 		color: $TEXT-COLOR;
 		padding-right: 4px;
 	}
-	
 	&__timepicker {
 		grid-area: time-input;
 	}
-	
+	&__datepicker {
+		grid-area: day-input;
+	}
 }
 .check-free-time {
 	position: relative;
@@ -1301,6 +1324,80 @@ export default {
 		}
 		&--red {
 			color: red;
+		}
+	}
+}
+.datepicker {
+	position: relative;
+	width: 100%;
+	@extend %flex-row;
+	align-items: center;
+	border-radius: 3px;
+	background-color: $BUTTON-COLOR;
+	padding: 1rem 1rem;
+	z-index: 10;
+	@media (max-width: 375px) {
+		padding: 1.094rem 1rem;
+	}
+	@media (max-width: 320px) {
+		padding: 1.157rem 1rem;
+	}
+	&__input {
+		position: absolute;
+		width: 100%;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		opacity: 0;
+		z-index: -10;
+		&::-webkit-calendar-picker-indicator {
+			background-color: transparent;
+			color: transparent;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			width: auto;
+			height: auto;
+			z-index: 20;
+		}
+	}
+	&__text {
+		color: $TEXT-COLOR;
+		font-family: $base-font;
+		line-height: 1;
+		font-size: 0.95rem;
+		pointer-events: none;
+		@media (max-width: 375px) {
+			font-size: 0.80rem;
+		}
+		@media (max-width: 320px) {
+			font-size: 0.68rem;
+		}
+		&::before {
+			top: 41%;
+			right: 0.4rem;
+			border: solid transparent;
+			content: '';
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+			border-color: transparent;
+			border-top-color: $GREY;
+			border-width: 6px;
+			z-index: 20;
+			pointer-events: none;
+			@media (max-width: 375px) {
+				top: 44%;
+				right: 0.3rem;
+			}
+			@media (max-width: 320px) {
+				border-width: 5px;
+				right: 0.25rem;
+			}
 		}
 	}
 }

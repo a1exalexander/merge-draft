@@ -78,7 +78,7 @@ export default {
       navLinks: false,
       selectable: true,
       selectHelper: true,
-      googleCalendarApiKey: 'AIzaSyC-8JGRFhvrAw3gFAS4L7P3lMS0KaV9rJU',
+      googleCalendarApiKey: 'AIzaSyCwSdSdIblDFzQbJSzu17XmnqZ4WvOsTPw',
       events: {
         googleCalendarId: '13g6skar8uf2s0um2kmushttnc@group.calendar.google.com'
       },
