@@ -140,7 +140,8 @@
         </div>
 		<div class="book-meeting-room__apply-wrapper">
 			<p class="booking-price book-meeting-room__price">Price:
-				<span class="booking-price__sum">{{ price }}</span>
+				<span class="booking-price__sum book-meeting-room__sum">{{ price }}</span>
+				<span class="booking-price__sum book-meeting-room__sum book-meeting-room__sum--mobile">{{ priceMobile }}</span>
 			</p>
 			<button-book class='book-meeting-room__book-button' :disabled='showSubmit' @click.native='bookingRoomDone = true'></button-book>
 			<button-book class='book-meeting-room__book-button-mobile' :disabled='showSubmitMobile' @click.native='bookingRoomDone = true'></button-book>
@@ -464,6 +465,19 @@ export default {
 				return '';
 			}
 		},
+		priceMobile() {
+			if(this.durationMobile) {
+				let startHours = +this.mobile.start.slice(0, 2),
+					startMinutes = +this.mobile.start.slice(3, 5),
+					endHours = +this.mobile.end.slice(0, 2),
+					endMinutes = +this.mobile.end.slice(3, 5),
+					hours = Math.ceil(+`${endHours}.${endMinutes}` - +`${startHours}.${startMinutes}`);
+				let cash = this.$store.state.price.hour;
+				return +hours * +cash;
+			} else {
+				return '';
+			}
+		},
 		duration() {
 			if(this.event.duration) {
 				return `${this.start} - ${this.end} (${this.event.duration})`;
@@ -479,7 +493,6 @@ export default {
 					endMinutes = +this.mobile.end.slice(3, 5),
 					hours = Math.floor(+`${endHours}.${endMinutes}` - +`${startHours}.${startMinutes}`),
 					minutes = Math.abs(endMinutes - startMinutes);
-					window.console.log(startHours, startMinutes, hours, minutes);
 				return `(${hours}h${minutes?' ' + minutes + 'm':''})`;
 			} else {
 				return '';
@@ -1005,6 +1018,17 @@ export default {
 					padding-left: 6pt;
 					font-size: 0.7rem;
 				}
+			}
+		}
+	}
+	&__sum {
+		@media (max-width: 700px) {
+			display: none;
+		}
+		&--mobile {
+			display: none;
+			@media (max-width: 700px) {
+				display: inline-block;
 			}
 		}
 	}
