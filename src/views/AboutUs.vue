@@ -20,11 +20,11 @@
     </transition>
 	<div class="about-us__wrapper">
 		<div class="about-us__main about-us__main--margin">
-			<header class="about-us__header animated d06 delay-02s fadeInUp">
+			<header class="about-us__header animated d06 delay-02s fadeInLeft">
 				<h1 class="about-us__title">About Us</h1>
 				<button-membership @click.native='closeCard'></button-membership>
 			</header>
-			<section class="work-time work-time--margin animated d06 delay-03s fadeInUp">
+			<section class="work-time work-time--margin animated d06 delay-03s fadeInLeft">
 				<img src="../assets/image/time.svg" class="work-time__clock" alt="clock">
 				<p class="work-time__text work-time__text--weekday">MON-FRI:</p>
 				<p class="work-time__text work-time__text--weekend">SAT, SUN:</p>
@@ -32,7 +32,7 @@
 				<p class="work-time__text work-time__text--weekend-time">10:00 - 18:00</p>
 			</section>
 			<section class="subscription-type__wrapper subscription-type__wrapper--margin">
-				<div class="subscription-type subscription-type--resident animated d06 delay-04s fadeInUp" @click="visible.residentCard = true">
+				<div class="subscription-type subscription-type--resident animated d06 delay-04s fadeInLeft" @click="visible.residentCard = true">
 					<p class="subscription-type__title">Month</p>
 					<p class="subscription-type__resident">Resident card</p>
 					<p class="subscription-type__price">1000</p>
@@ -42,7 +42,7 @@
 						</svg>
 					</a>
 				</div>
-				<div class="subscription-type animated d06 delay-05s fadeInUp" @click="visible.weekCard = true">
+				<div class="subscription-type animated d06 delay-05s fadeInLeft" @click="visible.weekCard = true">
 					<p class="subscription-type__title">Week</p>
 					<p class="subscription-type__price">400</p>
 					<a href='#' class="subscription-type__link-img">
@@ -51,7 +51,7 @@
 						</svg>
 					</a>
 				</div>
-				<div class="subscription-type animated d06 delay-06s fadeInUp" @click="visible.dayCard = true">
+				<div class="subscription-type animated d06 delay-06s fadeInLeft" @click="visible.dayCard = true">
 					<p class="subscription-type__title">Day</p>
 					<p class="subscription-type__price">80</p>
 					<a href='#' class="subscription-type__link-img">
@@ -63,20 +63,20 @@
 			</section>
 			<section class="about-us__inf about-us__inf--margin">
 				<div class="about-us__inner">
-					<p class="about-us__caption animated d06 delay-07s fadeInUp">ABOUT US
+					<p class="about-us__caption animated d06 delay-07s fadeInLeft">ABOUT US
 					</p>
-					<h2 class="about-us__subtitle animated d06 delay-08s fadeInUp">Our missions
+					<h2 class="about-us__subtitle animated d06 delay-08s fadeInLeft">Our missions
 					</h2>
-					<p class="about-us__text animated d06 delay-09s fadeInUp">Do everything to make you work in a comfortable environment: IT specialists, designers, copywriters,
+					<p class="about-us__text animated d06 delay-09s fadeInLeft">Do everything to make you work in a comfortable environment: IT specialists, designers, copywriters,
 						entrepreneurs - all those with whom it's pleasant to drink coffee and exchange valuable experience or orders.
 						Yes, we also have tea, coffee and biscuits.
 					</p>
 				</div>
 			</section>
-			<slider class="about-us__slider animated d06 delay-1s fadeInUp"></slider>
+			<slider class="about-us__slider animated d06 delay-1s fadeInLeft"></slider>
 		</div>
 	</div>
-	<section class="next-page-nav animated d06 delay-11s fadeInUp" >
+	<section class="next-page-nav animated d06 delay-11s fadeInLeft" >
 		<router-link to='/coworking' class="next-page-nav__link about-us__link-page about-us__link-page--interior">
 			<div class="next-page-nav__inner">
 				<p class="next-page-nav__text">Interior</p>

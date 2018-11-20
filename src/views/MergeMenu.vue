@@ -22,19 +22,19 @@
 	</div>
 	<div class="menu__inner">
 		<ul class="menu__list">
-			<li class="menu__item animated d06 delay-02s fadeInLeft">
+			<li class="menu__item animated d04 delay-02s fadeInLeft">
 				<router-link to="/" class="menu__link menu__link--merge">Merge</router-link>
 			</li>
-			<li class="menu__item animated d06 delay-03s fadeInLeft">
+			<li class="menu__item animated d04 delay-03s fadeInLeft">
 				<router-link to="/coworking" class="menu__link menu__link--coworking">Coworking space</router-link>
 			</li>
-			<li class="menu__item animated d06 delay-04s fadeInLeft">
+			<li class="menu__item animated d04 delay-04s fadeInLeft">
 				<router-link to="/meeting-room" class="menu__link menu__link--meeting">Meeting room</router-link>
 			</li>
-			<li class="menu__item animated d06 delay-05s fadeInLeft">
-				<router-link to="/" class="menu__link menu__link--events">Events</router-link>
+			<li class="menu__item animated d04 delay-05s fadeInLeft">
+				<router-link to="/events" class="menu__link menu__link--events">Events</router-link>
 			</li>
-			<li class="menu__item animated d06 delay-06s fadeInLeft">
+			<li class="menu__item animated d04 delay-06s fadeInLeft">
 				<router-link to="/about" class="menu__link menu__link--last">About us</router-link>
 			</li>
 		</ul>
@@ -56,7 +56,7 @@
 				</span> 
 			</a>
 		</div>
-		<div class="menu__language animated d06 delay-06s fadeInLeft">
+		<div class="menu__language animated d04 delay-06s fadeInLeft">
 			<label class="menu__language-link">
 				<input class="menu__language-input" type="radio" name='language' value='ua' v-model='language'>
 				<p class="menu__language-text menu__language-text--ua">UA</p>
@@ -71,7 +71,7 @@
 			</label>
 		</div>
 	</div>
-	<div class="menu__col menu__col--locate animated d06 delay-07s fadeInLeft">
+	<div class="menu__col menu__col--locate animated d04 delay-07s fadeInLeft">
 		<div class="menu__image-wrapper menu-row-1">
 			<svg class="menu__image menu__image--calendar">
 				<use xlink:href='#calendar' />
@@ -100,7 +100,7 @@
 		</div>
 		
 	</div>
-	<div class="menu__col menu__col--contact animated d06 delay-08s fadeInLeft">
+	<div class="menu__col menu__col--contact animated d04 delay-08s fadeInLeft">
 		<div class="menu__image-wrapper menu-row-1">
 			<svg class="menu__image menu__image--phone">
 				<use xlink:href='#phone' />

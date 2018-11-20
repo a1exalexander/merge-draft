@@ -1416,3 +1416,26 @@
 @-webkit-keyframes type{
     from { width: 0; }
 }
+
+@keyframes heightDown {
+	0% {
+		height: 0%;
+	}
+	100% {
+		height: auto;
+	}
+}
+
+@-webkit-keyframes heightDown {
+	0% {
+		height: 0%;
+	}
+	100% {
+		height: auto;
+	}
+}
+
+.heightDown {
+	-webkit-animation-name: heightDown;
+	animation-name: heightDown;
+}
