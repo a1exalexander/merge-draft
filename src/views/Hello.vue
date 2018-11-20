@@ -45,9 +45,9 @@
             </span>
         </h1>
     </div>
-	<h2 class="hello__subtitle animated d06 delay-02s fadeInUp">COWORKING IN THE CENTRE OF KREMENCHUK
+	<h2 class="hello__subtitle animated d05 delay-02s fadeInLeft">COWORKING IN THE CENTRE OF KREMENCHUK
 	</h2>
-	<div class="hello-link__wrapper animated d06 delay-03s fadeInUp">
+	<div class="hello-link__wrapper animated d06 delay-03s fadeInLeft">
 		<a href="#" class="hello-link hello-link--how-get">
 			<svg class='hello-link__img'>
 				<use xlink:href='#videocamera' />
@@ -63,7 +63,7 @@
 			</p>
 		</a>
 	</div>
-	<p class="hello__text animated d06 delay-04s fadeInUp">We offer
+	<p class="hello__text animated d05 delay-04s fadeInLeft">We offer
 		<a class='hello__text--link'>comfortable conditions</a>
 		for remote work and we are dreaming to organize
 		<a href='#' class='hello__text--link'>Merge Community</a>
@@ -73,7 +73,7 @@
 		<a href='#' class='hello__text--link'>lectures and workshops</a>
 		in various specialties.
 	</p>
-	<div class="hello__button-wrapper animated d06 delay-05s fadeInUp">
+	<div class="hello__button-wrapper animated d05 delay-05s fadeInLeft">
 		<button-membership class='hello__button' @click.native='becomeMember'></button-membership>
 		<button-book-room class='hello__button' @click.native='meetingRoom'></button-book-room>
 	</div>
