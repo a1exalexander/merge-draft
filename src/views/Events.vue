@@ -15,7 +15,7 @@
 						<a class="events__button events__button--past" href="#" :style='!toggleButton? style.activeButton: ""' @click.prevent='toggleButton = !toggleButton'>Past events</a>
 					</div>
 					<div class="events__nav-line">
-						<div class='events__nav-active' :style='!toggleButton? style.line: ""'></div>
+						<div class='events__nav-active' :class='{"events__nav-active--translate": !toggleButton}'></div>
 					</div>
 				</nav>
 				<transition
@@ -24,7 +24,7 @@
 					:leave-active-class="!toggleButton?'animated d04 fadeOutRight':'animated d04 fadeOutLeft'"
 					mode='out-in'>
 				<section class='events__section events__section--future' v-if='toggleButton' key="future">
-					<article class='event' v-for="(event, index) in events" :key="event.id">
+					<article class='event' v-for="(event, index) in eventsFuture" :key="event.id">
 						<section class="event__content">
 							<h2 class="event__title">{{ event.title }}</h2>
 							<p class="event__subtitle">{{ event.subtitle }}</p>
@@ -33,7 +33,7 @@
 								<div class='event__triangle' :style='+toggleIndex == +index? style.triangle: ""'></div>
 							</a>
 							<button class="event__button-details">
-								<p class='event__button-text'>DETAILS
+								<p class='event__button-text'>OPEN IN FB
 									<svg class='event__button-img'>
 										<use xlink:href='#arrow-right-up' />
 									</svg>
@@ -44,11 +44,17 @@
 							<p class="event__date">{{ event.date }}</p>
 							<p class="event__time">{{ event.time }}</p>
 							<p class="event__price">{{ event.price }}</p>
+							<button class="event__info-button">
+								<p class='event__info-button-text'>DETAILS</p>
+								<svg class='event__info-button-img'>
+									<use xlink:href='#arrow-right' />
+								</svg>
+							</button>
 						</section>
 					</article>
 				</section>
 				<section class='events__section events__section--past' v-else key="past">
-					<article class='event' v-for="(event, index) in events" :key="event.id">
+					<article class='event' v-for="(event, index) in eventsPast" :key="event.id">
 						<section class="event__content">
 							<h2 class="event__title">{{ event.title }}</h2>
 							<p class="event__subtitle">{{ event.subtitle }}</p>
@@ -57,7 +63,7 @@
 								<div class='event__triangle' :style='+toggleIndex == +index? style.triangle: ""'></div>
 							</a>
 							<button class="event__button-details">
-								<p class='event__button-text'>DETAILS
+								<p class='event__button-text'>OPEN IN FB
 									<svg class='event__button-img'>
 										<use xlink:href='#arrow-right-up' />
 									</svg>
@@ -68,6 +74,12 @@
 							<p class="event__date">{{ event.date }}</p>
 							<p class="event__time">{{ event.time }}</p>
 							<p class="event__price">{{ event.price }}</p>
+							<button class="event__info-button">
+								<p class='event__info-button-text'>DETAILS</p>
+								<svg class='event__info-button-img'>
+									<use xlink:href='#arrow-right' />
+								</svg>
+							</button>
 						</section>
 					</article>
 				</section>
@@ -92,6 +104,9 @@
         <symbol id='arrow-right-up' width="12" height="12" viewBox=" 0 0 24 24">
             <path fill-rule="evenodd" d="M10 6v1.6h5.272L6 16.872 7.128 18 16.4 8.728V14H18V6z" />
         </symbol>
+		<symbol id='arrow-right' viewBox="0 0 268.832 268.832" style="enable-background:new 0 0 400.004 400.004;" xml:space="preserve">
+			<path d="M265.171,125.577l-80-80c-4.881-4.881-12.797-4.881-17.678,0c-4.882,4.882-4.882,12.796,0,17.678l58.661,58.661H12.5   c-6.903,0-12.5,5.597-12.5,12.5c0,6.902,5.597,12.5,12.5,12.5h213.654l-58.659,58.661c-4.882,4.882-4.882,12.796,0,17.678   c2.44,2.439,5.64,3.661,8.839,3.661s6.398-1.222,8.839-3.661l79.998-80C270.053,138.373,270.053,130.459,265.171,125.577z"/>
+		</symbol>
     </svg>
 </div>
 </template>
@@ -102,10 +117,10 @@ export default {
 	name: 'Events',
 	data() {
 		return {
-			events: [
+			eventsFuture: [
 				{
 					title: 'Machine Learning Bootcamo. Phase 1',
-					subtitle: 'Peer-to-peer изучение TensorFlow',
+					subtitle: 'Peer-to-peer studying TensorFlow',
 					text: 'Ea dolor ullamco dolore exercitation sint est sunt occaecat reprehenderit proident minim. Veniam occaecat ipsum minim occaecat amet commodo sit sunt nisi. Veniam Lorem quis amet ipsum nostrud est incididunt cillum qui. Ad eiusmod consequat nisi irure nostrud irure ad nisi nulla.',
 					date: '6 May, 2018',
 					time: '10:00 - 13:00',
@@ -120,6 +135,24 @@ export default {
 					price: '80 uah'
 				}
 			],
+			eventsPast: [
+				{
+					title: 'Insta lunch with @mashawakka',
+					subtitle: 'Share secrets, filming and processing',
+					text: 'Ea dolor ullamco dolore exercitation sint est sunt occaecat reprehenderit proident minim. Veniam occaecat ipsum minim occaecat amet commodo sit sunt nisi. Veniam Lorem quis amet ipsum nostrud est incididunt cillum qui. Ad eiusmod consequat nisi irure nostrud irure ad nisi nulla.',
+					date: '13 May, 2018',
+					time: '14:00 - 16:30',
+					price: '80 uah'
+				},
+				{
+					title: 'Machine Learning Bootcamo. Phase 1',
+					subtitle: 'Peer-to-peer studying TensorFlow',
+					text: 'Ea dolor ullamco dolore exercitation sint est sunt occaecat reprehenderit proident minim. Veniam occaecat ipsum minim occaecat amet commodo sit sunt nisi. Veniam Lorem quis amet ipsum nostrud est incididunt cillum qui. Ad eiusmod consequat nisi irure nostrud irure ad nisi nulla.',
+					date: '6 May, 2018',
+					time: '10:00 - 13:00',
+					price: 'Free'
+				}
+			],
 			style: {
 				hideText: {
 					transitionTimingFunction: 'cubic-bezier(0, 1, 0, 1)',
@@ -132,9 +165,6 @@ export default {
 					borderColor: "transparent",
 					borderBottomColor: "#898989",
 					top: '10%'
-				},
-				line: {
-					transform: 'translateX(8.8rem)'
 				},
 				activeButton: {
 					color: '#ffffff'
@@ -166,6 +196,7 @@ export default {
 	}
 	@media (max-width: 600px) {
 		padding-top: 0;
+		padding-bottom: 25pt;
 	}
 	&__wrapper {
         width: 100%;
@@ -174,6 +205,9 @@ export default {
 		@media (orientation: landscape) and (max-width: 820px) {
 			padding: 0 0 0 56pt;
 		}
+		@media (max-width: 920px) {
+            padding: 0 5% 0 112px;
+        }
         @media (max-width: 600px) {
             justify-content: flex-start;  
             padding: 0;
@@ -189,26 +223,30 @@ export default {
         @extend %flex-col-c;
         align-items: flex-start;
         @media (max-width: 920px) {
-            padding: 0 5%; 
+            margin: 0 0 0 5%; 
         }
+		@media (max-width: 760px) {
+			min-width: auto;
+			flex: 1 1 100%;
+		}
         @media (max-width: 600px) {
-			padding: 0 0 32pt 0;
-			flex: 1 0 100%;
+			margin: 0;
+			padding: 0;
 		}
 	}
     &__header {
 		width: 100%;
 		margin-bottom: 4rem;
 		@media (max-width: 600px) {
-			margin-bottom: 40pt;
+			margin-bottom: 57pt;
 			padding: 0 32pt;
 		}
 		@media (max-width: 375px) {
-			margin-bottom: 34pt;
+			margin-bottom: 51pt;
 			padding: 0 26pt;
 		}
 		@media (max-width: 320px) {
-			margin-bottom: 30pt;
+			margin-bottom: 45pt;
 			padding: 0 22pt;
         }
     }
@@ -222,13 +260,18 @@ export default {
 		position: relative;
 		left: -2px;
         white-space: nowrap;
-        margin: 0;
-		margin-bottom: 2.9rem;
+        margin: 0 0 2.9rem 0;
         @media (max-width: 600px) {
             align-self: flex-start;
 			text-align: left;
 			font-size: 2.6rem;
-			margin: 0;
+			margin-bottom: 32pt;
+		}
+		@media (max-width: 375px) {
+           margin-bottom: 28pt;
+		}
+		@media (max-width: 320px) {
+           margin-bottom: 24pt;
         }
 	}
 	&__subtitle {
@@ -236,9 +279,27 @@ export default {
 		color: $TEXT-COLOR;
 		font-family: $base-font;
 		line-height: 2;
+		@media (max-width: 600px) {
+           font-size: 0.85rem;
+		}
+		@media (max-width: 375px) {
+           font-size: 0.8rem;
+		}
+		@media (max-width: 320px) {
+           font-size: 0.75rem;
+        }
 	}
 	&__section {
 		padding: 4rem 0 7.5rem 0;
+		@media (max-width: 600px) {
+			padding: 24pt 24pt;
+		}
+		@media (max-width: 375px) {
+			padding: 24pt 20pt;
+		}
+		@media (max-width: 320px) {
+			padding: 24pt 16pt;
+        }
 	}
 	&__link-page {
 		&--meeting-room {
@@ -248,8 +309,22 @@ export default {
 			background-image: url('../assets/image/events.jpg');
 		}
 	}
+	&__nav {
+		@media (max-width: 600px) {
+			padding: 0 16pt;
+		}
+		@media (max-width: 375px) {
+			padding: 0 12pt;
+		}
+		@media (max-width: 320px) {
+			padding: 0 8pt;
+        }
+	}
 	&__nav-inner {
 		@extend %flex-row;
+		@media (max-width: 600px) {
+			justify-content: space-around;
+		}
 	}
 	&__button {
 		font-family: $base-font;
@@ -260,6 +335,11 @@ export default {
 		text-decoration: none;
 		transition: color 0.2s ease-in-out;
 		padding: 0 1.6rem 2rem;
+		@media (max-width: 600px) {
+			text-transform: uppercase;
+			letter-spacing: 0.5pt;
+			padding: 0 0 17pt;
+		}
 		&:hover {
 			color: $LIGHT-GREY;
 		}
@@ -280,6 +360,15 @@ export default {
 		background-color: $MERGE-MAIN-COLOR;
 		bottom: 0;
 		transition: transform 0.2s ease-in-out;
+		@media (max-width: 600px) {
+			width: 50%;
+		}
+		&--translate {
+			transform: translateX(8.8rem);
+			@media (max-width: 600px) {
+				transform: translateX(100%);
+			}
+		}
 	}
 }
 .event {
@@ -288,6 +377,15 @@ export default {
 	border-radius: 3px;
 	@extend %flex-row;
 	margin-bottom: 3.5rem;
+	@media (max-width: 760px) {
+		flex-direction: column;
+		padding: 18pt 24pt;
+	}
+	@media (max-width: 600px) {
+		border-color: $GREY;
+		border-radius: 6px;
+		margin-bottom: 32pt;
+	}
 	&:last-child {
 		margin: 0;
 	}
@@ -297,12 +395,33 @@ export default {
 		border-right: 1px solid $DARK-GREY;
 		@extend %flex-col;
 		align-items: flex-start;
+		@media (max-width: 760px) {
+			border-right: none;
+			border-bottom: 1px solid $MIDDLE-GREY;
+			padding: 0 0 13pt 0;
+		}
 	}
 	&__info {
 		flex: 0 0 25%;
 		padding-left: 2rem;
-		@extend %flex-col-c;
-		align-items: flex-start;
+		display: grid;
+		grid-template-rows: repeat(3, auto);
+		align-content: center;	
+		@media (max-width: 760px) {
+			grid-template-rows: none;
+			grid-template-columns: repeat(3, auto);
+			justify-content: space-between;	
+			padding: 13pt 0 0 0;
+		}
+		@media (max-width: 600px) {
+			grid-template-rows: repeat(2, auto);
+			grid-template-columns: auto 1fr;
+			grid-column-gap: 8pt;
+			grid-row-gap: 13pt;
+			justify-content: space-between;	
+			align-items: center;
+			padding: 16pt 0 0 0;
+		}
 	}
 	&__title {
 		font-family: $title-font;
@@ -311,6 +430,16 @@ export default {
 		text-align: left;
 		color: $TEXT-COLOR;
 		margin-bottom: 0.15rem;
+		@media (max-width: 600px) {
+			font-size: 1.3rem;
+			margin-bottom: 6pt;
+		}
+		@media (max-width: 375px) {
+			font-size: 1.2rem;
+		}
+		@media (max-width: 320px) {
+			font-size: 1.05rem;
+		}
 	}
 	&__subtitle {
 		font-family: $base-font;
@@ -320,6 +449,18 @@ export default {
 		text-align: left;
 		color: $GREY;
 		margin-bottom: 0.7rem;
+		@media (max-width: 600px) {
+			font-size: 0.85rem;
+			letter-spacing: 0.5pt;
+			color: $LIGHT-GREY;
+			margin: 0;
+		}
+		@media (max-width: 375px) {
+			font-size: 0.75rem;
+		}
+		@media (max-width: 320px) {
+			font-size: 0.65rem;
+		}
 	}
 	&__text {
 		font-family: $base-font;
@@ -333,6 +474,9 @@ export default {
 		overflow: hidden;
 		margin-bottom: 0.6rem;
 		height: auto;
+		@media (max-width: 600px) {
+			display: none;
+		}
 	}
 	&__date {
 		font-family: $base-font;
@@ -341,6 +485,19 @@ export default {
 		color: $TEXT-COLOR;
 		text-align: left;
 		margin-bottom: 0.8rem;
+		@media (max-width: 760px) {
+			margin: 0;
+		}
+		@media (max-width: 600px) {
+			letter-spacing: 0.5pt;
+			font-size: 0.95rem;
+		}
+		@media (max-width: 375px) {
+			font-size: 0.85rem;
+		}
+		@media (max-width: 320px) {
+			font-size: 0.75rem;
+		}
 	}
 	&__time {
 		font-family: $base-font;
@@ -349,6 +506,19 @@ export default {
 		color: $GREY;
 		text-align: left;
 		margin-bottom: 1.6rem;
+		@media (max-width: 760px) {
+			margin: 0;
+		}
+		@media (max-width: 600px) {
+			letter-spacing: 0.5pt;
+			font-size: 0.8rem;
+		}
+		@media (max-width: 375px) {
+			font-size: 0.7rem;
+		}
+		@media (max-width: 320px) {
+			font-size: 0.6rem;
+		}
 	}
 	&__price {
 		font-family: $base-font;
@@ -356,6 +526,57 @@ export default {
 		font-size: 0.875rem;
 		color: $TEXT-COLOR;
 		text-align: left;
+		@media (max-width: 600px) {
+			letter-spacing: 0.5pt;
+			text-transform: uppercase;
+			font-size: 0.95rem;
+		}
+		@media (max-width: 375px) {
+			font-size: 0.85rem;
+		}
+		@media (max-width: 320px) {
+			font-size: 0.75rem;
+		}
+	}
+	&__info-button {
+		display: none;
+		outline: none;
+		border: none;
+		background-color: transparent;
+		justify-self: end;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: nowrap;
+		@media (max-width: 600px) {
+			display: flex;
+		}
+	}
+	&__info-button-text {
+		color: $MERGE-MAIN-COLOR;
+		font-family: $base-font;
+		font-weight: 700;
+		font-size: 0.95rem;
+		margin-right: 8pt;
+		@media (max-width: 375px) {
+			font-size: 0.85rem;
+		}
+		@media (max-width: 320px) {
+			font-size: 0.75rem;
+		}
+	}
+	&__info-button-img {
+		fill: $MERGE-MAIN-COLOR;
+		height: 14pt;
+		width: 16pt;
+		@media (max-width: 375px) {
+			height: 12pt;
+			width: 14pt;
+		}
+		@media (max-width: 320px) {
+			height: 10pt;
+			width: 12pt;
+		}
 	}
 	&__button-more {
 		font-family: $base-font;
@@ -370,6 +591,9 @@ export default {
 		outline: none;
 		position: relative;
 		margin-bottom: 1.1rem;
+		@media (max-width: 600px) {
+			display: none;
+		}
 	}
 	&__triangle {
 		right: -0.8rem;
@@ -394,6 +618,9 @@ export default {
 		flex-flow: nowrap;
 		position: relative;
 		z-index: 2;
+		@media (max-width: 600px) {
+			display: none;
+		}
 		&:active .event__button-text {
 			color: $LIGHT-GREY;
 		}
