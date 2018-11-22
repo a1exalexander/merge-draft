@@ -30,9 +30,9 @@
 		<button-close-mini class="booking-workplace__close" @click.native='goBack'></button-close-mini>
 		<div class="booking-workplace__inner booking-workplace__inner--back-button" @click='goBack'>
 			<button-back class="booking-workplace__button-back" @click.native='goBack'></button-back>
-			<p class="booking-workplace__button-text" @click.native='goBack'>go back</p>
+			<p class="booking-workplace__button-text" @click.native='goBack'>{{ $t('bookingWorkplace.back') }}</p>
 		</div>
-		<h1 class="booking-workplace__title">Booking of the	workplace</h1>
+		<h1 class="booking-workplace__title">{{ $t('bookingWorkplace.title') }}</h1>
 		<div class="workplace-choice-mobile__wrapper">
 			<label for='book-month-mobile' class="workplace-choice-mobile">
 				<input id='book-month-mobile' 
@@ -48,8 +48,8 @@
 						<div class="workplace-choice-mobile__check-dot"></div>
 					</div>
 					<div class="workplace-choice-mobile__col">
-						<p class="workplace-choice-mobile__title">Month</p>
-						<p class="workplace-choice-mobile__resident">Resident card</p>
+						<p class="workplace-choice-mobile__title">{{ $t('bookingWorkplace.checkbox.month') }}</p>
+						<p class="workplace-choice-mobile__resident">{{ $t('bookingWorkplace.checkbox.features') }}</p>
 					</div>
 				</div>
 				<div class="workplace-choice-mobile__inner workplace-choice-mobile__inner--price">
@@ -74,7 +74,7 @@
 						<div class="workplace-choice-mobile__check-dot"></div>
 					</div>
 					<div class="workplace-choice-mobile__col">
-						<p class="workplace-choice-mobile__title">Week</p>
+						<p class="workplace-choice-mobile__title">{{ $t('bookingWorkplace.checkbox.week') }}</p>
 					</div>
 				</div>
 				<div class="workplace-choice-mobile__inner workplace-choice-mobile__inner--price">
@@ -99,7 +99,7 @@
 						<div class="workplace-choice-mobile__check-dot"></div>
 					</div>
 					<div class="workplace-choice-mobile__col">
-						<p class="workplace-choice-mobile__title">Day</p>
+						<p class="workplace-choice-mobile__title">{{ $t('bookingWorkplace.checkbox.day') }}</p>
 					</div>
 				</div>
 				<div class="workplace-choice-mobile__inner workplace-choice-mobile__inner--price">
@@ -123,8 +123,8 @@
                     v-model="tariff"
                     checked>
 				<div class="workplace-choice__inner">
-					<p class="workplace-choice__title">Month</p>
-					<p class="workplace-choice__resident">Resident card</p>
+					<p class="workplace-choice__title">{{ $t('bookingWorkplace.checkbox.month') }}</p>
+					<p class="workplace-choice__resident">{{ $t('bookingWorkplace.checkbox.feature') }}</p>
 					<p class="workplace-choice__price">{{ price.month }}</p>
 					<a href='#' class="workplace-choice__link-img" @click.prevent="visible.residentCard = true">
 						<svg class="workplace-choice__img workplace-choice__img--resident">
@@ -143,7 +143,7 @@
 					value="week"
                     v-model="tariff">
 				<div class="workplace-choice__inner">
-					<p class="workplace-choice__title">Week</p>
+					<p class="workplace-choice__title">{{ $t('bookingWorkplace.checkbox.week') }}</p>
 					<p class="workplace-choice__price">{{ price.week }}</p>
 					<a href='#' class="workplace-choice__link-img" @click.prevent="visible.weekCard = true">
 						<svg class="workplace-choice__img">
@@ -161,7 +161,7 @@
 					value="day"
                     v-model="tariff">
 				<div class="workplace-choice__inner">
-					<p class="workplace-choice__title">Day</p>
+					<p class="workplace-choice__title">{{ $t('bookingWorkplace.checkbox.day') }}</p>
 					<p class="workplace-choice__price">{{ price.day }}</p>
 					<a href='#' class="workplace-choice__link-img" @click.prevent="visible.dayCard = true">
 						<svg class="workplace-choice__img">
@@ -178,7 +178,7 @@
                 v-on:submit.prevent="sendForm">
 				<div class="booking-workplace__inner booking-workplace__inner--form booking-workplace__inner--name-phone">
 					<div class="booking-workplace__input-wrapper">
-						<label for="full-name-label" class="booking-workplace__label">FULL NAME*</label>
+						<label for="full-name-label" class="booking-workplace__label">{{ $t('bookingWorkplace.label.name') }}</label>
 						<input id='full-name-label' 
                             required 
 							autocomplete='on' 
@@ -192,11 +192,11 @@
 								name="custom-classes-transition"
 								enter-active-class="animated03 pullDown"
 								leave-active-class="animated02 pullUp">
-							<p class='booking-workplace__validate booking-workplace__validate--name' v-if="errors.name">Please enter {{ errors.name }} to continue</p>
+							<p class='booking-workplace__validate booking-workplace__validate--name' v-if="errors.name">{{ errors.name }}</p>
 							</transition>
 					</div>
 					<div class="booking-workplace__input-wrapper">
-						<label for="phone-label" class="booking-workplace__label">Phone*</label>
+						<label for="phone-label" class="booking-workplace__label">{{ $t('bookingWorkplace.label.phone') }}</label>
 						<input id='phone-label' 
                             required autocomplete='on' 
                             type="tel" 
@@ -209,13 +209,13 @@
 							name="custom-classes-transition"
 							enter-active-class="animated03 pullDown"
 							leave-active-class="animated02 pullUp">
-						<p class='booking-workplace__validate booking-workplace__validate--phone' v-if="errors.phone">Please enter {{ errors.phone }} to continue</p>
+						<p class='booking-workplace__validate booking-workplace__validate--phone' v-if="errors.phone">{{ errors.phone }}</p>
 						</transition>
 					</div>
 				</div>
 				<div class="booking-workplace__inner booking-workplace__inner--form booking-workplace__inner--email-career">
 					<div class="booking-workplace__input-wrapper">
-						<label for="email-label" class="booking-workplace__label">E-mail*</label>
+						<label for="email-label" class="booking-workplace__label">{{ $t('bookingWorkplace.label.mail') }}</label>
 						<input id='email-label' 
                             required 
                             autocomplete='on' 
@@ -229,11 +229,11 @@
 							name="custom-classes-transition"
 							enter-active-class="animated03 pullDown"
 							leave-active-class="animated02 pullUp">
-						<p class='booking-workplace__validate booking-workplace__validate--email'  v-if="errors.email">Please enter {{ errors.email }} to continue</p>
+						<p class='booking-workplace__validate booking-workplace__validate--email'  v-if="errors.email">{{ errors.email }}</p>
 						</transition>
 					</div>
 					<div class="booking-workplace__input-wrapper">
-						<label for="career-label" class="booking-workplace__label">career</label>
+						<label for="career-label" class="booking-workplace__label">{{ $t('bookingWorkplace.label.career') }}</label>
 						<input id='career-label' 
                             type="text" 
                             autocomplete='on' 
@@ -244,9 +244,9 @@
 				</div>
 			</form>
 		</div>
-		<p class="booking-workplace__description">* — Required fields</p>
+		<p class="booking-workplace__description">{{ $t('bookingWorkplace.required') }}</p>
 		<div class="booking-workplace__inner booking-workplace__inner--price">
-			<p class="booking-price booking-workplace__price">Price:
+			<p class="booking-price booking-workplace__price">{{ $t('bookingWorkplace.price') }}
 				<span class="booking-price__sum">{{ animatedNumber }}</span>
 			</p>
 			<button-apply 
@@ -255,7 +255,7 @@
 				class="booking-workplace__apply">
             </button-apply>
 		</div>
-		<button class="booking-workplace__cancel" @click.prevent='goBack'>CANCEL</button>
+		<button class="booking-workplace__cancel" @click.prevent='goBack'>{{ $t('bookingWorkplace.button') }}</button>
 	</section>
     <svg style="display: none">
         <symbol id='infoborder' width="16px" height="16px" viewBox="0 0 24 24">
@@ -347,21 +347,21 @@ export default {
 		},
 		checkName() {
 			if (this.form.name && !this.validName(this.form.name) && this.form.phone && this.form.email) {
-				this.errors.name = 'your name and surname';
+				this.errors.name = this.$t('validate.name');
 			} else {
 				this.errors.name = null;
 			}
 		},
 		checkPhone() {
 			if (this.form.phone && !this.validPhone(this.form.phone) && !this.validFormatPhone(this.form.phone) && this.form.name && this.form.email) {
-				this.errors.phone = 'your phone';
+				this.errors.phone = this.$t('validate.phone');
 			} else {
 				this.errors.phone = null;
 			}
 		},
 		checkEmail() {
 			if (this.form.email && !this.validEmail(this.form.email) && this.form.name && this.form.phone) {
-				this.errors.email = 'your e-mail';
+				this.errors.email = this.$t('validate.mail');
 			} else {
 				this.errors.email = null;
 			}

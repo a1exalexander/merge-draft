@@ -4,25 +4,24 @@
 	<div class="booking-done" :style="onStyleAnimate">
 		<button-close-mini class="booking-done__close" @click.native="goHome"></button-close-mini>
 		<div class="booking-done__inner booking-done__inner--title">
-			<h2 class="booking-done__title">Waiting for you in
-			</h2>
-			<p class="booking-done__title booking-done__title--merge">MERGE</p>
+			<h2 class="booking-done__title">{{ $t('bookingDone.title') }}</h2>
+			<p class="booking-done__title booking-done__title--merge">{{ $t('bookingDone.titleLogo') }}</p>
 		</div>
-		<p class="booking-done__caption">You have applied for a workplace booking. Wait for a call by our administrator.</p>
+		<p class="booking-done__caption">{{ $t('bookingDone.caption') }}</p>
 		<div class="booking-done__inner booking-done__inner--social">
-			<p class="booking-done__text">FOLLOW US IN SOCIAL MEDIA to keep up our latest news and announcements</p>
+			<p class="booking-done__text">{{ $t('bookingDone.text') }}</p>
 			<social-networks class="booking-done__social"></social-networks>
 		</div>
 		<div class="booking-done__inner booking-done__inner--location">
 			<svg class="booking-done__image">
 				<use xlink:href='#location' />
 			</svg>
-			<p class="booking-done__location-text">Kremenchug, Nebesna Sotnia st. 17А, “Proletarsky”</p>
+			<p class="booking-done__location-text">{{ $t('bookingDone.location') }}</p>
 		</div>
 		<button-map class="booking-done__button-map"></button-map>
 		<div class="booking-done__inner booking-done__inner--back-button">
 			<button-back class="booking-done__button-back" @click.native='goHome'></button-back>
-			<p class="booking-done__button-text" @click='goHome'>BACK TO THE START PAGE</p>
+			<p class="booking-done__button-text" @click='goHome'>{{ $t('bookingDone.toStart') }}</p>
 		</div>
 	</div>
 	<svg style="display: none;">

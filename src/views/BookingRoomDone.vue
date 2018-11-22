@@ -1,35 +1,35 @@
 <template>
 <div class="booking-room-done" :style="onStyleAnimate">
 	<div class="booking-room-done__inner booking-room-done__inner--title">
-		<h2 class="booking-room-done__title">Waiting for you in</h2>
-		<p class="booking-room-done__title booking-room-done__title--merge">MERGE!</p>
+		<h2 class="booking-room-done__title">{{ $t('bookingRoomDone.title') }}</h2>
+		<p class="booking-room-done__title booking-room-done__title--merge">{{ $t('bookingRoomDone.titleLogo') }}</p>
 	</div>
-	<p class="booking-room-done__text">You have reserved a Meeting Room</p>
+	<p class="booking-room-done__text">{{ $t('bookingRoomDone.text') }}</p>
 	<div class="booking-room-done__inner booking-room-done__inner--name">
-		<p class="booking-room-done__label booking-room-done__label--name">Full Name</p>
-		<p class="booking-room-done__label booking-room-done__label--phone">Phone</p>
+		<p class="booking-room-done__label booking-room-done__label--name">{{ $t('bookingRoomDone.label.name') }}</p>
+		<p class="booking-room-done__label booking-room-done__label--phone">{{ $t('bookingRoomDone.label.phone') }}</p>
 		<p class="booking-room-done__text booking-room-done__text--name">{{ bookRoomData.name }}</p>
 		<p class="booking-room-done__text booking-room-done__text--phone">{{ bookRoomData.phone }}</p>
 		<button class="booking-room-done__edit-button" @click.prevent='edit'>
 			<svg class="booking-room-done__edit-icon">
 				<use xlink:href='#icon-edit'/>
 			</svg>
-			<p class="booking-room-done__edit-text">edit</p>
+			<p class="booking-room-done__edit-text">{{ $t('bookingRoomDone.button') }}</p>
 		</button>
 	</div>
 	<div class="booking-room-done__inner booking-room-done__inner--date">
-		<p class="booking-room-done__label booking-room-done__label--day">Date</p>
-		<p class="booking-room-done__label booking-room-done__label--time">Time</p>
-		<p class="booking-room-done__label booking-room-done__label--price">Price</p>
+		<p class="booking-room-done__label booking-room-done__label--day">{{ $t('bookingRoomDone.label.day') }}</p>
+		<p class="booking-room-done__label booking-room-done__label--time">{{ $t('bookingRoomDone.label.time') }}</p>
+		<p class="booking-room-done__label booking-room-done__label--price">{{ $t('bookingRoomDone.label.price') }}</p>
 		<p class="booking-room-done__text booking-room-done__text---day">{{ day }}</p>
 		<p class="booking-room-done__text booking-room-done__text---time">{{ duration }}</p>
 		<p class="booking-room-done__text booking-room-done__text---price">{{ price }}</p>
-		<a :href="hrefEvent" target='_blank' class="addeventatc booking-room-done__link">put on the calendar</a>
+		<a :href="hrefEvent" target='_blank' class="addeventatc booking-room-done__link">{{ $t('bookingRoomDone.calendarLink') }}</a>
 	</div>
-	<p class="booking-room-done__text booking-room-done__text--description">Payment occurs in coworking. Wait for a call by our administrator.</p>
+	<p class="booking-room-done__text booking-room-done__text--description">{{ $t('bookingRoomDone.response') }}</p>
 	<div class="booking-room-done__inner booking-room-done__inner--back-button">
 		<button-back class="booking-room-done__button-back" @click.native='goHome'></button-back>
-		<p class="booking-room-done__button-text" @click='goHome'>BACK TO THE START PAGE</p>
+		<p class="booking-room-done__button-text" @click='goHome'>{{ $t('bookingRoomDone.toStart') }}</p>
 	</div>
 	<svg style="display: none;">
 		<symbol id='icon-edit' viewBox="0 0 24 24">

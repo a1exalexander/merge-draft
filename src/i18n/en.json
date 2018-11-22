@@ -13,6 +13,11 @@
 		"interior": "Interior",
 		"events": "events"
 	},
+	"validate": {
+		"name": "Please enter your your name to continue",
+		"phone": "Please enter your your phone to continue",
+		"mail": "Please enter your your e-mail to continue"
+	},
 	"navigation": {
 		"tooltip": "menu"
 	},
@@ -107,8 +112,83 @@
 	},
 	"bookingDone": {
 		"title": "Waiting for you in",
-		"titleLogo": "merge"
+		"titleLogo": "merge",
+		"caption": "You have applied for a workplace booking. Wait for a call by our administrator.",
+		"text": "FOLLOW US IN SOCIAL MEDIA to keep up our latest news and announcements",
+		"location": "Kremenchug, Nebesna Sotnia st. 17А, “Proletarsky”",
+		"toStart": "BACK TO THE START PAGE"
+	},
+	"bookingRoomDone": {
+		"title": "Waiting for you in",
+		"titleLogo": "merge",
+		"text": "You have reserved a Meeting Room",
+		"label": {
+			"name": "Full Name",
+			"phone": "Phone",
+			"day": "Date",
+			"time": "Time",
+			"price": "Price"
+		},
+		"button": "edit",
+		"calendarLink": "put on the calendar",
+		"response": "Payment occurs in coworking. Wait for a call by our administrator.",
+		"toStart": "BACK TO THE START PAGE",
+		"mobile": {
+			"title": "Waiting for you in",
+			"titleLogo": "merge",
+			"caption": "You have reserved a Meeting Room",
+			"response": {
+				"0": "Payment occurs in coworking.",
+				"1": "Wait for a call by our",
+				"2": "administrator."
+			},
+			"text": "FOLLOW US IN SOCIAL MEDIA to keep up our latest news and announcements",
+			"location": "Kremenchug, Nebesna Sotnia st. 17А, “Proletarsky”",
+			"toStart": "BACK TO THE START PAGE"
+		}
+	},
+	"bookingWorkplace": {
+		"back": "go back",
+		"title": "Booking of the workplace",
+		"ckeckbox": {
+			"month": "Month",
+			"week": "Week",
+			"day": "Day",
+			"feature": "Resident card"
+		},
+		"label": {
+			"name": "full name*",
+			"phone": "Phone*",
+			"mail": "E-mail*",
+			"career": "career"
+		},
+		"required": "* — Required fields",
+		"price": "Price:",
+		"button": "CANCEL"
+	},
+	"bookMeetingRoom": {
+		"back": "go back",
+		"title": {
+			"0": "Meeting room",
+			"1": "Reservation"
+		},
+		"label": {
+			"day": "Day",
+			"time": "Time",
+			"name": "name",
+			"phone": "phone"
+		},
+		"resident": "I'm a Resident",
+		"checkMail": "Put your E-Mail for checking availability of free hours for Meeting Room's using",
+		"toCalendar": "Back to Calendar",
+		"button": "check",
+		"check": {
+			"name": "Resident",
+			"duration": "Duration",
+			"hours": "Free Hours"
+		},
+		"price": "Price:",
+		"close": "cancel"
 	}
-	
 
 }

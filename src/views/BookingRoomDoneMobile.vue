@@ -3,28 +3,27 @@
 	<div class="booking-done-mobile" :style="onStyleAnimate">
 		<button-close-mini class="booking-done-mobile__close" @click.native="goHome"></button-close-mini>
 		<div class="booking-done-mobile__inner booking-done-mobile__inner--title">
-			<h2 class="booking-done-mobile__title">Waiting for You in
-			</h2>
-			<p class="booking-done-mobile__title booking-done-mobile__title--merge">MERGE</p>
+			<h2 class="booking-done-mobile__title">{{ $t('bookinRoomDone.mobile.title') }}</h2>
+			<p class="booking-done-mobile__title booking-done-mobile__title--merge">{{ $t('bookinRoomDone.mobile.titleLogo') }}</p>
 		</div>
-		<p class="booking-done-mobile__caption">You have reserved a Meeting Room</p>
-		<p class="booking-done-mobile__info">Payment occurs in coworking.</p>
-		<p class="booking-done-mobile__info">Wait for a call by our</p>
-		<p class="booking-done-mobile__info">administrator.</p>
+		<p class="booking-done-mobile__caption">{{ $t('bookinRoomDone.mobile.caption') }}</p>
+		<p class="booking-done-mobile__info">{{ $t('bookinRoomDone.mobile.response.0') }}</p>
+		<p class="booking-done-mobile__info">{{ $t('bookinRoomDone.mobile.response.1') }}</p>
+		<p class="booking-done-mobile__info">{{ $t('bookinRoomDone.mobile.response.2') }}</p>
 		<div class="booking-done-mobile__inner booking-done-mobile__inner--social">
-			<p class="booking-done__text">FOLLOW US IN SOCIAL MEDIA to keep up our latest news and announcements</p>
+			<p class="booking-done__text">{{ $t('bookinRoomDone.mobile.text') }}</p>
 			<social-networks class="booking-done-mobile__social"></social-networks>
 		</div>
 		<div class="booking-done-mobile__inner booking-done-mobile__inner--location">
 			<svg class="booking-done-mobile__image">
 				<use xlink:href='#location' />
 			</svg>
-			<p class="booking-done-mobile__location-text">Kremenchug, Nebesna Sotnia st. 17А, “Proletarsky”</p>
+			<p class="booking-done-mobile__location-text">{{ $t('bookinRoomDone.mobile.location') }}</p>
 		</div>
 		<button-map class="booking-done-mobile__button-map"></button-map>
 		<div class="booking-done-mobile__inner booking-done-mobile__inner--back-button">
 			<button-back class="booking-done-mobile__button-back" @click.native='goHome'></button-back>
-			<p class="booking-done-mobile__button-text" @click='goHome'>BACK TO THE START PAGE</p>
+			<p class="booking-done-mobile__button-text" @click='goHome'>{{ $t('bookinRoomDone.mobile.toStart') }}</p>
 		</div>
 	</div>
 	<svg style="display: none;">
