@@ -1,10 +1,11 @@
 import Vue from 'vue';
 import 'es6-promise/auto';
 import Vuex from 'vuex';
+import VuexI18n from 'vuex-i18n';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
 	state: {
 		tariff: 'month',
 		price: {
@@ -35,3 +36,7 @@ export default new Vuex.Store({
 		}
 	}
 });
+
+Vue.use(VuexI18n.plugin, store);
+
+export default store;
