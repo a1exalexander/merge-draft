@@ -1,7 +1,7 @@
 <template>
 <button class="button-resident">
 	<p class='button-resident__text'>
-		BECOME A RESIDENT
+	{{ $t('buttons.resident') }}
 	</p>
 </button>
 </template>

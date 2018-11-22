@@ -1,3 +1,114 @@
 {
+	"buttons": {
+		"member": "BECOME A MEMBER",
+		"apply": "apply",
+		"book": "book",
+		"map": "VIEW ON THE MAP",
+		"now": "book now",
+		"bookRoom": "book a meeting room",
+		"resident": "BECOME A RESIDENT"
+	},
+	"links": {
+		"meetingRoom": "meeting room",
+		"interior": "Interior",
+		"events": "events"
+	},
+	"navigation": {
+		"tooltip": "menu"
+	},
+	"hello": {
+		"title": {
+			"0": "Hello!",
+			"1": "We’re",
+			"2": "MERGE"
+		},
+		"subtitle": "COWORKING IN THE CENTRE OF KREMENCHUK",
+		"link": {
+			"way": "how to get to the MERGE",
+			"info": "PRICES AND WORKING HOURS"
+		},
+		"text": {
+			"clean_0": "We offer",
+			"link_0": "comfortable conditions",
+			"clean_1": "for remote work and we are dreaming to organize",
+			"link_1": "Merge Community",
+			"clean_2": ". Also, we have a",
+			"link_2": "meeting room",
+			"clean_3": "with a 50 inch TV. We regularly organize",
+			"link_3": "lectures and workshops",
+			"clean_4": "in various specialties."
+		}
+	},
+	"calendar": {
+		"title": "Availability calenda",
+		"text": "Choose a time on the calendar when you need a Meeting Room. After click \"Reserve\""
+	},
+	"residentCard": {
+		"title": "Resident Card",
+		"description": "Access for the Month",
+		"label": {
+			"meetingRoom": "1 hour two times per week of Meeting Room's using is free",
+			"lectures": "Free accessment to paid events in Merge",
+			"wifi": "Super-fast Internet",
+			"coffe": "Unlimited coffee, tea, snacks",
+			"printer": "Wireless Printer/ Scanner/ Copier",
+			"shower": "Shower",
+			"kitchen": "Kitchen with a microvawe and fridge"
+		},
+		"price": "Price:"
+	},
+	"dayCard": {
+		"title": "Day access",
+		"label": {
+			"wifi": "Super-fast Internet",
+			"coffe": "Unlimited coffee, tea, snacks",
+			"printer": "Wireless Printer/ Scanner/ Copier",
+			"shower": "Shower",
+			"kitchen": "Kitchen with a microvawe and fridge"
+		},
+		"price": "Price:",
+		"button": "choose"
+	},
+	"weekCard": {
+		"title": "Week access",
+		"label": {
+			"wifi": "Super-fast Internet",
+			"coffe": "Unlimited coffee, tea, snacks",
+			"printer": "Wireless Printer/ Scanner/ Copier",
+			"shower": "Shower",
+			"kitchen": "Kitchen with a microvawe and fridge"
+		},
+		"price": "Price:",
+		"button": "choose"
+	},
+	"aboutUs": {
+		"title": "About Us",
+		"time": {
+			"weekdayText": "MON-FRI:",
+			"weekdayTime": "9:00 - 20:00",
+			"weekendText": "SAT, SUN:",
+			"weekendTime": "10:00 - 18:00"
+		},
+		"subscription": {
+			"month": {
+				"title": "Month",
+				"feature": "Resident card"
+			},
+			"week": {
+				"title": "Week"
+			},
+			"day": {
+				"title": "Day"
+			}
+		},
+		"caption": "about us",
+		"subtitle": "Our missions",
+		"text": "Do everything to make you work in a comfortable environment: IT specialists, designers, copywriters, entrepreneurs - all those with whom it's pleasant to drink coffee and exchange valuable experience or orders. Yes, we also have tea, coffee and biscuits."
+	},
+	"bookingDone": {
+		"title": "Waiting for you in",
+		"titleLogo": "merge"
+	}
 	
+
 }

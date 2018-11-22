@@ -1,6 +1,6 @@
 <template>
 <button class="button-map">
-	<p class='button-map__text'>VIEW ON THE MAP
+	<p class='button-map__text'>{{ $t('buttons.map') }}
 		<svg class='button-map__img'>
 			<use xlink:href='#arrow-right-up' />
 		</svg>

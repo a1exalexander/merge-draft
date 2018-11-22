@@ -1,7 +1,7 @@
 <template>
 <button class="button-apply" form='book-form'>
 	<p class="button-apply__text">
-		apply
+	{{ $t('buttons.apply') }}
 	</p> 
 </button>
 </template>

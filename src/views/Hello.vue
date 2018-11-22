@@ -4,7 +4,7 @@
     <div class="hello__title-wrapper">
         <h1 class="hello__title">
             <vue-typer
-                text='Hello!'
+                :text='$t("hello.title.0")'
                 :repeat='0'
                 :shuffle='false'
                 initial-action='typing'
@@ -18,7 +18,7 @@
         <h1 class="hello__title hello__title--second">
             <span class="hello__title hello__title--nowrap">
                 <vue-typer
-                    text="We’re"
+                    :text='$t("hello.title.1")'
                     :repeat='0'
                     :shuffle='false'
                     initial-action='typing'
@@ -32,7 +32,7 @@
             </span>
             <span class="hello__logo">
                 <vue-typer
-                text="MERGE"
+                :text='$t("hello.title.2")'
                 :repeat='0'
                 :shuffle='false'
                 initial-action='typing'
@@ -45,33 +45,33 @@
             </span>
         </h1>
     </div>
-	<h2 class="hello__subtitle animated d05 delay-02s fadeInLeft">COWORKING IN THE CENTRE OF KREMENCHUK
+	<h2 class="hello__subtitle animated d05 delay-02s fadeInLeft">{{ $t('hello.subtitle') }}
 	</h2>
 	<div class="hello-link__wrapper animated d06 delay-03s fadeInLeft">
 		<a href="#" class="hello-link hello-link--how-get">
 			<svg class='hello-link__img'>
 				<use xlink:href='#videocamera' />
 			</svg>
-			<p class="hello-link__text">how to get to the MERGE
+			<p class="hello-link__text">{{ $t('hello.link.way') }}
 			</p>
 		</a>
 		<a href="#" class="hello-link hello-link--prices">
 			<svg class='hello-link__img'>
 				<use xlink:href='#infoborder' />
 			</svg>
-			<p class="hello-link__text">PRICES AND WORKING HOURS
+			<p class="hello-link__text">{{ $t('hello.link.info') }}
 			</p>
 		</a>
 	</div>
-	<p class="hello__text animated d05 delay-04s fadeInLeft">We offer
-		<a class='hello__text--link'>comfortable conditions</a>
-		for remote work and we are dreaming to organize
-		<a href='#' class='hello__text--link'>Merge Community</a>
-		. Also, we have a
-		<a href='#' class='hello__text--link'>meeting room</a>
-		with a 50 inch TV. We regularly organize
-		<a href='#' class='hello__text--link'>lectures and workshops</a>
-		in various specialties.
+	<p class="hello__text animated d05 delay-04s fadeInLeft">{{ $t('hello.text.clean_0') }}
+		<a class='hello__text--link'>{{ $t('hello.text.link_0') }}</a>
+		{{ $t('hello.text.clean_1') }}
+		<a href='#' class='hello__text--link'>{{ $t('hello.text.link_1') }}</a>
+		{{ $t('hello.text.clean_2') }}
+		<a href='#' class='hello__text--link'>{{ $t('hello.text.link_2') }}</a>
+		{{ $t('hello.text.clean_3') }}
+		<a href='#' class='hello__text--link'>{{ $t('hello.text.link_3') }}</a>
+		{{ $t('hello.text.clean_4') }}
 	</p>
 	<div class="hello__button-wrapper animated d05 delay-05s fadeInLeft">
 		<button-membership class='hello__button' @click.native='becomeMember'></button-membership>

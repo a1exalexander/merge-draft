@@ -21,21 +21,21 @@
 	<div class="about-us__wrapper">
 		<div class="about-us__main about-us__main--margin">
 			<header class="about-us__header animated d06 delay-02s fadeInLeft">
-				<h1 class="about-us__title">About Us</h1>
+				<h1 class="about-us__title">{{ $t('aboutUs.title') }}</h1>
 				<button-membership @click.native='closeCard'></button-membership>
 			</header>
 			<section class="work-time work-time--margin animated d06 delay-03s fadeInLeft">
 				<img src="../assets/image/time.svg" class="work-time__clock" alt="clock">
-				<p class="work-time__text work-time__text--weekday">MON-FRI:</p>
-				<p class="work-time__text work-time__text--weekend">SAT, SUN:</p>
-				<p class="work-time__text work-time__text--time">9:00 - 20:00</p>
-				<p class="work-time__text work-time__text--weekend-time">10:00 - 18:00</p>
+				<p class="work-time__text work-time__text--weekday">{{ $t('aboutUs.time.weekdayText') }}</p>
+				<p class="work-time__text work-time__text--weekend">{{ $t('aboutUs.time.weekendText') }}</p>
+				<p class="work-time__text work-time__text--time">{{ $t('aboutUs.time.weekdayTime') }}</p>
+				<p class="work-time__text work-time__text--weekend-time">{{ $t('aboutUs.time.weekendTime') }}</p>
 			</section>
 			<section class="subscription-type__wrapper subscription-type__wrapper--margin">
 				<div class="subscription-type subscription-type--resident animated d06 delay-04s fadeInLeft" @click="visible.residentCard = true">
-					<p class="subscription-type__title">Month</p>
-					<p class="subscription-type__resident">Resident card</p>
-					<p class="subscription-type__price">1000</p>
+					<p class="subscription-type__title">{{ $t('aboutUs.subscription.month.title') }}</p>
+					<p class="subscription-type__resident">{{ $t('aboutUs.subscription.month.feature') }}</p>
+					<p class="subscription-type__price">{{ price.month }}</p>
 					<a href='#' class="subscription-type__link-img">
 						<svg class="subscription-type__img">
 							<use xlink:href='#infoborder' />
@@ -43,8 +43,8 @@
 					</a>
 				</div>
 				<div class="subscription-type animated d06 delay-05s fadeInLeft" @click="visible.weekCard = true">
-					<p class="subscription-type__title">Week</p>
-					<p class="subscription-type__price">400</p>
+					<p class="subscription-type__title">{{ $t('aboutUs.subscription.week.title') }}</p>
+					<p class="subscription-type__price">{{ price.week }}</p>
 					<a href='#' class="subscription-type__link-img">
 						<svg class="subscription-type__img">
 							<use xlink:href='#infoborder' />
@@ -52,8 +52,8 @@
 					</a>
 				</div>
 				<div class="subscription-type animated d06 delay-06s fadeInLeft" @click="visible.dayCard = true">
-					<p class="subscription-type__title">Day</p>
-					<p class="subscription-type__price">80</p>
+					<p class="subscription-type__title">{{ $t('aboutUs.subscription.day.title') }}</p>
+					<p class="subscription-type__price">{{ price.day }}</p>
 					<a href='#' class="subscription-type__link-img">
 						<svg class="subscription-type__img">
 							<use xlink:href='#infoborder' />
@@ -63,14 +63,9 @@
 			</section>
 			<section class="about-us__inf about-us__inf--margin">
 				<div class="about-us__inner">
-					<p class="about-us__caption animated d06 delay-07s fadeInLeft">ABOUT US
-					</p>
-					<h2 class="about-us__subtitle animated d06 delay-08s fadeInLeft">Our missions
-					</h2>
-					<p class="about-us__text animated d06 delay-09s fadeInLeft">Do everything to make you work in a comfortable environment: IT specialists, designers, copywriters,
-						entrepreneurs - all those with whom it's pleasant to drink coffee and exchange valuable experience or orders.
-						Yes, we also have tea, coffee and biscuits.
-					</p>
+					<p class="about-us__caption animated d06 delay-07s fadeInLeft">{{ $t('aboutUs.caption') }}</p>
+					<h2 class="about-us__subtitle animated d06 delay-08s fadeInLeft">{{ $t('aboutUs.subtitle') }}</h2>
+					<p class="about-us__text animated d06 delay-09s fadeInLeft">{{ $t('aboutUs.text') }}</p>
 				</div>
 			</section>
 			<slider class="about-us__slider animated d06 delay-1s fadeInLeft"></slider>
@@ -79,12 +74,12 @@
 	<section class="next-page-nav animated d06 delay-11s fadeInLeft" >
 		<router-link to='/coworking' class="next-page-nav__link about-us__link-page about-us__link-page--interior">
 			<div class="next-page-nav__inner">
-				<p class="next-page-nav__text">Interior</p>
+				<p class="next-page-nav__text">{{ $t('links.interior') }}</p>
 			</div>
 		</router-link>
 		<router-link to='/meeting-room' class="next-page-nav__link about-us__link-page about-us__link-page--meeting-room">
 			<div class="next-page-nav__inner">
-				<p class="next-page-nav__text">MEETING ROOM</p>
+				<p class="next-page-nav__text">{{ $t('links.meetingRoom') }}</p>
 			</div>
 		</router-link>
 	</section>
@@ -136,8 +131,13 @@ export default {
 			}
 			
 		}
+	},
+	computed: {
+        price() {
+            return this.$store.state.price;
+		}
 	}
-};
+}
 </script>
 
 <style lang="scss">

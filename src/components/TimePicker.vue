@@ -28,7 +28,6 @@ export default {
 				{val: '10:30', color: {color: ''}, disable: false},
 				{val: '11:00', color: {color: ''}, disable: false},
 				{val: '11:30', color: {color: ''}, disable: false},
-				{val: '11:30', color: {color: ''}, disable: false},
 				{val: '12:00', color: {color: ''}, disable: false},
 				{val: '12:30', color: {color: ''}, disable: false},
 				{val: '13:00', color: {color: ''}, disable: false},

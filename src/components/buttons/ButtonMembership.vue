@@ -1,7 +1,7 @@
 <template>
 <button class="button-membership">
 	<p class='button-membership__text'>
-		BECOME A MEMBER
+		{{ $t('buttons.member') }}
 		<svg class='button-membership__img'>
 			<use xlink:href='#arrow-button' />
 		</svg>

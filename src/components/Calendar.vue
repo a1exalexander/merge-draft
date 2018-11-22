@@ -1,14 +1,11 @@
 <template>
 <section class="calendar">
 	<div class="calendar__wrapper">
-		<h3 class="calendar__title" id='toCal'>
-			Availability calenda
-		</h3>
+		<h3 class="calendar__title" id='toCal'>{{ $t('calendar.title') }}</h3>
 		<div id='fullcalendar'></div>
 		<div class="calendar__inner">
 			<button-book :disabled='buttonShow' @click.native='showBook'></button-book>
-			<p class="calendar__text">Choose a time on the calendar when you need a Meeting Room. After click "Reserve"
-			</p>
+			<p class="calendar__text">{{ $t('calendar.text') }}</p>
 		</div>
 	</div>
   <svg style='display: none'>

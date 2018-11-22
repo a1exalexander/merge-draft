@@ -1,7 +1,7 @@
 <template>
 <button class="button-book-now">
 	<p class="button-book-now__text">
-		book now
+	{{ $t('buttons.now') }}
 	</p>
 </button>
 </template>

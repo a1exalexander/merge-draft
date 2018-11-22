@@ -3,42 +3,41 @@
 <div class="day-card__wrapper" @click.self='close'>
     <div class="day-card animated faster fadeInBubble">
         <button-close-mini class="day-card__close" @click.native='close'></button-close-mini>
-        <p class="day-card__title">Day access
+        <p class="day-card__title">{{ $t('dayCard.title') }}
         </p>
         <div class="day-card__inner day-card__inner--middle">
             <div class="day-card__label">
                 <img src="../assets/image/wi-fi.svg" alt="wi-fi" class="day-card__image">
-                <p class="day-card__text">Super-fast Internet</p>
+                <p class="day-card__text">{{ $t('dayCard.label.wifi') }}</p>
             </div>
             <div class="day-card__label">
-                <img src="../assets/image/unlimited-coffee-tea.svg" alt="wi-fi" class="day-card__image">
-                <p class="day-card__text">Unlimited coffee, tea, snacks</p>
+                <img src="../assets/image/unlimited-coffee-tea.svg" alt="coffe" class="day-card__image">
+                <p class="day-card__text">{{ $t('dayCard.label.coffe') }}</p>
             </div>
             <div class="day-card__label">
-                <img src="../assets/image/printer.svg" alt="wi-fi" class="day-card__image">
-                <p class="day-card__text">Wireless Printer/ Scanner/ Copier</p>
+                <img src="../assets/image/printer.svg" alt="printer" class="day-card__image">
+                <p class="day-card__text">{{ $t('dayCard.label.printer') }}</p>
             </div>
             <div class="day-card__label">
-                <img src="../assets/image/shower.svg" alt="wi-fi" class="day-card__image">
-                <p class="day-card__text">Shower</p>
+                <img src="../assets/image/shower.svg" alt="shower" class="day-card__image">
+                <p class="day-card__text">{{ $t('dayCard.label.shower') }}</p>
             </div>
             <div class="day-card__label">
-                <img src="../assets/image/microwave.svg" alt="wi-fi" class="day-card__image">
-                <p class="day-card__text">Kitchen with a microvawe and fridge</p>
+                <img src="../assets/image/microwave.svg" alt="kitchen" class="day-card__image">
+                <p class="day-card__text">{{ $t('dayCard.label.kitchen') }}</p>
             </div>
         </div>
         <div class="day-card__inner day-card__inner--price">
             <p class="day-card__price">
-                Price:
+                {{ $t('dayCard.price') }}
                 <span class="day-card__sum">{{ price }}</span>
             </p>
             <button class="day-card__button" @click="selectDay">
                 <p class='day-card__button-text'>
-                    CHOOSE
+                {{ $t('dayCard.button') }}
                 </p>
             </button>
         </div>
-       
     </div>
 </div>
 </div>

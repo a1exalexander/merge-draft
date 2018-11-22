@@ -3,38 +3,38 @@
 <div class="week-card__wrapper" @click.self='close'>
     <div class="week-card animated faster fadeInBubble">
         <button-close-mini class="week-card__close" @click.native='close'></button-close-mini>
-        <p class="week-card__title">Week access
+        <p class="week-card__title"> {{ $t('weekCard.price') }}
         </p>
         <div class="week-card__inner week-card__inner--middle">
             <div class="week-card__label">
                 <img src="../assets/image/wi-fi.svg" alt="wi-fi" class="week-card__image">
-                <p class="week-card__text">Super-fast Internet</p>
+                <p class="week-card__text"> {{ $t('weekCard.label.wifi') }}</p>
             </div>
             <div class="week-card__label">
-                <img src="../assets/image/unlimited-coffee-tea.svg" alt="wi-fi" class="week-card__image">
-                <p class="week-card__text">Unlimited coffee, tea, snacks</p>
+                <img src="../assets/image/unlimited-coffee-tea.svg" alt="coffe" class="week-card__image">
+                <p class="week-card__text">{{ $t('weekCard.label.coffe') }}</p>
             </div>
             <div class="week-card__label">
-                <img src="../assets/image/printer.svg" alt="wi-fi" class="week-card__image">
-                <p class="week-card__text">Wireless Printer/ Scanner/ Copier</p>
+                <img src="../assets/image/printer.svg" alt="printer" class="week-card__image">
+                <p class="week-card__text">{{ $t('weekCard.label.printer') }}</p>
             </div>
             <div class="week-card__label">
-                <img src="../assets/image/shower.svg" alt="wi-fi" class="week-card__image">
-                <p class="week-card__text">Shower</p>
+                <img src="../assets/image/shower.svg" alt="shower" class="week-card__image">
+                <p class="week-card__text">{{ $t('weekCard.label.shower') }}</p>
             </div>
             <div class="week-card__label">
-                <img src="../assets/image/microwave.svg" alt="wi-fi" class="week-card__image">
-                <p class="week-card__text">Kitchen with a microvawe and fridge</p>
+                <img src="../assets/image/microwave.svg" alt="kitchen" class="week-card__image">
+                <p class="week-card__text">{{ $t('weekCard.label.kitchen') }}</p>
             </div>
         </div>
         <div class="week-card__inner week-card__inner--price">
             <p class="week-card__price">
-                Price:
+                {{ $t('weekCard.price') }}
                 <span class="week-card__sum">{{ price }}</span>
             </p>
             <button class="week-card__button" @click="selectWeek">
                 <p class='week-card__button-text'>
-                    CHOOSE
+                {{ $t('weekCard.button') }}
                 </p>
             </button>
         </div>

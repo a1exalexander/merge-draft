@@ -1,7 +1,7 @@
 <template>
 <button class="button-resident-link" @click="becomeMember">
 	<p class='button-resident-link__text'>
-		BECOME A RESIDENT
+		{{ $t('buttons.resident') }}
 		<svg class='button-resident-link__img'>
 			<use xlink:href='#arrow-right-up' />
 		</svg>

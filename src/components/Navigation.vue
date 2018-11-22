@@ -9,7 +9,7 @@
     <section class="button-menu__wrapper">
         <div class="button-menu__tooltip" v-if="tooltip">
             <span class="button-menu__text">
-                MENU
+            {{ $t('navigation.tooltip') }}
             </span> 
             <button class="button-menu__tooltip-close" @click="setCookie">
                 <svg class="button-menu__tooltip-image">

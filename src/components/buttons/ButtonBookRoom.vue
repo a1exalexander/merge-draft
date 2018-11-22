@@ -1,7 +1,7 @@
 <template>
 <button class="button-book-room">
 	<p class='button-book-room__text'>
-		book a meeting room
+		{{ $t('buttons.bookRoom') }}
 		<svg class='button-book-room__img'>
 			<use xlink:href='#arrow-button' />
 		</svg>

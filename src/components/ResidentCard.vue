@@ -4,18 +4,16 @@
     <div class="resident-card animated faster fadeInBubble">
         <button-close-mini class="resident-card__close" @click.native='close'></button-close-mini>
         <div class="resident-card__inner resident-card__inner--top">
-            <p class="resident-card__title">Resident Card
-            </p>
-            <p class="resident-card__description">Access for the Month
-            </p>
+            <p class="resident-card__title">{{ $t('residentCard.label.meetingRoom') }}</p>
+            <p class="resident-card__description">{{ $t('residentCard.label.meetingRoom') }}</p>
             <div class="resident-card__label resident-card__label--room">
-                <img src="../assets/image/meeting-room.svg" alt="wi-fi" class="resident-card__image">
-                <p class="resident-card__text">1 hour two times per week of Meeting Room's using is free
+                <img src="../assets/image/meeting-room.svg" alt="meeting room" class="resident-card__image">
+                <p class="resident-card__text">{{ $t('residentCard.label.meetingRoom') }}
                 </p>
             </div>
             <div class="resident-card__label resident-card__label--lecture">
-                <img src="../assets/image/lectures.svg" alt="wi-fi" class="resident-card__image">
-                <p class="resident-card__text">Free accessment to paid events in Merge
+                <img src="../assets/image/lectures.svg" alt="lectures" class="resident-card__image">
+                <p class="resident-card__text">{{ $t('residentCard.label.lectures') }}
                 </p>
             </div>
         </div>
@@ -23,28 +21,28 @@
         <div class="resident-card__inner resident-card__inner--middle">
             <div class="resident-card__label">
                 <img src="../assets/image/wi-fi.svg" alt="wi-fi" class="resident-card__image">
-                <p class="resident-card__text">Super-fast Internet</p>
+                <p class="resident-card__text">{{ $t('residentCard.label.wifi') }}</p>
             </div>
             <div class="resident-card__label">
-                <img src="../assets/image/unlimited-coffee-tea.svg" alt="wi-fi" class="resident-card__image">
-                <p class="resident-card__text">Unlimited coffee, tea, snacks</p>
+                <img src="../assets/image/unlimited-coffee-tea.svg" alt="coffe" class="resident-card__image">
+                <p class="resident-card__text">{{ $t('residentCard.label.coffe') }}</p>
             </div>
             <div class="resident-card__label">
-                <img src="../assets/image/printer.svg" alt="wi-fi" class="resident-card__image">
-                <p class="resident-card__text">Wireless Printer/ Scanner/ Copier</p>
+                <img src="../assets/image/printer.svg" alt="printer" class="resident-card__image">
+                <p class="resident-card__text">{{ $t('residentCard.label.printer') }}</p>
             </div>
             <div class="resident-card__label">
-                <img src="../assets/image/shower.svg" alt="wi-fi" class="resident-card__image">
-                <p class="resident-card__text">Shower</p>
+                <img src="../assets/image/shower.svg" alt="shower" class="resident-card__image">
+                <p class="resident-card__text">{{ $t('residentCard.label.shower') }}</p>
             </div>
             <div class="resident-card__label">
-                <img src="../assets/image/microwave.svg" alt="wi-fi" class="resident-card__image">
-                <p class="resident-card__text">Kitchen with a microvawe and fridge</p>
+                <img src="../assets/image/microwave.svg" alt="kitchen" class="resident-card__image">
+                <p class="resident-card__text">{{ $t('residentCard.label.kitchen') }}</p>
             </div>
         </div>
         <div class="resident-card__inner resident-card__inner--price">
             <p class="resident-card__price">
-                Price:
+                {{ $t('dayCard.price') }}
                 <span class="resident-card__sum">{{ price }}</span>
             </p>
         </div>
