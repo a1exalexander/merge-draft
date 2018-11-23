@@ -8,23 +8,23 @@
         <div class="day-card__inner day-card__inner--middle">
             <div class="day-card__label">
                 <img src="../assets/image/wi-fi.svg" alt="wi-fi" class="day-card__image">
-                <p class="day-card__text">{{ $t('dayCard.label.wifi') }}</p>
+                <p class="day-card__text">{{ $t('dayCard.features.wifi') }}</p>
             </div>
             <div class="day-card__label">
                 <img src="../assets/image/unlimited-coffee-tea.svg" alt="coffe" class="day-card__image">
-                <p class="day-card__text">{{ $t('dayCard.label.coffe') }}</p>
+                <p class="day-card__text">{{ $t('dayCard.features.coffee') }}</p>
             </div>
             <div class="day-card__label">
                 <img src="../assets/image/printer.svg" alt="printer" class="day-card__image">
-                <p class="day-card__text">{{ $t('dayCard.label.printer') }}</p>
+                <p class="day-card__text">{{ $t('dayCard.features.printer') }}</p>
             </div>
             <div class="day-card__label">
                 <img src="../assets/image/shower.svg" alt="shower" class="day-card__image">
-                <p class="day-card__text">{{ $t('dayCard.label.shower') }}</p>
+                <p class="day-card__text">{{ $t('dayCard.features.shower') }}</p>
             </div>
             <div class="day-card__label">
                 <img src="../assets/image/microwave.svg" alt="kitchen" class="day-card__image">
-                <p class="day-card__text">{{ $t('dayCard.label.kitchen') }}</p>
+                <p class="day-card__text">{{ $t('dayCard.features.kitchen') }}</p>
             </div>
         </div>
         <div class="day-card__inner day-card__inner--price">

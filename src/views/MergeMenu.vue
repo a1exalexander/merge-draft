@@ -12,7 +12,7 @@
 			</svg>
 			<div class="menu-button-close__outside"></div>
 		</button>
-		<p class="menu-button-close__description">CLOSE</p>
+		<p class="menu-button-close__description">{{ $t('menu.close') }}</p>
 	</div>
 	<div class="menu__col">
 	</div>
@@ -23,33 +23,34 @@
 	<div class="menu__inner">
 		<ul class="menu__list">
 			<li class="menu__item animated d04 delay-02s fadeInLeft">
-				<router-link to="/" class="menu__link menu__link--merge">Merge</router-link>
+				<router-link to="/" class="menu__link menu__link--merge">{{ $t('menu.links.home') }}</router-link>
 			</li>
 			<li class="menu__item animated d04 delay-03s fadeInLeft">
-				<router-link to="/coworking" class="menu__link menu__link--coworking">Coworking space</router-link>
+				<router-link to="/coworking" class="menu__link menu__link--coworking">{{ $t('menu.links.coworking') }}</router-link>
 			</li>
 			<li class="menu__item animated d04 delay-04s fadeInLeft">
-				<router-link to="/meeting-room" class="menu__link menu__link--meeting">Meeting room</router-link>
+				<router-link to="/meeting-room" class="menu__link menu__link--meeting">{{ $t('menu.links.meetingRoom') }}</router-link>
 			</li>
 			<li class="menu__item animated d04 delay-05s fadeInLeft">
-				<router-link to="/events" class="menu__link menu__link--events">Events</router-link>
+				<router-link to="/events" class="menu__link menu__link--events">{{ $t('menu.links.events') }}</router-link>
 			</li>
 			<li class="menu__item animated d04 delay-06s fadeInLeft">
-				<router-link to="/about" class="menu__link menu__link--last">About us</router-link>
+				<router-link to="/about" class="menu__link menu__link--last">{{ $t('menu.links.about') }}</router-link>
 			</li>
 		</ul>
 		<div class="menu__mobile-links">
-			<a href="callto:0970313451" class="menu__mobile-link">097 031 3451
+			<a :href="'callto:' + $t('menu.phoneNumberPure')" class="menu__mobile-link">{{ $t('menu.phoneNumber') }}
 				<svg class='menu__mobile-link-img'>
 					<use xlink:href='#arrow-right-up' />
 				</svg>
 			</a>
-			<a href="mailto:hello@merge.place" class="menu__mobile-link">hello@merge.place
+			<a :href="'mailto:' + $t('menu.email')" class="menu__mobile-link">{{ $t('menu.email') }}
 				<svg class='menu__mobile-link-img'>
 					<use xlink:href='#arrow-right-up' />
 				</svg>
 			</a>
-			<a href="https://goo.gl/maps/czfnQnyH7jB2" target="_blank" class="menu__mobile-link">Kremenchuk, Nebesna Sotnia st. 17А <span class="menu__mobile-link menu__mobile-link--nowrap">“Proletarsky”
+			<a href="https://goo.gl/maps/czfnQnyH7jB2" target="_blank" class="menu__mobile-link">{{ $t('menu.mobile.adress') }}
+				<span class="menu__mobile-link menu__mobile-link--nowrap">{{ $t('menu.mobile.building') }}
 					<svg class='menu__mobile-link-img'>
 						<use xlink:href='#arrow-right-up' />
 					</svg>
@@ -59,15 +60,15 @@
 		<div class="menu__language animated d04 delay-06s fadeInLeft">
 			<label class="menu__language-link">
 				<input class="menu__language-input" type="radio" name='language' value='ua' v-model='language'>
-				<p class="menu__language-text menu__language-text--ua">UA</p>
+				<p class="menu__language-text menu__language-text--ua">{{ $t('menu.languages.ua') }}</p>
 			</label>
 			<label class="menu__language-link">
 				<input class="menu__language-input" type="radio" name='language' value='ru' v-model='language'>
-				<p class="menu__language-text menu__language-text--ru">RU</p>
+				<p class="menu__language-text menu__language-text--ru">{{ $t('menu.languages.ru') }}</p>
 			</label>
 			<label class="menu__language-link">
 				<input class="menu__language-input" type="radio" name='language' value='en' v-model='language' checked>
-				<p class="menu__language-text menu__language-text--en">EN</p>
+				<p class="menu__language-text menu__language-text--en">{{ $t('menu.languages.en') }}</p>
 			</label>
 		</div>
 	</div>
@@ -77,28 +78,20 @@
 				<use xlink:href='#calendar' />
 			</svg>
 		</div>
-		<p class="menu__text menu__text--day menu-row-2">MON—FRI:
-		</p>
-		<p class="menu__text menu__text--time menu-row-3">9:00 – 20:00
-		</p>
-		<p class="menu__text menu__text--day menu-row-5">SAT, SUN:
-		</p>
-		<p class="menu__text menu__text--time menu-row-6">10:00 – 18:00
-		</p>
+		<p class="menu__text menu__text--day menu-row-2">{{ $t('menu.time.weekday') }}</p>
+		<p class="menu__text menu__text--time menu-row-3">{{ $t('menu.time.weekdayTime') }}</p>
+		<p class="menu__text menu__text--day menu-row-5">{{ $t('menu.time.weekend') }}</p>
+		<p class="menu__text menu__text--time menu-row-6">{{ $t('menu.time.weekendTime') }}</p>
 		<div class="menu__image-wrapper menu-row-7">
 			<svg class="menu__image menu__image--location">
 				<use xlink:href='#location' />
 			</svg>
 		</div>
-		<p class="menu__text menu__text--city menu-row-8">Kremenchug
-		</p>
-		<p class="menu__text menu__text--adress menu-row-9">Nebesna Sotnia st. 17А
-			“Proletarsky”
-		</p>
+		<p class="menu__text menu__text--city menu-row-8">{{ $t('menu.location.city') }}</p>
+		<p class="menu__text menu__text--adress menu-row-9">{{ $t('menu.location.adress') }}</p>
 		<div class="menu-row-10">
 			<button-map class='menu__button'></button-map>
-		</div>
-		
+		</div>	
 	</div>
 	<div class="menu__col menu__col--contact animated d04 delay-08s fadeInLeft">
 		<div class="menu__image-wrapper menu-row-1">
@@ -106,15 +99,13 @@
 				<use xlink:href='#phone' />
 			</svg>
 		</div>
-		<a href="callto:+380970313451" class="menu__contact menu__contact--phone menu-row-2">097 031 3451
-		</a>
+		<a :href="'callto:' + $t('menu.phoneNumberPure')" class="menu__contact menu__contact--phone menu-row-2">{{ $t('menu.phoneNumber') }}</a>
 		<div class="menu__image-wrapper menu-row-4">
 			<svg class="menu__image menu__image--mail">
 				<use xlink:href='#mail' />
 			</svg>
 		</div>
-		<a href="mailto:hello@merge.place" class="menu__contact menu__contact--mail menu-row-6">hello@merge.place
-		</a>
+		<a :href="'mailto:' + $t('menu.email')" class="menu__contact menu__contact--mail menu-row-6">{{ $t('menu.email') }}</a>
 		<div class="menu-row-10">
 			<button-membership class='menu__button' @click.native='becomeMember'></button-membership>
 		</div>

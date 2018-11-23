@@ -8,23 +8,23 @@
         <div class="week-card__inner week-card__inner--middle">
             <div class="week-card__label">
                 <img src="../assets/image/wi-fi.svg" alt="wi-fi" class="week-card__image">
-                <p class="week-card__text"> {{ $t('weekCard.label.wifi') }}</p>
+                <p class="week-card__text"> {{ $t('weekCard.features.wifi') }}</p>
             </div>
             <div class="week-card__label">
                 <img src="../assets/image/unlimited-coffee-tea.svg" alt="coffe" class="week-card__image">
-                <p class="week-card__text">{{ $t('weekCard.label.coffe') }}</p>
+                <p class="week-card__text">{{ $t('weekCard.features.coffee') }}</p>
             </div>
             <div class="week-card__label">
                 <img src="../assets/image/printer.svg" alt="printer" class="week-card__image">
-                <p class="week-card__text">{{ $t('weekCard.label.printer') }}</p>
+                <p class="week-card__text">{{ $t('weekCard.features.printer') }}</p>
             </div>
             <div class="week-card__label">
                 <img src="../assets/image/shower.svg" alt="shower" class="week-card__image">
-                <p class="week-card__text">{{ $t('weekCard.label.shower') }}</p>
+                <p class="week-card__text">{{ $t('weekCard.features.shower') }}</p>
             </div>
             <div class="week-card__label">
                 <img src="../assets/image/microwave.svg" alt="kitchen" class="week-card__image">
-                <p class="week-card__text">{{ $t('weekCard.label.kitchen') }}</p>
+                <p class="week-card__text">{{ $t('weekCard.features.kitchen') }}</p>
             </div>
         </div>
         <div class="week-card__inner week-card__inner--price">

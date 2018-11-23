@@ -102,6 +102,14 @@ export default {
         _this.removeEvent('');
       }
     });
+  },
+  beforeUpdate(){
+    $('#fullcalendar').fullCalendar({
+      googleCalendarApiKey: 'AIzaSyCwSdSdIblDFzQbJSzu17XmnqZ4WvOsTPw',
+      events: {
+        googleCalendarId: '13g6skar8uf2s0um2kmushttnc@group.calendar.google.com'
+      }
+    })
   }
 };
 </script>

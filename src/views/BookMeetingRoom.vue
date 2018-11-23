@@ -42,7 +42,7 @@
 					required 
 					placeholder="Andrey Malishko"
 					v-model.trim="bookRoomData.name"
-					@blur="checkName"
+					@blur="checkAll"
 					:class="{inputError: errors.name, greenBorder: !errors.name}">
 				<transition 
 					name="custom-classes-transition"
@@ -58,7 +58,7 @@
 					required 
 					placeholder="+38 (000) 000 00-00"
 					v-model.trim="bookRoomData.phone"
-					@blur="checkPhone"
+					@blur="checkAll"
 					:class="{inputError: errors.phone, greenBorder: !errors.phone}">
 				<transition 
 					name="custom-classes-transition"
@@ -98,7 +98,7 @@
 					class="check-free-time__email" 
 					placeholder="Email"
 					:class="{inputError: errors.email, greenBorder: !errors.email}"
-					@blur="checkEmail"
+					@blur="checkAll"
 					v-model.trim="bookRoomData.email">
 				<transition 
 					name="custom-classes-transition"
@@ -115,7 +115,7 @@
             </div>
             </transition>
 			<button	class="check-free-time__button check-free-time__button--mobile" 
-				v-if='visile.checkFrameIn'
+				v-if='visible.checkFrameIn'
 				@click.prevent="checkResidentTime"
 				:disabled='showCheck'>
 				<p class="check-free-time__button-text">{{ $t('bookMeetingRoom.button') }}</p>
@@ -161,7 +161,6 @@
 
 <script>
 import http from 'axios';
-import DatePicker from 'vue2-datepicker'
 import ButtonCloseMini from '@/components/buttons/ButtonCloseMini.vue';
 import ButtonBack from '@/components/buttons/ButtonBack.vue';
 import ButtonBook from '@/components/buttons/ButtonBook.vue';
@@ -179,7 +178,6 @@ export default {
 		ButtonCloseMini,
 		BookingRoomDone,
 		BookingRoomDoneMobile,
-		DatePicker,
 		TimePicker
 	},
 	data() {
@@ -277,6 +275,11 @@ export default {
 			} else {
 				this.errors.email = null;
 			}
+		},
+		checkAll() {
+			this.checkName();
+			this.checkPhone();
+			this.checkEmail();
 		},
 		validEmail(email) {
 			// eslint-disable-next-line
@@ -692,6 +695,7 @@ export default {
 			}
 	}
 	&__date-label {
+		text-transform: uppercase;
 		grid-area: day;
 		font-family: $base-font;
 		font-size: 0.625rem;
@@ -808,6 +812,7 @@ export default {
 		}
 	}
 	&__label {
+		text-transform: uppercase;
 		align-items: stretch;
 		font-family: $base-font;
 		font-size: 0.5rem;

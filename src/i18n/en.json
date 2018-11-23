@@ -11,7 +11,8 @@
 	"links": {
 		"meetingRoom": "meeting room",
 		"interior": "Interior",
-		"events": "events"
+		"events": "events",
+		"about": "about merge"
 	},
 	"validate": {
 		"name": "Please enter your your name to continue",
@@ -51,37 +52,37 @@
 	"residentCard": {
 		"title": "Resident Card",
 		"description": "Access for the Month",
-		"label": {
+		"features": {
 			"meetingRoom": "1 hour two times per week of Meeting Room's using is free",
 			"lectures": "Free accessment to paid events in Merge",
 			"wifi": "Super-fast Internet",
 			"coffe": "Unlimited coffee, tea, snacks",
 			"printer": "Wireless Printer/ Scanner/ Copier",
 			"shower": "Shower",
-			"kitchen": "Kitchen with a microvawe and fridge"
+			"kitchen": "Kitchen with microvawe and fridge"
 		},
 		"price": "Price:"
 	},
 	"dayCard": {
 		"title": "Day access",
-		"label": {
+		"features": {
 			"wifi": "Super-fast Internet",
 			"coffe": "Unlimited coffee, tea, snacks",
 			"printer": "Wireless Printer/ Scanner/ Copier",
 			"shower": "Shower",
-			"kitchen": "Kitchen with a microvawe and fridge"
+			"kitchen": "Kitchen with microvawe and fridge"
 		},
 		"price": "Price:",
 		"button": "choose"
 	},
 	"weekCard": {
 		"title": "Week access",
-		"label": {
+		"features": {
 			"wifi": "Super-fast Internet",
 			"coffe": "Unlimited coffee, tea, snacks",
 			"printer": "Wireless Printer/ Scanner/ Copier",
 			"shower": "Shower",
-			"kitchen": "Kitchen with a microvawe and fridge"
+			"kitchen": "Kitchen with microvawe and fridge"
 		},
 		"price": "Price:",
 		"button": "choose"
@@ -150,7 +151,7 @@
 	"bookingWorkplace": {
 		"back": "go back",
 		"title": "Booking of the workplace",
-		"ckeckbox": {
+		"checkbox": {
 			"month": "Month",
 			"week": "Week",
 			"day": "Day",
@@ -189,6 +190,86 @@
 		},
 		"price": "Price:",
 		"close": "cancel"
+	},
+	"coworking": {
+		"title": {
+			"0": "Coworking",
+			"1": "space"
+		},
+		"label": {
+			"360": "360° view",
+			"photo": "Photos"
+		},
+		"features": {
+			"meetingRoom": "Meeting Room",
+			"wifi": "Super-fast Internet",
+			"coffee": "Coffee, tea, snacks",
+			"printer": "Wireless Printer/ Scanner/ Copier",
+			"shower": "Shower",
+			"kitchen": "Kitchen with microvawe and fridge",
+			"merge": "Merge community"
+		}
+	},
+	"events": {
+		"title": "Events",
+		"subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea",
+		"nav": {
+			"past": "Past events",
+			"future": "Future events"
+		},
+		"buttons": {
+			"more": "more details",
+			"open": "open in fb",
+			"mobile": "details"
+		}
+	},
+	"meetingRoom": {
+		"title": "Meeting room",
+		"label": "Photos",
+		"ticket": {
+			"price": "free",
+			"currency": "UAH ",
+			"duration": "PER HOUR",
+			"resident": "FOR RESIDENTS 1 HOUR not more than TWO TIMES PER WEEK",
+			"residentMobile": "FOR RESIDENTS 1 HOUR TWO TIMES PER WEEK"
+		},
+		"features": {
+			"meeting": "Capacity: 10 people",
+			"tv": "50” TV with internet, Windows 10 and webcam",
+			"flipchart": "Flipchart with markers",
+			"speaker": "Wireless speaker"
+		}
+	},
+	"menu": {
+		"close": "close",
+		"links": {
+			"home": "Merge",
+			"coworking": "Coworking space",
+			"meetingRoom": "Meeting room",
+			"events": "Events",
+			"about": "About Us"
+		},
+		"mobile": {
+			"adress": "Kremenchuk, Nebesna Sotnia st. 17А ",
+			"building": "“Proletarsky”"
+		},
+		"phoneNumber": "097 031 3451",
+		"phoneNumberPure": "+380970313451",
+		"email": "hello@merge.place",
+		"languages": {
+			"ua": "ua",
+			"ru": "ru",
+			"en": "en"
+		},
+		"time": {
+			"weekday": "MON—FRI:",
+			"weekdayTime": "9:00 – 20:00",
+			"weekend": "SAT, SUN:",
+			"weekendTime": "10:00 – 18:00"
+		},
+		"location": {
+			"city": "Kremenchuk",
+			"adress": "Nebesna Sotnia st. 17А “Proletarsky”"
+		}
 	}
-
 }

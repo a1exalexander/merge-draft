@@ -4,15 +4,14 @@
 	<div class="events__wrapper">
 		<div class="events__inner">
 			<header class="events__header">
-				<h1 class="events__title animated d05 delay-02s fadeInLeft">Events
-				</h1>
-				<p class="events__subtitle animated d05 delay-03s fadeInLeft">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea</p>
+				<h1 class="events__title animated d05 delay-02s fadeInLeft">{{ $t('events.title') }}</h1>
+				<p class="events__subtitle animated d05 delay-03s fadeInLeft">{{ $t('events.subtitle') }}</p>
 			</header>
 			<main class='events__main animated d05 delay-04s fadeInLeft'>
 				<nav class='events__nav'>
 					<div class='events__nav-inner'>
-						<a class="events__button events__button--future" href="#" :style='toggleButton? style.activeButton: ""' @click.prevent='toggleButton = !toggleButton'>Future evets</a>
-						<a class="events__button events__button--past" href="#" :style='!toggleButton? style.activeButton: ""' @click.prevent='toggleButton = !toggleButton'>Past events</a>
+						<a class="events__button events__button--future" href="#" :style='toggleButton? style.activeButton: ""' @click.prevent='toggleButton = !toggleButton'>{{ $t('events.nav.future') }}</a>
+						<a class="events__button events__button--past" href="#" :style='!toggleButton? style.activeButton: ""' @click.prevent='toggleButton = !toggleButton'>{{ $t('events.nav.past') }}</a>
 					</div>
 					<div class="events__nav-line">
 						<div class='events__nav-active' :class='{"events__nav-active--translate": !toggleButton}'></div>
@@ -29,11 +28,11 @@
 							<h2 class="event__title">{{ event.title }}</h2>
 							<p class="event__subtitle">{{ event.subtitle }}</p>
 							<p class="event__text" :style='+toggleIndex == +index? style.showText: style.hideText'>{{ event.text }}</p>
-							<a class="event__button-more" href="#" @click.prevent="+toggleIndex != +index?toggleIndex = index:toggleIndex = -1">more details
+							<a class="event__button-more" href="#" @click.prevent="+toggleIndex != +index?toggleIndex = index:toggleIndex = -1">{{ $t('events.buttons.more') }}
 								<div class='event__triangle' :style='+toggleIndex == +index? style.triangle: ""'></div>
 							</a>
 							<button class="event__button-details">
-								<p class='event__button-text'>OPEN IN FB
+								<p class='event__button-text'>{{ $t('events.buttons.open') }}
 									<svg class='event__button-img'>
 										<use xlink:href='#arrow-right-up' />
 									</svg>
@@ -45,7 +44,7 @@
 							<p class="event__time">{{ event.time }}</p>
 							<p class="event__price">{{ event.price }}</p>
 							<button class="event__info-button">
-								<p class='event__info-button-text'>DETAILS</p>
+								<p class='event__info-button-text'>{{ $t('events.buttons.mobile') }}</p>
 								<svg class='event__info-button-img'>
 									<use xlink:href='#arrow-right' />
 								</svg>
@@ -59,11 +58,11 @@
 							<h2 class="event__title">{{ event.title }}</h2>
 							<p class="event__subtitle">{{ event.subtitle }}</p>
 							<p class="event__text" :style='+toggleIndex == +index? style.showText: style.hideText'>{{ event.text }}</p>
-							<a class="event__button-more" href="#" @click.prevent="+toggleIndex != +index?toggleIndex = index:toggleIndex = -1">more details
+							<a class="event__button-more" href="#" @click.prevent="+toggleIndex != +index?toggleIndex = index:toggleIndex = -1">{{ $t('events.buttons.more') }}
 								<div class='event__triangle' :style='+toggleIndex == +index? style.triangle: ""'></div>
 							</a>
 							<button class="event__button-details">
-								<p class='event__button-text'>OPEN IN FB
+								<p class='event__button-text'>{{ $t('events.buttons.open') }}
 									<svg class='event__button-img'>
 										<use xlink:href='#arrow-right-up' />
 									</svg>
@@ -75,7 +74,7 @@
 							<p class="event__time">{{ event.time }}</p>
 							<p class="event__price">{{ event.price }}</p>
 							<button class="event__info-button">
-								<p class='event__info-button-text'>DETAILS</p>
+								<p class='event__info-button-text'>{{ $t('events.buttons.mobile') }}</p>
 								<svg class='event__info-button-img'>
 									<use xlink:href='#arrow-right' />
 								</svg>
@@ -91,12 +90,12 @@
 	<section class="next-page-nav animated d05 delay-05s fadeInLeft">
 		<router-link to='/meeting-room' class="next-page-nav__link coworking__link-page coworking__link-page--meeting-room">
 			<div class="next-page-nav__inner">
-				<p class="next-page-nav__text">MEETING ROOM</p>
+				<p class="next-page-nav__text">{{ $t('links.meetingRoom') }}</p>
 			</div>
 		</router-link>
-		<router-link to='/events' class="next-page-nav__link coworking__link-page coworking__link-page--events">
+		<router-link to='/about' class="next-page-nav__link coworking__link-page coworking__link-page--events">
 			<div class="next-page-nav__inner">
-				<p class="next-page-nav__text">Events</p>
+				<p class="next-page-nav__text">{{ $t('links.about') }}</p>
 			</div>
 		</router-link>
 	</section>
@@ -553,6 +552,7 @@ export default {
 		}
 	}
 	&__info-button-text {
+		text-transform: uppercase;
 		color: $MERGE-MAIN-COLOR;
 		font-family: $base-font;
 		font-weight: 700;

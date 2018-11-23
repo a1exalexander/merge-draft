@@ -4,16 +4,16 @@
     <div class="resident-card animated faster fadeInBubble">
         <button-close-mini class="resident-card__close" @click.native='close'></button-close-mini>
         <div class="resident-card__inner resident-card__inner--top">
-            <p class="resident-card__title">{{ $t('residentCard.label.meetingRoom') }}</p>
-            <p class="resident-card__description">{{ $t('residentCard.label.meetingRoom') }}</p>
+            <p class="resident-card__title">{{ $t('residentCard.title') }}</p>
+            <p class="resident-card__description">{{ $t('residentCard.description') }}</p>
             <div class="resident-card__label resident-card__label--room">
                 <img src="../assets/image/meeting-room.svg" alt="meeting room" class="resident-card__image">
-                <p class="resident-card__text">{{ $t('residentCard.label.meetingRoom') }}
+                <p class="resident-card__text">{{ $t('residentCard.features.meetingRoom') }}
                 </p>
             </div>
             <div class="resident-card__label resident-card__label--lecture">
                 <img src="../assets/image/lectures.svg" alt="lectures" class="resident-card__image">
-                <p class="resident-card__text">{{ $t('residentCard.label.lectures') }}
+                <p class="resident-card__text">{{ $t('residentCard.features.lectures') }}
                 </p>
             </div>
         </div>
@@ -21,23 +21,23 @@
         <div class="resident-card__inner resident-card__inner--middle">
             <div class="resident-card__label">
                 <img src="../assets/image/wi-fi.svg" alt="wi-fi" class="resident-card__image">
-                <p class="resident-card__text">{{ $t('residentCard.label.wifi') }}</p>
+                <p class="resident-card__text">{{ $t('residentCard.features.wifi') }}</p>
             </div>
             <div class="resident-card__label">
                 <img src="../assets/image/unlimited-coffee-tea.svg" alt="coffe" class="resident-card__image">
-                <p class="resident-card__text">{{ $t('residentCard.label.coffe') }}</p>
+                <p class="resident-card__text">{{ $t('residentCard.features.coffee') }}</p>
             </div>
             <div class="resident-card__label">
                 <img src="../assets/image/printer.svg" alt="printer" class="resident-card__image">
-                <p class="resident-card__text">{{ $t('residentCard.label.printer') }}</p>
+                <p class="resident-card__text">{{ $t('residentCard.features.printer') }}</p>
             </div>
             <div class="resident-card__label">
                 <img src="../assets/image/shower.svg" alt="shower" class="resident-card__image">
-                <p class="resident-card__text">{{ $t('residentCard.label.shower') }}</p>
+                <p class="resident-card__text">{{ $t('residentCard.features.shower') }}</p>
             </div>
             <div class="resident-card__label">
                 <img src="../assets/image/microwave.svg" alt="kitchen" class="resident-card__image">
-                <p class="resident-card__text">{{ $t('residentCard.label.kitchen') }}</p>
+                <p class="resident-card__text">{{ $t('residentCard.features.kitchen') }}</p>
             </div>
         </div>
         <div class="resident-card__inner resident-card__inner--price">

@@ -49,7 +49,7 @@
 					</div>
 					<div class="workplace-choice-mobile__col">
 						<p class="workplace-choice-mobile__title">{{ $t('bookingWorkplace.checkbox.month') }}</p>
-						<p class="workplace-choice-mobile__resident">{{ $t('bookingWorkplace.checkbox.features') }}</p>
+						<p class="workplace-choice-mobile__resident">{{ $t('bookingWorkplace.checkbox.feature') }}</p>
 					</div>
 				</div>
 				<div class="workplace-choice-mobile__inner workplace-choice-mobile__inner--price">

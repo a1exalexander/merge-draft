@@ -12,57 +12,55 @@
 	<div class="meeting-room__wrapper">
 		<div class="meeting-room__inner">
 			<header class="meeting-room__header animated d06 delay-02s fadeInLeft" v-show='hideElements'>
-				<h1 class="meeting-room__title">Meeting room</h1>
+				<h1 class="meeting-room__title">{{ $t('meetingRoom.title') }}</h1>
 				<button-book-room @click.native='showBook'></button-book-room>
 			</header>
 			<section class="meeting-room__slider animated d06 delay-03s fadeInLeft">
-				<button class="meeting-room__label-button">Photos</button>
+				<button class="meeting-room__label-button">{{ $t('meetingRoom.label') }}</button>
 				<slider v-show='hideElements'></slider>
 			</section>
 			<section class="meeting-room-inf" v-show='hideElements'>
 				<div class="meeting-room-inf__wrapper">
 					<div class="meeting-room-inf__buttons animated d06 delay-04s fadeInLeft">
 						<div class="meeting-room-inf__card meeting-room-inf__card--hour animated d06 delay-05s fadeInLeft">
-							<p class="meeting-room-inf__text meeting-room-inf__text--hour">150
-								<span class="meeting-room-inf__description meeting-room-inf__description--hour">UAH PER HOUR
-								</span>
+							<p class="meeting-room-inf__text meeting-room-inf__text--hour">{{ price }}
+								<span class="meeting-room-inf__description meeting-room-inf__description--hour">{{ $t('meetingRoom.ticket.currency') }}{{ $t('meetingRoom.ticket.duration') }}</span>
 							</p>
 							<button-book-now @click.native='toCalendar("fullcalendar")'></button-book-now>
 						</div>
 						<div class="meeting-room-inf__card meeting-room-inf__card--hour-mobile">
-							<p class="meeting-room-inf__text meeting-room-inf__text--hour">150
-								<span class="meeting-room-inf__description meeting-room-inf__description--hour meeting-room-inf__description--currency">UAH</span>
+							<p class="meeting-room-inf__text meeting-room-inf__text--hour">{{ price }}
+								<span class="meeting-room-inf__description meeting-room-inf__description--hour meeting-room-inf__description--currency">{{ $t('meetingRoom.ticket.currency') }}</span>
 							</p>
-							<p class="meeting-room-inf__description meeting-room-inf__description--hour">PER HOUR</p>
+							<p class="meeting-room-inf__description meeting-room-inf__description--hour">{{ $t('meetingRoom.ticket.duration') }}</p>
 						</div>
 						<div class="meeting-room-inf__card meeting-room-inf__card--resident animated d06 delay-06s fadeInUp">
-							<p class="meeting-room-inf__text meeting-room-inf__text--resident">FREE
-								<span class="meeting-room-inf__description meeting-room-inf__description--resident">FOR RESIDENTS 1 HOUR not more than TWO TIMES PER WEEK
-								</span>
+							<p class="meeting-room-inf__text meeting-room-inf__text--resident">{{ $t('meetingRoom.ticket.price') }}
+								<span class="meeting-room-inf__description meeting-room-inf__description--resident">{{ $t('meetingRoom.ticket.resident') }}</span>
 							</p>
 							<button-resident-link></button-resident-link>
 						</div>
 						<div class="meeting-room-inf__card meeting-room-inf__card--resident-mobile">
-							<p class="meeting-room-inf__text meeting-room-inf__text--resident">FREE</p>
-							<p class="meeting-room-inf__description meeting-room-inf__description--resident">FOR RESIDENTS 1 HOUR TWO TIMES PER WEEK</p>
+							<p class="meeting-room-inf__text meeting-room-inf__text--resident">{{ $t('meetingRoom.ticket.price') }}</p>
+							<p class="meeting-room-inf__description meeting-room-inf__description--resident">{{ $t('meetingRoom.ticket.residentMobile') }}</p>
 						</div>
 					</div>
 					<div class="meeting-room-inf__labels animated d06 delay-07s fadeInLeft">
 						<div class="beneffits__label">
 							<img src="../assets/image/meeting.png" alt="meeting" class="beneffits__image">
-							<p class="beneffits__text">Capacity: 10 people</p>
+							<p class="beneffits__text">{{ $t('meetingRoom.features.meeting') }}</p>
 						</div>
 						<div class="beneffits__label">
 							<img src="../assets/image/tv.svg" class="beneffits__image">
-							<p class="beneffits__text">50” TV with internet, Windows 10 and webcam</p>
+							<p class="beneffits__text">{{ $t('meetingRoom.features.tv') }}</p>
 						</div>
 						<div class="beneffits__label">
 							<img src="../assets/image/flipchart.svg" class="beneffits__image">
-							<p class="beneffits__text">Flipchart with markers</p>
+							<p class="beneffits__text">{{ $t('meetingRoom.features.flipchart') }}</p>
 						</div>
 						<div class="beneffits__label">
 							<img src="../assets/image/wireless-speaker.svg" class="beneffits__image">
-							<p class="beneffits__text">Wireless speaker</p>
+							<p class="beneffits__text">{{ $t('meetingRoom.features.speaker') }}</p>
 						</div>
 					</div>
 				</div>
@@ -76,12 +74,12 @@
 	<section class="next-page-nav animated d06 delay-09s fadeInLeft" v-show='hideElements'>
 		<router-link to="/coworking" class="next-page-nav__link meeting-room__link-page meeting-room__link-page--interior">
 			<div class="next-page-nav__inner">
-				<p class="next-page-nav__text">INTERIOR</p>
+				<p class="next-page-nav__text">{{ $t('links.interior') }}</p>
 			</div>
 		</router-link>
 		<router-link to="/events" class="next-page-nav__link meeting-room__link-page meeting-room__link-page--events">
 			<div class="next-page-nav__inner">
-				<p class="next-page-nav__text">EVENTS</p>
+				<p class="next-page-nav__text">{{ $t('links.events') }}</p>
 			</div>
 		</router-link>
 	</section>
@@ -137,6 +135,11 @@ export default {
 			let top = document.getElementById(href).getBoundingClientRect().top;
 			let coord = top + pageYOffset;
 			window.scrollTo(0, (coord - 2));
+		}
+	},
+	computed: {
+		price() {
+			return this.$store.state.price.hour;
 		}
 	},
 	mounted() {

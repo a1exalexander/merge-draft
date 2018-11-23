@@ -4,13 +4,12 @@
 	<div class="coworking__wrapper">
 		<div class="coworking__inner">
 			<header class="coworking__header animated d06 delay-02s fadeInLeft">
-				<h1 class="coworking__title">Coworking<br>space
-				</h1>
+				<h1 class="coworking__title">{{ $t('coworking.title.0') }}<br>{{ $t('coworking.title.1') }}</h1>
 				<button-membership class="coworking__button coworking__button--header" @click.native='becomeMember'></button-membership>
 			</header>
 			<section class="view-360 animated d06 delay-03s fadeInLeft">
 				<div class="view-360__row">
-					<button class="view-360__button">360° view</button>
+					<button class="view-360__button">{{ $t('coworking.label.360') }}</button>
 				</div>
 				<div class="view-360__inner">
 					<img src="../assets/image/merge-4.png" alt="image" class="view-360__image">
@@ -19,45 +18,38 @@
 			<section class="beneffits animated d06 delay-04s fadeInLeft">
 				<div class="beneffits__label beneffits__label--wifi">
 					<img src="../assets/image/wi-fi.svg" alt="wi-fi" class='beneffits__image'>
-					<p class="beneffits__text">Super-fast Internet
-					</p>
+					<p class="beneffits__text">{{ $t('coworking.features.wifi') }}</p>
 				</div>
 				<div class="beneffits__label beneffits__label--meeting">
 					<img src="../assets/image/meeting-room.svg" alt="meeting room" class='beneffits__image'>
-					<p class="beneffits__text">Meeting Room
-					</p>
+					<p class="beneffits__text">{{ $t('coworking.features.meetingRoom') }}</p>
 				</div>
 				<div class="beneffits__label beneffits__label--printer">
 					<img src="../assets/image/printer.svg" alt="printer" class='beneffits__image'>
-					<p class="beneffits__text">Wireless Printer/Scanner/ Copier
-					</p>
+					<p class="beneffits__text">{{ $t('coworking.features.printer') }}</p>
 				</div>
 				<div class="beneffits__label beneffits__label--cofee">
 					<img src="../assets/image/unlimited-coffee-tea.svg" alt="cofee and tee" class='beneffits__image'>
-					<p class="beneffits__text">Coffee, tea, snacks
-					</p>
+					<p class="beneffits__text">{{ $t('coworking.features.coffee') }}</p>
 				</div>
 				<div class="beneffits__label beneffits__label--microwave">
 					<img src="../assets/image/microwave.svg" alt="microwave" class='beneffits__image'>
-					<p class="beneffits__text">Kitchen with a microwave and fridge
-					</p>
+					<p class="beneffits__text">{{ $t('coworking.features.kitchen') }}</p>
 				</div>
 				<div class="beneffits__label beneffits__label--shower">
 					<img src="../assets/image/shower.svg" alt="shower" class='beneffits__image'>
-					<p class="beneffits__text">Shower
-					</p>
+					<p class="beneffits__text">{{ $t('coworking.features.shower') }}</p>
 				</div>
 				<div class="beneffits__label beneffits__label--merge">
 					<img src="../assets/image/merge-dots.svg" alt="merge" class='beneffits__image'>
-					<p class="beneffits__text">Merge community
-					</p>
+					<p class="beneffits__text">{{ $t('coworking.features.merge') }}</p>
 				</div>
 				<div class="beneffits__button animated d06 delay-05s fadeInLeft">
 					<button-membership @click.native='becomeMember'></button-membership>
 				</div>
 			</section>
 			<section class="coworking__slider animated d06 delay-06s fadeInLeft">
-				<button class="coworking__label-button">Photos</button>
+				<button class="coworking__label-button">{{ $t('coworking.label.photo') }}</button>
 				<slider></slider>
 			</section>
 		</div>
@@ -65,12 +57,12 @@
 	<section class="next-page-nav animated d06 delay-07s fadeInLeft">
 		<router-link to='/meeting-room' class="next-page-nav__link coworking__link-page coworking__link-page--meeting-room">
 			<div class="next-page-nav__inner">
-				<p class="next-page-nav__text">MEETING ROOM</p>
+				<p class="next-page-nav__text">{{ $t('links.meetingRoom') }}</p>
 			</div>
 		</router-link>
 		<router-link to='/events' class="next-page-nav__link coworking__link-page coworking__link-page--events">
 			<div class="next-page-nav__inner">
-				<p class="next-page-nav__text">Events</p>
+				<p class="next-page-nav__text">{{ $t('links.events') }}</p>
 			</div>
 		</router-link>
 	</section>
