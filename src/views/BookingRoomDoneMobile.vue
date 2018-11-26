@@ -3,27 +3,27 @@
 	<div class="booking-done-mobile" :style="onStyleAnimate">
 		<button-close-mini class="booking-done-mobile__close" @click.native="goHome"></button-close-mini>
 		<div class="booking-done-mobile__inner booking-done-mobile__inner--title">
-			<h2 class="booking-done-mobile__title">{{ $t('bookinRoomDone.mobile.title') }}</h2>
-			<p class="booking-done-mobile__title booking-done-mobile__title--merge">{{ $t('bookinRoomDone.mobile.titleLogo') }}</p>
+			<h2 class="booking-done-mobile__title">{{ $t('bookingRoomDone.mobile.title') }}</h2>
+			<p class="booking-done-mobile__title booking-done-mobile__title--merge">{{ $t('bookingRoomDone.mobile.titleLogo') }}</p>
 		</div>
-		<p class="booking-done-mobile__caption">{{ $t('bookinRoomDone.mobile.caption') }}</p>
-		<p class="booking-done-mobile__info">{{ $t('bookinRoomDone.mobile.response.0') }}</p>
-		<p class="booking-done-mobile__info">{{ $t('bookinRoomDone.mobile.response.1') }}</p>
-		<p class="booking-done-mobile__info">{{ $t('bookinRoomDone.mobile.response.2') }}</p>
+		<p class="booking-done-mobile__caption">{{ $t('bookingRoomDone.mobile.caption') }}</p>
+		<p class="booking-done-mobile__info">{{ $t('bookingRoomDone.mobile.response.0') }}</p>
+		<p class="booking-done-mobile__info">{{ $t('bookingRoomDone.mobile.response.1') }}</p>
+		<p class="booking-done-mobile__info">{{ $t('bookingRoomDone.mobile.response.2') }}</p>
 		<div class="booking-done-mobile__inner booking-done-mobile__inner--social">
-			<p class="booking-done__text">{{ $t('bookinRoomDone.mobile.text') }}</p>
+			<p class="booking-done__text">{{ $t('bookingRoomDone.mobile.text') }}</p>
 			<social-networks class="booking-done-mobile__social"></social-networks>
 		</div>
 		<div class="booking-done-mobile__inner booking-done-mobile__inner--location">
 			<svg class="booking-done-mobile__image">
 				<use xlink:href='#location' />
 			</svg>
-			<p class="booking-done-mobile__location-text">{{ $t('bookinRoomDone.mobile.location') }}</p>
+			<p class="booking-done-mobile__location-text">{{ $t('bookingRoomDone.mobile.location') }}</p>
 		</div>
 		<button-map class="booking-done-mobile__button-map"></button-map>
 		<div class="booking-done-mobile__inner booking-done-mobile__inner--back-button">
 			<button-back class="booking-done-mobile__button-back" @click.native='goHome'></button-back>
-			<p class="booking-done-mobile__button-text" @click='goHome'>{{ $t('bookinRoomDone.mobile.toStart') }}</p>
+			<p class="booking-done-mobile__button-text" @click='goHome'>{{ $t('bookingRoomDone.mobile.toStart') }}</p>
 		</div>
 	</div>
 	<svg style="display: none;">
@@ -117,7 +117,6 @@ export default {
 		z-index: 100;
 		width: 100%;
 		top: 0;
-		bottom: 0;
 		left: 0;
 		right: 0;
 		min-height: 100vh;
