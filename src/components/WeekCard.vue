@@ -1,46 +1,46 @@
 <template>
 <div class="resident-card__wrapper-all" @click.self='close'>
-<div class="week-card__wrapper" @click.self='close'>
-    <div class="week-card animated faster fadeInBubble">
-        <button-close-mini class="week-card__close" @click.native='close'></button-close-mini>
-        <p class="week-card__title"> {{ $t('weekCard.price') }}
-        </p>
-        <div class="week-card__inner week-card__inner--middle">
-            <div class="week-card__label">
-                <img src="../assets/image/wi-fi.svg" alt="wi-fi" class="week-card__image">
-                <p class="week-card__text"> {{ $t('weekCard.features.wifi') }}</p>
-            </div>
-            <div class="week-card__label">
-                <img src="../assets/image/unlimited-coffee-tea.svg" alt="coffe" class="week-card__image">
-                <p class="week-card__text">{{ $t('weekCard.features.coffee') }}</p>
-            </div>
-            <div class="week-card__label">
-                <img src="../assets/image/printer.svg" alt="printer" class="week-card__image">
-                <p class="week-card__text">{{ $t('weekCard.features.printer') }}</p>
-            </div>
-            <div class="week-card__label">
-                <img src="../assets/image/shower.svg" alt="shower" class="week-card__image">
-                <p class="week-card__text">{{ $t('weekCard.features.shower') }}</p>
-            </div>
-            <div class="week-card__label">
-                <img src="../assets/image/microwave.svg" alt="kitchen" class="week-card__image">
-                <p class="week-card__text">{{ $t('weekCard.features.kitchen') }}</p>
-            </div>
-        </div>
-        <div class="week-card__inner week-card__inner--price">
-            <p class="week-card__price">
-                {{ $t('weekCard.price') }}
-                <span class="week-card__sum">{{ price }}</span>
+    <div class="week-card__wrapper" @click.self='close'>
+        <div class="week-card animated faster fadeInBubble">
+            <button-close-mini class="week-card__close" @click.native='close'></button-close-mini>
+            <p class="week-card__title"> {{ $t('weekCard.price') }}
             </p>
-            <button class="week-card__button" @click="selectWeek">
-                <p class='week-card__button-text'>
-                {{ $t('weekCard.button') }}
+            <div class="week-card__inner week-card__inner--middle">
+                <div class="week-card__label">
+                    <img src="../assets/image/wi-fi.svg" alt="wi-fi" class="week-card__image">
+                    <p class="week-card__text"> {{ $t('weekCard.features.wifi') }}</p>
+                </div>
+                <div class="week-card__label">
+                    <img src="../assets/image/unlimited-coffee-tea.svg" alt="coffe" class="week-card__image">
+                    <p class="week-card__text">{{ $t('weekCard.features.coffee') }}</p>
+                </div>
+                <div class="week-card__label">
+                    <img src="../assets/image/printer.svg" alt="printer" class="week-card__image">
+                    <p class="week-card__text">{{ $t('weekCard.features.printer') }}</p>
+                </div>
+                <div class="week-card__label">
+                    <img src="../assets/image/shower.svg" alt="shower" class="week-card__image">
+                    <p class="week-card__text">{{ $t('weekCard.features.shower') }}</p>
+                </div>
+                <div class="week-card__label">
+                    <img src="../assets/image/microwave.svg" alt="kitchen" class="week-card__image">
+                    <p class="week-card__text">{{ $t('weekCard.features.kitchen') }}</p>
+                </div>
+            </div>
+            <div class="week-card__inner week-card__inner--price">
+                <p class="week-card__price">
+                    {{ $t('weekCard.price') }}
+                    <span class="week-card__sum">{{ price }}</span>
                 </p>
-            </button>
+                <button class="week-card__button" @click="selectWeek">
+                    <p class='week-card__button-text'>
+                    {{ $t('weekCard.button') }}
+                    </p>
+                </button>
+            </div>
+        
         </div>
-       
     </div>
-</div>
 </div>
 </template>
 

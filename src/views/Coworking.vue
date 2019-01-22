@@ -1,6 +1,6 @@
 <template>
 <div class="coworking">
-<!-- 2 wrappers to implement dual adaptive indents -->
+<!-- 2 wrappers to implement dual adaptive indents (paddings)-->
 	<div class="coworking__wrapper">
 		<div class="coworking__inner">
 			<header class="coworking__header animated d06 delay-02s fadeInLeft">
@@ -66,7 +66,6 @@
 			</div>
 		</router-link>
 	</section>
-	
 </div>
 </template>
 

@@ -1,62 +1,62 @@
 <template>
 <div class="glide">
-<div class="glide__track" data-glide-el="track">
-	<ul class="glide__slides">
-		<li class="glide__slide">
-			<img src="../assets/image/merge-1.jpg" alt="merge" class="glide__image">
-		</li>
-		<li class="glide__slide">
-			<img src="../assets/image/merge-2.jpg" alt="merge" class="glide__image">
-		</li>
-		<li class="glide__slide">
-			<img src="../assets/image/merge-3.jpg" alt="merge" class="glide__image">
-		</li>
-		<li class="glide__slide">
-			<img src="../assets/image/merge-4.png" alt="merge" class="glide__image">
-		</li>
-	</ul>
-</div>
-<div class="glide__arrows" data-glide-el="controls">
-	<button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-		<svg class='glide__nav-icon'>
-			<use xlink:href='#chevron-left' />
-		</svg>
-		<svg class='glide__nav-icon-mobile'>
-			<use xlink:href='#arrow-left' />
-		</svg>
-		<div class="glide__outside"></div>
-	</button>
-	<p class="glide__counter-box">
-		<span class="glide__counter">{{ slideIndex }}</span>
-		<span class="glide__slash"> / </span>
-		<span class="glide__sum">{{ slides }}</span>
-	</p>
-	<button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-		<svg class='glide__nav-icon'>
-			<use xlink:href='#chevron-right' />
-		</svg>
-		<svg class='glide__nav-icon-mobile'>
-			<use xlink:href='#arrow-right' />
-		</svg>
-		<div class="glide__outside"></div>
-	</button>
-</div>
-<svg style="display: none">
-	<symbol id='chevron-left' viewBox="0 0 24 24">
-		<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-		<path d="M0 0h24v24H0z" fill="none" />
-	</symbol>
-	<symbol id='chevron-right' viewBox="0 0 24 24">
-		<path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
-		<path d="M0 0h24v24H0z" fill="none" />
-	</symbol>
-	<symbol id='arrow-left' viewBox="0 0 400.004 400.004" style="enable-background:new 0 0 400.004 400.004;" xml:space="preserve">
-		<path d="M382.688,182.686H59.116l77.209-77.214c6.764-6.76,6.764-17.726,0-24.485c-6.764-6.764-17.73-6.764-24.484,0L5.073,187.757   c-6.764,6.76-6.764,17.727,0,24.485l106.768,106.775c3.381,3.383,7.812,5.072,12.242,5.072c4.43,0,8.861-1.689,12.242-5.072   c6.764-6.76,6.764-17.726,0-24.484l-77.209-77.218h323.572c9.562,0,17.316-7.753,17.316-17.315   C400.004,190.438,392.251,182.686,382.688,182.686z" fill="#FFFFFF"/>
-	</symbol>
-	<symbol id='arrow-right' viewBox="0 0 268.832 268.832" style="enable-background:new 0 0 400.004 400.004;" xml:space="preserve">
-		<path d="M265.171,125.577l-80-80c-4.881-4.881-12.797-4.881-17.678,0c-4.882,4.882-4.882,12.796,0,17.678l58.661,58.661H12.5   c-6.903,0-12.5,5.597-12.5,12.5c0,6.902,5.597,12.5,12.5,12.5h213.654l-58.659,58.661c-4.882,4.882-4.882,12.796,0,17.678   c2.44,2.439,5.64,3.661,8.839,3.661s6.398-1.222,8.839-3.661l79.998-80C270.053,138.373,270.053,130.459,265.171,125.577z" fill='white'/>
-	</symbol>
-</svg>
+	<div class="glide__track" data-glide-el="track">
+		<ul class="glide__slides">
+			<li class="glide__slide">
+				<img src="../assets/image/merge-1.jpg" alt="merge" class="glide__image">
+			</li>
+			<li class="glide__slide">
+				<img src="../assets/image/merge-2.jpg" alt="merge" class="glide__image">
+			</li>
+			<li class="glide__slide">
+				<img src="../assets/image/merge-3.jpg" alt="merge" class="glide__image">
+			</li>
+			<li class="glide__slide">
+				<img src="../assets/image/merge-4.png" alt="merge" class="glide__image">
+			</li>
+		</ul>
+	</div>
+	<div class="glide__arrows" data-glide-el="controls">
+		<button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+			<svg class='glide__nav-icon'>
+				<use xlink:href='#chevron-left' />
+			</svg>
+			<svg class='glide__nav-icon-mobile'>
+				<use xlink:href='#arrow-left' />
+			</svg>
+			<div class="glide__outside"></div>
+		</button>
+		<p class="glide__counter-box">
+			<span class="glide__counter">{{ slideIndex }}</span>
+			<span class="glide__slash"> / </span>
+			<span class="glide__sum">{{ slides }}</span>
+		</p>
+		<button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+			<svg class='glide__nav-icon'>
+				<use xlink:href='#chevron-right' />
+			</svg>
+			<svg class='glide__nav-icon-mobile'>
+				<use xlink:href='#arrow-right' />
+			</svg>
+			<div class="glide__outside"></div>
+		</button>
+	</div>
+	<svg style="display: none">
+		<symbol id='chevron-left' viewBox="0 0 24 24">
+			<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+			<path d="M0 0h24v24H0z" fill="none" />
+		</symbol>
+		<symbol id='chevron-right' viewBox="0 0 24 24">
+			<path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+			<path d="M0 0h24v24H0z" fill="none" />
+		</symbol>
+		<symbol id='arrow-left' viewBox="0 0 400.004 400.004" style="enable-background:new 0 0 400.004 400.004;" xml:space="preserve">
+			<path d="M382.688,182.686H59.116l77.209-77.214c6.764-6.76,6.764-17.726,0-24.485c-6.764-6.764-17.73-6.764-24.484,0L5.073,187.757   c-6.764,6.76-6.764,17.727,0,24.485l106.768,106.775c3.381,3.383,7.812,5.072,12.242,5.072c4.43,0,8.861-1.689,12.242-5.072   c6.764-6.76,6.764-17.726,0-24.484l-77.209-77.218h323.572c9.562,0,17.316-7.753,17.316-17.315   C400.004,190.438,392.251,182.686,382.688,182.686z" fill="#FFFFFF"/>
+		</symbol>
+		<symbol id='arrow-right' viewBox="0 0 268.832 268.832" style="enable-background:new 0 0 400.004 400.004;" xml:space="preserve">
+			<path d="M265.171,125.577l-80-80c-4.881-4.881-12.797-4.881-17.678,0c-4.882,4.882-4.882,12.796,0,17.678l58.661,58.661H12.5   c-6.903,0-12.5,5.597-12.5,12.5c0,6.902,5.597,12.5,12.5,12.5h213.654l-58.659,58.661c-4.882,4.882-4.882,12.796,0,17.678   c2.44,2.439,5.64,3.661,8.839,3.661s6.398-1.222,8.839-3.661l79.998-80C270.053,138.373,270.053,130.459,265.171,125.577z" fill='white'/>
+		</symbol>
+	</svg>
 </div>	
 </template>
 
